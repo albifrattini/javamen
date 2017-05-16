@@ -1,5 +1,6 @@
 package it.polimi.ingsw.ps03.room_pack;
 
+<<<<<<< HEAD
 import it.polimi.ingsw.ps03.pawns_pack.*;
 
 public abstract class Room {
@@ -34,5 +35,10 @@ public abstract class Room {
 		this.pawn = pawn;
 	}
 	
+=======
+public abstract class Room {
+
+	private int requirementRoom;
+>>>>>>> c9bfeea9e682333f22f83fd3f24d512eaadc5a05
 	
 }
