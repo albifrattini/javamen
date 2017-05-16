@@ -10,10 +10,13 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		
 		for (int i = 0; i < 4; i++){
-			System.out.println("Inserisci un colore: ");
+			System.out.println("Inserisci un colore tra\n"
+					+ "BLUE\nGREEN\nRED\nYELLOW\n: ");
 			String colorDecision = scanner.next();
 			billboard.addPlayer(i, colorDecision);
 		}
+		
+		
 		
 		billboard.changeDicesValues();
 		
