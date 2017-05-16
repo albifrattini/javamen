@@ -9,9 +9,21 @@ public class Main {
 		Billboard billboard = new Billboard();
 		Scanner scanner = new Scanner(System.in);
 		
-		for (int i = 0; i < 4; i++){
-			System.out.println("Inserisci un colore tra\n"
-					+ "BLUE\nGREEN\nRED\nYELLOW\n: ");
+//		try{	
+			System.out.println("Insert number of Players (between 2-4): ");
+			int numberOfPlayers = scanner.nextInt();
+/*			if (numberOfPlayers < 2 || numberOfPlayers > 4) 
+				throw new Exception("UnAccepted number of players!");
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("Reboot game...");
+		}
+*/
+		
+		System.out.println("Available color -> BLUE\nGREEN\nYELLOW\nRED\n");
+		for (int i = 1; i < numberOfPlayers; i++){
+			System.out.printf("Insert color of player number: ", i);
 			String colorDecision = scanner.next();
 			billboard.addPlayer(i, colorDecision);
 		}

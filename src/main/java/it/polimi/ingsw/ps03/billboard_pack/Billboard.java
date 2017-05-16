@@ -15,6 +15,7 @@ public class Billboard {
 	
 	
 	public Billboard(){
+		dices = new Dices();
 		period = 1;
 		turn = 1;
 	}
