@@ -7,16 +7,17 @@ public class MarketRoom {
 	
 	private int requirement;
 	private boolean occupied;
-	private Resource givenResource; //***creare classe risorsa***
+	private Bonus givenBonus; 
 	private Pawn pawn;
 	
-	public MarketRoom (int requirement, Resource givenResource) {
+	public MarketRoom (int requirement, Bonus givenBonus) {
 		this.requirement = requirement;
 		this.occupied = false;
+		this.givenBonus = givenBonus;
 		this.pawn = null;
 	}
 	
-	public int getRequirement(){
+	public int getRequirement(){ 
 		return this.requirement;
 	}
 	
@@ -39,7 +40,7 @@ public class MarketRoom {
 	}
 	
 	/*	!!!METODI DA IMPLEMENTARE!!!
-	 * private Resource getResource();
+	 * private Bonus getBonus();
 	 * 
 	 */
 

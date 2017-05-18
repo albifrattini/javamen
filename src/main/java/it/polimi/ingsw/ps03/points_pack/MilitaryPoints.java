@@ -1,6 +1,7 @@
 package it.polimi.ingsw.ps03.points_pack;
 
 public class MilitaryPoints {
+	
 	private int value;
 	
 	public MilitaryPoints(int value) {
