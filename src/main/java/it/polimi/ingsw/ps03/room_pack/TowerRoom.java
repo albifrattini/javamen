@@ -12,7 +12,9 @@ public class TowerRoom {
 	private boolean occupied;
 	private Pawn pawn;
 	
-	
+	public TowerRoom(){
+		
+	}
 	
 	
 	

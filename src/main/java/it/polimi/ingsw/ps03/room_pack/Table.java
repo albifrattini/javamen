@@ -22,7 +22,9 @@ public class Table {
 	//Ho inoltre messo 4 spazi in arraylist perchè non potendo posizionare più volte
 	//un pedone dello stesso colore avremo al massimo 4 spazi occupati
 	
-	
+	public Table(){
+		
+	}
 
 	
 	
