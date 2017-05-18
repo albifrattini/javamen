@@ -12,8 +12,13 @@ public class TowerRoom {
 	private boolean occupied;
 	private Pawn pawn;
 	
-	public TowerRoom(){
-		
+	public TowerRoom(TowerColor color, int requirement, Bonus givenBonus){
+		this.color = color;
+		this.requirement = requirement;
+		this.givenBonus = givenBonus;
+		this.placedCard = null;
+		this.occupied = false;
+		this.pawn = null;
 	}
 	
 	

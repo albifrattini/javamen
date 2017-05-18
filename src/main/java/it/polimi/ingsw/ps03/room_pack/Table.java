@@ -17,16 +17,40 @@ public class Table {
 			new ArrayList<ProductionRoom>(PH_SPACES);
 	private ArrayList<CouncilRoom> councilPalace =
 			new ArrayList<CouncilRoom>();
+	
 	//voglio rendere il primo spazio di arraylist per production e harvesting disponibile
 	//con requirement=1, mentre gli spazi 2-4 con requirement=4 e tolgo 3 punti al pedone
 	//Ho inoltre messo 4 spazi in arraylist perchè non potendo posizionare più volte
 	//un pedone dello stesso colore avremo al massimo 4 spazi occupati
 	
+	
+	
+	
+	
 	public Table(){
-		
+		//lettura da file .json per costruire gli spazi azione
 	}
+
 
 	
 	
+	
+	
+/*	public void build(){
+		//costruzione delle torri
+		TowerColor[] colors = TowerColor.values();
+		int requirement = 1;
+		for(int i = 0; i < TOWER_ROOM_SPACES; i++){
+			
+			TowerRoom towerRoom = new TowerRoom(colors[number], requirement, givenBonus);
+			towerRooms.add(i, towerRoom);
+			requirement =+ 2;
+		}
+	}
+*/	
+	
+
+
+
 
 }
