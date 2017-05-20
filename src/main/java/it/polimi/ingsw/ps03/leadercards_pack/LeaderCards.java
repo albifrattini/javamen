@@ -1,5 +1,5 @@
 package it.polimi.ingsw.ps03.leadercards_pack;
-/*
+
 public class LeaderCards {
 	private LeaderCard leader1;
 	private LeaderCard leader2;
@@ -12,5 +12,4 @@ public class LeaderCards {
 		leader3 = new LeaderCard();
 		leader4 = new LeaderCard();
 	}
-	*/
 }
