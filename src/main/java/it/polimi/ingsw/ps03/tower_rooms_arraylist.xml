@@ -1,75 +1,370 @@
-<towerRooms>
 	<towerRoom>
 		<color>GREEN</color>
 		<requirement>1</requirement>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>0</value>
+				</coins>
+				<woods>
+					<value>0</value>
+				</woods>
+				<stones>
+					<value>0</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>0</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>GREEN</color>
 		<requirement>3</requirement>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>0</value>
+				</coins>
+				<woods>
+					<value>0</value>
+				</woods>
+				<stones>
+					<value>0</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>0</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>GREEN</color>
 		<requirement>5</requirement>
-		<givenBonus>1 wood</givenBonus>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>0</value>
+				</coins>
+				<woods>
+					<value>1</value>
+				</woods>
+				<stones>
+					<value>0</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>0</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>GREEN</color>
 		<requirement>7</requirement>
-		<givenBonus>2 woods</givenBonus>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>0</value>
+				</coins>
+				<woods>
+					<value>2</value>
+				</woods>
+				<stones>
+					<value>0</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>0</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>BLUE</color>
 		<requirement>1</requirement>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>0</value>
+				</coins>
+				<woods>
+					<value>0</value>
+				</woods>
+				<stones>
+					<value>0</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>0</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>BLUE</color>
 		<requirement>3</requirement>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>0</value>
+				</coins>
+				<woods>
+					<value>0</value>
+				</woods>
+				<stones>
+					<value>0</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>0</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>BLUE</color>
 		<requirement>5</requirement>
-		<givenBonus>1 stone</givenBonus>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>0</value>
+				</coins>
+				<woods>
+					<value>0</value>
+				</woods>
+				<stones>
+					<value>1</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>0</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>BLUE</color>
 		<requirement>7</requirement>
-		<givenBonus>2 stones</givenBonus>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>0</value>
+				</coins>
+				<woods>
+					<value>0</value>
+				</woods>
+				<stones>
+					<value>2</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>0</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>YELLOW</color>
 		<requirement>1</requirement>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>0</value>
+				</coins>
+				<woods>
+					<value>0</value>
+				</woods>
+				<stones>
+					<value>0</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>0</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>YELLOW</color>
 		<requirement>3</requirement>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>0</value>
+				</coins>
+				<woods>
+					<value>0</value>
+				</woods>
+				<stones>
+					<value>0</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>0</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>YELLOW</color>
 		<requirement>5</requirement>
-		<givenBonus>1 military point</givenBonus>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>0</value>
+				</coins>
+				<woods>
+					<value>0</value>
+				</woods>
+				<stones>
+					<value>0</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>1</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>YELLOW</color>
 		<requirement>7</requirement>
-		<givenBonus>2 military points</givenBonus>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>0</value>
+				</coins>
+				<woods>
+					<value>0</value>
+				</woods>
+				<stones>
+					<value>0</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>2</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>VIOLET</color>
 		<requirement>1</requirement>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>0</value>
+				</coins>
+				<woods>
+					<value>0</value>
+				</woods>
+				<stones>
+					<value>0</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>0</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>VIOLET</color>
 		<requirement>3</requirement>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>0</value>
+				</coins>
+				<woods>
+					<value>0</value>
+				</woods>
+				<stones>
+					<value>0</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>0</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>VIOLET</color>
 		<requirement>5</requirement>
-		<givenBonus>1 coin</givenBonus>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>1</value>
+				</coins>
+				<woods>
+					<value>0</value>
+				</woods>
+				<stones>
+					<value>0</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>0</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 	<towerRoom>
 		<color>VIOLET</color>
 		<requirement>7</requirement>
-		<givenBonus>2 coins</givenBonus>
+		<givenBonus>
+			<resource>
+				<coins>
+					<value>2</value>
+				</coins>
+				<woods>
+					<value>0</value>
+				</woods>
+				<stones>
+					<value>0</value>
+				</stones>
+				<servants>
+					<value>0</value>
+				</servants>
+			</resource>
+			<militaryPoints>
+				<value>0</value>
+			</militaryPoints>	
+		</givenBonus>
 	</towerRoom>
 </towerRooms> 
 		

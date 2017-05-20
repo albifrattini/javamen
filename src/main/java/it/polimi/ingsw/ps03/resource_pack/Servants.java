@@ -2,5 +2,15 @@ package it.polimi.ingsw.ps03.resource_pack;
 
 public class Servants {
 
-	private int servants;
+	private int value;
+	
+	public Servants(int value) {
+		this.value = value;
+	}
+	public int getValue() {	
+		return  this.value;
+	}
+	public void setValue(int value) {
+		this.value = value;	
+	}
 }

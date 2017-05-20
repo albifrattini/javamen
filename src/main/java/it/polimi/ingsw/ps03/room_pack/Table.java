@@ -49,7 +49,8 @@ public class Table {
 		try{
 			
 			//apro il file in un oggetto di tipo file per fare operazioni su di esso
-			File towerRoomsXml = new File("/Users/alberto/prova-finale-template/src/main/java/it/polimi/ingsw/ps03"); 
+			File towerRoomsXml = new File("/Users/alberto/prova-finale-template/src/main/java/it/polimi/ingsw/ps03/"
+					+ "tower_rooms_arraylist_2.xml"); 
 			/*definisce una api factory che permette all'applicazione di ottenere un parser
 			 *che produce alberi oggetti da un documento xml
 			 *uso .newInstance() perchè il costruttore è protected

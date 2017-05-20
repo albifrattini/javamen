@@ -10,4 +10,20 @@ public class Bonus {
 
 	private Resource resource;
 	private MilitaryPoints militaryPoints;
+	
+	public Bonus (){	
+	}
+	public Bonus (Resource resource, MilitaryPoints militaryPoints){
+		this.resource = resource;
+		this.militaryPoints = militaryPoints;
+	}
+	public Resource getResource(){
+		return this.resource;
+	}
+	public int getMilitaryPoints(){
+		return militaryPoints.getValue();
+	}
+	
+	//non aggiungo i metodi set perchè penso non servano in questa classe e 
+	//potrebbero creare problemi
 }
