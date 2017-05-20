@@ -7,9 +7,9 @@ public class Ban {
 	private ThirdBan thirdBan;
 	
 	public Ban(){
-		firstBan = new FirstBan();
-		secondBan = new SecondBan();
-		thirdBan = new ThirdBan();
+		firstBan = new FirstBan(false, false, false, false);
+		secondBan = new SecondBan(false, false, false, false);
+		thirdBan = new ThirdBan(false, false, false, false);
 	}
 
 
