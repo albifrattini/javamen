@@ -1,0 +1,76 @@
+<towerRooms>
+	<towerRoom>
+		<color>GREEN</color>
+		<requirement>1</requirement>
+	</towerRoom>
+	<towerRoom>
+		<color>GREEN</color>
+		<requirement>3</requirement>
+	</towerRoom>
+	<towerRoom>
+		<color>GREEN</color>
+		<requirement>5</requirement>
+		<givenBonus>1 wood</givenBonus>
+	</towerRoom>
+	<towerRoom>
+		<color>GREEN</color>
+		<requirement>7</requirement>
+		<givenBonus>2 woods</givenBonus>
+	</towerRoom>
+	<towerRoom>
+		<color>BLUE</color>
+		<requirement>1</requirement>
+	</towerRoom>
+	<towerRoom>
+		<color>BLUE</color>
+		<requirement>3</requirement>
+	</towerRoom>
+	<towerRoom>
+		<color>BLUE</color>
+		<requirement>5</requirement>
+		<givenBonus>1 stone</givenBonus>
+	</towerRoom>
+	<towerRoom>
+		<color>BLUE</color>
+		<requirement>7</requirement>
+		<givenBonus>2 stones</givenBonus>
+	</towerRoom>
+	<towerRoom>
+		<color>YELLOW</color>
+		<requirement>1</requirement>
+	</towerRoom>
+	<towerRoom>
+		<color>YELLOW</color>
+		<requirement>3</requirement>
+	</towerRoom>
+	<towerRoom>
+		<color>YELLOW</color>
+		<requirement>5</requirement>
+		<givenBonus>1 military point</givenBonus>
+	</towerRoom>
+	<towerRoom>
+		<color>YELLOW</color>
+		<requirement>7</requirement>
+		<givenBonus>2 military points</givenBonus>
+	</towerRoom>
+	<towerRoom>
+		<color>VIOLET</color>
+		<requirement>1</requirement>
+	</towerRoom>
+	<towerRoom>
+		<color>VIOLET</color>
+		<requirement>3</requirement>
+	</towerRoom>
+	<towerRoom>
+		<color>VIOLET</color>
+		<requirement>5</requirement>
+		<givenBonus>1 coin</givenBonus>
+	</towerRoom>
+	<towerRoom>
+		<color>VIOLET</color>
+		<requirement>7</requirement>
+		<givenBonus>2 coins</givenBonus>
+	</towerRoom>
+</towerRooms> 
+		
+	

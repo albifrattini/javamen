@@ -7,20 +7,29 @@ public class TowerRoom {
 	
 	private TowerColor color;
 	private int requirement;
-	private Bonus givenBonus;
-	private DevelopmentCard placedCard;
+	private String givenBonus
+	//private Bonus givenBonus;
+	//private DevelopmentCard placedCard;
 	private boolean occupied;
 	private Pawn pawn;
 	
-	public TowerRoom(TowerColor color, int requirement, Bonus givenBonus){
+	public TowerRoom(TowerColor color, int requirement, String givenBonus){
 		this.color = color;
 		this.requirement = requirement;
 		this.givenBonus = givenBonus;
-		this.placedCard = null;
+		//this.givenBonus = givenBonus;
+		//this.placedCard = null;
 		this.occupied = false;
 		this.pawn = null;
 	}
 	
+	public TowerColor getColor(){
+		return this.color;
+	}
+	
+	public int getRequirement(){
+		return this.requirement;
+	}
 	
 	
 }
