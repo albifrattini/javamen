@@ -7,8 +7,8 @@ public class HarvestingRoom {
 	private int requirement ;
 	private Pawn pawn; 
 	
-	public HarvestingRoom () {
-		this.occupied = occupied;
+	public HarvestingRoom (int requirement) {
+		this.occupied = false;
 		this.requirement = requirement;
 		this.pawn = pawn;
 		}
@@ -21,9 +21,7 @@ public class HarvestingRoom {
 	public int getRequirment() {
 		return this.requirement;
 	}
-	public void setRequirement (int requirement) {
-		this.requirement = requirement;
-	}
+
 	public Pawn getPawn() {
 		return this.pawn;
 	}
