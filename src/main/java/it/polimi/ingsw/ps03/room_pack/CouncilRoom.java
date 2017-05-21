@@ -1,13 +1,14 @@
 package it.polimi.ingsw.ps03.room_pack;
 
+import it.polimi.ingsw.ps03.pawns_pack.*;
+
 public class CouncilRoom {
-	private int requirement;
+	private final int requirement = 1;
 	/*private Bonus givenBonus; */
 	private Pawn pawn;
 
 
-	public CouncilRoom (int requirement/*, Bonus givenBonus*/) {
-		this.requirement = requirement;
+	public CouncilRoom (/*Bonus givenBonus*/) {
 		/*this.givenBonus = givenBonus;*/
 		this.pawn = null;
 	}
@@ -15,18 +16,14 @@ public class CouncilRoom {
 	public int getRequirement(){ 
 		return this.requirement;
 	}
-	
-	
 	public Pawn getPawn(){
 		return this.pawn;
 	}
-	
 	public void placePawn(Pawn pawn){
 		this.pawn = pawn;
 	}
-	
-	public void removePawn(Pawn pawn){
-		this.pawn = pawn;
+	public void removePawn(){
+		this.pawn = null;
 	}
 
 }
