@@ -25,9 +25,18 @@ public class DevelopmentCard {
 		this.diceValue = diceValue;
 	}
 	
+	@Override
+	public String toString(){
+		return "id: " + this.id + "Card Name: " + this.cardName + "Card Color: " + this.cardColor +
+				"Card Period: " + this.cardPeriod + "Dice Value: " + this.diceValue;
+	}
+	
 	//METODI SET: assenti perchè una carta non può essere modificata
 	
 	//METODI GET
+	public DevelopmentCard getCard(){
+		return this;
+	}
 	public int getId(){
 		return this.id;
 	}
@@ -45,5 +54,6 @@ public class DevelopmentCard {
 	}
 	//public ImmediateEffect getImmediateEffect();
 	//public PermanentEffect getPermanentEffect();
+	
 	
 }

@@ -14,7 +14,21 @@ public class Resource {
 		this.servants = servants;
 	}
 	
-	public int getCoinsValue(){
+	//METODI GET
+	public Coins getCoins(){
+		return this.coins;
+	}
+	public Woods getWoods(){
+		return this.woods;
+	}
+	public Stones getStones(){
+		return this.stones;
+	}
+	public Servants getServants(){
+		return this.servants;
+	}
+	
+/*	public int getCoinsValue(){
 		return coins.getValue();
 	}
 	public int getWoodsValue(){
@@ -26,5 +40,6 @@ public class Resource {
 	public int getServantsValue(){
 		return servants.getValue();
 	}
+*/
 	
 }

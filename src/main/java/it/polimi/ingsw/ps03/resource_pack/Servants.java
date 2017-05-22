@@ -13,4 +13,10 @@ public class Servants {
 	public void setValue(int value) {
 		this.value = value;	
 	}
+	public void addValue(int value){
+		this.value =+ value;
+	}
+	public void stealValue(int value){
+		this.value =- value;
+	}
 }
