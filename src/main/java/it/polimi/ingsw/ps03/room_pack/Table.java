@@ -42,7 +42,7 @@ public class Table {
 	
 	
 	public Table(){
-		//lettura da file .json per costruire gli spazi azione
+		
 	}
 
 
