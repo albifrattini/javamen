@@ -1,7 +1,7 @@
 package it.polimi.ingsw.ps03.resource_pack;
 
 public abstract class Resource {
-
+	
 	private int value;
 	
 	public Resource(int value){
