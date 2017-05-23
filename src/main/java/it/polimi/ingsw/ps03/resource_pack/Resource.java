@@ -28,7 +28,7 @@ public class Resource {
 		return this.servants;
 	}
 	
-/*	public int getCoinsValue(){
+	public int getCoinsValue(){
 		return coins.getValue();
 	}
 	public int getWoodsValue(){
@@ -40,6 +40,6 @@ public class Resource {
 	public int getServantsValue(){
 		return servants.getValue();
 	}
-*/
+
 	
 }
