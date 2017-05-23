@@ -11,10 +11,13 @@ public abstract class Resource {
 	public int getValue(){
 		return this.value;
 	}
-	public void addValue(int value){
+	public void add(int value){
 		this.value =+ value;
 	}
-	public void stealValue(int value){
-		this.value =- value;	//se <0 come lo gestisco?
+	public void sub(int value){
+		this.value =- value;
+		if(this.value < 0){
+			throw new IllegalArgumentException("Resource not sufficient!\n");
+		}
 	}
 }

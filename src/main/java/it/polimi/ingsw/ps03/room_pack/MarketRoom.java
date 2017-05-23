@@ -30,13 +30,11 @@ public class MarketRoom {
 	}
 	
 	public void placePawn(Pawn pawn){
-		this.occupied = true;
 		this.pawn = pawn;
 	}
 	
-	public void removePawn(Pawn pawn){
+	public void removePawn(){
 		this.occupied = false;
-		this.pawn = pawn;
 	}
 	
 	/*	!!!METODI DA IMPLEMENTARE!!!

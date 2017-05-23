@@ -4,10 +4,13 @@ public class LeaderCard {
 	
 	private String cardName;
 	public LeaderCard() {
-		 this.cardName = "nome carta leader";
+		 this.cardName = cardName;
 	}
 	public String getCardName () {
 		return this.cardName;
 	}
+    public void setCardName(String CardName){
+    	this.cardName = cardName;
+		}
 
 }

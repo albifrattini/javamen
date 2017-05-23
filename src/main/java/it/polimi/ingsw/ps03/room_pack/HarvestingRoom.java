@@ -15,7 +15,7 @@ public class HarvestingRoom {
 	public boolean getOccupied() {
 		return this.occupied;
 	}
-	public void setId (boolean occupied) {
+	public void setOccupied (boolean occupied) {
 		this.occupied = occupied;
 	}
 	public int getRequirment() {
