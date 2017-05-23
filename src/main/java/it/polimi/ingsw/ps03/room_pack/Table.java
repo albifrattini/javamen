@@ -91,9 +91,9 @@ public class Table {
 					militaryPoints = Integer.parseInt(militaryPoint);
 				}
 				
-				Resource resource = new Resource(
-						new Coins(coins), new Woods(woods),
-						new Stones(stones), new Servants(servants));
+				Resource_b resource = new Resource_b(
+						new Coins_b(coins), new Woods_b(woods),
+						new Stones_b(stones), new Servants_b(servants));
 				MilitaryPoints mPoints = new MilitaryPoints(militaryPoints);
 				Bonus gBonus = new Bonus(resource, mPoints);
 				TowerRoom nTRoom = new TowerRoom(color, requirement, gBonus);

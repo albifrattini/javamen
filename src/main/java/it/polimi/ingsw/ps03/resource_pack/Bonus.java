@@ -8,16 +8,16 @@ import it.polimi.ingsw.ps03.points_pack.*;
  */
 public class Bonus {
 
-	private Resource resource;
+	private Resource_b resource;
 	private MilitaryPoints militaryPoints;
 	
 	public Bonus (){	
 	}
-	public Bonus (Resource resource, MilitaryPoints militaryPoints){
+	public Bonus (Resource_b resource, MilitaryPoints militaryPoints){
 		this.resource = resource;
 		this.militaryPoints = militaryPoints;
 	}
-	public Resource getResource(){
+	public Resource_b getResource(){
 		return this.resource;
 	}
 	public int getMilitaryPoints(){

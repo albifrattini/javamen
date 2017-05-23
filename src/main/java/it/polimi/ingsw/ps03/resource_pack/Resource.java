@@ -1,45 +1,20 @@
 package it.polimi.ingsw.ps03.resource_pack;
 
-public class Resource {
+public abstract class Resource {
 
-	private Coins coins;
-	private Woods woods;
-	private Stones stones;
-	private Servants servants;
+	private int value;
 	
-	public Resource(Coins coins, Woods woods, Stones stones, Servants servants){
-		this.coins = coins;
-		this.woods = woods;
-		this.stones = stones;
-		this.servants = servants;
+	public Resource(int value){
+		this.value = value;
 	}
 	
-	//METODI GET
-	public Coins getCoins(){
-		return this.coins;
+	public int getValue(){
+		return this.value;
 	}
-	public Woods getWoods(){
-		return this.woods;
+	public void addValue(int value){
+		this.value =+ value;
 	}
-	public Stones getStones(){
-		return this.stones;
+	public void stealValue(int value){
+		this.value =- value;	//se <0 come lo gestisco?
 	}
-	public Servants getServants(){
-		return this.servants;
-	}
-	
-/*	public int getCoinsValue(){
-		return coins.getValue();
-	}
-	public int getWoodsValue(){
-		return woods.getValue();
-	}
-	public int getStonesValue(){
-		return stones.getValue();
-	}
-	public int getServantsValue(){
-		return servants.getValue();
-	}
-*/
-	
 }

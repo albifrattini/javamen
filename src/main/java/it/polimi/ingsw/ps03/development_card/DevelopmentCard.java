@@ -27,8 +27,8 @@ public class DevelopmentCard {
 	
 	@Override
 	public String toString(){
-		return "id: " + this.id + "Card Name: " + this.cardName + "Card Color: " + this.cardColor +
-				"Card Period: " + this.cardPeriod + "Dice Value: " + this.diceValue;
+		return "id: " + this.id + "\nCard Name: " + this.cardName + "\nCard Color: " + this.cardColor +
+				"\nCard Period: " + this.cardPeriod + "\nDice Value: " + this.diceValue;
 	}
 	
 	//METODI SET: assenti perchè una carta non può essere modificata
