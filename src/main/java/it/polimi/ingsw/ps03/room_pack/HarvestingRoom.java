@@ -1,6 +1,6 @@
 package it.polimi.ingsw.ps03.room_pack;
 
-import it.polimi.ingsw.ps03.pawns_pack.Pawn;
+import it.polimi.ingsw.ps03.players.Pawn;
 
 public class HarvestingRoom {
 	private boolean occupied;

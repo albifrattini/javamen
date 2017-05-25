@@ -2,6 +2,7 @@ package it.polimi.ingsw.ps03.room_pack;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,8 +12,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import it.polimi.ingsw.ps03.points_pack.*;
-import it.polimi.ingsw.ps03.resource_pack.*;
+import it.polimi.ingsw.ps03.resources.*;
 
 //import it.polimi.ingsw.ps03.resource_pack.Bonus;
 
@@ -21,16 +21,11 @@ public class Table {
 	private static final int PH_SPACES = 4;
 	private static final int MARKET_ROOM_SPACES = 4;
 	private static final int TOWER_ROOM_SPACES = 16;
-	private ArrayList<TowerRoom> towerRooms = 
-			new ArrayList<TowerRoom>(TOWER_ROOM_SPACES);
-	private ArrayList<MarketRoom> market = 
-			new ArrayList<MarketRoom>(MARKET_ROOM_SPACES);
-	private ArrayList<HarvestingRoom> harvestingRooms = 
-			new ArrayList<HarvestingRoom>(PH_SPACES);
-	private ArrayList<ProductionRoom> productionRooms = 
-			new ArrayList<ProductionRoom>(PH_SPACES);
-	private ArrayList<CouncilRoom> councilPalace =
-			new ArrayList<CouncilRoom>();
+	private List<TowerRoom> towerRooms;
+	private List<MarketRoom> market;
+	private List<HarvestingRoom> harvestingRooms;
+	private List<ProductionRoom> productionRooms;
+	private List<CouncilRoom> councilPalace;
 	
 	//voglio rendere il primo spazio di arraylist per production e harvesting disponibile
 	//con requirement=1, mentre gli spazi 2-4 con requirement=4 e tolgo 3 punti al pedone
@@ -42,7 +37,11 @@ public class Table {
 	
 	
 	public Table(){
-		
+		towerRooms = new ArrayList<TowerRoom>(TOWER_ROOM_SPACES);
+		market = new ArrayList<MarketRoom>(MARKET_ROOM_SPACES);
+		harvestingRooms = new ArrayList<HarvestingRoom>(PH_SPACES);
+		productionRooms = new ArrayList<ProductionRoom>(PH_SPACES);
+		councilPalace = new ArrayList<CouncilRoom>();
 	}
 
 
@@ -91,13 +90,6 @@ public class Table {
 					militaryPoints = Integer.parseInt(militaryPoint);
 				}
 				
-				Resource_b resource = new Resource_b(
-						new Coins_b(coins), new Woods_b(woods),
-						new Stones_b(stones), new Servants_b(servants));
-				MilitaryPoints mPoints = new MilitaryPoints(militaryPoints);
-				Bonus gBonus = new Bonus(resource, mPoints);
-				TowerRoom nTRoom = new TowerRoom(color, requirement, gBonus);
-				towerRooms.add(i, nTRoom);
 			}
 		
 		}catch(Exception e){

@@ -1,19 +1,19 @@
 package it.polimi.ingsw.ps03.room_pack;
 
-import it.polimi.ingsw.ps03.pawns_pack.*;
-import it.polimi.ingsw.ps03.resource_pack.*;
+import it.polimi.ingsw.ps03.players.*;
+import it.polimi.ingsw.ps03.resources.*;
 
 public class MarketRoom {
 	
 	private int requirement;
 	private boolean occupied;
-	private Bonus givenBonus; 
+	private Resources resources; 
 	private Pawn pawn;
 	
-	public MarketRoom (int requirement, Bonus givenBonus) {
+	public MarketRoom (int requirement, Resources resources) {
 		this.requirement = requirement;
 		this.occupied = false;
-		this.givenBonus = givenBonus;
+		this.resources = resources;
 		this.pawn = null;
 	}
 	

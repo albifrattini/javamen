@@ -1,7 +1,7 @@
 package it.polimi.ingsw.ps03.billboard_pack;
 
-import it.polimi.ingsw.ps03.dices_pack.Dices;
-import it.polimi.ingsw.ps03.players_pack.Player;
+import it.polimi.ingsw.ps03.dices.*;
+import it.polimi.ingsw.ps03.players.*;
 
 import java.util.ArrayList;
 
@@ -10,43 +10,25 @@ public class Billboard {
 
 	private static Dices dices;
 	private ArrayList<Player> players = new ArrayList<Player>(4);
-	private static int period;
-	private static int turn;
+	private static Instant instant;
 	
 	
 	public Billboard(){
 		dices = new Dices();
-		period = 1;
-		turn = 1;
+		instant = new Instant();
 	}
 	
-	public void addPlayer(int index, String color){
-		Player player = new Player(color);
-		players.add(index, player);
+	public void addPlayer(PlayerColor color, int initialCoins){
+		Player player = new Player(color, initialCoins);
+		players.add(player);
 	}
 	
-	public void changeDicesValues(){
-		dices.roll();
+	public static Dices getDices(){
+		return dices;
+	}
+	public static Instant getInstant(){
+		return instant;
 	}
 	
-	public static int getBlackDiceValue(){
-		return dices.getBlackValue();
-	}
-	
-	public static int getOrangeDiceValue(){
-		return dices.getOrangeValue();
-	}
-	
-	public static int getWhiteDiceValue(){
-		return dices.getWhiteValue();
-	}
-	
-	public static int getPeriod(){
-		return period;
-	}
-	
-	public static int getTurn(){
-		return turn;
-	}
 	
 }

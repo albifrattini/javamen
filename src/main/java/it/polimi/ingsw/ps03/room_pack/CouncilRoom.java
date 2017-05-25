@@ -1,6 +1,6 @@
 package it.polimi.ingsw.ps03.room_pack;
 
-import it.polimi.ingsw.ps03.pawns_pack.*;
+import it.polimi.ingsw.ps03.players.*;
 
 public class CouncilRoom {
 	private final int requirement = 1;

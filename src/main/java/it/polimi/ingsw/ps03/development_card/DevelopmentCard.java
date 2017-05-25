@@ -9,15 +9,13 @@ public class DevelopmentCard {
 	private TowerColor cardColor;
 	private int cardPeriod;
 	private int diceValue;
-	//private ImmediateEffect immediateEffect;
-	//private PermanentEffect permanentEffect;
 	
 	//COSTRUTTORE
 	public DevelopmentCard(){
 		
 	}
 	public DevelopmentCard(int id, String cardName, TowerColor cardColor, 
-			int cardPeriod, int diceValue){ //Effects ancora da aggiungere
+			int cardPeriod, int diceValue){ 
 		this.id = id;
 		this.cardName = cardName;
 		this.cardColor = cardColor;
@@ -52,8 +50,7 @@ public class DevelopmentCard {
 	public int getDiceValue(){
 		return this.diceValue;
 	}
-	//public ImmediateEffect getImmediateEffect();
-	//public PermanentEffect getPermanentEffect();
+	
 	
 	
 }
