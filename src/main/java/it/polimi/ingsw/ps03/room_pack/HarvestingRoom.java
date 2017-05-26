@@ -3,29 +3,41 @@ package it.polimi.ingsw.ps03.room_pack;
 import it.polimi.ingsw.ps03.players.Pawn;
 
 public class HarvestingRoom {
+	
 	private boolean occupied;
 	private int requirement ;
 	private Pawn pawn; 
 	
-	public HarvestingRoom (int requirement) {
+	public HarvestingRoom (){
 		this.occupied = false;
-		this.requirement = requirement;
-		this.pawn = pawn;
+		this.requirement = 1;
+		this.pawn = null;
 		}
-	public boolean getOccupied() {
-		return this.occupied;
-	}
-	public void setOccupied (boolean occupied) {
-		this.occupied = occupied;
-	}
-	public int getRequirment() {
+	
+	//METODI GET
+	public int getRequirement(){
 		return this.requirement;
 	}
-
-	public Pawn getPawn() {
+	public Pawn getPawn(){
 		return this.pawn;
 	}
-	public void setPawn(Pawn pawn) {
+	public boolean isFull(){
+		return this.occupied;
+	}
+	
+	//METODI SET
+	private void occupyPlacement(){
+		this.occupied = true;
+	}
+	private void freePlacement(){
+		this.occupied = false;
+	}
+	public void setPawn(Pawn pawn){
+		occupyPlacement();
 		this.pawn = pawn;
+	}
+	public void removePawn(){
+		freePlacement();
+		this.pawn = null;
 	}
 }

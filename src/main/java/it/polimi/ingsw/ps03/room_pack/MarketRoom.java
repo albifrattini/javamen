@@ -7,11 +7,11 @@ public class MarketRoom {
 	
 	private int requirement;
 	private boolean occupied;
-	private Resources resources; 
+	private Resources resources;
 	private Pawn pawn;
 	
-	public MarketRoom (int requirement, Resources resources) {
-		this.requirement = requirement;
+	public MarketRoom (Resources resources) {
+		this.requirement = 1;
 		this.occupied = false;
 		this.resources = resources;
 		this.pawn = null;
@@ -20,26 +20,21 @@ public class MarketRoom {
 	public int getRequirement(){ 
 		return this.requirement;
 	}
-	
 	public boolean isFull(){
 		return this.occupied;
 	}
-	
 	public Pawn getPawn(){
 		return this.pawn;
 	}
-	
 	public void placePawn(Pawn pawn){
 		this.pawn = pawn;
 	}
-	
 	public void removePawn(){
 		this.occupied = false;
 	}
+	public Resources getResources(){
+		return resources;
+	}
 	
-	/*	!!!METODI DA IMPLEMENTARE!!!
-	 * private Bonus getBonus();
-	 * 
-	 */
 
 }

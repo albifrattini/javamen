@@ -2,32 +2,42 @@ package it.polimi.ingsw.ps03.room_pack;
 import it.polimi.ingsw.ps03.players.Pawn;
 
 public class ProductionRoom {
+	
 	private boolean occupied;
 	private int requirement ;
 	private Pawn pawn; 
 	
-	public ProductionRoom () {
-		this.occupied = occupied;
-		this.requirement = requirement;
-		this.pawn = pawn;
+	public ProductionRoom(){
+		this.occupied = false;
+		this.requirement = 1;
+		this.pawn = null;
 		}
-	public boolean getOccupied() {
-		return this.occupied;
-	}
-	public void setId (boolean occupied) {
-		this.occupied = occupied;
-	}
-	public int getRequirment() {
+	
+	//METODI GET
+	public int getRequirement(){
 		return this.requirement;
 	}
-	public void setRequirement (int requirement) {
-		this.requirement = requirement;
-	}
-	public Pawn getPawn() {
+	public Pawn getPawn(){
 		return this.pawn;
 	}
-	public void setPawn(Pawn pawn) {
+	public boolean isFull(){
+		return this.occupied;
+	}
+	
+	//METODI SET
+	private void occupyPlacement(){
+		this.occupied = true;
+	}
+	private void freePlacement(){
+		this.occupied = false;
+	}
+	public void setPawn(Pawn pawn){
+		occupyPlacement();
 		this.pawn = pawn;
+	}
+	public void removePawn(){
+		freePlacement();
+		this.pawn = null;
 	}
 	
 

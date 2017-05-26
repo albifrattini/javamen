@@ -11,9 +11,6 @@ public class DevelopmentCard {
 	private int diceValue;
 	
 	//COSTRUTTORE
-	public DevelopmentCard(){
-		
-	}
 	public DevelopmentCard(int id, String cardName, TowerColor cardColor, 
 			int cardPeriod, int diceValue){ 
 		this.id = id;
