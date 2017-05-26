@@ -1,6 +1,6 @@
 package it.polimi.ingsw.ps03.dices;
 
-public abstract class Dice {
+public class Dice {
 
 	private DiceColor color;
 	private int value;

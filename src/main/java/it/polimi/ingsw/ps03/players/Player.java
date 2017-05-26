@@ -20,19 +20,19 @@ public class Player {
 	public Player (PlayerColor color, int initialCoins) {
 		this.color = color;
 		pawns = new HashMap<String, Pawn>(4);
-		pawns.put("WHITE", new PawnWhite(color, PawnDiceColor.WHITE, 0));
-		pawns.put("BLACK", new PawnBlack(color, PawnDiceColor.BLACK, 0));
-		pawns.put("ORANGE", new PawnOrange(color, PawnDiceColor.ORANGE, 0));
-		pawns.put("NEUTRAL", new PawnNeutral(color, PawnDiceColor.NEUTRAL, 0));
+		pawns.put("WHITE", new Pawn(color, PawnDiceColor.WHITE, 0));
+		pawns.put("BLACK", new Pawn(color, PawnDiceColor.BLACK, 0));
+		pawns.put("ORANGE", new Pawn(color, PawnDiceColor.ORANGE, 0));
+		pawns.put("NEUTRAL", new Pawn(color, PawnDiceColor.NEUTRAL, 0));
 		resources = new Resources(initialCoins);
 		ownedCards = new ArrayList<DevelopmentCard>(0);
 	}
 	
 	public void refreshPawns(){
-		pawns.put("WHITE", new PawnWhite(color, PawnDiceColor.WHITE, 0));
-		pawns.put("BLACK", new PawnBlack(color, PawnDiceColor.BLACK, 0));
-		pawns.put("ORANGE", new PawnOrange(color, PawnDiceColor.ORANGE, 0));
-		pawns.put("NEUTRAL", new PawnNeutral(color, PawnDiceColor.NEUTRAL, 0));
+		pawns.put("WHITE", new Pawn(color, PawnDiceColor.WHITE, 0));
+		pawns.put("BLACK", new Pawn(color, PawnDiceColor.BLACK, 0));
+		pawns.put("ORANGE", new Pawn(color, PawnDiceColor.ORANGE, 0));
+		pawns.put("NEUTRAL", new Pawn(color, PawnDiceColor.NEUTRAL, 0));
 	}
 	
 	public static Pawn getPawn(String pawn){

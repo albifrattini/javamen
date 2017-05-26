@@ -2,20 +2,20 @@ package it.polimi.ingsw.ps03.resources;
 
 public abstract class Resource {
 	
-	private String rName;
+	private static String rName;
 	private int value;
 	
-	public Resource(String rName, int value){
-		this.rName = rName.toUpperCase();
+	public Resource(String resName, int value){
+		rName = resName.toUpperCase();
 		this.value = value;
 	}
-	public Resource(String rName){
-		this.rName = rName.toUpperCase();
+	public Resource(String resName){
+		rName = resName.toUpperCase();
 		this.value = 0;
 	}
 
 	public String getName(){
-		return this.rName;
+		return rName;
 	}
 	public int getValue(){
 		return this.value;

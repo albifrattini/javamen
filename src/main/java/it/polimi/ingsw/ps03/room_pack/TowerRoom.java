@@ -4,64 +4,39 @@ import it.polimi.ingsw.ps03.development_card.*;
 import it.polimi.ingsw.ps03.players.Pawn;
 import it.polimi.ingsw.ps03.resources.*;
 
-public class TowerRoom {
+public class TowerRoom extends MarketRoom{
 	
-	private TowerColor color;
-	private int requirement;
-	private Resources resources;
+	private final TowerColor color;
 	private DevelopmentCard placedCard;
-	private boolean occupied;
-	private Pawn pawn;
 	
 	//COSTRUTTORE
 	public TowerRoom(TowerColor color, int requirement, Resources resources){
+		super(requirement, resources);
 		this.color = color;
-		this.requirement = requirement;
-		this.resources = resources;
 		this.placedCard = null;
-		this.occupied = false;
-		this.pawn = null;
 	}
 	
 	//METODI GET PRINCIPALI
 	public TowerColor getTowerRoomColor(){
-		return this.color;
-	}
-	public int getTowerRoomRequirement(){
-		return this.requirement;
-	}
-	public Resources getResources(){
-		return this.resources;
+		return color;
 	}
 	public DevelopmentCard getPlacedCard(){
-		return this.placedCard;
-	}
-	public boolean getOccupation(){
-		return this.occupied;
-	}
-	public Pawn getPlacedPawn(){
-		return this.pawn;
+		return placedCard;
 	}
 	
 	
 	
 	//METODI SET
-	public void setOccupation(){
-		occupied = true;
-	}
 	public void freeCardSpace(){
 		placedCard = null;
 	}
-	public void setPawn(Pawn pawn){
-		this.pawn = pawn;
-	}
 	public void setDevelopmentCard(DevelopmentCard developmentCard){
-		this.placedCard = developmentCard;
+		placedCard = developmentCard;
 	}
 	
 	public DevelopmentCard drawCard(Pawn pToPlace){
 		DevelopmentCard temp = placedCard;
-		setOccupation();
+		occupyPlacement();
 		setPawn(pToPlace);
 		freeCardSpace();
 		return temp;

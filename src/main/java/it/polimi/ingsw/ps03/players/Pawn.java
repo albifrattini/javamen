@@ -1,7 +1,7 @@
 package it.polimi.ingsw.ps03.players;
 
 
-public abstract class Pawn {
+public class Pawn {
 	
 	private PlayerColor pColor;
 	private PawnDiceColor dColor;

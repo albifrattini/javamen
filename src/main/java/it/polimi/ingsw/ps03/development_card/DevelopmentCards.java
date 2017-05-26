@@ -1,9 +1,10 @@
 package it.polimi.ingsw.ps03.development_card;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -17,14 +18,52 @@ import java.io.File;
 public class DevelopmentCards {
 
 	private static final int STANDARD_SIZE = 96;
-	private ArrayList<DevelopmentCard> developmentCards;
+	private static List<DevelopmentCard> developmentCards;
 	
 	//COSTRUTTORE
 	public DevelopmentCards(){
-		developmentCards = new ArrayList<DevelopmentCard>(STANDARD_SIZE);
+		this(STANDARD_SIZE);
+	}
+	public DevelopmentCards(int deckLength){
+		developmentCards = new ArrayList<DevelopmentCard>(deckLength);
 	}
 	
 	//METODI GET
+	public List<DevelopmentCard> getCardsList(){
+		return developmentCards;
+	}
+	
+	public List<DevelopmentCard> getCardsOfColor(TowerColor color, List<DevelopmentCard> developmentCards){
+		List<DevelopmentCard> deck = new ArrayList<DevelopmentCard>();
+		for(int i = 0; i < STANDARD_SIZE; i++){
+			if(developmentCards.get(i).getCardColor() == color){
+				deck.add(developmentCards.get(i));
+			}
+		}
+		return deck;
+	}
+	
+	public List<DevelopmentCard> getCardsOfPeriod(int cardPeriod, List<DevelopmentCard> developmentCards){
+		List<DevelopmentCard> deck = new ArrayList<DevelopmentCard>();
+		for(int i = 0; i < STANDARD_SIZE; i++){
+			if(developmentCards.get(i).getCardPeriod() == cardPeriod){
+				deck.add(developmentCards.get(i));
+			}
+		}
+		return deck;
+	}
+	
+	public DevelopmentCard getRandomCard(List<DevelopmentCard> developmentCards){
+		Random random = new Random();
+		int choice = random.nextInt(developmentCards.size()-1);
+		return developmentCards.get(choice);
+	}
+	
+	//se per esempio volessi una carta di un determinato valore e di un determinato periodo farei una richiesta del genere:
+	//DevelopmentCard dC = getRandomCard(getCardsOfPeriod(periodo, getCardsOfColor(colore, getCardsList())));
+	
+	
+	
 	
 	//BUILDER
 	public void build(){
@@ -60,8 +99,4 @@ public class DevelopmentCards {
 		
 	}
 
-	//METODI VARI
-	//private void displaceCards(); 
-	//private void displaceTowerCards();
-	//private DevelopmentCard getRandomCard(int cardPeriod, TowerColor cardColor);
 }

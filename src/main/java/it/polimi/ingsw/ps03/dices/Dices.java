@@ -9,9 +9,9 @@ public class Dices {
 	
 	public Dices(){
 		dices = new HashMap<String, Dice>(3);
-		dices.put("BLACK", new Black(DiceColor.BLACK, 0));
-		dices.put("ORANGE", new Orange(DiceColor.ORANGE, 0));
-		dices.put("WHITE", new White(DiceColor.WHITE, 0));
+		dices.put("BLACK", new Dice(DiceColor.BLACK, 0));
+		dices.put("ORANGE", new Dice(DiceColor.ORANGE, 0));
+		dices.put("WHITE", new Dice(DiceColor.WHITE, 0));
 	}
 	
 	public static Dice getDice(String diceColor){

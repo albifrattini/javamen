@@ -14,7 +14,7 @@ public class Main {
 			if(Table.getTowerRoomList().get(i) == null) throw new IndexOutOfBoundsException("Valori terminati");
 		
 			System.out.println("\nColor: " + Table.getTowerRoomList().get(i).getTowerRoomColor());
-			System.out.println("Requirement: " + Table.getTowerRoomList().get(i).getTowerRoomRequirement());
+			System.out.println("Requirement: " + Table.getTowerRoomList().get(i).getRequirement());
 			System.out.println("GivenBonus: \n\tCoins: " + Table.getTowerRoomList().get(i).getResources().getResource("COINS").getValue()
 					+ "\tWoods: " + Table.getTowerRoomList().get(i).getResources().getResource("WOODS").getValue() 
 					+ "\tStones: " + Table.getTowerRoomList().get(i).getResources().getResource("STONES").getValue()
