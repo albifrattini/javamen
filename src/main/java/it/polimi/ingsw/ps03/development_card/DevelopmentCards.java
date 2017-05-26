@@ -29,8 +29,7 @@ public class DevelopmentCards {
 	//BUILDER
 	public void build(){
 		try{
-			File devCardsXml = new File("/Users/alberto/prova-finale-template/src/main"
-					+ "/java/it/polimi/ingsw/ps03/development_cards.xml");
+			File devCardsXml = new File("./src/development_cards.xml");
 			Document docDevCards = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(devCardsXml);
 			
 			docDevCards.getDocumentElement().normalize();
