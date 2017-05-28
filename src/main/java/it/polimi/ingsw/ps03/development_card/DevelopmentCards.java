@@ -88,8 +88,8 @@ public class DevelopmentCards {
 					int cardPeriod = Integer.parseInt(cardPeriod_t);
 					String diceValue_t = (String) cardEl.getElementsByTagName("diceValue").item(0).getTextContent();
 					int diceValue = Integer.parseInt(diceValue_t);
-					DevelopmentCard developmentCard = new DevelopmentCard(id, cardName, cardColor, cardPeriod, diceValue);
-					developmentCards.add(i, developmentCard);
+//					DevelopmentCard developmentCard = new DevelopmentCard(id, cardName, cardColor, cardPeriod, diceValue);
+//					developmentCards.add(i, developmentCard);
 				}
 			}
 			

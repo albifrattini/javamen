@@ -1,51 +1,54 @@
 package it.polimi.ingsw.ps03.development_card;
 
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
+import it.polimi.ingsw.ps03.effects.*;
 
 public class DevelopmentCard {
 	
-	private int id;
-	private String cardName;
-	private TowerColor cardColor;
-	private int cardPeriod;
-	private int diceValue;
+	private static int id;
+	private static String cardName;
+	private static TowerColor cardColor;
+	private static int cardPeriod;
+	private static int diceValue;
+	private static Effect immediateEffect;
 	
 	//COSTRUTTORE
-	public DevelopmentCard(int id, String cardName, TowerColor cardColor, 
-			int cardPeriod, int diceValue){ 
-		this.id = id;
-		this.cardName = cardName;
-		this.cardColor = cardColor;
-		this.cardPeriod = cardPeriod;
-		this.diceValue = diceValue;
+	public DevelopmentCard(int mId, String mCardName, TowerColor mCardColor, 
+			int mCardPeriod, int mDiceValue, Effect mImmediateEffect){ 
+		id = mId;
+		cardName = mCardName;
+		cardColor = mCardColor;
+		cardPeriod = mCardPeriod;
+		diceValue = mDiceValue;
 	}
 	
 	@Override
 	public String toString(){
-		return "id: " + this.id + "\nCard Name: " + this.cardName + "\nCard Color: " + this.cardColor +
-				"\nCard Period: " + this.cardPeriod + "\nDice Value: " + this.diceValue;
+		return "id: " + id + "\nCard Name: " + cardName + "\nCard Color: " + cardColor +
+				"\nCard Period: " + cardPeriod + "\nDice Value: " + diceValue;
 	}
-	
-	//METODI SET: assenti perchè una carta non può essere modificata
 	
 	//METODI GET
 	public DevelopmentCard getCard(){
 		return this;
 	}
-	public int getId(){
-		return this.id;
+	public static int getId(){
+		return id;
 	}
-	public String getCardName(){
-		return this.cardName;
+	public static String getCardName(){
+		return cardName;
 	}
-	public TowerColor getCardColor(){
-		return this.cardColor;
+	public static TowerColor getCardColor(){
+		return cardColor;
 	}
-	public int getCardPeriod(){
-		return this.cardPeriod;
+	public static int getCardPeriod(){
+		return cardPeriod;
 	}
-	public int getDiceValue(){
-		return this.diceValue;
+	public static int getDiceValue(){
+		return diceValue;
+	}
+	public static Effect getImmediateEffect(){
+		return immediateEffect;
 	}
 	
 	

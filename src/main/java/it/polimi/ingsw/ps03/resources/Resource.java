@@ -10,8 +10,7 @@ public abstract class Resource {
 		this.value = value;
 	}
 	public Resource(String resName){
-		rName = resName.toUpperCase();
-		this.value = 0;
+		this(resName, 0);
 	}
 
 	public String getName(){
