@@ -1,0 +1,26 @@
+<marketRooms>
+	<marketRoom>
+		<coins>5</coins>
+		<servants>0</servants>
+		<militaryPoints>0</militaryPoints>
+		<councilPrivilege>0</councilPrivilege>
+	</marketRoom>
+	<marketRoom>
+		<coins>0</coins>
+		<servants>5</servants>
+		<militaryPoints>0</militaryPoints>
+		<councilPrivilege>0</councilPrivilege>
+	</marketRoom>
+	<marketRoom>
+		<coins>2</coins>
+		<servants>0</servants>
+		<militaryPoints>3</militaryPoints>
+		<councilPrivilege>0</councilPrivilege>
+	</marketRoom>
+	<marketRoom>
+		<coins>0</coins>
+		<servants>0</servants>
+		<militaryPoints>0</militaryPoints>
+		<councilPrivilege>2</councilPrivilege>
+	</marketRoom>
+</marketRooms>

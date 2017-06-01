@@ -1,0 +1,16 @@
+<developmentCards>
+	<developmentCard>
+		<id>1</id>
+		<cardName>Monastery</cardName>
+		<cardColor>GREEN</cardColor>
+		<cardPeriod>1</cardPeriod>
+		<diceValue>6</diceValue>
+	</developmentCard>
+	<developmentCard>
+		<id></id>
+		<cardName></cardName>
+		<cardColor></cardColor>
+		<cardPeriod></cardPeriod>
+		<diceValue></diceValue>
+	</developmentCard>
+</developmentCards>

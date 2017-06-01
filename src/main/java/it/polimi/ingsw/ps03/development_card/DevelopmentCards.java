@@ -50,6 +50,7 @@ public class DevelopmentCards {
 	public List<DevelopmentCard> getCardsOfPeriod(int cardPeriod, List<DevelopmentCard> developmentCards){
 		List<DevelopmentCard> deck = new ArrayList<DevelopmentCard>();
 		for(int i = 0; i < STANDARD_SIZE; i++){
+			developmentCards.get(i);
 			if(developmentCards.get(i).getCardPeriod() == cardPeriod){
 				deck.add(developmentCards.get(i));
 			}
@@ -82,6 +83,7 @@ public class DevelopmentCards {
 			docDevCards.getDocumentElement().getNodeName();
 			
 			NodeList devCardsList = docDevCards.getElementsByTagName("developmentCard");
+			
 			for(int i = 0; i < devCardsList.getLength(); i++){
 				Node devCard = devCardsList.item(i);
 				if(devCard.getNodeType() == Node.ELEMENT_NODE){

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.ps03;
 
-import it.polimi.ingsw.ps03.development_card.DevelopmentCards;
+
 import it.polimi.ingsw.ps03.room_pack.Table;
 
 public class Main {
@@ -10,8 +10,11 @@ public class Main {
 		Table prova = new Table();
 		Table.buildTowerRooms();
 		
+		//Excommunications exc = new Excommunications();
+		//exc.buildExcomm();
+		
 		try{
-			for (int i = 0; i < Table.TOWER_ROOM_SPACES; i++) {
+	for (int i = 0; i < Table.TOWER_ROOM_SPACES; i++) {
 			if(Table.getTowerRoomList().get(i) == null) throw new IndexOutOfBoundsException("Valori terminati");
 		
 			System.out.println("\nColor: " + Table.getTowerRoomList().get(i).getTowerRoomColor());
@@ -22,9 +25,16 @@ public class Main {
 					+ "\tMilitary Points: " + Table.getTowerRoomList().get(i).getResources().getResource("MILITARYPOINTS").getValue());
 			}
 			
-			
-			
-			
+
+		/*	for(int i = 0; i < Excommunications.getExcommunicationsList().size(); i++){
+				if (Excommunications.getExcommunicationsList().get(i) == null) throw new IndexOutOfBoundsException("Valori Terminati!");
+				
+				System.out.println("Excommunication:\nID: " + Excommunications.getExcommunicationsList().get(i).getId()
+						+ "\nperiod: " + Excommunications.getExcommunicationsList().get(i).getExcommunicationPeriod() + 
+						"\neffetto: " + Excommunications.getExcommunicationsList().get(i).getExcommunicationEffect());
+	
+			}*/
+	
 		}catch(IndexOutOfBoundsException e){
 			e.getMessage();
 		}
