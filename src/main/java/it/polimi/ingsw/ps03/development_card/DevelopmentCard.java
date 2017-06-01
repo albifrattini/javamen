@@ -3,51 +3,46 @@ package it.polimi.ingsw.ps03.development_card;
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
 import it.polimi.ingsw.ps03.effects.*;
 
-public class DevelopmentCard {
+public abstract class DevelopmentCard {
 	
-	private static int id;
-	private static String cardName;
-	private static TowerColor cardColor;
-	private static int cardPeriod;
-	private static int diceValue;
-	private static Effect immediateEffect;
-	
+	private int cardId;
+	private String cardName;
+	private TowerColor cardColor;
+	private int cardPeriod;
+	private Effect immediateEffect;
+		
 	//COSTRUTTORE
 	public DevelopmentCard(int mId, String mCardName, TowerColor mCardColor, 
-			int mCardPeriod, int mDiceValue, Effect mImmediateEffect){ 
-		id = mId;
+			int mCardPeriod, Effect mImmediateEffect){ 
+		cardId = mId;
 		cardName = mCardName;
 		cardColor = mCardColor;
 		cardPeriod = mCardPeriod;
-		diceValue = mDiceValue;
 	}
 	
 	@Override
 	public String toString(){
-		return "id: " + id + "\nCard Name: " + cardName + "\nCard Color: " + cardColor +
-				"\nCard Period: " + cardPeriod + "\nDice Value: " + diceValue;
+		return "id: " + cardId + "\nCard Name: " + cardName + "\nCard Color: " + cardColor +
+				"\nCard Period: " + cardPeriod;
 	}
 	
 	//METODI GET
 	public DevelopmentCard getCard(){
 		return this;
 	}
-	public static int getId(){
-		return id;
+	public int getId(){
+		return cardId;
 	}
-	public static String getCardName(){
+	public String getCardName(){
 		return cardName;
 	}
-	public static TowerColor getCardColor(){
+	public TowerColor getCardColor(){
 		return cardColor;
 	}
-	public static int getCardPeriod(){
+	public int getCardPeriod(){
 		return cardPeriod;
 	}
-	public static int getDiceValue(){
-		return diceValue;
-	}
-	public static Effect getImmediateEffect(){
+	public Effect getImmediateEffect(){
 		return immediateEffect;
 	}
 	

@@ -22,8 +22,8 @@ public class Billboard {
 		instant = new Instant();
 	}
 	
-	public void addPlayer(PlayerColor color, int initialCoins, String name){
-		Player player = new Player(color, initialCoins, name);
+	public static void addPlayer(PlayerColor color, int initialCoins){
+		Player player = new Player(color, initialCoins);
 		players.add(player);
 	}
 	

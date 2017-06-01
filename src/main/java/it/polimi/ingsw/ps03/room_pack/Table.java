@@ -160,8 +160,18 @@ public class Table {
 			harvestingRooms.add(i, new HarvestingRoom());
 		}
 	}
+	
+	public static void buildCouncilRoom(){
+		
+	}
 
-
+	public static void buildTable(int numberOfPlayers){
+		buildTowerRooms();
+		buildMarketRooms(numberOfPlayers);
+		buildHarvestingRooms(numberOfPlayers);
+		buildProductionRooms(numberOfPlayers);
+		buildCouncilRoom();
+	}
 
 
 

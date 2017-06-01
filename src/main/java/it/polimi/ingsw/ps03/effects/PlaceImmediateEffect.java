@@ -18,12 +18,6 @@ public class PlaceImmediateEffect extends Effect{
 		diceValue = dValue;
 		discount = discRes;
 	}
-	public PlaceImmediateEffect(TowerColor color, Resources discRes){
-		this(color, -1, discRes);
-	}
-	public PlaceImmediateEffect(TowerColor color){
-		this(color, -1, null);
-	}
 	
 	public List<Room> getChoosablePlace(){
 		return placesToChoose;

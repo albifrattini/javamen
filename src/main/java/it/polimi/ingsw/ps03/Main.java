@@ -1,5 +1,6 @@
 package it.polimi.ingsw.ps03;
 
+import it.polimi.ingsw.ps03.development_card.DevelopmentCards;
 import it.polimi.ingsw.ps03.room_pack.Table;
 
 public class Main {
@@ -20,6 +21,10 @@ public class Main {
 					+ "\tStones: " + Table.getTowerRoomList().get(i).getResources().getResource("STONES").getValue()
 					+ "\tMilitary Points: " + Table.getTowerRoomList().get(i).getResources().getResource("MILITARYPOINTS").getValue());
 			}
+			
+			
+			
+			
 		}catch(IndexOutOfBoundsException e){
 			e.getMessage();
 		}

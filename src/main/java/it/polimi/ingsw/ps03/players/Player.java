@@ -11,15 +11,13 @@ import it.polimi.ingsw.ps03.resources.*;
 
 public class Player {
 
-	private static String name;
 	private PlayerColor color;
 	private static Map<String, Pawn> pawns;
 	private Resources resources;
 	private List<DevelopmentCard> ownedCards;
 
 	
-	public Player (PlayerColor pColor, int initialCoins, String pName) {
-		name = pName.toUpperCase();
+	public Player (PlayerColor pColor, int initialCoins) {
 		color = pColor;
 		pawns = new HashMap<String, Pawn>(4);
 		pawns.put("WHITE", new Pawn(color, PawnDiceColor.WHITE, 0));
@@ -37,9 +35,6 @@ public class Player {
 		pawns.put("NEUTRAL", new Pawn(color, PawnDiceColor.NEUTRAL, 0));
 	}
 	
-	public static String getPlayerName(){
-		return name;
-	}
 	public static Pawn getPawn(String pawn){
 		return pawns.get(pawn);
 	}
