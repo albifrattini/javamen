@@ -1,16 +1,1863 @@
-<developmentCards>
-	<developmentCard>
-		<id>1</id>
-		<cardName>Monastery</cardName>
-		<cardColor>GREEN</cardColor>
-		<cardPeriod>1</cardPeriod>
-		<diceValue>6</diceValue>
-	</developmentCard>
-	<developmentCard>
-		<id></id>
-		<cardName></cardName>
-		<cardColor></cardColor>
-		<cardPeriod></cardPeriod>
-		<diceValue></diceValue>
-	</developmentCard>
+﻿<developmentCards>
+ <developmentCard>
+   <id>1</id>
+   <cardName>Avamposto Commerciale</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>null</immediateEffect>
+   
+   <diceValue>1</diceValue>
+ </developmentCard>
+ <developmentCard>
+   <id>2</id>
+   <cardName>Bosco</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>1</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>2</diceValue>
+ </developmentCard>
+ <developmentCard>
+   <id>3</id>
+   <cardName>Borgo</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>null</immediateEffect>
+   
+   <diceValue>3</diceValue>
+ </developmentCard>
+ <developmentCard>
+   <id>4</id>
+   <cardName>Cava Di Ghiaia</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>2</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>4</diceValue>
+ </developmentCard>
+ <developmentCard>
+   <id>5</id>
+   <cardName>Foresta</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>1</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>5</diceValue>
+ </developmentCard>
+ <developmentCard>
+   <id>6</id>
+   <cardName>Monastero</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>1</gServants>
+   <gMilitaryPoints>2</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>6</diceValue>
+ </developmentCard>
+ <developmentCard>
+   <id>7</id>
+   <cardName>Rocca</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>null</immediateEffect>
+   
+   <diceValue>5</diceValue>
+ </developmentCard>
+ <developmentCard>
+   <id>8</id>
+   <cardName>Città</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>3</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>6</diceValue>
+ </developmentCard>
+ <developmentCard>
+   <id>9</id>
+   <cardName>Miniera D'Oro</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>1</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>1</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>10</id>
+   <cardName>Villaggio Montano</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>1</gStones>
+   <gServants>2</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>3</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>11</id>
+   <cardName>Villaggio Minerario</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>1</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>4</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>12</id>
+   <cardName>Cava Di Pietra</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>1</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>3</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>13</id>
+   <cardName>Possedimento</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>1</gWoods>
+   <gStones>0</gStones>
+   <gServants>2</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>4</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>14</id>
+   <cardName>Eremo</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>1</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>2</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>15</id>
+   <cardName>Maniero</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>null</immediateEffect>
+   
+   <diceValue>5</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>16</id>
+   <cardName>Ducato</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>4</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>6</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>17</id>
+   <cardName>Città Mercantile</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>1</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>1</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>1</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>18</id>
+   <cardName>Tenuta</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>1</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>1</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>3</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>19</id>
+   <cardName>Colonia</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>2</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>5</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>20</id>
+   <cardName>Cava Di Marmo</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>3</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>2</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>21</id>
+   <cardName>Provincia</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>1</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>1</gCouncilPrivileges>
+   
+   <diceValue>6</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>22</id>
+   <cardName>Santuario</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>1</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>1</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>23</id>
+   <cardName>Castello</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>2</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>2</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>4</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>24</id>
+   <cardName>Città Fortificata</cardName>
+   <cardColor>GREEN</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>1</gServants>
+   <gMilitaryPoints>2</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>2</diceValue>
+ </developmentCard>
+<developmentCard>
+   <id>25</id>
+   <cardName>Zecca </cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>5</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>5</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>1</woodCardCost>
+   <stoneCardCost>3</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>26</id>
+   <cardName>Esattoria </cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>5</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>5</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>3</woodCardCost>
+   <stoneCardCost>1</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>27</id>
+   <cardName>Arco Di Trionfo </cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>6</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>6</diceValue>
+   <coinCardCost>2</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>2</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>28</id>
+   <cardName>Teatro</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>6</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>6</diceValue>
+   <coinCardCost>2</coinCardCost>
+   <woodCardCost>2</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>29</id>
+   <cardName>Falegnameria</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>Give</immediateEffect>
+   <gCoins>3</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>4</diceValue>
+   <coinCardCost>1</coinCardCost>
+   <woodCardCost>2</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>30</id>
+   <cardName>Tagliapietre</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>2</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>3</diceValue>
+   <coinCardCost>1</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>2</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>31</id>
+   <cardName>Cappela</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>Give</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>1</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>2</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>2</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>32</id>
+   <cardName>Residenza</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>1</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>1</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>2</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>33</id>
+   <cardName>Mercato</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>3</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>3</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>2</woodCardCost>
+   <stoneCardCost>1</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>34</id>
+   <cardName>Tesoreria</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>4</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>3</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>3</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>35</id>
+   <cardName>Gilda Dei Pittori</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>5</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>4</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>4</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>36</id>
+   <cardName>Gilda Degli Scultori</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>4</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>5</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>4</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>37</id>
+   <cardName>Gilda Dei Costruttori</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>4</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>4</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>1</woodCardCost>
+   <stoneCardCost>2</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>38</id>
+   <cardName>Battistero</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>2</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>1</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>2</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>3</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>39</id>
+   <cardName>Caserma</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>3</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>1</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>1</woodCardCost>
+   <stoneCardCost>1</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>40</id>
+   <cardName>Fortezza</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>8</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>6</diceValue>
+   <coinCardCost>2</coinCardCost>
+   <woodCardCost>2</woodCardCost>
+   <stoneCardCost>2</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>41</id>
+   <cardName>Banca</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>7</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>2</diceValue>
+   <coinCardCost>3</coinCardCost>
+   <woodCardCost>1</woodCardCost>
+   <stoneCardCost>3</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>42</id>
+   <cardName>Fiera</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>8</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>4</diceValue>
+   <coinCardCost>4</coinCardCost>
+   <woodCardCost>3</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>43</id>
+   <cardName>Giardino</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>10</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>1</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>4</woodCardCost>
+   <stoneCardCost>2</stoneCardCost>
+   <servantCardCost>2</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>44</id>
+   <cardName>Castelletto</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>9</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>5</diceValue>
+   <coinCardCost>2</coinCardCost>
+   <woodCardCost>2</woodCardCost>
+   <stoneCardCost>4</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>45</id>
+   <cardName>Palazzo</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>9</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   <permanentEffect>  </permanentEffect>
+   <diceValue>6</diceValue>
+   <coinCardCost>3</coinCardCost>
+   <woodCardCost>3</woodCardCost>
+   <stoneCardCost>1</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>46</id>
+   <cardName>Balisica</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>5</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>1</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>1</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>1</woodCardCost>
+   <stoneCardCost>4</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>47</id>
+   <cardName>Accademia Militare</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>7</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>3</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>2</woodCardCost>
+   <stoneCardCost>2</stoneCardCost>
+   <servantCardCost>1</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>48</id>
+   <cardName>Cattedrale</cardName>
+   <cardColor>YELLOW</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   
+   <diceValue>2</diceValue>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>4</woodCardCost>
+   <stoneCardCost>4</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>49</id>
+   <cardName>Condorriero</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>3</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <coinCardCost>2</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>50</id>
+   <cardName>Costruttore</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>null</immediateEffect>
+   <permanentEffect></permanentEffect>
+   <coinCardCost>4</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>51</id>
+   <cardName>Dama</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>null</immediateEffect>
+   
+   <coinCardCost>4</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>52</id>
+   <cardName>Cavaliere</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>1</gCouncilPrivileges>
+   
+   <coinCardCost>2</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+  </developmentCard>
+<developmentCard>
+   <id>53</id>
+   <cardName>Contadino</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>null</immediateEffect>
+   
+   <coinCardCost>3</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+ <developmentCard>
+   <id>54</id>
+   <cardName>Artigiano</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>null</immediateEffect>
+   
+   <coinCardCost>3</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>55</id>
+   <cardName>Predicatore</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>   
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>4</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <coinCardCost>2</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>56</id>
+   <cardName>Badessa</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>PLACEANDGIVE</immediateEffect>
+   <pDiceValue>4</pDiceValue>
+   <pColor>EVERY</pColor>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <coinCardCost>3</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>57</id>
+   <cardName>Capitano</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>PLACEANDGIVE</immediateEffect>
+   <pDiceValue>6</pDiceValue>
+   <pColor>GREEN</pColor>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <coinCardCost>4</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>2</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>58</id>
+   <cardName>Architetto</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>PLACE</immediateEffect>
+   <pDiceValue>6</pDiceValue>
+   <pColor>YELLOW</pColor>
+   <gCoins>0</gCoins>
+   <gWoods>1</gWoods>
+   <gStones>1</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <coinCardCost>4</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>59</id>
+   <cardName>Mercante</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>PLACE</immediateEffect>
+   <pDiceValue>6</pDiceValue>
+   <pColor>BLUE</pColor>
+   <gCoins>2</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <coinCardCost>3</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>60</id>
+   <cardName>Eroe</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>PLACEANDGIVE</immediateEffect>
+   <pDiceValue>6</pDiceValue>
+   <pColor>VIOLET</pColor>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>1</gCouncilPrivileges>
+   
+   <coinCardCost>4</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>61</id>
+   <cardName>Fattore</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>null</immediateEffect>
+   
+   <coinCardCost>4</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>62</id>
+   <cardName>Studioso</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>null</immediateEffect>
+   
+   <coinCardCost>4</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>63</id>
+   <cardName>Messo Papale</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>3</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <coinCardCost>5</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>64</id>
+   <cardName>Messo Reale</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>3</gCouncilPrivileges>
+   
+   <coinCardCost>5</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>65</id>
+   <cardName>Nobile</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>HEARN</immediateEffect>
+   <hVictoryPoints>2</hVictoryPoints>
+   <hColor>GREEN</hColor>
+   <hMilitaryPoints>0</hMilitaryPoints>
+   
+   <coinCardCost>6</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>66</id>
+   <cardName>Governatore</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>HEARN</immediateEffect>
+   <hVictoryPoints>2</hVictoryPoints>
+   <hColor>YELLOW</hColor>
+   <hMilitaryPoints>0</hMilitaryPoints>
+   
+   <coinCardCost>6</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>67</id>
+   <cardName>Cortigiana</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>HEARN</immediateEffect>
+   <hVictoryPoints>2</hVictoryPoints>
+   <hColor>BLUE</hColor>
+   <hMilitaryPoints>0</hMilitaryPoints>
+   
+   <coinCardCost>7</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>68</id>
+   <cardName>Araldo</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>HEARN</immediateEffect>
+   <hVictoryPoints>2</hVictoryPoints>
+   <hColor>VIOLET</hColor>
+   <hMilitaryPoints>0</hMilitaryPoints>
+   
+   <coinCardCost>6</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>69</id>
+   <cardName>Cardinale</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>HARORPROD</immediateEffect>
+   <decision>HARVESTING</decision>
+   <hDiceValue>4</hDiceValue>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>2</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <coinCardCost>4</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>70</id>
+   <cardName>Vescovo</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>HARVORPROD</immediateEffect>
+   <decision>PRODUCTION</decision>
+   <pDiceValue>4</pDiceValue>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>1</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <diceValue>-1</diceValue>
+   <coinCardCost>5</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>71</id>
+   <cardName>Generale</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>HEARN</immediateEffect>
+   <hVictoryPoints>2</hVictoryPoints>
+   <hColor>null</hColor>
+   <hMilitaryPoints>2</hMilitaryPoints>
+   <hVictoryPoints>1</hVictoryPoints>
+   
+   <coinCardCost>5</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>72</id>
+   <cardName>Ambasciatore</cardName>
+   <cardColor>BLUE</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>PLACEANDGIVE</immediateEffect>
+   <pDiceValue>6</pDiceValue>
+   <pColor>EVERY</pColor>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>1</gCouncilPrivileges>
+   
+   <coinCardCost>6</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+ </developmentCard>
+<developmentCard>
+   <id>73</id>
+   <cardName>Ingaggiare Reclute</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>4</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <check>1</check>
+   <coinCardCost>4</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>74</id>
+   <cardName>Riparare La Chiesa</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>1</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <check>1</check>
+   <coinCardCost>1</coinCardCost>
+   <woodCardCost>1</woodCardCost>
+   <stoneCardCost>1</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>75</id>
+   <cardName>Costruire Le Mura</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>2</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>1</gCouncilPrivileges>
+   
+   <check>1</check>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>3</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>76</id>
+   <cardName>Innalzare Una Statua</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>2</gCouncilPrivileges>
+   
+   <check>1</check>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>2</woodCardCost>
+   <stoneCardCost>2</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>77</id>
+   <cardName>Campagna Militare</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>3</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <check>1</check>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>2</militaryCardCost>
+   <minMilitaryPoints>3</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>78</id>
+   <cardName>Ospitare I Medicanti</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>4</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <check>1</check>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>3</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>79</id>
+   <cardName>Combattere Le Eresie</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>2</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <check>1</check>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>3</militaryCardCost>
+   <minMilitaryPoints>5</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>80</id>
+   <cardName>Sostegno Al Vescovo</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>1</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>3</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <check>2</check>
+   <costChoice>
+    <coinCardCost>2</coinCardCost>
+    <woodCardCost>1</woodCardCost>
+    <stoneCardCost>1</stoneCardCost>
+    <servantCardCost>0</servantCardCost>
+    <militaryCardCost>0</militaryCardCost>
+    <minMilitaryPoints>0</minMilitaryPoints>
+   </costChoice>
+   <costChoice>
+    <coinCardCost>0</coinCardCost>
+    <woodCardCost>0</woodCardCost>
+    <stoneCardCost>0</stoneCardCost>
+    <servantCardCost>0</servantCardCost>
+    <militaryCardCost>2</militaryCardCost>
+    <minMilitaryPoints>4</minMilitaryPoints>
+   </costChoice>
+ </developmentCard>
+<developmentCard>
+   <id>81</id>
+   <cardName>Ingaggiare Soldati</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>6</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <check>1</check>
+   <coinCardCost>6</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>82</id>
+   <cardName>Riparare L'Abazzia</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>2</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <check>1</check>
+   <coinCardCost>2</coinCardCost>
+   <woodCardCost>2</woodCardCost>
+   <stoneCardCost>2</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>83</id>
+   <cardName>Costruire I Bastioni</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>3</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>1</gCouncilPrivileges>
+   
+   <check>1</check>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>4</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>84</id>
+   <cardName>Supporto Al Re</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   <gCoins>5</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>1</gCouncilPrivileges>
+   
+   <check>1</check>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>3</militaryCardCost>
+   <minMilitaryPoints>6</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>85</id>
+   <cardName>Scavare Canalizzazioni</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>HARVORPROD</immediateEffect>
+   <decision>HARVESTING</decision>
+   <hDiceValue>4</hDiceValue>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <check>1</check>
+   <coinCardCost>3</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>2</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>86</id>
+   <cardName>Accogliere Gli Stranieri</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   
+   <check>1</check>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>4</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>87</id>
+   <cardName>Crociata</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   
+   <check>1</check>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>4</militaryCardCost>
+   <minMilitaryPoints>8</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>88</id>
+   <cardName>Sostegno Al Cardinale</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>2</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   
+<check>2</check>
+   <costChoice>
+    <coinCardCost>3</coinCardCost>
+    <woodCardCost>2</woodCardCost>
+    <stoneCardCost>2</stoneCardCost>
+    <servantCardCost>0</servantCardCost>
+    <militaryCardCost>0</militaryCardCost>
+    <minMilitaryPoints>0</minMilitaryPoints>
+   </costChoice>
+   <costChoice>
+    <coinCardCost>0</coinCardCost>
+    <woodCardCost>0</woodCardCost>
+    <stoneCardCost>0</stoneCardCost>
+    <servantCardCost>0</servantCardCost>
+    <militaryCardCost>4</militaryCardCost>
+    <minMilitaryPoints>7</minMilitaryPoints>
+   </costChoice>
+ </developmentCard>
+<developmentCard>
+   <id>89</id>
+   <cardName>Ingaggiare Mercenari</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   
+   <check>1</check>
+   <coinCardCost>8</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>90</id>
+   <cardName>Riparare La Cattedrale</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>PLACEANDGIVE</immediateEffect>
+   <pDiceValue>6</pDiceValue>
+   <pColor>EVERY</pColor>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>1</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <check>1</check>
+   <coinCardCost>3</coinCardCost>
+   <woodCardCost>3</woodCardCost>
+   <stoneCardCost>3</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>91</id>
+   <cardName>Costruire Le Torri</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   
+   <check>1</check>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>6</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>92</id>
+   <cardName>Commisionare Arte Sacra</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   
+   <check>1</check>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>6</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>93</id>
+   <cardName>Conquista Militare</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   
+   <check>1</check>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>6</militaryCardCost>
+   <minMilitaryPoints>12</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>94</id>
+   <cardName>Migliorare Le Strade</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>HARVORPROD</immediateEffect>
+   <decision>PRODUCTION</decision>
+   <hDiceValue>3</hDiceValue>
+   <gCoins>0</gCoins>
+   <gWoods>0</gWoods>
+   <gStones>0</gStones>
+   <gServants>0</gServants>
+   <gMilitaryPoints>0</gMilitaryPoints>
+   <gFaithPoints>0</gFaithPoints>
+   <gVictoryPoints>0</gVictoryPoints>
+   <gCouncilPrivileges>0</gCouncilPrivileges>
+   
+   <check>1</check>
+   <coinCardCost>4</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>3</servantCardCost>
+   <militaryCardCost>0</militaryCardCost>
+   <minMilitaryPoints>0</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>95</id>
+   <cardName>Guerra Santa</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   
+   <check>1</check>
+   <coinCardCost>0</coinCardCost>
+   <woodCardCost>0</woodCardCost>
+   <stoneCardCost>0</stoneCardCost>
+   <servantCardCost>0</servantCardCost>
+   <militaryCardCost>8</militaryCardCost>
+   <minMilitaryPoints>15</minMilitaryPoints>
+ </developmentCard>
+<developmentCard>
+   <id>96</id>
+   <cardName>Sostegno Al Papa</cardName>
+   <cardColor>VIOLET</cardColor>
+   <cardPeriod>3</cardPeriod>
+   <immediateEffect>GIVE</immediateEffect>
+   
+<check>2</check>
+   <costChoice>
+    <coinCardCost>4</coinCardCost>
+    <woodCardCost>3</woodCardCost>
+    <stoneCardCost>3</stoneCardCost>
+    <servantCardCost>0</servantCardCost>
+    <militaryCardCost>0</militaryCardCost>
+    <minMilitaryPoints>0</minMilitaryPoints>
+   </costChoice>
+   <costChoice>
+    <coinCardCost>0</coinCardCost>
+    <woodCardCost>0</woodCardCost>
+    <stoneCardCost>0</stoneCardCost>
+    <servantCardCost>0</servantCardCost>
+    <militaryCardCost>5</militaryCardCost>
+    <minMilitaryPoints>10</minMilitaryPoints>
+   </costChoice>
+  </developmentCard>
 </developmentCards>
