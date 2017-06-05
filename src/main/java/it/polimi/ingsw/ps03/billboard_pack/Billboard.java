@@ -5,40 +5,58 @@ import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.room_pack.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 
-public class Billboard {
+public class Billboard extends Observable implements Observer{
 
-	private static Dices dices;
-	private static List<Player> players;
-	private static Table table;
-	private static Instant instant;
+	private Dices dices;
+	private List<Player> players;
+	private Table table;
+	private TurnOfPlay turnOfPlay;
 	
 	
 	public Billboard(){
 		players = new ArrayList<Player>(4);
 		dices = new Dices();
 		table = new Table();
-		instant = new Instant();
+		turnOfPlay = new TurnOfPlay();
 	}
 	
-	public static void addPlayer(PlayerColor color, int initialCoins){
+	public void addPlayer(PlayerColor color, int initialCoins){
 		Player player = new Player(color, initialCoins);
 		players.add(player);
 	}
 	
-	public static Dices getDices(){
+	public Dices getDices(){
 		return dices;
 	}
-	public static Instant getInstant(){
-		return instant;
+	public TurnOfPlay getTurnOfPlay(){
+		return turnOfPlay;
 	}
-	public static Table getTable(){
+	public Table getTable(){
 		return table;
 	}
-	public static List<Player> getPlayers(){
+	public List<Player> getPlayers(){
 		return players;
 	}
 	
+	public void toNotify(){
+		setChanged();
+		notifyObservers();
+	}
 	
+	
+	
+	
+	
+	@Override
+	public void update(Observable o, Object arg){
+		if(o != turnOfPlay){
+			throw new IllegalArgumentException();
+		}
+		setChanged();
+		notifyObservers(this);
+	}
 }

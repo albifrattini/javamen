@@ -26,6 +26,7 @@ public class TowerRoom extends MarketRoom{
 	
 	
 	
+	
 	//METODI SET
 	public void freeCardSpace(){
 		placedCard = null;
@@ -42,7 +43,10 @@ public class TowerRoom extends MarketRoom{
 		return temp;
 	}
 	
-	
+	@Override
+	public String toString(){
+		return "Spazio azione 'Torre " + getTowerRoomColor() + "':   \tRequisito: " + getRequirement() + "\t";
+	}
 	
 	
 }

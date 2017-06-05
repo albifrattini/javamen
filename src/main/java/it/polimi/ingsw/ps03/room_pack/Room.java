@@ -1,5 +1,6 @@
 package it.polimi.ingsw.ps03.room_pack;
 
+
 import it.polimi.ingsw.ps03.players.*;
 
 public abstract class Room {

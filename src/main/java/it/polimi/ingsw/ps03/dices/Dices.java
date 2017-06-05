@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Dices {
 
-	private static Map<String, Dice> dices;
+	private Map<String, Dice> dices;
 	
 	public Dices(){
 		dices = new HashMap<String, Dice>(3);
@@ -14,7 +14,7 @@ public class Dices {
 		dices.put("WHITE", new Dice(DiceColor.WHITE, 0));
 	}
 	
-	public static Dice getDice(String diceColor){
+	public Dice getDice(String diceColor){
 		return dices.get(diceColor);
 	}
 	public void rollDices(){

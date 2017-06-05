@@ -13,6 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import it.polimi.ingsw.ps03.resources.*;
+import it.polimi.ingsw.ps03.players.Pawn;
 
 
 public class Table {
@@ -45,20 +46,37 @@ public class Table {
 	public static List<TowerRoom> getTowerRoomList(){
 		return towerRooms;
 	}
-	public static List<MarketRoom> getMarketRoomList(){
+	public List<MarketRoom> getMarketRoomList(){
 		return marketRooms;
 	}
-	public static List<HarvestingRoom> getHarvestingRoomList(){
+	public List<HarvestingRoom> getHarvestingRoomList(){
 		return harvestingRooms;
 	}
-	public static List<ProductionRoom> getProductionRoomList(){
+	public List<ProductionRoom> getProductionRoomList(){
 		return productionRooms;
 	}
-	public static List<CouncilRoom> getCouncilPalaceList(){
+	public List<CouncilRoom> getCouncilPalaceList(){
 		return councilPalace;
 	}
 	
-	public static void buildTowerRooms(){
+	
+	public List<Room> getRooms(){
+		List<Room> rooms = new ArrayList<Room>();
+		rooms.addAll(towerRooms);
+		rooms.addAll(marketRooms);
+		rooms.addAll(harvestingRooms);
+		rooms.addAll(productionRooms);
+		return rooms;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	public void buildTowerRooms(){
 		try{
 			File towerRoomsXml = new File("./src/tower_rooms_arraylist.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -101,7 +119,7 @@ public class Table {
 		}
 	}
 	
-	public static void buildMarketRooms(int numberOfPlayers){
+	public void buildMarketRooms(int numberOfPlayers){
 		try{
 			File marketRoomsXml = new File("./src/marketRoom_arraylist.xml");
 			Document docMarketRooms = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(marketRoomsXml);
@@ -125,13 +143,14 @@ public class Table {
 					int servants = Integer.parseInt(servant);
 					String militaryPoint = (String) eElement.getElementsByTagName("militaryPoints").item(0).getTextContent();
 					int militaryPoints = Integer.parseInt(militaryPoint);
-//					String cPrivilege = (String) eElement.getElementsByTagName("councilPrivilege").item(0).getTextContent();
-//					int cPrivileges = Integer.parseInt(cPrivilege);
+					String cPrivilege = (String) eElement.getElementsByTagName("councilPrivilege").item(0).getTextContent();
+					int cPrivileges = Integer.parseInt(cPrivilege);
 					
 					Resources xmlResource = new Resources();
 					xmlResource.getResource("COINS").add(coins);
 					xmlResource.getResource("SERVANTS").add(servants);
 					xmlResource.getResource("MILITARYPOINTS").add(militaryPoints);
+					xmlResource.getResource("COUNCILPRIVILEGES").add(cPrivileges);
 					marketRooms.add(i, new MarketRoom(xmlResource));
 
 				}
@@ -141,7 +160,7 @@ public class Table {
 		}
 	}
 
-	public static void buildProductionRooms(int numberOfPlayers){
+	public void buildProductionRooms(int numberOfPlayers){
 		int roomCounter = 4;
 		if(numberOfPlayers < 3){
 			roomCounter = 1;
@@ -151,7 +170,7 @@ public class Table {
 		}
 	}
 	
-	public static void buildHarvestingRooms(int numberOfPlayers){
+	public void buildHarvestingRooms(int numberOfPlayers){
 		int roomCounter = 4;
 		if(numberOfPlayers < 3){
 			roomCounter = 1;
@@ -160,17 +179,21 @@ public class Table {
 			harvestingRooms.add(i, new HarvestingRoom());
 		}
 	}
-	
-	public static void buildCouncilRoom(){
-		
-	}
 
-	public static void buildTable(int numberOfPlayers){
+	public void buildTable(int numberOfPlayers){
 		buildTowerRooms();
 		buildMarketRooms(numberOfPlayers);
 		buildHarvestingRooms(numberOfPlayers);
 		buildProductionRooms(numberOfPlayers);
-		buildCouncilRoom();
+	}
+	
+	public void placeCouncilRoom(Pawn pawnToPlace){
+		councilPalace.add(new CouncilRoom());
+		for(CouncilRoom c : councilPalace){
+			if(c.getPawn() == null){
+				c.placePawn(pawnToPlace);
+			}
+		}
 	}
 
 

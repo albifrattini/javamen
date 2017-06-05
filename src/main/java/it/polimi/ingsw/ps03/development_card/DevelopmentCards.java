@@ -239,17 +239,17 @@ public class DevelopmentCards {
 						
 						immediateEffect = new HarvestingOrProductionImmediateEffect(hpDiceValue, hpDecision, harvOrProdGiveEffect);
 					
-					case "HEARN":
-						String htVictoryPoints = (String) cardEl.getElementsByTagName("hVictoryPoints").item(0).getTextContent();
-						int hVictoryPoints = Integer.parseInt(htVictoryPoints);
-						VictoryPoints multiplyValue = new VictoryPoints("VICTORYPOINTS", hVictoryPoints);	
-						String htColor = (String) cardEl.getElementsByTagName("hColor").item(0).getTextContent();
-						TowerColor hColor = TowerColor.valueOf(htColor);
-						String htMilitaryPoints = (String) cardEl.getElementsByTagName("hMilitaryPoints").item(0).getTextContent();
-						int hMilitaryPoints = Integer.parseInt(htMilitaryPoints);
-						MilitaryPoints dividingValue = new MilitaryPoints("MILITARYPOINTS", hMilitaryPoints);
-						
-						immediateEffect = new HearnImmediateEffect(multiplyValue, hColor, dividingValue);
+//					case "HEARN":
+//						String htVictoryPoints = (String) cardEl.getElementsByTagName("hVictoryPoints").item(0).getTextContent();
+//						int hVictoryPoints = Integer.parseInt(htVictoryPoints);
+//						VictoryPoints multiplyValue = new VictoryPoints("VICTORYPOINTS", hVictoryPoints);	
+//						String htColor = (String) cardEl.getElementsByTagName("hColor").item(0).getTextContent();
+//						TowerColor hColor = TowerColor.valueOf(htColor);
+//						String htMilitaryPoints = (String) cardEl.getElementsByTagName("hMilitaryPoints").item(0).getTextContent();
+//						int hMilitaryPoints = Integer.parseInt(htMilitaryPoints);
+//						MilitaryPoints dividingValue = new MilitaryPoints("MILITARYPOINTS", hMilitaryPoints);
+//						
+//						immediateEffect = new EarnImmediateEffect(multiplyValue, hColor, dividingValue);
 						
 					default:
 						immediateEffect = null;

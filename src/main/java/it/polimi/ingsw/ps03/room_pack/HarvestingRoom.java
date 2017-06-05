@@ -1,9 +1,14 @@
 package it.polimi.ingsw.ps03.room_pack;
 
-public class HarvestingRoom extends CouncilRoom{
+public class HarvestingRoom extends ProductionRoom{
 	
 	public HarvestingRoom(){
 		super();
 	}
 
+	@Override
+	public String toString(){
+		return "Spazio Raccolto:\tRequisito: " + getRequirement();
+	}
+	
 }

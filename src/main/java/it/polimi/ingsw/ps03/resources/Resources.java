@@ -14,25 +14,25 @@ public class Resources {
 	
 	public Resources(){
 		resources = new HashMap<String,Resource>(7);
-		resources.put("COINS", new Coins("Coins", 0));
-		resources.put("STONES", new Stones("Stones", 0));
-		resources.put("WOODS", new Woods("Woods", 0));
-		resources.put("SERVANTS", new Servants("Servants", 0));
-		resources.put("FAITHPOINTS", new FaithPoints("FaithPoints", 0));
-		resources.put("MILITARYPOINTS", new MilitaryPoints("MilitaryPoints", 0));
-		resources.put("VICTORYPOINTS", new VictoryPoints("VictoryPoints", 0));
-		resources.put("COUNCILPRIVILEGES", new CouncilPrivileges("CouncilPrivileges", 0));
+		resources.put("COINS", new Coins(0));
+		resources.put("STONES", new Stones(0));
+		resources.put("WOODS", new Woods(0));
+		resources.put("SERVANTS", new Servants(0));
+		resources.put("FAITHPOINTS", new FaithPoints(0));
+		resources.put("MILITARYPOINTS", new MilitaryPoints(0));
+		resources.put("VICTORYPOINTS", new VictoryPoints(0));
+		resources.put("COUNCILPRIVILEGES", new CouncilPrivileges(0));
 	}
 	public Resources(int initialCoins){
 		resources = new HashMap<String,Resource>(7);
-		resources.put("COINS", new Coins("Coins", initialCoins));
-		resources.put("STONES", new Stones("Stones", 2));
-		resources.put("WOODS", new Woods("Woods", 2));
-		resources.put("SERVANTS", new Servants("Servants", 3));
-		resources.put("FAITHPOINTS", new FaithPoints("FaithPoints", 0));
-		resources.put("MILITARYPOINTS", new MilitaryPoints("MilitaryPoints", 0));
-		resources.put("VICTORYPOINTS", new VictoryPoints("VictoryPoints", 0));
-		resources.put("COUNCILPRIVILEGES", new CouncilPrivileges("CouncilPrivileges", 0));
+		resources.put("COINS", new Coins(initialCoins));
+		resources.put("STONES", new Stones(2));
+		resources.put("WOODS", new Woods(2));
+		resources.put("SERVANTS", new Servants(3));
+		resources.put("FAITHPOINTS", new FaithPoints(0));
+		resources.put("MILITARYPOINTS", new MilitaryPoints(0));
+		resources.put("VICTORYPOINTS", new VictoryPoints(0));
+		resources.put("COUNCILPRIVILEGES", new CouncilPrivileges(0));
 	}
 
 	
@@ -65,6 +65,17 @@ public class Resources {
 		}
 		temp.sub(rToSub.getValue());
 		return true;
+	}
+	
+	@Override
+	public String toString(){
+		String allResources = "";
+		for(Map.Entry<String, Resource> entry : resources.entrySet()){
+			if(entry.getValue().getValue() != 0){
+				allResources = allResources.concat(entry.getValue().toString() + "\t");
+			}
+		}
+		return allResources;
 	}
 	
 	

@@ -23,12 +23,12 @@ public class Excommunications {
 
 	public Excommunications(){
 	excommunications = new ArrayList<Excommunication>(MAX_SIZE_OF_ECOMMUNICATION);	
-}
+	}
 
 
 	public static List<Excommunication> getExcommunicationsList(){
 	return excommunications;
-}
+	}
 
 
 	public List<Excommunication> getExcommunicationsOfPeriod(int excommunicationPeriod, List<Excommunication> excommunications){
@@ -40,7 +40,7 @@ public class Excommunications {
 				}
 			}
 		 return deck;
-	     }
+	}
 	
 	//metodo estrae casualmente un intero per periodo, 
 	//le carte tra 0 e 6 apparterranno al primo periodo
@@ -57,35 +57,48 @@ public class Excommunications {
 		
 	    return excommunicationsToBillboard;
 	}*/
-	public void buildExcomm(){
-		try {	DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-
-		DocumentBuilder builder = documentFactory.newDocumentBuilder();
-		Document document = builder.parse(new File("./src/excommunications.xml"));
-
-		document.getDocumentElement().normalize();
-		document.getDocumentElement().getNodeName();
-		NodeList excommunicationsList = document.getElementsByTagName("excommunication");
-
-		for(int i=0; i<excommunicationsList.getLength(); i++) {
-			
-			Node nodo = excommunicationsList.item(i);
-
-			if(nodo.getNodeType() == Node.ELEMENT_NODE) {
-				Element excommunication = (Element) nodo;
-
-				String id_t = (String) excommunication.getElementsByTagName("id").item(0).getTextContent();
-				int id = Integer.parseInt(id_t);
-				String excommunicationPeriod_t = (String) excommunication.getElementsByTagName("excommunicationPeriod").item(0).getTextContent();
-				int excommunicationPeriod = Integer.parseInt(excommunicationPeriod_t);
-                String excommunicationEffect = excommunication.getElementsByTagName("excommunicationEffect").item(0).getTextContent();       
-				
-                excommunications.add(new Excommunication(id, excommunicationPeriod, excommunicationEffect));
-						}
-							}
 	
-								} catch(Exception e) {
-									e.printStackTrace();
-															}
-																			}
+	
+	
+	
+	public void buildExcomm(){
+		try {	
+			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = documentFactory.newDocumentBuilder();
+			Document document = builder.parse(new File("./src/excommunications.xml"));
+
+			document.getDocumentElement().normalize();
+			document.getDocumentElement().getNodeName();
+		
+			NodeList excommunicationsList = document.getElementsByTagName("excommunication");
+
+			for(int i=0; i<excommunicationsList.getLength(); i++) {
+			
+				Node nodo = excommunicationsList.item(i);
+
+				if(nodo.getNodeType() == Node.ELEMENT_NODE) {
+					Element excommunication = (Element) nodo;
+
+					String id_t = (String) excommunication.getElementsByTagName("id").item(0).getTextContent();
+					int id = Integer.parseInt(id_t);
+					String excommunicationPeriod_t = (String) excommunication.getElementsByTagName("excommunicationPeriod").item(0).getTextContent();
+					int excommunicationPeriod = Integer.parseInt(excommunicationPeriod_t);
+                	String excommunicationEffect = excommunication.getElementsByTagName("excommunicationEffect").item(0).getTextContent();       
+				
+                	excommunications.add(new Excommunication(id, excommunicationPeriod, excommunicationEffect));
+				}
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

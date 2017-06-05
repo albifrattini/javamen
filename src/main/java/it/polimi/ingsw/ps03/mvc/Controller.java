@@ -1,85 +1,51 @@
 package it.polimi.ingsw.ps03.mvc;
 
-import java.util.Scanner;
 import java.util.Observer;
+import java.util.Observable;
 
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
-import it.polimi.ingsw.ps03.players.PlayerColor;
+import it.polimi.ingsw.ps03.actions.*;
 
-public class Controller {
+public class Controller implements Observer {
 
-	private static Billboard model;
-	private static BillboardView view;
+	private Billboard model;
+	private BillboardView view;
 	
 	public Controller(Billboard mBillboard, BillboardView mView){
 		model = mBillboard;
-		view = mView;				
-	}
-	
-	
-	
-	
-	private static void addPlayer(PlayerColor color, int initialCoins){
-		Billboard.addPlayer(color, initialCoins);
-	}
-	
-	
-	
-	
-	
-	public static int checkNumberOfPlayers(){
-		Scanner scanner = new Scanner(System.in);
-		int numberOfPlayers = scanner.nextInt();
-		while(rightNumberOfPlayers(numberOfPlayers)){
-			BillboardView.printErrorPlayers();
-			numberOfPlayers = scanner.nextInt();
-		}
-		scanner.close();
-		return  numberOfPlayers;
-	}
-	
-	
-	
-	
-	private static boolean rightNumberOfPlayers(int numberOfPlayers){
-		if(numberOfPlayers <= 4 && numberOfPlayers >=2){
-			return false;
-		}
-		return true;
-	}
-	
-	
-	
-	
-	
-	
-	public static void insertPlayers(int numberOfPlayers){
-		Scanner scanner = new Scanner(System.in);
-		BillboardView.printChooseColor();
-		String choosenColor = scanner.next();
-		while(possibleColor(choosenColor)){
-			BillboardView.printErrorColor();
-		}
-		for(int i = 0; i < numberOfPlayers; i++){
-			PlayerColor playerColor = PlayerColor.valueOf(choosenColor);
-			addPlayer(playerColor, 5+i);
-		}
-		scanner.close();
-	}
-	
-	
-	
-	
-	
-	private static boolean possibleColor(String inputColor){
-		for(PlayerColor c : PlayerColor.values()){
-			if(c == PlayerColor.valueOf(inputColor)){
-				return false;
-			}
-		}
-		return true;
+		view = mView;
 	}
 
+	
+	
+	
+	
+	
+	private void applyAction(Action action){
+		action.setBillboard(model);
+		if(action instanceof ChangeTurn){
+			((ChangeTurn) action).applyAction();
+		}
+		if(action instanceof Place){
+			((Place) action).applyAction();
+		}
+		model.toNotify();
+	}
+	
+	
+	
+	
+	
+	
+	@Override
+	public void update(Observable o, Object obj){
+		if(o != view || !(obj instanceof Action)){
+			throw new IllegalArgumentException();
+		} 
+		applyAction((Action) obj);
+	}
+	
+	
 	
 	
 	

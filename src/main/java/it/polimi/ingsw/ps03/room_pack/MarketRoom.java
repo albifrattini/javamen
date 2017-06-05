@@ -19,4 +19,11 @@ public class MarketRoom extends Room{
 	}
 	
 
+	
+	@Override 
+	public String toString(){
+		return "Spazio azione 'Mercato':\tRequisito: " + getRequirement() + "\t";
+	}
+	
+
 }

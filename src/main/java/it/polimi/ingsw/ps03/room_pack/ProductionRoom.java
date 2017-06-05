@@ -1,8 +1,13 @@
 package it.polimi.ingsw.ps03.room_pack;
 
-public class ProductionRoom extends CouncilRoom{
+public class ProductionRoom extends Room{
 	
 	public ProductionRoom(){
-		super();
+		super(1);
+	}
+	
+	@Override
+	public String toString(){
+		return "Spazio Produzione:\tRequisito: " + getRequirement();
 	}
 }

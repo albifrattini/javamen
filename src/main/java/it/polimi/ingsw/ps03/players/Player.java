@@ -12,7 +12,7 @@ import it.polimi.ingsw.ps03.resources.*;
 public class Player {
 
 	private PlayerColor color;
-	private static Map<String, Pawn> pawns;
+	private Map<String, Pawn> pawns;
 	private Resources resources;
 	private List<DevelopmentCard> ownedCards;
 
@@ -35,8 +35,11 @@ public class Player {
 		pawns.put("NEUTRAL", new Pawn(color, PawnDiceColor.NEUTRAL, 0));
 	}
 	
-	public static Pawn getPawn(String pawn){
+	public Pawn getPawn(String pawn){
 		return pawns.get(pawn);
+	}
+	public Map<String, Pawn> getPawns(){
+		return pawns;
 	}
 	public PlayerColor getColor(){
 		return this.color;
@@ -56,6 +59,7 @@ public class Player {
 		}
 		return counter;
 	}
+	
 	
 	
 	
