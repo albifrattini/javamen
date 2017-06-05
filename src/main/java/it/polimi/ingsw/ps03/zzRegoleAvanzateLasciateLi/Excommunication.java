@@ -1,4 +1,4 @@
-package it.polimi.ingsw.ps03.excommunication_pack;
+package it.polimi.ingsw.ps03.zzRegoleAvanzateLasciateLi;
 
 public class Excommunication {
 

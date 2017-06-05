@@ -1,4 +1,4 @@
-package it.polimi.ingsw.ps03.excommunication_pack;
+package it.polimi.ingsw.ps03.zzRegoleAvanzateLasciateLi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
 import java.io.File;
 
 public class Excommunications {
