@@ -14,10 +14,10 @@ public class MainMVC {
 		billboard = new Billboard();
 		billboardView = new BillboardView(System.in, System.out);
 		billboard.getTable().buildTable(4);
-		billboard.addPlayer(PlayerColor.BLUE, 5);
-		billboard.addPlayer(PlayerColor.RED, 6);
-		billboard.addPlayer(PlayerColor.GREEN, 7);
-		billboard.addPlayer(PlayerColor.YELLOW, 8);
+		billboard.addPlayer(0, PlayerColor.BLUE, 5);
+		billboard.addPlayer(1, PlayerColor.RED, 6);
+		billboard.addPlayer(2, PlayerColor.GREEN, 7);
+		billboard.addPlayer(3, PlayerColor.YELLOW, 8);
 		billboardController = new Controller(billboard, billboardView);
 		billboardView.addObserver(billboardController);
 		billboard.addObserver(billboardController);

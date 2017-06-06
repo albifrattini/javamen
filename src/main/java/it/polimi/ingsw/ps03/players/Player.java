@@ -59,6 +59,14 @@ public class Player {
 		}
 		return counter;
 	}
+	public Pawn getPawnToPlace(String pawn){
+		Pawn temp = getPawn(pawn);
+		removePawn(pawn);
+		return temp;
+	}
+	public void removePawn(String pawn){
+		pawns.remove(pawn);
+	}
 	
 	
 	

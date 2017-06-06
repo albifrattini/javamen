@@ -20,7 +20,6 @@ public class ChangeTurn extends Action {
 	public void applyAction(){
 		getBillboard().getTurnOfPlay().nextTurnOfPlay();
 		getBillboard().getDices().rollDices();
-		
 		newPawns();
 		refreshTable();
 	}

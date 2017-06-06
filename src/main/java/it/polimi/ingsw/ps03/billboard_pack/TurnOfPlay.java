@@ -31,8 +31,6 @@ public class TurnOfPlay extends Observable {
 		else{
 			nextPeriod();
 		}
-		setChanged();
-		notifyObservers();
 	}
 	public void nextTurn(){
 		turn++;
@@ -42,10 +40,13 @@ public class TurnOfPlay extends Observable {
 		period++;
 	}
 	public void nextPlayer(){
-		if(playerToPlay > 3){
+		if(playerToPlay >= 3){
 			playerToPlay = 0;
+			nextTurnOfPlay();
 		}
-		playerToPlay++;
+		else{
+			playerToPlay++;
+		}
 	}
 	
 }

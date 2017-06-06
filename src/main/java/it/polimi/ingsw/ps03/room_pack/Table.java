@@ -166,7 +166,7 @@ public class Table {
 			roomCounter = 1;
 		}
 		for(int i = 0; i < roomCounter; i++){
-			productionRooms.add(i, new ProductionRoom());
+			productionRooms.add(i, new ProductionRoom("PRODUCTION"));
 		}
 	}
 	

@@ -21,6 +21,6 @@ public class HarvestingOrProductionImmediateEffect extends GiveResourcesImmediat
 	}
 	
 	public void applyEffect(){
-		HarvestingOrProduction.startEffect(diceValue, harvestingOrProduction);
+//		HarvestingOrProduction.startEffect(diceValue, harvestingOrProduction);
 	}
 }

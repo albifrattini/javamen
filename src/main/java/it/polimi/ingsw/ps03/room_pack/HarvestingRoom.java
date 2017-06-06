@@ -3,7 +3,7 @@ package it.polimi.ingsw.ps03.room_pack;
 public class HarvestingRoom extends ProductionRoom{
 	
 	public HarvestingRoom(){
-		super();
+		super("HARVESTING");
 	}
 
 	@Override

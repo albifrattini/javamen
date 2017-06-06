@@ -45,7 +45,9 @@ public class TowerRoom extends MarketRoom{
 	
 	@Override
 	public String toString(){
-		return "Spazio azione 'Torre " + getTowerRoomColor() + "':   \tRequisito: " + getRequirement() + "\t";
+		return "Spazio azione 'Torre " + getTowerRoomColor().toString().substring(0, 1) + 
+				getTowerRoomColor().toString().substring(1, getTowerRoomColor().toString().length()).toLowerCase()
+				+ "':  \tRequisito: " + getRequirement() + "\t";
 	}
 	
 	

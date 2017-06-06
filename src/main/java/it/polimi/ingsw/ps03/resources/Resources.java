@@ -40,7 +40,7 @@ public class Resources {
 	
 	
 	
-	public Map<String,Resource> getResources(){
+	public Map<String,Resource> getResourcesMap(){
 		return this.resources;
 	}
 	public Resource getResource(String rName){
@@ -48,7 +48,7 @@ public class Resources {
 	}
 	
 	public void add(Resources rsToAdd){
-		for(Map.Entry<String, Resource> entry : rsToAdd.getResources().entrySet()){
+		for(Map.Entry<String, Resource> entry : rsToAdd.getResourcesMap().entrySet()){
 			resources.get(entry.getKey()).add(entry.getValue().getValue()); 
 			//il primo getValue() ritorna l'elemento corrispondente di quella entry
 			//mentre il secondo ritorna il valore int della risorsa

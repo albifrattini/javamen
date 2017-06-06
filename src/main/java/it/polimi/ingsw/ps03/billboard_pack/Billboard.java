@@ -24,9 +24,9 @@ public class Billboard extends Observable implements Observer{
 		turnOfPlay = new TurnOfPlay();
 	}
 	
-	public void addPlayer(PlayerColor color, int initialCoins){
+	public void addPlayer(int order, PlayerColor color, int initialCoins){
 		Player player = new Player(color, initialCoins);
-		players.add(player);
+		players.add(order, player);
 	}
 	
 	public Dices getDices(){
@@ -44,7 +44,7 @@ public class Billboard extends Observable implements Observer{
 	
 	public void toNotify(){
 		setChanged();
-		notifyObservers();
+		notifyObservers(this);
 	}
 	
 	
