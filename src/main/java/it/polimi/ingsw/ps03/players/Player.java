@@ -67,6 +67,9 @@ public class Player {
 	public void removePawn(String pawn){
 		pawns.remove(pawn);
 	}
+	public void removePawn(Pawn pawn){
+		pawns.remove(pawn);
+	}
 	
 	
 	

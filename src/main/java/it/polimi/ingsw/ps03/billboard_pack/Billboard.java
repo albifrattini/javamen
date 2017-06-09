@@ -6,10 +6,9 @@ import it.polimi.ingsw.ps03.room_pack.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Observer;
 
 
-public class Billboard extends Observable implements Observer{
+public class Billboard extends Observable {
 
 	private Dices dices;
 	private List<Player> players;
@@ -42,21 +41,6 @@ public class Billboard extends Observable implements Observer{
 		return players;
 	}
 	
-	public void toNotify(){
-		setChanged();
-		notifyObservers(this);
-	}
+
 	
-	
-	
-	
-	
-	@Override
-	public void update(Observable o, Object arg){
-		if(o != turnOfPlay){
-			throw new IllegalArgumentException();
-		}
-		setChanged();
-		notifyObservers(this);
-	}
 }

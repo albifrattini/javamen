@@ -25,6 +25,9 @@ public class Pawn {
 	public void setValue(int value){
 		this.value = value;
 	}
+	public void addServants(int servants){
+		value = value + servants;
+	}
 	
 	@Override
 	public String toString(){

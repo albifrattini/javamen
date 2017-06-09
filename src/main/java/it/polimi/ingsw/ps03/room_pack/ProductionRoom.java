@@ -24,6 +24,6 @@ public class ProductionRoom extends Room{
 	
 	@Override
 	public String toString(){
-		return "Spazio Produzione:\tRequisito: " + getRequirement();
+		return "Spazio Produzione:\t\t\tRequisito: " + getRequirement();
 	}
 }

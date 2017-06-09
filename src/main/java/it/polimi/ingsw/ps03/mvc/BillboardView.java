@@ -34,7 +34,7 @@ public class BillboardView extends Observable implements Observer, Runnable {
 	 */
 	@Override
 	public void run(){
-		output.println("Benvenuti in Lorenzo il Magnifico!\n\n");
+		output.println("Benvenuti in LORENZO IL MAGNIFICO!\n");
 		setChanged();
 		notifyObservers(new ChangeTurn());
 	}
@@ -46,17 +46,21 @@ public class BillboardView extends Observable implements Observer, Runnable {
 	 * player can do. After choosing one, a specified method will be called to ask and process all
 	 * the details necessary to build the object 'Action'.
 	 */
-	public void doSomething(Billboard billboard){
-		ActionChoices choice = null;
+	public void startTurn(Billboard billboard){
 		int turnOfPlayer = billboard.getTurnOfPlay().getPlayerToPlay();
+		ActionChoices choice = null;
+		PlayerColor color = billboard.getPlayers().get(turnOfPlayer).getColor();
+		output.println("\nE' il turno del giocatore " + 
+				color.toString().substring(0, 1).toUpperCase() + 
+				color.toString().substring(1, color.toString().length()).toLowerCase());
 		do{
-			choice = whatToDo(billboard, turnOfPlayer);
-		} while(choice != ActionChoices.PLACE && choice != ActionChoices.CHECKPLAYER);
+			choice = selectAction();
+		} while(choice == null);
 		switch(choice){
 			case PLACE:
 				placeAction(billboard, turnOfPlayer);
 			case CHECKPLAYER:
-				output.println("ciao");
+				checkPlayerAction(turnOfPlayer);
 			default:
 				output.println("Errore nella scelta azione!");
 		}
@@ -66,16 +70,11 @@ public class BillboardView extends Observable implements Observer, Runnable {
 	/* In this method we simply show the possible actions and after taking one, we return it to the
 	 * method that called this.
 	 */
-	public ActionChoices whatToDo(Billboard billboard, int turnOfPlayer){
-		PlayerColor color = billboard.getPlayers().get(turnOfPlayer).getColor();
+	public ActionChoices selectAction(){
 		ActionChoices choice = null;
 		try{
-			output.println("E' il turno del giocatore di colore " + 
-						color.toString().substring(0, 1).toUpperCase() + 
-						color.toString().substring(1, color.toString().length()).toLowerCase());
-			printPlayerResources(billboard.getPlayers().get(turnOfPlayer));
 			output.println("\nCosa desideri fare?");
-			output.println("Azioni possibili:\tPlace");
+			output.println("Azioni possibili:\n --> Place\n --> CheckPlayer\n");
 			choice = ActionChoices.valueOf(scanner.next().toUpperCase());
 		}catch(IllegalArgumentException e){
 			output.println("\nWARNING: Soluzione non valida!\n");
@@ -88,21 +87,33 @@ public class BillboardView extends Observable implements Observer, Runnable {
 	 * the user what to do. After this a setChanged() and a notifyObservers(action) with argument the action
 	 * object just built. This will be processed by the Controller.
 	 */
-	public void placeAction(Billboard billboard, int i){
-		Place action = new Place();
+	public void placeAction(Billboard billboard, int turnOfPlayer){
+		Place action = new Place(billboard.getPlayers().get(turnOfPlayer));
+		
 		if(action.getPawn() == null){
-			action.setPawn(billboard.getPlayers().get(i).getPawn(pawnChoice(billboard.getPlayers().get(i))));
+			Player player = action.getPlayer();
+			action.setPawn(player.getPawn(pawnChoice(player)));
 		}
 		
 		try{
-			action.setRoom(billboard.getTable().getRooms().get(roomChoice(billboard)));
+			List<Room> rooms = billboard.getTable().getRooms();
+			action.setRoom(rooms.get(roomChoice(rooms)));
 		}catch(IndexOutOfBoundsException e){
-			output.println("\nWARNING: Spazio azione inesistente!\n");
-			placeAction(billboard, i);
+			output.println("\nWARNING: Impossibile posizionare!\n");
+			placeAction(billboard, turnOfPlayer);
 		}
-//		checkRequirement(action);
+		
+		action.setRequiredResources(resourcesChoice());
+		
 		setChanged();
 		notifyObservers(action);
+	}
+	
+	
+	private void checkPlayerAction(int turnOfPlayer){
+		CheckPlayer checkPlayer = new CheckPlayer(turnOfPlayer);
+		setChanged();
+		notifyObservers(checkPlayer);
 	}
 	
 	
@@ -129,29 +140,47 @@ public class BillboardView extends Observable implements Observer, Runnable {
 	
 	
 	/* Method that helps showing all the possible rooms and gets the input from the user. It will return an 
-	 * object String representing the chosen room.
+	 * integer representing the chosen room.
 	 */
-	public int roomChoice(Billboard billboard){
+	public int roomChoice(List<Room> rooms){
 		output.println("\nQuale spazio azione desideri occupare?");
 		output.println("Scelte disponibili:\n");
-		int spaces = 0;
-		List<Room> rooms = billboard.getTable().getRooms();
-		for(int i = 0; i < rooms.size(); i++){
-			if((Pawn) rooms.get(i).getPawn() != null){
-				output.print(spaces + " - ");
-				output.print(((Room) rooms.get(i)).toString());
-				output.println("\tNot Available!");
-			}
-			else{
-				output.print(spaces + " - ");
-				output.println(((Room) rooms.get(i)).toString());
-			}
-			spaces++;
-		}
-		output.println(spaces + " - Palazzo del consiglio");
+		printRooms(rooms);
 		String input = scanner.next();
 		int choice = Integer.parseInt(input);
 		return choice;
+	}
+	
+	
+	/* Method that asks the user for an input. In particular it questions the user if he wants to use some 
+	 * resources during 'place' action. After instantiating a Resources' object, the method fills it with
+	 * user inputs and returns the object to the caller. 
+	 */
+	private Resources resourcesChoice(){
+		Resources resources = new Resources();
+		String sResource = null;
+		output.println("Desideri spendere qualche risorsa?" + 
+				"\nCoins\tWoods\tStones\tServants\tMilitaryPoints");
+		do{
+			output.print("Inserisci il nome della risorsa: ['q' per terminare]  ");
+			sResource = scanner.next().toUpperCase();
+			
+			if(sResource != "Q" && resources.getResourcesMap().containsKey(sResource)){
+				output.printf("Inserisci la quantità di %s che desideri spendere:  ", sResource.toLowerCase());
+				try{
+					int value = Integer.parseInt(scanner.next());
+					resources.getResource(sResource).add(value);
+				}catch(NumberFormatException e){
+					output.println("Inserire un numero!");
+				}
+			}
+			else if(!(sResource.contains("Q"))){
+				output.println("Risorsa inesistente!");
+			}
+			
+		}while(!(sResource.contains("Q")));
+
+		return resources;
 	}
 	
 	
@@ -161,49 +190,32 @@ public class BillboardView extends Observable implements Observer, Runnable {
 	 */
 	public void showModel(Billboard billboard){
 		showChangeOfTurn(billboard.getTurnOfPlay());
-		printTowers(billboard.getTable().getTowerRoomList());
-		printMarket(billboard.getTable().getMarketRoomList());
-		printHarvesting(billboard.getTable().getHarvestingRoomList());
-		printProduction(billboard.getTable().getProductionRoomList());
+		printRooms(billboard.getTable().getRooms());
 		printCouncil(billboard.getTable().getCouncilPalaceList());
 	}
-	public void showChangeOfTurn(TurnOfPlay turnOfPlay){
-		output.println("Turno " + turnOfPlay.getTurn() + 
+	private void showChangeOfTurn(TurnOfPlay turnOfPlay){
+		output.println("\n\nTurno " + turnOfPlay.getTurn() + 
 				" del periodo numero " + turnOfPlay.getPeriod() + ":\n");
 	}
-	private void printTowers(List<TowerRoom> towerRooms){
-		for(TowerRoom t : towerRooms){
-			if(t.getPawn() == null){
-				output.print(t.toString());
-				output.println(t.getResources().toString());
+	private void printRooms(List<Room> rooms){
+		int spaces = 0;
+		for(int i = 0; i < rooms.size(); i++){
+//			if((Pawn) rooms.get(i).getPawn() != null){
+//				output.print(spaces + " - ");
+//				output.print(((Room) rooms.get(i)).toString());
+//				output.println("\tNot Available!");
+//			}
+//			else{
+//				output.print(spaces + " - ");
+//				output.println(((Room) rooms.get(i)).toString());
+//			}
+			if((Pawn) rooms.get(i).getPawn() == null){
+				output.print(spaces + " - ");
+				output.println(((Room) rooms.get(i)).toString());
 			}
-		}	
-		output.print("\n");
-	}
-	private void printMarket(List<MarketRoom> market){
-		for(MarketRoom m : market){
-			if(m.getPawn() == null){
-				output.print(m.toString());
-				output.println(m.getResources().toString());
-			}
+			spaces++;
 		}
-		output.print("\n");
-	}
-	private void printHarvesting(List<HarvestingRoom> harvestings){
-		for(HarvestingRoom h : harvestings){
-			if(h.getPawn() == null){
-				output.println(h.toString());
-			}
-		}
-		output.print("\n");
-	}
-	private void printProduction(List<ProductionRoom> productions){
-		for(ProductionRoom p : productions){
-			if(p.getPawn() == null){
-				output.println(p.toString());
-			}
-		}
-		output.print("\n");
+		output.println(spaces + " - Palazzo del consiglio");
 	}
 	private void printCouncil(List<CouncilRoom> councils){
 		Iterator<CouncilRoom> it = councils.iterator();
@@ -212,7 +224,13 @@ public class BillboardView extends Observable implements Observer, Runnable {
 			counter++;
 		}
 		System.out.printf("%d pedoni già piazzati nel Palazzo del Consiglio!\n", counter);
-		System.out.println("Bonus 1 Moneta e un Privilegio del Consiglio.\n");
+		System.out.println("Bonus 1 Moneta e un Privilegio del Consiglio.");
+	}
+	private void printPlayer(Player player){
+		output.println("Giocatore " + player.getColor().toString().substring(0, 1) + 
+				player.getColor().toString().substring(1, player.getColor().toString().length()).toLowerCase());
+		printPlayerResources(player);
+		//printCards e printPawns
 	}
 	private void printPlayerResources(Player player){
 		output.println("\nRisorse possedute:");
@@ -220,17 +238,30 @@ public class BillboardView extends Observable implements Observer, Runnable {
 			output.println(entry.getValue().toString());
 		}
 	}
+	private void printMessage(String message){
+		output.println(message);
+	}
 	
 	
 	
 	
 	@Override
 	public void update(Observable o, Object obj){
-		if(!(o instanceof Billboard)){
+		if(!(o instanceof Controller)){
 			throw new IllegalArgumentException();
 		}
-		showModel((Billboard) o);
-		doSomething(((Billboard)o));
+		if(obj instanceof Billboard){
+			showModel((Billboard) obj);
+			startTurn((Billboard) obj);
+		}
+		if(obj instanceof Player){
+			printPlayer((Player) obj);
+			startTurn(((Controller) o).getBillboard());
+		}
+		if(obj instanceof String){
+			printMessage((String) obj);
+			startTurn(((Controller) o).getBillboard());
+		}
 	}
 	
 	

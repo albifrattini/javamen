@@ -40,7 +40,7 @@ public class Table {
 		marketRooms = new ArrayList<MarketRoom>(PH_SPACES);
 		harvestingRooms = new ArrayList<HarvestingRoom>(PH_SPACES);
 		productionRooms = new ArrayList<ProductionRoom>(PH_SPACES);
-		councilPalace = new ArrayList<CouncilRoom>();
+		councilPalace = new ArrayList<CouncilRoom>(1);
 	}
 
 	public static List<TowerRoom> getTowerRoomList(){

@@ -21,8 +21,7 @@ public class MainMVC {
 		billboardController = new Controller(billboard, billboardView);
 		billboardView.addObserver(billboardController);
 		billboard.addObserver(billboardController);
-		billboard.addObserver(billboardView);
-		billboard.getTurnOfPlay().addObserver(billboard);
+		billboardController.addObserver(billboardView);
 	}
 	
 	public static void main(String[] args){
@@ -30,7 +29,7 @@ public class MainMVC {
 			MainMVC main = new MainMVC();
 			main.startGame();
 		}catch(IllegalArgumentException e){
-			System.out.println("Errore da chiedere!!");
+			System.out.println("Errore in Main!");
 		}
 	}
 	private void startGame(){

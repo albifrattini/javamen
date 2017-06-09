@@ -8,7 +8,7 @@ public class HarvestingRoom extends ProductionRoom{
 
 	@Override
 	public String toString(){
-		return "Spazio Raccolto:\tRequisito: " + getRequirement();
+		return "Spazio Raccolto:\t\t\tRequisito: " + getRequirement();
 	}
 	
 }

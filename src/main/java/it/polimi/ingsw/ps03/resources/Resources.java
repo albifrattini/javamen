@@ -66,6 +66,15 @@ public class Resources {
 		temp.sub(rToSub.getValue());
 		return true;
 	}
+	public void sub(Resources rsToSub){
+		try{
+			for(Map.Entry<String, Resource> entry : rsToSub.getResourcesMap().entrySet()){
+				resources.get(entry.getKey()).sub(entry.getValue().getValue()); 
+			}
+		}catch(IllegalArgumentException e){
+			throw new IllegalArgumentException("Risorsa non sufficiente!");
+		}
+	}
 	
 	@Override
 	public String toString(){

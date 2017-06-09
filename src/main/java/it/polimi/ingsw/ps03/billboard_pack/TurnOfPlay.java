@@ -1,8 +1,7 @@
 package it.polimi.ingsw.ps03.billboard_pack;
 
-import java.util.Observable;
 
-public class TurnOfPlay extends Observable {
+public class TurnOfPlay {
 
 	private int turn;
 	private int period;

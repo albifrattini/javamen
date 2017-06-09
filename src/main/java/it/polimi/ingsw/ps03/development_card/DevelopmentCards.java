@@ -88,6 +88,13 @@ public class DevelopmentCards {
 				Node devCard = devCardsList.item(i);
 				if(devCard.getNodeType() == Node.ELEMENT_NODE){
 					Element cardEl = (Element) devCard;
+					
+					
+					
+					
+					
+					
+					
 					String tId = (String) cardEl.getElementsByTagName("id").item(0).getTextContent();
 					int id = Integer.parseInt(tId);
 					String cardName = (String) cardEl.getElementsByTagName("cardName").item(0).getTextContent();
@@ -346,5 +353,26 @@ public class DevelopmentCards {
 		}
 		
 	}
+	
+	
+	
+	
+	private int readIntFromFile(Element cardEl, String intName){
+		String read = readStringFromFile(cardEl, intName);
+		int readInt = Integer.parseInt(read);
+		return readInt;
+	}
+	private TowerColor readColorFromFile(Element cardEl, String colorName){
+		String read = readStringFromFile(cardEl, colorName);
+		TowerColor readColor = TowerColor.valueOf(read);
+		return readColor;
+	}
+	private String readStringFromFile(Element cardEl, String stringName){
+		return (String) cardEl.getElementsByTagName(stringName).item(0).getTextContent();
+	}
+	
+	
+	
+	
 
 }

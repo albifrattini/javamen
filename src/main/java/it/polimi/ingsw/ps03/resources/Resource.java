@@ -23,10 +23,10 @@ public abstract class Resource {
 		this.value =+ value;
 	}
 	public void sub(int value){
-		this.value =- value;
-		if(this.value < 0){
-			throw new IllegalArgumentException("Resource not sufficient!\n");
+		if(this.value < value){
+			throw new IllegalArgumentException();
 		}
+		this.value =- value;
 	}
 	
 	@Override
