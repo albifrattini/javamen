@@ -54,18 +54,6 @@ public class Resources {
 			//mentre il secondo ritorna il valore int della risorsa
 		}
 	}
-	public boolean add(Resource rToAdd){
-		resources.get(rToAdd.getName()).add(rToAdd.getValue());
-		return true;
-	}
-	public boolean sub(Resource rToSub){
-		Resource temp = resources.get(rToSub.getName());
-		if(temp.getValue() < rToSub.getValue()){
-			return false;
-		}
-		temp.sub(rToSub.getValue());
-		return true;
-	}
 	public void sub(Resources rsToSub){
 		try{
 			for(Map.Entry<String, Resource> entry : rsToSub.getResourcesMap().entrySet()){

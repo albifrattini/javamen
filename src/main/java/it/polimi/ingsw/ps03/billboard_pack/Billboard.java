@@ -40,6 +40,17 @@ public class Billboard extends Observable {
 	public List<Player> getPlayers(){
 		return players;
 	}
+	public Player getPlayerOfColor(PlayerColor color){
+		for(int i = 0; i < players.size(); i++){
+			if(players.get(i).getColor() == color){
+				return players.get(i);
+			}
+		}
+		throw new NullPointerException("Errore nella conversione giocatori per turno successivo!");
+	}
+	public void setPlayers(List<Player> players){
+		this.players = players;
+	}
 	
 
 	

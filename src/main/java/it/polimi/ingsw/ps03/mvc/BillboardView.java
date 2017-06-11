@@ -10,7 +10,6 @@ import it.polimi.ingsw.ps03.actions.*;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -200,31 +199,15 @@ public class BillboardView extends Observable implements Observer, Runnable {
 	private void printRooms(List<Room> rooms){
 		int spaces = 0;
 		for(int i = 0; i < rooms.size(); i++){
-//			if((Pawn) rooms.get(i).getPawn() != null){
-//				output.print(spaces + " - ");
-//				output.print(((Room) rooms.get(i)).toString());
-//				output.println("\tNot Available!");
-//			}
-//			else{
-//				output.print(spaces + " - ");
-//				output.println(((Room) rooms.get(i)).toString());
-//			}
 			if((Pawn) rooms.get(i).getPawn() == null){
 				output.print(spaces + " - ");
 				output.println(((Room) rooms.get(i)).toString());
 			}
 			spaces++;
 		}
-		output.println(spaces + " - Palazzo del consiglio");
 	}
 	private void printCouncil(List<CouncilRoom> councils){
-		Iterator<CouncilRoom> it = councils.iterator();
-		int counter = 0;
-		while(it.hasNext()){
-			counter++;
-		}
-		System.out.printf("%d pedoni già piazzati nel Palazzo del Consiglio!\n", counter);
-		System.out.println("Bonus 1 Moneta e un Privilegio del Consiglio.");
+		System.out.printf("%d pedoni già piazzati nel Palazzo del Consiglio!\n", councils.size()-1);
 	}
 	private void printPlayer(Player player){
 		output.println("Giocatore " + player.getColor().toString().substring(0, 1) + 

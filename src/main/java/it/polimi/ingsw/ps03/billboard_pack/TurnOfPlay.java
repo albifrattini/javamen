@@ -1,16 +1,19 @@
 package it.polimi.ingsw.ps03.billboard_pack;
 
+import java.util.Observable;
 
-public class TurnOfPlay {
+public class TurnOfPlay extends Observable{
 
 	private int turn;
 	private int period;
 	private int playerToPlay;
+	private int numberOfPlayers;
 	
 	public TurnOfPlay(){
-		turn = 0;
-		period = 1;
-		playerToPlay = 0;
+		this.turn = 0;
+		this.period = 1;
+		this.playerToPlay = 0;
+		this.numberOfPlayers = 2;
 	}
 	
 	public int getTurn(){
@@ -21,6 +24,12 @@ public class TurnOfPlay {
 	}
 	public int getPlayerToPlay(){
 		return playerToPlay;
+	}
+	public int getNumberOfPlayers(){
+		return numberOfPlayers;
+	}
+	public void setNumberOfPlayers(int numberOfPlayers){
+		this.numberOfPlayers = numberOfPlayers;
 	}
 	
 	public void nextTurnOfPlay(){
@@ -39,7 +48,7 @@ public class TurnOfPlay {
 		period++;
 	}
 	public void nextPlayer(){
-		if(playerToPlay >= 3){
+		if(playerToPlay >= numberOfPlayers-1){
 			playerToPlay = 0;
 			nextTurnOfPlay();
 		}

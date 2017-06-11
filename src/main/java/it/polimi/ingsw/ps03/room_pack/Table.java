@@ -26,10 +26,6 @@ public class Table {
 	private static List<ProductionRoom> productionRooms;
 	private static List<CouncilRoom> councilPalace;
 	
-	//voglio rendere il primo spazio di arraylist per production e harvesting disponibile
-	//con requirement=1, mentre gli spazi 2-4 con requirement=4 e tolgo 3 punti al pedone
-	//Ho inoltre messo 4 spazi in arraylist perchè non potendo posizionare più volte
-	//un pedone dello stesso colore avremo al massimo 4 spazi occupati
 	
 	
 	
@@ -66,10 +62,14 @@ public class Table {
 		rooms.addAll(marketRooms);
 		rooms.addAll(harvestingRooms);
 		rooms.addAll(productionRooms);
+		rooms.add(councilPalace.get(councilPalace.size()-1));
 		return rooms;
 	}
 	
-	
+	public void addCouncilRoom(){
+		CouncilRoom councilRoom = new CouncilRoom();
+		councilPalace.add(councilRoom);
+	}
 	
 	
 	
@@ -185,6 +185,7 @@ public class Table {
 		buildMarketRooms(numberOfPlayers);
 		buildHarvestingRooms(numberOfPlayers);
 		buildProductionRooms(numberOfPlayers);
+		addCouncilRoom();
 	}
 	
 	public void placeCouncilRoom(Pawn pawnToPlace){

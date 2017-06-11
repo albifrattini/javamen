@@ -8,8 +8,6 @@ import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.actions.*;
 import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.resources.Resource;
-import it.polimi.ingsw.ps03.resources.Resources;
-import it.polimi.ingsw.ps03.room_pack.Room;
 
 public class Controller extends Observable implements Observer {
 
@@ -51,18 +49,28 @@ public class Controller extends Observable implements Observer {
 	
 	
 	private boolean checkPlaceAction(Place action){
-		action.getPawn().addServants(action.getRequiredResources().getResource("SERVANTS").getValue());
-		if(checkRequirement(action)){
-			if(checkResources(action)){
-				return true; //adesso non controlla ancora il costo della carta sviluppo
+		if(checkOccupation(action)){
+			if(checkRequirement(action)){
+				if(checkResources(action)){
+					return true; //adesso non controlla ancora il costo della carta sviluppo
+				}
+				return false;
 			}
 			return false;
 		}
 		return false;
 	}
 	
+	private boolean checkOccupation(Place action){
+		if(action.getRoom().isFull()){
+			return false;
+		}
+		return true;
+	}
+	
 	private boolean checkRequirement(Place action){
-		if(action.getRoom().getRequirement() <= action.getPawn().getValue()){
+		if(action.getRoom().getRequirement() <= (action.getPawn().getValue() + 
+				action.getRequiredResources().getResource("SERVANTS").getValue())){
 			return true;
 		}
 		return false;
@@ -73,22 +81,34 @@ public class Controller extends Observable implements Observer {
 		for(Map.Entry<String, Resource> entry : action.getPlayer().getResources().getResourcesMap().entrySet()){
 			if(entry.getValue().getValue() < action.getRequiredResources().getResource(entry.getKey()).getValue()){
 				result = false;
-			}
+			} //ancora non controlla che le risorse coprano il costo della carta
 		}
 		return result;
 	}
 	
 	private String getError(Action action){
 		if(action instanceof Place){
-			return "Errore! Impossibile piazzare a causa di risorse insufficienti o requisiti non soddisfatti!";
+			return "\n\nERRORE! Impossibile piazzare a causa di risorse insufficienti o requisiti non soddisfatti!";
 		}
 		if(action instanceof CheckPlayer){
-			return "Errore! Giocatore inesistente!";
+			return "\n\nERRORE! Giocatore inesistente!";
 		}
 		return "Errore imprevisto...";
 	}
 	
 
+	
+	
+	
+	
+	
+	public Billboard getBillboard(){
+		return model;
+	}
+	
+	
+	
+	
 	
 
 	private void notifyToView(Object obj){
@@ -109,13 +129,6 @@ public class Controller extends Observable implements Observer {
 		notifyToView(model);
 	}
 	
-	
-	
-	
-	public Billboard getBillboard(){
-		return model;
-	}
-	
 	@Override
 	public void update(Observable o, Object obj){
 		if(o != view || !(obj instanceof Action)){
@@ -123,9 +136,4 @@ public class Controller extends Observable implements Observer {
 		} 
 		applyAction((Action) obj);
 	}
-	
-	
-	
-	
-	
 }

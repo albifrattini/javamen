@@ -35,12 +35,12 @@ public class Place extends Action{
 		if(room instanceof MarketRoom){
 			if(room instanceof TowerRoom){
 				player.getCards().add(((TowerRoom) room).getPlacedCard());
-//				getPlayer(pawn.getPlayerColor()).getResources().sub(requiredResources);
 			}
 			player.getResources().add(((MarketRoom) room).getResources());
 		}
 		if(room instanceof CouncilRoom){
 			player.getResources().add(((CouncilRoom) room).getResources());
+			getBillboard().getTable().addCouncilRoom();
 		}
 		if(room instanceof ProductionRoom){
 			List<DevelopmentCard> cards = player.getCards();
@@ -53,7 +53,7 @@ public class Place extends Action{
 		}
 		room.setPawn(pawn);
 		player.removePawn(pawn.getDiceColor().toString());
-		this.requiredResources = new Resources();
+		player.getResources().sub(requiredResources);
 		getBillboard().getTurnOfPlay().nextPlayer();
 	}
 	

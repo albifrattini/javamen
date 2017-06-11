@@ -18,6 +18,7 @@ public class MainMVC {
 		billboard.addPlayer(1, PlayerColor.RED, 6);
 		billboard.addPlayer(2, PlayerColor.GREEN, 7);
 		billboard.addPlayer(3, PlayerColor.YELLOW, 8);
+		billboard.getTurnOfPlay().setNumberOfPlayers(billboard.getPlayers().size());
 		billboardController = new Controller(billboard, billboardView);
 		billboardView.addObserver(billboardController);
 		billboard.addObserver(billboardController);

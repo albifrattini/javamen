@@ -19,14 +19,14 @@ public abstract class Resource {
 	public int getValue(){
 		return this.value;
 	}
-	public void add(int value){
-		this.value =+ value;
+	public void add(int adder){
+		value = value + adder;
 	}
-	public void sub(int value){
+	public void sub(int subber){
 		if(this.value < value){
 			throw new IllegalArgumentException();
 		}
-		this.value =- value;
+		value = value - subber;
 	}
 	
 	@Override

@@ -33,7 +33,11 @@ public class CouncilRoom extends Room{
 		return r;
 	}
 	
-	
+	@Override
+	public String toString(){
+		return "Palazzo del Consiglio:     \tRequisito: " + getRequirement() + "\t" + 
+					getResources().toString();
+	}
 	
 
 }
