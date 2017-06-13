@@ -1,5 +1,5 @@
 package it.polimi.ingsw.ps03.development_card;
-
+/*
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -375,4 +375,4 @@ public class DevelopmentCards {
 	
 	
 
-}
+}*/
