@@ -34,7 +34,7 @@ public class MainMVC {
 		}
 	}
 	private void startGame(){
-		billboardView.run();
+		billboardView.initGame();
 	}
 	
 

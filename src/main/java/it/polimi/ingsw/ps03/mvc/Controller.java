@@ -34,7 +34,7 @@ public class Controller extends Observable implements Observer {
 			Place place = (Place) action;
 			if(checkPlaceAction(place)){
 				place.applyAction();
-				notifyToView();
+				checkTurn();
 			}
 			else{
 				notifyToView(getError(action));
@@ -84,6 +84,16 @@ public class Controller extends Observable implements Observer {
 			} //ancora non controlla che le risorse coprano il costo della carta
 		}
 		return result;
+	}
+	
+	public void checkTurn(){
+		if(!(model.getTurnOfPlay().hasNextMiniTurn())){
+			ChangeTurn changeTurn = new ChangeTurn();
+			applyAction(changeTurn);
+		}
+		else{
+			notifyToView();
+		}
 	}
 	
 	private String getError(Action action){

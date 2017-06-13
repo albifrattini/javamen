@@ -10,14 +10,13 @@ import it.polimi.ingsw.ps03.actions.*;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.io.OutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-public class BillboardView extends Observable implements Observer, Runnable {
+public class BillboardView extends Observable implements Observer {
 
 	private Scanner scanner;
 	private PrintStream output; 
@@ -31,8 +30,7 @@ public class BillboardView extends Observable implements Observer, Runnable {
 	/* Override of the method of the Interface Runnable. It simply initializes the game, changing 
 	 * the turn that calls setChanged() and notifyObservers() from the model for the first time.
 	 */
-	@Override
-	public void run(){
+	public void initGame(){
 		output.println("Benvenuti in LORENZO IL MAGNIFICO!\n");
 		setChanged();
 		notifyObservers(new ChangeTurn());
@@ -207,7 +205,7 @@ public class BillboardView extends Observable implements Observer, Runnable {
 		}
 	}
 	private void printCouncil(List<CouncilRoom> councils){
-		System.out.printf("%d pedoni già piazzati nel Palazzo del Consiglio!\n", councils.size()-1);
+		System.out.println(councils.size()-1 + " pedoni già piazzati nel Palazzo del Consiglio!");
 	}
 	private void printPlayer(Player player){
 		output.println("Giocatore " + player.getColor().toString().substring(0, 1) + 

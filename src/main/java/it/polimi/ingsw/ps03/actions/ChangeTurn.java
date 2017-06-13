@@ -24,11 +24,8 @@ public class ChangeTurn extends Action {
 	public void applyAction(){
 		getBillboard().getTurnOfPlay().nextTurnOfPlay();
 		getBillboard().getDices().rollDices();
-		newPawns();		
-//		if(getBillboard().getTurnOfPlay().getTurn() != 0){
-//			changeTurnOfPlay();
-//			refreshTable();
-//		}
+		newPawns();	
+		refreshTable();
 	}
 	public void refreshTable(){
 		for(Room r : getBillboard().getTable().getRooms()){
@@ -37,6 +34,7 @@ public class ChangeTurn extends Action {
 	}
 	public void newPawns(){
 		for(Player pl : getBillboard().getPlayers()){
+			pl.refreshPawns();
 			for(Map.Entry<String, Pawn> pa : pl.getPawns().entrySet()){
 				if(pa.getValue().getDiceColor() != PawnDiceColor.NEUTRAL){
 					pa.getValue().setValue(getDiceColorValue(pa.getValue().getDiceColor()));

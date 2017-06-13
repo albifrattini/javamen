@@ -42,15 +42,15 @@ public class Place extends Action{
 			player.getResources().add(((CouncilRoom) room).getResources());
 			getBillboard().getTable().addCouncilRoom();
 		}
-		if(room instanceof ProductionRoom){
-			List<DevelopmentCard> cards = player.getCards();
-			if(room instanceof HarvestingRoom){
-				((HarvestingRoom) room).applyEffect(cards, pawn.getValue());
-			}
-			else{
-				((ProductionRoom) room).applyEffect(cards, pawn.getValue());
-			}
-		}
+//		if(room instanceof ProductionRoom){
+//			List<DevelopmentCard> cards = player.getCards();
+//			if(room instanceof HarvestingRoom){
+//				((HarvestingRoom) room).applyEffect(cards, pawn.getValue());
+//			}
+//			else{
+//				((ProductionRoom) room).applyEffect(cards, pawn.getValue());
+//			}
+//		}
 		room.setPawn(pawn);
 		player.removePawn(pawn.getDiceColor().toString());
 		player.getResources().sub(requiredResources);
