@@ -1,7 +1,8 @@
 package it.polimi.ingsw.ps03.development_card;
-/*
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -10,6 +11,7 @@ import org.w3c.dom.NodeList;
 
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
 import it.polimi.ingsw.ps03.resources.MilitaryPoints;
+import it.polimi.ingsw.ps03.resources.Resource;
 import it.polimi.ingsw.ps03.resources.Resources;
 import it.polimi.ingsw.ps03.resources.VictoryPoints;
 import it.polimi.ingsw.ps03.effects.*;
@@ -73,6 +75,7 @@ public class DevelopmentCards {
 	//BUILDER
 	public void build(){
 		try{
+		Resources r = new Resources();
 			DevelopmentCard dC = null;
 			Effect immediateEffect = null;
 			
@@ -291,7 +294,7 @@ public class DevelopmentCards {
 						int yMilitarysCardCost = Integer.parseInt(yMilitaryCardCost);
 						yCost.getResource("MILITARYPOINTS").add(yMilitarysCardCost);
 						
-						dC = new YellowDevelopmentCard(id, cardName, cardColor, cardPeriod, yDiceValue, yCost, immediateEffect);
+						//dC = new YellowDevelopmentCard(id, cardName, cardColor, cardPeriod, yDiceValue, yCost, immediateEffect);
 						developmentCards.add(dC);
 					
 					case BLUE:
@@ -312,7 +315,7 @@ public class DevelopmentCards {
 						int bMilitarysCardCost = Integer.parseInt(bMilitaryCardCost);
 						bCost.getResource("MILITARYPOINTS").add(bMilitarysCardCost);
 						
-						dC = new BlueDevelopmentCard(id, cardName, cardColor, cardPeriod, bCost, immediateEffect);
+						//dC = new BlueDevelopmentCard(id, cardName, cardColor, cardPeriod, bCost, immediateEffect);
 						developmentCards.add(dC);
 					
 					case VIOLET:
@@ -370,9 +373,14 @@ public class DevelopmentCards {
 	private String readStringFromFile(Element cardEl, String stringName){
 		return (String) cardEl.getElementsByTagName(stringName).item(0).getTextContent();
 	}
-	
+	private void readResources(Element cardEl, Resources resources, String pre){
+		for(Map.Entry<String, Resource> entry : resources.getResourcesMap().entrySet()){
+			int value = readIntFromFile(cardEl, pre + entry.getKey().toLowerCase());
+			resources.getResource(entry.getKey()).add(value);
+		}
+	}
 	
 	
 	
 
-}*/
+}

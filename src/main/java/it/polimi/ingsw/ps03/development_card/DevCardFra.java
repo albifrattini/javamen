@@ -34,7 +34,7 @@ public class DevCardFra {
 	}
 	
 	//METODI GET
-	public List<DevelopmentCard> getCardsList(){
+	public static List<DevelopmentCard> getCardsList(){
 		return developmentCards;
 	}
 	
@@ -92,7 +92,8 @@ public class DevCardFra {
 				Node devCard = devCardsList.item(i);
 				if(devCard.getNodeType() == Node.ELEMENT_NODE){
 					Element cardEl = (Element) devCard;
-					TowerColor pColor;
+					TowerColor pColor = null;
+					TowerColor hColor = null;
 					List<Resources> costChoices = new ArrayList<Resources>();
 					
 					
@@ -114,20 +115,19 @@ public class DevCardFra {
 					
 					String htVictoryPoints = (String) cardEl.getElementsByTagName("hVictoryPoints").item(0).getTextContent();
 					int hVictoryPoints = Integer.parseInt(htVictoryPoints);
-			        String htColor = (String) cardEl.getElementsByTagName("hColor").item(0).getTextContent();
-				    TowerColor hColor = TowerColor.valueOf(htColor);
+//			        String htColor = (String) cardEl.getElementsByTagName("hColor").item(0).getTextContent();
+//			        if(htColor != "null"){
+//					    hColor = TowerColor.valueOf(htColor);	
+//			        }
 					String htMilitaryPoints = (String) cardEl.getElementsByTagName("hMilitaryPoints").item(0).getTextContent();
 					int hMilitaryPoints = Integer.parseInt(htMilitaryPoints);
 					
 					String ptDiceValue = (String) cardEl.getElementsByTagName("pDiceValue").item(0).getTextContent();
 					int pDiceValue = Integer.parseInt(ptDiceValue);
-					String ptColor = (String) cardEl.getElementsByTagName("pColor").item(0).getTextContent();
-					if(ptColor == "EVERY"){
-						pColor = null;
-					}
-					else{
-						pColor = TowerColor.valueOf(ptColor);
-					}	
+//					String ptColor = (String) cardEl.getElementsByTagName("pColor").item(0).getTextContent();
+//					if(ptColor != "null"){
+//						pColor = TowerColor.valueOf(ptColor);
+//					}
 
 	
 						String tCoins = (String) cardEl.getElementsByTagName("gCoins").item(0).getTextContent();

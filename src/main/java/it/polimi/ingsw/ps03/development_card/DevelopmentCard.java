@@ -2,13 +2,19 @@ package it.polimi.ingsw.ps03.development_card;
 
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
 import it.polimi.ingsw.ps03.effects.*;
+import it.polimi.ingsw.ps03.resources.Resources;
 
-public abstract class DevelopmentCard {
+import java.util.List;
+
+public class DevelopmentCard {
 	
 	private int cardId;
+	private int cardPeriod;
+	private int diceValue;
 	private String cardName;
 	private TowerColor cardColor;
-	private int cardPeriod;
+	private List<Resources> costs;
+	private List<Resources> requirements;
 	private Effect immediateEffect;
 		
 	//COSTRUTTORE
