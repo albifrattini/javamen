@@ -1,6 +1,7 @@
 package it.polimi.ingsw.ps03.mvc;
 
 import it.polimi.ingsw.ps03.billboard_pack.*;
+import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
 import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.resources.Resources;
 import it.polimi.ingsw.ps03.resources.Resource;
@@ -211,12 +212,19 @@ public class BillboardView extends Observable implements Observer {
 		output.println("Giocatore " + player.getColor().toString().substring(0, 1) + 
 				player.getColor().toString().substring(1, player.getColor().toString().length()).toLowerCase());
 		printPlayerResources(player);
+		printPlayerCards(player);
 		//printCards e printPawns
 	}
 	private void printPlayerResources(Player player){
 		output.println("\nRisorse possedute:");
 		for(Map.Entry<String, Resource> entry : player.getResources().getResourcesMap().entrySet()){
 			output.println(entry.getValue().toString());
+		}
+	}
+	private void printPlayerCards(Player player){
+		output.println("Carte sviluppo possedute:");
+		for(DevelopmentCard d : player.getCards()){
+			output.println(d.toString());
 		}
 	}
 	private void printMessage(String message){

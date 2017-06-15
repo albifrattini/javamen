@@ -35,11 +35,11 @@ public class DevelopmentCards {
 	}
 	
 	//METODI GET
-	public List<DevelopmentCard> getCardsList(){
+	public static List<DevelopmentCard> getCardsList(){
 		return developmentCards;
 	}
 	
-	public List<DevelopmentCard> getCardsOfColor(TowerColor color, List<DevelopmentCard> developmentCards){
+	public static List<DevelopmentCard> getCardsOfColor(TowerColor color, List<DevelopmentCard> developmentCards){
 		List<DevelopmentCard> deck = new ArrayList<DevelopmentCard>();
 		for(int i = 0; i < STANDARD_SIZE; i++){
 			if(developmentCards.get(i).getCardColor() == color){
@@ -49,7 +49,7 @@ public class DevelopmentCards {
 		return deck;
 	}
 	
-	public List<DevelopmentCard> getCardsOfPeriod(int cardPeriod, List<DevelopmentCard> developmentCards){
+	public static List<DevelopmentCard> getCardsOfPeriod(int cardPeriod, List<DevelopmentCard> developmentCards){
 		List<DevelopmentCard> deck = new ArrayList<DevelopmentCard>();
 		for(int i = 0; i < STANDARD_SIZE; i++){
 			developmentCards.get(i);
@@ -60,7 +60,7 @@ public class DevelopmentCards {
 		return deck;
 	}
 	
-	public DevelopmentCard getRandomCard(List<DevelopmentCard> developmentCards){
+	public static DevelopmentCard getRandomCard(List<DevelopmentCard> developmentCards){
 		Random random = new Random();
 		int choice = random.nextInt(developmentCards.size()-1);
 		return developmentCards.get(choice);

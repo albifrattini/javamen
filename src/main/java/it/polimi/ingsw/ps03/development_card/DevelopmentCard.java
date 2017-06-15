@@ -28,8 +28,11 @@ public class DevelopmentCard {
 	
 	@Override
 	public String toString(){
-		return "id: " + cardId + "\nCard Name: " + cardName + "\nCard Color: " + cardColor +
-				"\nCard Period: " + cardPeriod;
+		String price = "";
+		for(Resources r : costs){
+			price = r.toString();
+		}
+		return "\tNome: " + cardName + "\tColore: " + cardColor + "\nCosto: " + price;
 	}
 	
 	//METODI GET
@@ -48,8 +51,17 @@ public class DevelopmentCard {
 	public int getCardPeriod(){
 		return cardPeriod;
 	}
+	public int getDiceValue(){
+		return diceValue;
+	}
 	public Effect getImmediateEffect(){
 		return immediateEffect;
+	}
+	public List<Resources> getCost(){
+		return costs;
+	}
+	public List<Resources> getRequirements(){
+		return requirements;
 	}
 	
 	

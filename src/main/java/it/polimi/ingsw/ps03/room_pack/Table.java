@@ -39,7 +39,7 @@ public class Table {
 		councilPalace = new ArrayList<CouncilRoom>(1);
 	}
 
-	public static List<TowerRoom> getTowerRoomList(){
+	public List<TowerRoom> getTowerRoomList(){
 		return towerRooms;
 	}
 	public List<MarketRoom> getMarketRoomList(){
