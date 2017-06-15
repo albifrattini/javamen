@@ -1,6 +1,6 @@
 package it.polimi.ingsw.ps03.development_card;
 
-import java.util.List;
+/*import java.util.List;
 import it.polimi.ingsw.ps03.effects.*;
 import it.polimi.ingsw.ps03.resources.Resources;
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
@@ -18,4 +18,4 @@ public class VioletDevelopmentCard extends DevelopmentCard{
 		return costChoices;
 	}
 	
-}
+}*/

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.ps03.development_card;
 
-import it.polimi.ingsw.ps03.room_pack.TowerColor;
+/*import it.polimi.ingsw.ps03.room_pack.TowerColor;
 import it.polimi.ingsw.ps03.effects.*;
 
 public class GreenDevelopmentCard extends DevelopmentCard{
@@ -15,4 +15,4 @@ public class GreenDevelopmentCard extends DevelopmentCard{
 	public int getDiceValue(){
 		return diceValue;
 	}
-}
+}*/
