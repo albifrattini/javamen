@@ -8,28 +8,29 @@ import java.util.Iterator;
 
 public class PlaceImmediateEffect extends Effect{
 
-	private List<Room> placesToChoose;
-	private int diceValue;
-	private Resources discount;
+
+	private int pDiceValue;
+	TowerColor  pCardColor;
+	Resources pResources;
 	
-	public PlaceImmediateEffect(TowerColor color, int dValue, Resources discRes){
-		placesToChoose = new ArrayList<Room>();
-		buildChoosablePlaces(placesToChoose, color);
-		diceValue = dValue;
-		discount = discRes;
+	public PlaceImmediateEffect(TowerColor color, int dValue, Resources resources){
+
+		pDiceValue = dValue;
+		pCardColor = color;
+		pResources = resources;
+		
 	}
 	
-	public List<Room> getChoosablePlace(){
-		return placesToChoose;
+	public TowerColor getPlaceTowerColor(){
+		return pCardColor;
 	}
-	public Room getRoom(int choice){
-		return placesToChoose.get(choice);
-	}
-	public int getDiceValue(){
-		return diceValue;
+	
+
+	public int getPlaceDiceValue(){
+		return pDiceValue;
 	}
 	public Resources getDiscount(){
-		return discount;
+		return pResources;
 	}
 	
 	

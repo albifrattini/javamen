@@ -18,12 +18,17 @@ public class DevelopmentCard {
 	private Effect immediateEffect;
 		
 	//COSTRUTTORE
-	public DevelopmentCard(int mId, String mCardName, TowerColor mCardColor, 
-			int mCardPeriod, Effect mImmediateEffect){ 
+	public DevelopmentCard(int mId,int mCardPeriod, int diceValue, String mCardName, 
+			TowerColor mCardColor){ 
+		
 		cardId = mId;
 		cardName = mCardName;
 		cardColor = mCardColor;
 		cardPeriod = mCardPeriod;
+		costs = null;
+		requirements = null;
+		immediateEffect = null; 
+		
 	}
 	
 	@Override
@@ -51,7 +56,15 @@ public class DevelopmentCard {
 	public Effect getImmediateEffect(){
 		return immediateEffect;
 	}
-	
+	public void setImmediateEffect(Effect immidiateEffect) {
+		this.immediateEffect = immidiateEffect; 
+	}
+	public List<Resources> getCosts() {
+		return costs; 
+	}
+	public List<Resources> getRequirements() {
+		return requirements; 
+	}
 	
 	
 }

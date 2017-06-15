@@ -1,26 +1,23 @@
 package it.polimi.ingsw.ps03.effects;
 
 import it.polimi.ingsw.ps03.resources.Resources;
+import it.polimi.ingsw.ps03.room_pack.TowerColor;
 
-public class HarvestingOrProductionImmediateEffect extends GiveResourcesImmediateEffect{
+public class HarvestingOrProductionImmediateEffect extends Effect {
 	
-	private int diceValue;
-	private String harvestingOrProduction;
+	private int hpDiceValue;
+    private TowerColor  hpCardColor;
 	
-	public HarvestingOrProductionImmediateEffect(int dValue, String harvOrProd, Resources rToGive){
-		super(rToGive);
-		diceValue = dValue;
-		harvestingOrProduction = harvOrProd;
+	public HarvestingOrProductionImmediateEffect(int dValue, TowerColor cardColor){
+		hpDiceValue = dValue;
+		hpCardColor = cardColor;
 	}
 	
 	public int getValue(){
-		return diceValue;
+		return hpDiceValue;
 	}
-	public String getHarvOrProd(){
-		return harvestingOrProduction;
+	public TowerColor getHpCardColor(){
+		return hpCardColor;
 	}
 	
-	public void applyEffect(){
-//		HarvestingOrProduction.startEffect(diceValue, harvestingOrProduction);
-	}
 }
