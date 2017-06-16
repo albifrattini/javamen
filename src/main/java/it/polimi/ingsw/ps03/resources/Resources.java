@@ -73,23 +73,7 @@ public class Resources {
 			}
 		}
 		return allResources;
-	}
-	
-	@Override
-	public boolean equals(Object obj){
-		Resources resources = (Resources) obj;
-		for(Map.Entry<String, Resource> entry : resources.getResourcesMap().entrySet()){
-			if(this.getResource(entry.getKey()).getValue() != entry.getValue().getValue()){
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	
-	
-	
-	
+	}	
 	
 	
 }
