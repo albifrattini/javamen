@@ -43,8 +43,13 @@ public class DevelopmentCard {
 				prices = prices + "Non c'è nessun requisito per il costo " + i + "\n";
 			}
 		}
-		return "Nome: " + cardName + "\tColore: " + cardColor + prices + 
-				immediateEffect.toString();
+			if(immediateEffect != null) {
+				return "nome: " + cardName + "\tColore:" + cardColor + prices + 
+						immediateEffect.toString() + "\n";
+			}
+			else {
+				  return "Nome: " + cardName + "\tColore:" + cardColor + prices + "Nessun effetto immediato" + "\n" ;
+			}
 		
 	}
 	
