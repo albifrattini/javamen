@@ -29,7 +29,7 @@ public class ChangeTurn extends Action {
 		getBillboard().getDices().rollDices();
 		newPawns();	
 		refreshTable();
-		displaceCards(getBillboard());
+		//displaceCards(getBillboard());
 	}
 	public void refreshTable(){
 		for(Room r : getBillboard().getTable().getRooms()){

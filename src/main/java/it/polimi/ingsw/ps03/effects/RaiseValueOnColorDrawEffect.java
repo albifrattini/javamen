@@ -7,7 +7,8 @@ public class RaiseValueOnColorDrawEffect extends Effect{
 	private TowerColor color;
 	private int valueToAdd;
 	
-	public RaiseValueOnColorDrawEffect(TowerColor mColor, int mValueToAdd){
+	public RaiseValueOnColorDrawEffect(TowerColor mColor, int mValueToAdd, String name){
+		super(name);
 		color = mColor;
 		valueToAdd = mValueToAdd;
 	}

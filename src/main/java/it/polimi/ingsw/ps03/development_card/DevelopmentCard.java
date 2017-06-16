@@ -5,6 +5,7 @@ import it.polimi.ingsw.ps03.effects.*;
 import it.polimi.ingsw.ps03.resources.Resources;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class DevelopmentCard {
 	
@@ -13,6 +14,8 @@ public class DevelopmentCard {
 	private int diceValue;
 	private String cardName;
 	private TowerColor cardColor;
+	private List<Resources> costs;
+	private List<Resources> requirements;
 	private Effect immediateEffect;
 		
 	//COSTRUTTORE
@@ -23,17 +26,26 @@ public class DevelopmentCard {
 		cardName = mCardName;
 		cardColor = mCardColor;
 		cardPeriod = mCardPeriod;
+		costs = new ArrayList<Resources>(2);
+		requirements = new ArrayList<Resources>(2);
 		immediateEffect = null; 
 		
 	}
 	
 	@Override
 	public String toString(){
-		String price = "";
-		for(Resources r : costs){
-			price = r.toString();
+		String prices = "\n";
+		for(int i = 0; i < costs.size(); i++){
+			prices = prices + "Costo " + String.valueOf(i+1) + ": " + costs.get(i).toString() + "\n";
+			try{
+				prices = prices + "Requisito " + String.valueOf(i+1) + ": " + requirements.get(i).toString() + "\n";
+			}catch(Exception e){
+				prices = prices + "Non c'è nessun requisito per il costo " + i + "\n";
+			}
 		}
-		return "\tNome: " + cardName + "\tColore: " + cardColor + "\nCosto: " + price;
+		return "Nome: " + cardName + "\tColore: " + cardColor + prices + 
+				immediateEffect.toString();
+		
 	}
 	
 	//METODI GET
@@ -57,6 +69,15 @@ public class DevelopmentCard {
 	}
 	public Effect getImmediateEffect(){
 		return immediateEffect;
+	}
+	public void setImmediateEffect(Effect immidiateEffect) {
+		this.immediateEffect = immidiateEffect; 
+	}
+	public List<Resources> getCosts() {
+		return costs; 
+	}
+	public List<Resources> getRequirements(){
+		return requirements;
 	}
 
 	

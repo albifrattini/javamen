@@ -75,25 +75,18 @@ public class Resources {
 		return allResources;
 	}
 	
+	@Override
+	public boolean equals(Object obj){
+		Resources resources = (Resources) obj;
+		for(Map.Entry<String, Resource> entry : resources.getResourcesMap().entrySet()){
+			if(this.getResource(entry.getKey()).getValue() != entry.getValue().getValue()){
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	
-	
-//	public boolean add(Resources rName){
-//		for(Resource r : rName){
-//			resources.get(r.getName()).add(r.getValue());
-//		}
-//		return true;
-//	}
-//	public boolean sub(Resources rName){
-//		for(Resource r : rName){
-//			Resource temp = resources.get(r.getName());
-//			if(temp.getValue() < r.getValue()){
-//				return false;
-//			}
-//			temp.sub(r.getValue());
-//		}
-//		return true;
-//	}
 	
 	
 	

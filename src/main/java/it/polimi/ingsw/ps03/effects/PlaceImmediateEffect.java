@@ -2,39 +2,41 @@ package it.polimi.ingsw.ps03.effects;
 
 import it.polimi.ingsw.ps03.room_pack.*;
 import it.polimi.ingsw.ps03.resources.*;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
 
-public class PlaceImmediateEffect extends Effect{
+public class PlaceImmediateEffect extends GiveResourcesImmediateEffect{
 
 
-	private int pDiceValue;
-	TowerColor  pCardColor;
-	Resources pResources;
+	private int diceValue;
+	TowerColor  cardColor;
 	
-	public PlaceImmediateEffect(TowerColor color, int dValue, Resources resources){
-
-		pDiceValue = dValue;
-		pCardColor = color;
-		pResources = resources;
+	Resources discount;
+	
+	public PlaceImmediateEffect(TowerColor color, int diceValue, Resources givenResources, Resources discount, String name){
+		super(givenResources, name);
+		this.diceValue = diceValue;
+		this.cardColor = color;
+		this.discount = discount;
 		
 	}
 	
 	public TowerColor getPlaceTowerColor(){
-		return pCardColor;
+		return cardColor;
 	}
-	
-
 	public int getPlaceDiceValue(){
-		return pDiceValue;
+		return diceValue;
 	}
 	public Resources getDiscount(){
-		return pResources;
+		return discount;
+	}
+	
+	@Override
+	public String toString(){
+		return "Nome effetto: " + getName() + "\nValore azione: " + diceValue + "\tColore torre dell'azione: " + cardColor + 
+				"\nRisorse date: " + getGivenResources() + "\nSconto applicato: " + discount;
 	}
 	
 	
-	private void buildChoosablePlaces(List<Room> placesToChoose, TowerColor color){
+/*	private void buildChoosablePlaces(List<Room> placesToChoose, TowerColor color){
 		Iterator<TowerRoom> it = Table.getTowerRoomList().iterator();
 		while(it.hasNext()){
 			if(it.next().getTowerRoomColor() == color && it.next().isFull() == false){
@@ -42,5 +44,5 @@ public class PlaceImmediateEffect extends Effect{
 			}
 		}
 	}
-	
+*/	
 }
