@@ -43,19 +43,14 @@ public class DevelopmentCard {
 				prices = prices + "Non c'è nessun requisito per il costo " + i + "\n";
 			}
 		}
-<<<<<<< HEAD
-		return "Nome: " + cardName + "\tColore: " + cardColor + prices + 
+		if(immediateEffect != null) {
+			return "nome: " + cardName + "\tColore:" + cardColor + prices + 
 					immediateEffect.toString() + "\n";
-=======
-			if(immediateEffect != null) {
-				return "nome: " + cardName + "\tColore:" + cardColor + prices + 
-						immediateEffect.toString() + "\n";
-			}
-			else {
-				  return "Nome: " + cardName + "\tColore:" + cardColor + prices + "Nessun effetto immediato" + "\n" ;
-			}
+		}
+		else {
+			  return "Nome: " + cardName + "\tColore:" + cardColor + prices + "Nessun effetto immediato" + "\n" ;
+		}
 		
->>>>>>> d955edcbeb894d6fdb26739a52967ea0ea1b6afb
 	}
 	
 	//METODI GET
