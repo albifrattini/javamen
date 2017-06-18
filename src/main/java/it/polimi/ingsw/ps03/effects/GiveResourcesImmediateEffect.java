@@ -1,5 +1,6 @@
 package it.polimi.ingsw.ps03.effects;
 
+import it.polimi.ingsw.ps03.players.Player;
 import it.polimi.ingsw.ps03.resources.Resources;
 
 public class GiveResourcesImmediateEffect extends Effect{
@@ -13,6 +14,11 @@ public class GiveResourcesImmediateEffect extends Effect{
 	
 	public Resources getGivenResources(){
 		return givenResources;
+	}
+	
+	@Override
+	public void applyEffect(Player player){
+		player.getResources().add(givenResources);
 	}
 	
 	@Override 

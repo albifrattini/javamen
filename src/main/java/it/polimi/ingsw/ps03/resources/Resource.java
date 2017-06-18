@@ -19,6 +19,9 @@ public abstract class Resource {
 	public int getValue(){
 		return this.value;
 	}
+	public void setValue(int value){
+		this.value = value;
+	}
 	public void add(int adder){
 		value = value + adder;
 	}

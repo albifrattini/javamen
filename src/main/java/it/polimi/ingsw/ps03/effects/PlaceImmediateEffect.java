@@ -7,9 +7,9 @@ public class PlaceImmediateEffect extends GiveResourcesImmediateEffect{
 
 
 	private int diceValue;
-	TowerColor  cardColor;
+	private TowerColor  cardColor;
 	
-	Resources discount;
+	private Resources discount;
 	
 	public PlaceImmediateEffect(TowerColor color, int diceValue, Resources givenResources, Resources discount, String name){
 		super(givenResources, name);

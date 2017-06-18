@@ -1,5 +1,7 @@
 package it.polimi.ingsw.ps03.effects;
 
+import it.polimi.ingsw.ps03.players.Player;
+
 public abstract class Effect {
 
 	private String name;
@@ -10,5 +12,9 @@ public abstract class Effect {
 	
 	public String getName(){
 		return name;
+	}
+	
+	public void applyEffect(Player player){
+		
 	}
 }

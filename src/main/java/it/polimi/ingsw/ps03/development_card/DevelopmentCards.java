@@ -36,7 +36,7 @@ public class DevelopmentCards {
 	
 	public static List<DevelopmentCard> getCardsOfColor(TowerColor color, List<DevelopmentCard> developmentCards){
 		List<DevelopmentCard> deck = new ArrayList<DevelopmentCard>();
-		for(int i = 0; i < STANDARD_SIZE; i++){
+		for(int i = 0; i < developmentCards.size(); i++){
 			if(developmentCards.get(i).getCardColor() == color){
 				deck.add(developmentCards.get(i));
 			}
@@ -46,7 +46,7 @@ public class DevelopmentCards {
 	
 	public static List<DevelopmentCard> getCardsOfPeriod(int cardPeriod, List<DevelopmentCard> developmentCards){
 		List<DevelopmentCard> deck = new ArrayList<DevelopmentCard>();
-		for(int i = 0; i < STANDARD_SIZE; i++){
+		for(int i = 0; i < developmentCards.size(); i++){
 			developmentCards.get(i);
 			if(developmentCards.get(i).getCardPeriod() == cardPeriod){
 				deck.add(developmentCards.get(i));
@@ -60,6 +60,8 @@ public class DevelopmentCards {
 		int choice = random.nextInt(developmentCards.size()-1);
 		return developmentCards.get(choice);
 	}
+	
+
 	
 	//BUILDER
 	public void build(){
@@ -88,12 +90,16 @@ public class DevelopmentCards {
 					for(int j = 0; j < 2; j++){
 						Resources resourcesCost = new Resources();
 						readResources(cardEl, resourcesCost, "C" + String.valueOf(j));
-						developmentCard.getCosts().add(resourcesCost);
+						if(!(isFreeCard(resourcesCost)) || developmentCard.getCosts().size() < 1){
+							developmentCard.getCosts().add(resourcesCost);
+						}
 					}
 					for(int k = 0; k < 2; k++){
 						Resources resourcesRequirements = new Resources();
 						readResources(cardEl, resourcesRequirements, "R" + String.valueOf(k));
-						developmentCard.getRequirements().add(resourcesRequirements);
+						if(!(isFreeCard(resourcesRequirements)) || developmentCard.getRequirements().size() < 1){
+							developmentCard.getRequirements().add(resourcesRequirements);
+						}
 					}
 
 					String choiceEffect = readStringFromFile(cardEl, "immediateEffect");
@@ -170,6 +176,14 @@ public class DevelopmentCards {
 			int value = readIntFromFile(element, entry.getKey().toLowerCase() + post);
 			resources.getResource(entry.getKey()).add(value);
 		}
+	}
+	private boolean isFreeCard(Resources resources){
+		for(Map.Entry<String, Resource> entry : resources.getResourcesMap().entrySet()){
+			if(resources.getResource(entry.getKey()).getValue() > 0){
+				return false;
+			}
+		}
+		return true;
 	}
 			
 }

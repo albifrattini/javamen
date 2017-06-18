@@ -624,7 +624,7 @@
         <id>10</id>
     <period>2</period>
     <diceValue>3</diceValue>
-    <name>Villaggio Montanno</name>
+    <name>Villaggio Montano</name>
     <color>GREEN</color>
         <coinsC0>0</coinsC0>     
         <woodsC0>0</woodsC0>
@@ -762,7 +762,7 @@
         <id>12</id>
     <period>2</period>
     <diceValue>3</diceValue>
-    <name>Vaca Di Pietra</name>
+    <name>Cava Di Pietra</name>
     <color>GREEN</color>
         <coinsC0>0</coinsC0>     
         <woodsC0>0</woodsC0>
@@ -1907,7 +1907,7 @@
     <servantsG>0</servantsG>
     <militarypointsG>0</militarypointsG>
     <faithpointsG>0</faithpointsG>
-    <victorypointsG>0</victorypointsG>
+    <victorypointsG>6</victorypointsG>
     <councilprivilegesG>0</councilprivilegesG>
     <colorP>null</colorP>
     <dicevalueP>-1</dicevalueP>
@@ -1917,7 +1917,7 @@
     <servantsP>0</servantsP>
     <militarypointsP>0</militarypointsP>
     <faithpointsP>0</faithpointsP>
-    <victorypointsP>6</victorypointsP>
+    <victorypointsP>0</victorypointsP>
     <councilprivilegesP>0</councilprivilegesP>
     <colorE>null</colorE>
     <coinsE>0</coinsE>     
@@ -2004,7 +2004,7 @@
         <id>30</id>
     <period>1</period>
     <diceValue>3</diceValue>
-    <name>Taglipietre</name>
+    <name>Tagliapietre</name>
     <color>YELLOW</color>
         <coinsC0>1</coinsC0>     
         <woodsC0>0</woodsC0>
@@ -2280,7 +2280,7 @@
         <id>34</id>
     <period>2</period>
     <diceValue>3</diceValue>
-    <name>tesoriera</name>
+    <name>Tesoreria</name>
     <color>YELLOW</color>
         <coinsC0>0</coinsC0>     
         <woodsC0>3</woodsC0>
@@ -4116,7 +4116,7 @@
     <militarypointsG>0</militarypointsG>
     <faithpointsG>0</faithpointsG>
     <victorypointsG>0</victorypointsG>
-    <councilprivilegesG>0</councilprivilegesG>
+    <councilprivilegesG>1</councilprivilegesG>
     <colorP>VIOLET</colorP>
     <dicevalueP>6</dicevalueP>
     <coinsP>0</coinsP>     
@@ -4126,7 +4126,7 @@
     <militarypointsP>0</militarypointsP>
     <faithpointsP>0</faithpointsP>
     <victorypointsP>0</victorypointsP>
-    <councilprivilegesP>1</councilprivilegesP>
+    <councilprivilegesP>0</councilprivilegesP>
     <colorE>null</colorE>
     <coinsE>0</coinsE>     
     <woodsE>0</woodsE>
@@ -4591,7 +4591,7 @@
         <faithpointsR1>0</faithpointsR1>
         <victorypointsR1>0</victorypointsR1>
         <councilprivilegesR1>0</councilprivilegesR1>
-   <immediateEffect>PLACE</immediateEffect>
+   <immediateEffect>EARN</immediateEffect>
     <coinsG>0</coinsG>     
     <woodsG>0</woodsG>
     <stonesG>0</stonesG>
@@ -4660,7 +4660,7 @@
         <faithpointsR1>0</faithpointsR1>
         <victorypointsR1>0</victorypointsR1>
         <councilprivilegesR1>0</councilprivilegesR1>
-   <immediateEffect>PLACE</immediateEffect>
+   <immediateEffect>EARN</immediateEffect>
     <coinsG>0</coinsG>     
     <woodsG>0</woodsG>
     <stonesG>0</stonesG>
@@ -5220,7 +5220,7 @@
     <militarypointsG>0</militarypointsG>
     <faithpointsG>0</faithpointsG>
     <victorypointsG>0</victorypointsG>
-    <councilprivilegesG>0</councilprivilegesG>
+    <councilprivilegesG>2</councilprivilegesG>
     <colorP>null</colorP>
     <dicevalueP>-1</dicevalueP>
     <coinsP>0</coinsP>     
@@ -5230,7 +5230,7 @@
     <militarypointsP>0</militarypointsP>
     <faithpointsP>0</faithpointsP>
     <victorypointsP>0</victorypointsP>
-    <councilprivilegesP>2</councilprivilegesP>
+    <councilprivilegesP>0</councilprivilegesP>
     <colorE>null</colorE>
     <coinsE>0</coinsE>     
     <woodsE>0</woodsE>
@@ -5243,8 +5243,77 @@
     <colorHP>null</colorHP>
     <dicevalueHP>-1</dicevalueHP>
   </developmentCard>
-         <developmentCard>
-        <id>78</id>
+  <developmentCard>
+        <id>77</id>
+    <period>1</period>
+    <diceValue>-1</diceValue>
+    <name>Campagna Militare</name>
+    <color>VIOLET</color>
+        <coinsC0>0</coinsC0>     
+        <woodsC0>0</woodsC0>
+        <stonesC0>0</stonesC0>
+        <servantsC0>0</servantsC0>
+        <militarypointsC0>2</militarypointsC0>
+        <faithpointsC0>0</faithpointsC0>
+        <victorypointsC0>0</victorypointsC0>
+        <councilprivilegesC0>0</councilprivilegesC0>
+        <coinsC1>0</coinsC1>     
+        <woodsC1>0</woodsC1>
+        <stonesC1>0</stonesC1>
+        <servantsC1>0</servantsC1>
+        <militarypointsC1>0</militarypointsC1>
+        <faithpointsC1>0</faithpointsC1>
+        <victorypointsC1>0</victorypointsC1>
+        <councilprivilegesC1>0</councilprivilegesC1>
+        <coinsR0>0</coinsR0>     
+    <woodsR0>0</woodsR0>
+    <stonesR0>0</stonesR0>
+    <servantsR0>0</servantsR0>
+    <militarypointsR0>3</militarypointsR0>
+    <faithpointsR0>0</faithpointsR0>
+    <victorypointsR0>0</victorypointsR0>
+    <councilprivilegesR0>0</councilprivilegesR0>
+    <coinsR1>0</coinsR1>     
+    <woodsR1>0</woodsR1>
+    <stonesR1>0</stonesR1>
+    <servantsR1>0</servantsR1>
+    <militarypointsR1>0</militarypointsR1>
+    <faithpointsR1>0</faithpointsR1>
+    <victorypointsR1>0</victorypointsR1>
+    <councilprivilegesR1>0</councilprivilegesR1>
+    <immediateEffect>GIVE</immediateEffect>
+    <coinsG>3</coinsG>     
+    <woodsG>0</woodsG>
+    <stonesG>0</stonesG>
+    <servantsG>0</servantsG>
+    <militarypointsG>0</militarypointsG>
+    <faithpointsG>0</faithpointsG>
+    <victorypointsG>0</victorypointsG>
+    <councilprivilegesG>0</councilprivilegesG>
+    <colorP>null</colorP>
+    <dicevalueP>-1</dicevalueP>
+    <coinsP>0</coinsP>     
+    <woodsP>0</woodsP>
+    <stonesP>0</stonesP>
+    <servantsP>0</servantsP>
+    <militarypointsP>0</militarypointsP>
+    <faithpointsP>0</faithpointsP>
+    <victorypointsP>0</victorypointsP>
+    <councilprivilegesP>0</councilprivilegesP>
+    <colorE>null</colorE>
+    <coinsE>0</coinsE>     
+    <woodsE>0</woodsE>
+    <stonesE>0</stonesE>
+    <servantsE>0</servantsE>
+    <militarypointsE>0</militarypointsE>
+    <faithpointsE>0</faithpointsE>
+    <victorypointsE>0</victorypointsE>
+    <councilprivilegesE>0</councilprivilegesE>
+    <colorHP>null</colorHP>
+    <dicevalueHP>-1</dicevalueHP>
+    </developmentCard>
+	<developmentCard>
+    <id>78</id>
     <period>1</period>
     <diceValue>-1</diceValue>
     <name>Ospitare I Mendicanti</name>
@@ -6144,7 +6213,7 @@
         <id>91</id>
     <period>3</period>
     <diceValue>-1</diceValue>
-    <name></name>
+    <name>Costruire le Torri</name>
     <color>VIOLET</color>
         <coinsC0>0</coinsC0>     
         <woodsC0>0</woodsC0>
@@ -6213,7 +6282,7 @@
         <id>92</id>
     <period>3</period>
     <diceValue>-1</diceValue>
-    <name>Commissione Arte Sacra</name>
+    <name>Commissionare Arte Sacra</name>
     <color>VIOLET</color>
         <coinsC0>0</coinsC0>     
         <woodsC0>6</woodsC0>
@@ -6351,7 +6420,7 @@
         <id>94</id>
     <period>3</period>
     <diceValue>-1</diceValue>
-    <name></name>
+    <name>Migliorare le Strade</name>
     <color>VIOLET</color>
         <coinsC0>4</coinsC0>     
         <woodsC0>0</woodsC0>

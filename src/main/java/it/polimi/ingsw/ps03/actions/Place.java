@@ -1,12 +1,11 @@
 package it.polimi.ingsw.ps03.actions;
 
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
+import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
 import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.room_pack.*;
-import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
 import it.polimi.ingsw.ps03.resources.Resources;
 
-import java.util.List;
 
 public class Place extends Action{
 	
@@ -14,6 +13,7 @@ public class Place extends Action{
 	private Pawn pawn;
 	private Room room;
 	private Resources requiredResources;
+	private Resources chosenCost;
 	
 	public Place(Player player){
 		super("PLACE");
@@ -21,6 +21,7 @@ public class Place extends Action{
 		this.pawn = null;
 		this.room = null;
 		this.requiredResources = null;
+		this.chosenCost = null;
 	}
 	
 	public Place(Billboard billboard, Player player, Pawn pawn, Room room){
@@ -29,9 +30,10 @@ public class Place extends Action{
 		this.pawn = pawn;
 		this.room = room;
 		this.requiredResources = new Resources();
+		this.chosenCost = null;
 	}
 	
-	public void applyAction(){
+	public DevelopmentCard applyAction(){
 		if(room instanceof MarketRoom){
 			if(room instanceof TowerRoom){
 				player.getCards().add(((TowerRoom) room).getPlacedCard());
@@ -42,19 +44,13 @@ public class Place extends Action{
 			player.getResources().add(((CouncilRoom) room).getResources());
 			getBillboard().getTable().addCouncilRoom();
 		}
-//		if(room instanceof ProductionRoom){
-//			List<DevelopmentCard> cards = player.getCards();
-//			if(room instanceof HarvestingRoom){
-//				((HarvestingRoom) room).applyEffect(cards, pawn.getValue());
-//			}
-//			else{
-//				((ProductionRoom) room).applyEffect(cards, pawn.getValue());
-//			}
-//		}
 		room.setPawn(pawn);
 		player.removePawn(pawn.getDiceColor().toString());
 		player.getResources().sub(requiredResources);
-		getBillboard().getTurnOfPlay().nextPlayer();
+		if(room instanceof TowerRoom){
+			return ((TowerRoom) room).getPlacedCard();
+		}
+		return null;
 	}
 	
 	
@@ -70,6 +66,9 @@ public class Place extends Action{
 	public void setRequiredResources(Resources requiredResources){
 		this.requiredResources = requiredResources;
 	}
+	public void setChosenCost(Resources chosenCost){
+		this.chosenCost = chosenCost;
+	}
 	public Player getPlayer(){
 		return player;
 	}
@@ -78,6 +77,9 @@ public class Place extends Action{
 	}
 	public Resources getRequiredResources(){
 		return requiredResources;
+	}
+	public Resources getChosenCost(){
+		return chosenCost;
 	}
 	public Room getRoom(){
 		return room;

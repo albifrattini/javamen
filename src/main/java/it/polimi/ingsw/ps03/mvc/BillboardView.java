@@ -57,10 +57,17 @@ public class BillboardView extends Observable implements Observer {
 		switch(choice){
 			case PLACE:
 				placeAction(billboard, turnOfPlayer);
+				break;
 			case CHECKPLAYER:
 				checkPlayerAction(turnOfPlayer);
+				break;
+			case CHECKCARDS:
+				printCards(billboard.getTable().getTowerRoomList());
+				startTurn(billboard);
+				break;
 			default:
 				output.println("Errore nella scelta azione!");
+				break;
 		}
 	}
 	
@@ -72,7 +79,7 @@ public class BillboardView extends Observable implements Observer {
 		ActionChoices choice = null;
 		try{
 			output.println("\nCosa desideri fare?");
-			output.println("Azioni possibili:\n --> Place\n --> CheckPlayer\n");
+			output.println("Azioni possibili:\n --> Place\n --> CheckPlayer\n --> CheckCards\n");
 			choice = ActionChoices.valueOf(scanner.next().toUpperCase());
 		}catch(IllegalArgumentException e){
 			output.println("\nWARNING: Soluzione non valida!\n");
@@ -96,6 +103,10 @@ public class BillboardView extends Observable implements Observer {
 		try{
 			List<Room> rooms = billboard.getTable().getRooms();
 			action.setRoom(rooms.get(roomChoice(rooms)));
+			if(action.getRoom() instanceof TowerRoom){
+				action.setChosenCost(((TowerRoom) action.getRoom()).
+						getPlacedCard().getCosts().get(costChoice(action.getRoom())));
+			}
 		}catch(IndexOutOfBoundsException e){
 			output.println("\nWARNING: Impossibile posizionare!\n");
 			placeAction(billboard, turnOfPlayer);
@@ -112,6 +123,15 @@ public class BillboardView extends Observable implements Observer {
 		CheckPlayer checkPlayer = new CheckPlayer(turnOfPlayer);
 		setChanged();
 		notifyObservers(checkPlayer);
+	}
+	
+	
+	private void printCards(List<TowerRoom> towerRooms){
+		for(TowerRoom t : towerRooms){
+			if(!(t.isFull())){
+				output.println(t.getPlacedCard().toString());
+			}
+		}
 	}
 	
 	
@@ -182,6 +202,29 @@ public class BillboardView extends Observable implements Observer {
 	}
 	
 	
+	private int costChoice(Room room){
+		if(((TowerRoom) room).getPlacedCard().getCardColor() == TowerColor.GREEN){
+			return 0;
+		}
+		else{
+			TowerRoom towerRoom = (TowerRoom) room;
+			output.println("Quale costo si desidera utilizzare?");
+			for(int i = 0; i < towerRoom.getPlacedCard().getCosts().size(); i++){
+				output.println(i + " - " + towerRoom.getPlacedCard().getCosts().get(i).toString());
+			}
+		}
+		try{
+			String costChoice = scanner.next();
+			return Integer.parseInt(costChoice);
+		}catch(NumberFormatException e){
+			output.println("\nWARNING: Inserimento errato!");
+			return -1;
+		}
+	}
+	
+
+	
+	
 	/* Method always called by the update method. It will show the current situation of the billboard, with 
 	 * particular regard to rooms. So it will not show player's resources and the personal board in general.
 	 * Will be given an action able to show player's personal board.
@@ -205,6 +248,7 @@ public class BillboardView extends Observable implements Observer {
 			spaces++;
 		}
 	}
+
 	private void printCouncil(List<CouncilRoom> councils){
 		System.out.println(councils.size()-1 + " pedoni già piazzati nel Palazzo del Consiglio!");
 	}
@@ -213,7 +257,6 @@ public class BillboardView extends Observable implements Observer {
 				player.getColor().toString().substring(1, player.getColor().toString().length()).toLowerCase());
 		printPlayerResources(player);
 		printPlayerCards(player);
-		//printCards e printPawns
 	}
 	private void printPlayerResources(Player player){
 		output.println("\nRisorse possedute:");
@@ -222,9 +265,9 @@ public class BillboardView extends Observable implements Observer {
 		}
 	}
 	private void printPlayerCards(Player player){
-		output.println("Carte sviluppo possedute:");
+		output.println("\nCarte sviluppo possedute:");
 		for(DevelopmentCard d : player.getCards()){
-			output.println(d.toString());
+			output.println("Nome: " + d.getCardName() + "\tColore: " + d.getCardColor());
 		}
 	}
 	private void printMessage(String message){

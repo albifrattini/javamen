@@ -7,6 +7,7 @@ public class MainCards {
 		DevelopmentCards dev = new DevelopmentCards();
 		dev.build();
 		for(int i = 0; i < DevelopmentCards.getCardsList().size(); i++){
+			System.out.println(DevelopmentCards.getCardsList().get(i).getId());
 			System.out.println(DevelopmentCards.getCardsList().get(i).toString());
 		}
 	}

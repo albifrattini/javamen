@@ -71,7 +71,15 @@ public class Table {
 		councilPalace.add(councilRoom);
 	}
 	
-	
+	public List<TowerRoom> getTowerRoomsOfColor(TowerColor color){
+		List<TowerRoom> tRooms = new ArrayList<TowerRoom>(0);
+		for(TowerRoom t : towerRooms){
+			if(t.getTowerRoomColor() == color){
+				tRooms.add(t);
+			}
+		}
+		return tRooms;
+	}
 	
 	
 	

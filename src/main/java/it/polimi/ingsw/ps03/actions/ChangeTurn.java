@@ -29,7 +29,7 @@ public class ChangeTurn extends Action {
 		getBillboard().getDices().rollDices();
 		newPawns();	
 		refreshTable();
-		//displaceCards(getBillboard());
+		displaceCards(getBillboard());
 	}
 	public void refreshTable(){
 		for(Room r : getBillboard().getTable().getRooms()){
@@ -56,9 +56,12 @@ public class ChangeTurn extends Action {
 		int period = billboard.getTurnOfPlay().getPeriod();
 		List<DevelopmentCard> deck = DevelopmentCards.getCardsOfPeriod(period, DevelopmentCards.getCardsList());
 		for(TowerRoom t : billboard.getTable().getTowerRoomList()){
+			//System.out.println("\nposiziono carte\n");
+			//System.out.println(DevelopmentCards.getCardsList().size());
 			DevelopmentCard card = DevelopmentCards.getRandomCard(DevelopmentCards.getCardsOfColor(t.getTowerRoomColor(), deck));
 			t.setDevelopmentCard(card);
 			DevelopmentCards.getCardsList().remove(card);
+			//System.out.println(DevelopmentCards.getCardsList().size());
 		}
 	}
 	

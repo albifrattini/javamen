@@ -29,9 +29,14 @@ public class HarvestingOrProductionImmediateEffect extends GiveResourcesImmediat
 			return "Produzione";
 		}
 	}
+
+	
+	
+	
 	@Override
 	public String toString(){
-		return "Nome effetto: " + effectType() + "\tValore azione: " + getDiceValue();
+		return "Nome effetto: " + effectType() + "\tValore azione: " + getDiceValue()
+			+ "\nRisorse date: " + getGivenResources();
 	}
 	
 }

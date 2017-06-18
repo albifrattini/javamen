@@ -39,16 +39,16 @@ public class DevelopmentCard {
 			prices = prices + "Costo " + String.valueOf(i+1) + ": " + costs.get(i).toString() + "\n";
 			try{
 				prices = prices + "Requisito " + String.valueOf(i+1) + ": " + requirements.get(i).toString() + "\n";
-			}catch(Exception e){
-				prices = prices + "Non c'è nessun requisito per il costo " + i + "\n";
+			}catch(IndexOutOfBoundsException e){
+				prices = prices + "Non c'è nessun requisito per il costo " + String.valueOf(i+1) + "\n";
 			}
 		}
 		if(immediateEffect != null) {
-			return "nome: " + cardName + "\tColore:" + cardColor + prices + 
+			return "Nome: " + cardName + "\tColore: " + cardColor + prices + 
 					immediateEffect.toString() + "\n";
 		}
 		else {
-			  return "Nome: " + cardName + "\tColore:" + cardColor + prices + "Nessun effetto immediato" + "\n" ;
+			  return "Nome: " + cardName + "\tColore: " + cardColor + prices + "Nessun effetto immediato" + "\n" ;
 		}
 		
 	}

@@ -5,9 +5,16 @@ import java.util.Map;
 import java.util.Observable;
 
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
+import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
+import it.polimi.ingsw.ps03.effects.EarnImmediateEffect;
+import it.polimi.ingsw.ps03.effects.Effect;
+import it.polimi.ingsw.ps03.effects.GiveResourcesImmediateEffect;
+import it.polimi.ingsw.ps03.effects.HarvestingOrProductionImmediateEffect;
+import it.polimi.ingsw.ps03.effects.PlaceImmediateEffect;
 import it.polimi.ingsw.ps03.actions.*;
 import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.resources.Resource;
+import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 
 public class Controller extends Observable implements Observer {
 
@@ -33,8 +40,16 @@ public class Controller extends Observable implements Observer {
 		if(action instanceof Place){
 			Place place = (Place) action;
 			if(checkPlaceAction(place)){
-				place.applyAction();
-				checkTurn();
+				DevelopmentCard drawnCard = place.applyAction();
+				if(drawnCard != null){
+					if(drawnCard.getImmediateEffect() != null){
+						activateEffect(drawnCard);
+					}
+					checkTurn();
+				}
+				else{
+					checkTurn();
+				}
 			}
 			else{
 				notifyToView(getError(action));
@@ -48,11 +63,31 @@ public class Controller extends Observable implements Observer {
 	}
 	
 	
+	private void activateEffect(DevelopmentCard drawnCard){
+		Effect effect = drawnCard.getImmediateEffect();
+		Player player = model.getPlayers().get(model.getTurnOfPlay().getPlayerToPlay());
+		if(effect instanceof GiveResourcesImmediateEffect){
+			((GiveResourcesImmediateEffect) effect).applyEffect(player);
+		}
+		if(effect instanceof PlaceImmediateEffect){
+			
+			
+		}
+		if(effect instanceof EarnImmediateEffect){
+			((EarnImmediateEffect) effect).applyEffect(player);
+		}
+		if(effect instanceof HarvestingOrProductionImmediateEffect){
+			((HarvestingOrProductionImmediateEffect) effect).applyEffect(player);
+		}
+		checkTurn();
+	}
+	
+	
 	private boolean checkPlaceAction(Place action){
 		if(checkOccupation(action)){
 			if(checkRequirement(action)){
 				if(checkResources(action)){
-					return true; //adesso non controlla ancora il costo della carta sviluppo
+						return true; //adesso non controlla ancora il costo della carta sviluppo
 				}
 				return false;
 			}
@@ -81,12 +116,29 @@ public class Controller extends Observable implements Observer {
 		for(Map.Entry<String, Resource> entry : action.getPlayer().getResources().getResourcesMap().entrySet()){
 			if(entry.getValue().getValue() < action.getRequiredResources().getResource(entry.getKey()).getValue()){
 				result = false;
-			} //ancora non controlla che le risorse coprano il costo della carta
+			}
+			if(action.getRoom() instanceof TowerRoom){
+				if(!(checkCost(action))){
+					result = false;
+				}
+			}
+		}
+		return result;
+	}
+	
+	private boolean checkCost(Place action){
+		boolean result = true;
+		for(Map.Entry<String, Resource> entry : action.getChosenCost().getResourcesMap().entrySet()){
+			if(action.getRequiredResources().getResource(entry.getKey()).getValue() < 
+					action.getChosenCost().getResource(entry.getKey()).getValue()){
+				result = false;
+			}
 		}
 		return result;
 	}
 	
 	public void checkTurn(){
+		model.getTurnOfPlay().nextPlayer();
 		if(!(model.getTurnOfPlay().hasNextMiniTurn())){
 			ChangeTurn changeTurn = new ChangeTurn();
 			applyAction(changeTurn);
@@ -133,6 +185,10 @@ public class Controller extends Observable implements Observer {
 		if(obj instanceof Billboard){
 			setChanged();
 			notifyObservers((Billboard) obj);
+		}
+		if(obj instanceof DevelopmentCard){
+			setChanged();
+			notifyObservers((DevelopmentCard) obj);
 		}
 	}
 	private void notifyToView(){

@@ -1,8 +1,7 @@
 package it.polimi.ingsw.ps03.room_pack;
 
 import it.polimi.ingsw.ps03.development_card.*;
-import it.polimi.ingsw.ps03.players.Pawn;
-import it.polimi.ingsw.ps03.resources.*;
+import it.polimi.ingsw.ps03.resources.Resources;
 
 public class TowerRoom extends MarketRoom{
 	
@@ -35,19 +34,14 @@ public class TowerRoom extends MarketRoom{
 		placedCard = developmentCard;
 	}
 	
-	public DevelopmentCard drawCard(Pawn pToPlace){
-		DevelopmentCard temp = placedCard;
-		occupyPlacement();
-		setPawn(pToPlace);
-		freeCardSpace();
-		return temp;
-	}
+
 	
 	@Override
 	public String toString(){
 		return "Spazio azione 'Torre " + getTowerRoomColor().toString().substring(0, 1) + 
 				getTowerRoomColor().toString().substring(1, getTowerRoomColor().toString().length()).toLowerCase()
-				+ "':  \tRequisito: " + getRequirement() + "\t" + getResources().toString();
+				+ "':  \tRequisito: " + getRequirement() + "\t" + getResources().toString() 
+				+ "\n\tCarta sviluppo: " + placedCard.getCardName();
 	}
 	
 	
