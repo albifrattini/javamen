@@ -37,7 +37,7 @@ public class MainMVC {
 			System.out.println("Errore in Main!");
 		}
 	}
-	private void startGame(){
+	public void startGame(){
 		billboardView.initGame();
 	}
 	
