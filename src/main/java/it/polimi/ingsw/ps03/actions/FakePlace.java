@@ -22,7 +22,9 @@ public class FakePlace extends Place{
 		getPlayer().getCards().add(((TowerRoom) getRoom()).getPlacedCard());
 		getPlayer().getResources().add(((TowerRoom) getRoom()).getResources());
 		getPlayer().getResources().sub(getRequiredResources());
-		return ((TowerRoom) getRoom()).getPlacedCard();	
+		DevelopmentCard temp = ((TowerRoom) getRoom()).getPlacedCard();
+		((TowerRoom)getRoom()).setDevelopmentCard(null);
+		return temp;	
 	}
 
 	

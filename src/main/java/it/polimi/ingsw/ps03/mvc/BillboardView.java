@@ -237,19 +237,37 @@ public class BillboardView extends Observable implements Observer {
 	private void fakePlaceAction(FakePlace fakePlace, Billboard billboard){
 		List<TowerRoom> towerRooms = billboard.getTable().getTowerRoomList();
 		towerRooms = billboard.getTable().getTowersRoomsOfColor(towerRooms, fakePlace.getColor());
-		try{
-			fakePlace.setRoom(towerRooms.get(towerRoomChoice(towerRooms)));
-				fakePlace.setChosenCost(((TowerRoom) fakePlace.getRoom()).
-						getPlacedCard().getCosts().get(costChoice(fakePlace.getRoom())));
-		}catch(IndexOutOfBoundsException e){
-			output.println("\nWARNING: Impossibile posizionare!\n");
+		if(fakePlace.getRoom() != null){
+			output.println("\n\nWARNING: Soluzione non valida!");
+		}
+		output.println("\nHai a disposizione un'azione su una torre " + 
+						fakePlace.getColor().toString().toLowerCase() + 
+						" di valore " + fakePlace.getPawn().getValue());
+		output.println("Desideri attivare l'effetto? [yes/no]");
+		String choice = scanner.next().toLowerCase();
+		if(choice.contains("yes")){
+			try{
+				fakePlace.setRoom(towerRooms.get(towerRoomChoice(towerRooms)));
+					fakePlace.setChosenCost(((TowerRoom) fakePlace.getRoom()).
+							getPlacedCard().getCosts().get(costChoice(fakePlace.getRoom())));
+			}catch(IndexOutOfBoundsException e){
+				output.println("\nWARNING: Impossibile posizionare!\n");
+				fakePlaceAction(fakePlace, billboard);
+			}
+		
+			fakePlace.setRequiredResources(resourcesChoice());
+		
+			setChanged();
+			notifyObservers(fakePlace);
+		}
+		if(choice.contains("no")){
+			setChanged();
+			notifyObservers();
+		}
+		else{
+			output.println("Soluzione non contemplata!");
 			fakePlaceAction(fakePlace, billboard);
 		}
-		
-		fakePlace.setRequiredResources(resourcesChoice());
-		
-		setChanged();
-		notifyObservers(fakePlace);
 	}
 	
 
@@ -282,7 +300,7 @@ public class BillboardView extends Observable implements Observer {
 		int spaces = 0;
 		for(int i = 0; i < towerRooms.size(); i++){
 			if(towerRooms.get(i).getPawn() == null){
-				output.println(spaces + " - ");
+				output.print(spaces + " - ");
 				output.println(towerRooms.get(i).toString());
 			}
 			spaces++;

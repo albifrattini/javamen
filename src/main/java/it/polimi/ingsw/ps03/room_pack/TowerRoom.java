@@ -38,10 +38,15 @@ public class TowerRoom extends MarketRoom{
 	
 	@Override
 	public String toString(){
+		if(placedCard != null){
+			return "Spazio azione 'Torre " + getTowerRoomColor().toString().substring(0, 1) + 
+					getTowerRoomColor().toString().substring(1, getTowerRoomColor().toString().length()).toLowerCase()
+					+ "':  \tRequisito: " + getRequirement() + "\t" + getResources().toString() 
+					+ "\n\tCarta sviluppo: " + placedCard.getCardName();
+		}
 		return "Spazio azione 'Torre " + getTowerRoomColor().toString().substring(0, 1) + 
 				getTowerRoomColor().toString().substring(1, getTowerRoomColor().toString().length()).toLowerCase()
-				+ "':  \tRequisito: " + getRequirement() + "\t" + getResources().toString() 
-				+ "\n\tCarta sviluppo: " + placedCard.getCardName();
+				+ "':  \tRequisito: " + getRequirement() + "\t" + getResources().toString(); 
 	}
 	
 	

@@ -39,9 +39,9 @@ public class Controller extends Observable implements Observer {
 		}
 		if(action instanceof Place){
 			if(action instanceof FakePlace){
-				FakePlace place = (FakePlace) action;
-				if(checkPlaceAction(place)){
-					DevelopmentCard drawnCard = place.applyAction();
+				FakePlace fakePlace = (FakePlace) action;
+				if(checkPlaceAction(fakePlace)){
+					DevelopmentCard drawnCard = fakePlace.applyAction();
 					if(drawnCard != null){
 						if(drawnCard.getImmediateEffect() != null){
 							activateEffect(drawnCard);
@@ -53,7 +53,7 @@ public class Controller extends Observable implements Observer {
 					}
 				}
 				else{
-					notifyToView(getError(action));
+					notifyToView(fakePlace);
 				}
 			}
 			else{
@@ -86,12 +86,21 @@ public class Controller extends Observable implements Observer {
 		Effect effect = drawnCard.getImmediateEffect();
 		Player player = model.getPlayers().get(model.getTurnOfPlay().getPlayerToPlay());
 		if(effect instanceof GiveResourcesImmediateEffect){
-			((GiveResourcesImmediateEffect) effect).applyEffect(player);
-			checkTurn();
+			if(effect instanceof PlaceImmediateEffect){
+				PlaceImmediateEffect plEffect = (PlaceImmediateEffect) effect;
+				plEffect.applyEffect(player);
+				FakePlace fakePlace = new FakePlace(model, player,
+											plEffect.getPlaceTowerColor(),
+											plEffect.getPlaceDiceValue());
+				notifyToView(fakePlace);
+			}
+			else{
+				((GiveResourcesImmediateEffect) effect).applyEffect(player);
+				checkTurn();
+			}
 		}
 		if(effect instanceof PlaceImmediateEffect){
 			PlaceImmediateEffect plEffect = (PlaceImmediateEffect) effect;
-			plEffect.applyEffect(player);
 			FakePlace fakePlace = new FakePlace(model, player,
 										plEffect.getPlaceTowerColor(),
 										plEffect.getPlaceDiceValue());
@@ -185,7 +194,7 @@ public class Controller extends Observable implements Observer {
 		return "Errore imprevisto...";
 	}
 	
-
+	
 	
 	
 	
@@ -224,9 +233,14 @@ public class Controller extends Observable implements Observer {
 	
 	@Override
 	public void update(Observable o, Object obj){
-		if(o != view || !(obj instanceof Action)){
+		if(o != view){
 			throw new IllegalArgumentException();
 		} 
-		applyAction((Action) obj);
+		if(obj instanceof Action){
+			applyAction((Action) obj);
+		}
+		else{
+			checkTurn();
+		}
 	}
 }
