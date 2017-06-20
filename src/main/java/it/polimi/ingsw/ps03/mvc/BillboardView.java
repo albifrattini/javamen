@@ -170,6 +170,17 @@ public class BillboardView extends Observable implements Observer {
 	}
 	
 	
+	public int towerRoomChoice(List<TowerRoom> towerRooms){
+		output.println("\nQuale spazio azione desideri occupare?");
+		output.println("Scelte disponibili:\n");
+		printTowerRooms(towerRooms);
+		String input = scanner.next();
+		int choice = Integer.parseInt(input);
+		return choice;
+	}
+	
+	
+	
 	/* Method that asks the user for an input. In particular it questions the user if he wants to use some 
 	 * resources during 'place' action. After instantiating a Resources' object, the method fills it with
 	 * user inputs and returns the object to the caller. 
@@ -222,6 +233,25 @@ public class BillboardView extends Observable implements Observer {
 		}
 	}
 	
+	
+	private void fakePlaceAction(FakePlace fakePlace, Billboard billboard){
+		List<TowerRoom> towerRooms = billboard.getTable().getTowerRoomList();
+		towerRooms = billboard.getTable().getTowersRoomsOfColor(towerRooms, fakePlace.getColor());
+		try{
+			fakePlace.setRoom(towerRooms.get(towerRoomChoice(towerRooms)));
+				fakePlace.setChosenCost(((TowerRoom) fakePlace.getRoom()).
+						getPlacedCard().getCosts().get(costChoice(fakePlace.getRoom())));
+		}catch(IndexOutOfBoundsException e){
+			output.println("\nWARNING: Impossibile posizionare!\n");
+			fakePlaceAction(fakePlace, billboard);
+		}
+		
+		fakePlace.setRequiredResources(resourcesChoice());
+		
+		setChanged();
+		notifyObservers(fakePlace);
+	}
+	
 
 	
 	
@@ -244,6 +274,16 @@ public class BillboardView extends Observable implements Observer {
 			if((Pawn) rooms.get(i).getPawn() == null){
 				output.print(spaces + " - ");
 				output.println(((Room) rooms.get(i)).toString());
+			}
+			spaces++;
+		}
+	}
+	private void printTowerRooms(List<TowerRoom> towerRooms){
+		int spaces = 0;
+		for(int i = 0; i < towerRooms.size(); i++){
+			if(towerRooms.get(i).getPawn() == null){
+				output.println(spaces + " - ");
+				output.println(towerRooms.get(i).toString());
 			}
 			spaces++;
 		}
@@ -293,6 +333,9 @@ public class BillboardView extends Observable implements Observer {
 		if(obj instanceof String){
 			printMessage((String) obj);
 			startTurn(((Controller) o).getBillboard());
+		}
+		if(obj instanceof FakePlace){
+			fakePlaceAction((FakePlace) obj, ((Controller) o).getBillboard());
 		}
 	}
 	

@@ -1,9 +1,11 @@
 package it.polimi.ingsw.ps03.room_pack;
 
+import it.polimi.ingsw.ps03.resources.Resources;
+
 public class HarvestingRoom extends ProductionRoom{
 	
-	public HarvestingRoom(){
-		super("HARVESTING");
+	public HarvestingRoom(Resources resources){
+		super(TowerColor.GREEN, resources);
 	}
 
 	@Override

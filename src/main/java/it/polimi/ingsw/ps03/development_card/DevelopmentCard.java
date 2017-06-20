@@ -75,8 +75,15 @@ public class DevelopmentCard {
 	public Effect getImmediateEffect(){
 		return immediateEffect;
 	}
+	
 	public void setImmediateEffect(Effect immidiateEffect) {
 		this.immediateEffect = immidiateEffect; 
+	}
+	public void setPeriod(int period){
+		this.cardPeriod = period;
+	}
+	public void setColor(TowerColor color){
+		this.cardColor = color;
 	}
 	public List<Resources> getCosts() {
 		return costs; 
@@ -84,6 +91,8 @@ public class DevelopmentCard {
 	public List<Resources> getRequirements(){
 		return requirements;
 	}
+	
+
 
 	
 	

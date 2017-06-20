@@ -71,9 +71,9 @@ public class Table {
 		councilPalace.add(councilRoom);
 	}
 	
-	public List<TowerRoom> getTowerRoomsOfColor(TowerColor color){
+	public List<TowerRoom> getTowersRoomsOfColor(List<TowerRoom> rooms, TowerColor color){
 		List<TowerRoom> tRooms = new ArrayList<TowerRoom>(0);
-		for(TowerRoom t : towerRooms){
+		for(TowerRoom t : rooms){
 			if(t.getTowerRoomColor() == color){
 				tRooms.add(t);
 			}
@@ -169,22 +169,29 @@ public class Table {
 	}
 
 	public void buildProductionRooms(int numberOfPlayers){
+		Resources resources = new Resources();
+		resources.getResource("COINS").add(1);
+		resources.getResource("MILITARYPOINTS").add(2);
 		int roomCounter = 4;
 		if(numberOfPlayers < 3){
 			roomCounter = 1;
 		}
 		for(int i = 0; i < roomCounter; i++){
-			productionRooms.add(i, new ProductionRoom("PRODUCTION"));
+			productionRooms.add(i, new ProductionRoom(resources));
 		}
 	}
 	
 	public void buildHarvestingRooms(int numberOfPlayers){
+		Resources resources = new Resources();
+		resources.getResource("SERVANTS").add(1);
+		resources.getResource("STONES").add(1);
+		resources.getResource("WOODS").add(1);
 		int roomCounter = 4;
 		if(numberOfPlayers < 3){
 			roomCounter = 1;
 		}
 		for(int i = 0; i < roomCounter; i++){
-			harvestingRooms.add(i, new HarvestingRoom());
+			harvestingRooms.add(i, new HarvestingRoom(resources));
 		}
 	}
 

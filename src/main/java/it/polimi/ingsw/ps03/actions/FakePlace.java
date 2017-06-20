@@ -1,0 +1,32 @@
+package it.polimi.ingsw.ps03.actions;
+
+import it.polimi.ingsw.ps03.billboard_pack.Billboard;
+import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
+import it.polimi.ingsw.ps03.players.Pawn;
+import it.polimi.ingsw.ps03.players.Player;
+import it.polimi.ingsw.ps03.room_pack.TowerColor;
+import it.polimi.ingsw.ps03.room_pack.TowerRoom;
+
+public class FakePlace extends Place{
+
+	private TowerColor color;
+
+	public FakePlace(Billboard billboard, Player player, TowerColor color, int actionValue){
+		super("FAKEPLACE", billboard, player);
+		this.color = color;
+		setPawn(new Pawn(actionValue));
+	}
+	
+	@Override
+	public DevelopmentCard applyAction(){
+		getPlayer().getCards().add(((TowerRoom) getRoom()).getPlacedCard());
+		getPlayer().getResources().add(((TowerRoom) getRoom()).getResources());
+		getPlayer().getResources().sub(getRequiredResources());
+		return ((TowerRoom) getRoom()).getPlacedCard();	
+	}
+
+	
+	public TowerColor getColor(){
+		return color;
+	}
+}

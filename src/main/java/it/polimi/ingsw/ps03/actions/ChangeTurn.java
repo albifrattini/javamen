@@ -56,20 +56,14 @@ public class ChangeTurn extends Action {
 		int period = billboard.getTurnOfPlay().getPeriod();
 		List<DevelopmentCard> deck = DevelopmentCards.getCardsOfPeriod(period, DevelopmentCards.getCardsList());
 		for(TowerRoom t : billboard.getTable().getTowerRoomList()){
-			//System.out.println("\nposiziono carte\n");
-			//System.out.println(DevelopmentCards.getCardsList().size());
-			DevelopmentCard card = DevelopmentCards.getRandomCard(DevelopmentCards.getCardsOfColor(t.getTowerRoomColor(), deck));
+			DevelopmentCard card = DevelopmentCards.getRandomCard(DevelopmentCards.
+					getCardsOfColor(t.getTowerRoomColor(), deck));
 			t.setDevelopmentCard(card);
 			DevelopmentCards.getCardsList().remove(card);
-			//System.out.println(DevelopmentCards.getCardsList().size());
-		}
+		}	
 	}
 	
-	
-	
-	
-	
-	
+
 	
 	public void changeTurnOfPlay(){
 		List<Player> players = new ArrayList<Player>(getBillboard().getPlayers().size());

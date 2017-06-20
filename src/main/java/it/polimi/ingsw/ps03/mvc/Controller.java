@@ -38,28 +38,47 @@ public class Controller extends Observable implements Observer {
 			notifyToView();
 		}
 		if(action instanceof Place){
-			Place place = (Place) action;
-			if(checkPlaceAction(place)){
-				DevelopmentCard drawnCard = place.applyAction();
-				if(drawnCard != null){
-					if(drawnCard.getImmediateEffect() != null){
-						activateEffect(drawnCard);
+			if(action instanceof FakePlace){
+				FakePlace place = (FakePlace) action;
+				if(checkPlaceAction(place)){
+					DevelopmentCard drawnCard = place.applyAction();
+					if(drawnCard != null){
+						if(drawnCard.getImmediateEffect() != null){
+							activateEffect(drawnCard);
+						}
+						checkTurn();
 					}
-					checkTurn();
+					else{
+						checkTurn();
+					}
 				}
 				else{
-					checkTurn();
+					notifyToView(getError(action));
 				}
 			}
 			else{
-				notifyToView(getError(action));
+				Place place = (Place) action;
+				if(checkPlaceAction(place)){
+					DevelopmentCard drawnCard = place.applyAction();
+					if(drawnCard != null){
+						if(drawnCard.getImmediateEffect() != null){
+							activateEffect(drawnCard);
+						}
+						checkTurn();
+					}
+					else{
+						checkTurn();
+					}
+				}	
+				else{
+					notifyToView(getError(action));
+				}
 			}
 		}
 		if(action instanceof CheckPlayer){
 			Player player = ((CheckPlayer) action).applyAction();
 			notifyToView(player);
 		}
-		
 	}
 	
 	
@@ -68,18 +87,24 @@ public class Controller extends Observable implements Observer {
 		Player player = model.getPlayers().get(model.getTurnOfPlay().getPlayerToPlay());
 		if(effect instanceof GiveResourcesImmediateEffect){
 			((GiveResourcesImmediateEffect) effect).applyEffect(player);
+			checkTurn();
 		}
 		if(effect instanceof PlaceImmediateEffect){
-			
-			
+			PlaceImmediateEffect plEffect = (PlaceImmediateEffect) effect;
+			plEffect.applyEffect(player);
+			FakePlace fakePlace = new FakePlace(model, player,
+										plEffect.getPlaceTowerColor(),
+										plEffect.getPlaceDiceValue());
+			notifyToView(fakePlace);
 		}
 		if(effect instanceof EarnImmediateEffect){
 			((EarnImmediateEffect) effect).applyEffect(player);
+			checkTurn();
 		}
 		if(effect instanceof HarvestingOrProductionImmediateEffect){
 			((HarvestingOrProductionImmediateEffect) effect).applyEffect(player);
+			checkTurn();
 		}
-		checkTurn();
 	}
 	
 	
@@ -87,7 +112,7 @@ public class Controller extends Observable implements Observer {
 		if(checkOccupation(action)){
 			if(checkRequirement(action)){
 				if(checkResources(action)){
-						return true; //adesso non controlla ancora il costo della carta sviluppo
+						return true;
 				}
 				return false;
 			}
@@ -95,6 +120,7 @@ public class Controller extends Observable implements Observer {
 		}
 		return false;
 	}
+
 	
 	private boolean checkOccupation(Place action){
 		if(action.getRoom().isFull()){
@@ -102,6 +128,7 @@ public class Controller extends Observable implements Observer {
 		}
 		return true;
 	}
+	
 	
 	private boolean checkRequirement(Place action){
 		if(action.getRoom().getRequirement() <= (action.getPawn().getValue() + 
@@ -186,9 +213,9 @@ public class Controller extends Observable implements Observer {
 			setChanged();
 			notifyObservers((Billboard) obj);
 		}
-		if(obj instanceof DevelopmentCard){
+		if(obj instanceof FakePlace){
 			setChanged();
-			notifyObservers((DevelopmentCard) obj);
+			notifyObservers((FakePlace) obj);
 		}
 	}
 	private void notifyToView(){

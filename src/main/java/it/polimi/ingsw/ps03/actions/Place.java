@@ -24,11 +24,11 @@ public class Place extends Action{
 		this.chosenCost = null;
 	}
 	
-	public Place(Billboard billboard, Player player, Pawn pawn, Room room){
-		super("PLACE", billboard);
+	public Place(String name, Billboard billboard, Player player){
+		super(name, billboard);
 		this.player = player;
-		this.pawn = pawn;
-		this.room = room;
+		this.pawn = null;
+		this.room = null;
 		this.requiredResources = new Resources();
 		this.chosenCost = null;
 	}

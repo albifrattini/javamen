@@ -12,6 +12,11 @@ public class Pawn {
 		this.dColor = dColor;
 		this.value = value;
 	}
+	public Pawn(int value){
+		this.pColor = null;
+		this.dColor = null;
+		this.value = value;
+	}
 	
 	public PlayerColor getPlayerColor(){
 		return this.pColor;
