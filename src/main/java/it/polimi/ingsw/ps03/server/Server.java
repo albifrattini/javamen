@@ -15,20 +15,21 @@ import java.io.*;
 
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.mvc.MainMVC;
+import it.polimi.ingsw.ps03.players.Player;
 import it.polimi.ingsw.ps03.players.PlayerColor;
 
 	//Main alla fine
 	public class Server extends Observable implements Observer{
 	 
 	 	 private int port;
-	 	 private int number = 1;
+	 	 private int number = 0;
 	 	 private List<PlayerColor> players;
 //	 	 private PlayerColor color;
 	 	 
 	 	 public Server (int port)
 	 	 {
 	 	  this.port = port;
-	 	
+	 	  players = new ArrayList<PlayerColor>(4);
 		 }
 	 	
 @Override
@@ -43,7 +44,7 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 	 		 ExecutorService executor = Executors.newCachedThreadPool();//con newFixedThreadPool(i) posso scegliere quanti thread creare
 	 		 //classe executor per gestire più tread senza dover creare continuamente ogni singolo thread
 	 		 ServerSocket serverSocket;
-	 		 List<PlayerColor> players = new ArrayList(4);//lista dove inserire i giocatori che si connettono
+	 		// List<PlayerColor> players = new ArrayList<PlayerColor>(4);//lista dove inserire i giocatori che si connettono
 	 		 
 	 		
 	 		
@@ -57,7 +58,7 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 	 	  
 	 		 System.out.println("Server Ready on Port: "+port);
 	 		 
-	 		 while(true && number <5){
+	 		 while(true && number <4){
 	 			
 	 			 try{
 	  				 
@@ -70,9 +71,9 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 	 			    String client = infoclient.getHostAddress();    //ritorna l'indirizzo IP del client   
 	 			    
 	 			    System.out.println("Il client " + client + " numero "+ number +  " si è connesso al server\n"
-	 			    		+ "e sarà il player " + (String)players.get(number-1).toString());
+	 			    		+ "e sarà il player " + players.get(number).toString());
 	 				
-	 			    if(number == 2){
+	 			    if(number == 1){
 	 			    		serverSocket.setSoTimeout(20000);//fa partire un timer di 20s, se il server non riceve altre connessioni fa partire il gioco
 	 			    		
 	 			    	    try{
@@ -83,9 +84,9 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 	 			    	    		setColor(number);
 	 			    	    		
 	 			    	    		
-	 			    	    		if(number == 3){
+	 			    	    		if(number == 2){
 	 			    	    			 System.out.println("Il client " + client + " numero "+ number +  " si è connesso al server\n"
-	 			    	 			    		+ "e sarà il player " + (String)players.get(number-1).toString());
+	 			    	 			    		+ "e sarà il player " + players.get(number).toString());
 	 			    	    			serverSocket.setSoTimeout(20000);
 	 			    	    				
 	 			    	    				try{
@@ -95,9 +96,9 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 	 			    	    					setColor(number);
 	 			    	    					
 	 			    	    					
-	 			    	    						if(number == 4){
+	 			    	    						if(number == 3){
 	 			    	    									System.out.println("Il client " + client + " numero "+ number +  " si è connesso al server\n"
-	 			    	    											+ "e sarà il player " + (String)players.get(number-1).toString());
+	 			    	    											+ "e sarà il player " + players.get(number).toString());
 	 			    	    									
 	 			    	    									System.out.println("4 players connected\n"+
 	 			    	    											"Game ready to start");
@@ -137,21 +138,34 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 	 		   }
 	 	
 	public List<PlayerColor> setColor(int number){//creare un arrayList in base ai giocatori che si connettono
-		if(number == 1){
-				players.add(number-1, PlayerColor.BLUE);
+		if(number == 0){
+				players.add(number, PlayerColor.BLUE);
 		}
-		if(number == 2){
-				players.add(number-1, PlayerColor.RED);
+			else{
+					if(number == 1){
+						players.add(number, PlayerColor.RED);
+		}	
+					}	
+						{
+								if(number == 2){
+										players.add(number, PlayerColor.YELLOW); 
 		}
-		if(number == 3){
-			 	players.add(number-1, PlayerColor.YELLOW); 
+								}
+									{
+											if(number == 3){
+													players.add(number, PlayerColor.GREEN);
 		}
-		if(number == 4){
-				players.add(number-1, PlayerColor.GREEN);
-		}
+												}
 		return players;
 	}
 	
+	public List<PlayerColor> getPlayers(){
+		return players;
+	}
+	
+	public int getPort(){
+		return port;
+	}
 	//MAIN
 	public static void main(String[] args){
 		Server server = new Server(1449);
@@ -164,7 +178,6 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 
 	
 	 // private int backlog;//in teoria dovrebbe stabilire un massimo di connessioni alla volta
-	// private List<String> players;
 
 	 
 	 
