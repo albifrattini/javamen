@@ -32,11 +32,12 @@ public class Client extends Observable implements Observer{
 		PrintWriter socketOut = new PrintWriter(socket.getOutputStream());//manda il messaggio attraverso il canale
 		Scanner stin = new Scanner(System.in);
 		
-		System.out.println("Connection established\n"
-		           +"WELCOME IN LORENZO IL MAGNIFICO\n\n"
-		           +"What's your name?"	);
+//		System.out.println("Connection established\n"
+//		           +"WELCOME IN LORENZO IL MAGNIFICO\n\n"
+//		           +"looking for other players, please wait");
+		  
+		//         +"What's your name?"	);
 		
-		//System.out.println("Choose a Color beetween Blue, Red, Yellow and Green");
 		
 		try{
 			while(true){
@@ -65,7 +66,7 @@ public class Client extends Observable implements Observer{
 
 	//MAIN
 public static void main(String[] args){
-	Client client = new Client("127.0.0.1", 1449);
+	Client client = new Client("127.0.0.1", 1450);
 	
 	
 	

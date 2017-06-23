@@ -5,12 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-//import java.util.ArrayList;
-//import java.util.List;
 import java.io.*;
 
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
@@ -111,22 +107,22 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 	 			    	    						
 	 			    	    				}catch(IOException e){
 	 			    	    						System.out.println("no other player found");
-	 			    	    						break;//da cambiare con fai partire il gioco
-	 			    	    					}
+	 			    	    								break;//da cambiare con fai partire il gioco
+	 			    	    						}
 	 			    	    		}
 	 			    	    		
 	 			    	    }catch(IOException e){
 	 			    	    	System.out.println("no other player found");
-	 			    	    	break;//da cambiare 
-	 			    	    }
+
+	    	    						break;//da cambiare con fai partire il gioco
 	 			    	     
 	 			    }
 	 			   
 	 								
-	 				number++;
+	 			    	  
 	 					 
-	 					
-	 					
+	 			    }
+	 			   number++;
 	 			 		}catch(IOException e){
 	 			 			break;//se il serverSocket venisse chiuso, entrerei qui
 	 			 				}	
@@ -141,21 +137,23 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 		if(number == 0){
 				players.add(number, PlayerColor.BLUE);
 		}
-			else{
-					if(number == 1){
-						players.add(number, PlayerColor.RED);
-		}	
-					}	
-						{
-								if(number == 2){
-										players.add(number, PlayerColor.YELLOW); 
-		}
-								}
-									{
-											if(number == 3){
-													players.add(number, PlayerColor.GREEN);
-		}
-												}
+			
+			if(number == 1){
+					players.add(number, PlayerColor.RED);
+																}	
+				
+					
+					
+				if(number == 2){
+						players.add(number, PlayerColor.YELLOW); 
+																}
+								
+				
+						
+					if(number == 3){
+							players.add(number, PlayerColor.GREEN);
+																}
+				
 		return players;
 	}
 	
@@ -166,9 +164,11 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 	public int getPort(){
 		return port;
 	}
+	
+	
 	//MAIN
 	public static void main(String[] args){
-		Server server = new Server(1449);
+		Server server = new Server(1450);
 		server.startServer();
 		
 	}
@@ -232,4 +232,10 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 //		 	}
 //		 }
 	
+	
+	//Create Gson Builder
+//    mGsonBuilder = new GsonBuilder();fallo e basta sia nel client che server
+//mGson = mGsonBuilder.create();       fallo e basta sia nel client che server
+//mGson.toJson(mPlayers.get(id), Player.class)
+//mGson.fromJson(waitForMessage(), Player.class))+
 

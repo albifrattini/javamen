@@ -28,7 +28,7 @@ public class ServerClientHandler implements Runnable{
 			PrintWriter out = new PrintWriter(socket.getOutputStream());//per mandare risposte
 			
 		//  String line = in.nextLine();//riceve il nome del client
-		  
+		  out.println("Players found, game will start in a while");
 		 
 		
 //			
