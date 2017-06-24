@@ -1,0 +1,37 @@
+package it.polimi.ingsw.ps03.networking.virtualView;
+
+import it.polimi.ingsw.ps03.networking.model.Model;
+import it.polimi.ingsw.ps03.networking.model.Player;
+
+import java.util.List;
+//import java.util.Observer;
+
+
+public class RemoteView extends View implements Observer<String> {
+
+	private Connection connection;
+	
+	public RemoteView(Player player/*, List<String> enemyes*/, Connection c){
+		super(player);
+		this.connection = c;
+		c.register(this);
+		//c.asyncSend("I tuoi avversari sono: " +  + "\nScegli la tua mossa:");
+	}
+
+	
+	protected void showModel(Model model){
+	//	connection.send(model.getOutCome(getPlayer().toString() + "\nScegli la tua mossa"));
+	}
+	
+	
+	
+	public void notify(String message) {		
+		System.out.println("Ricevuto " + message);
+		try{
+//			Choice choice = Choice.parseInput(message);
+//			processChoice(choice);
+		}catch(IllegalArgumentException e){
+			connection.send("Error!");			
+		}		
+	}
+}

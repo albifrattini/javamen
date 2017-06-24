@@ -1,4 +1,4 @@
-package it.polimi.ingsw.ps03.networking.view;
+package it.polimi.ingsw.ps03.networking.virtualView;
 
 import java.util.ArrayList;
 import java.util.List;

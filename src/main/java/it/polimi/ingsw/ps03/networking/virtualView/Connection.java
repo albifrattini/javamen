@@ -1,4 +1,4 @@
-package it.polimi.ingsw.ps03.networking.view;
+package it.polimi.ingsw.ps03.networking.virtualView;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -24,13 +24,14 @@ public class Connection extends Observable<String> implements Runnable{
 	@Override
 	public void run() {//gestisce gli input degli utenti
 		try{
+			
 			in = new Scanner(socket.getInputStream());
 			out = new PrintStream(socket.getOutputStream());
-			send("Welcome in Lorenzo il Magnifico\n"+
-								"What's your name?");
-			String read = in.nextLine();
+			String read = in.next();
 			name = read;
-			//server.rendezvous(this, name);
+			send("well met " + name + " and welcome in Lorenzo il magnifico\n"+ 
+					"looking for other players... please wait");
+			server.match(this, name);
 			while(isActive()){
 				read = in.nextLine();
 				notify(read);
@@ -70,12 +71,12 @@ public class Connection extends Observable<String> implements Runnable{
 
 	/*crea un tread separato che fa andare avanti 
 	 * l'esecuzione mentre attende i messaggi*/
-//	public void asyncSend(final String message){
-//		new Thread(new Runnable() {			
-//			@Override
-//			public void run() {
-//				send(message);				
-//			}
-//		}).start();
-//	}
+	public void asyncSend(final String message){
+		new Thread(new Runnable() {			
+			@Override
+			public void run() {
+				send(message);				
+			}
+		}).start();
+	}
 }
