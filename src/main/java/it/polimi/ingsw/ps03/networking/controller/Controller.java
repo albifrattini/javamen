@@ -43,9 +43,11 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 	public class Controller extends Observable implements Observer {
 
 		private Billboard model;
+	//	private BillboardView view;
 		
 		public Controller(Billboard billboard/*, BillboardView view*/){
 			this.model = billboard;
+	//		this.view = view;
 		}
 
 		
@@ -255,6 +257,9 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 		
 		@Override
 		public void update(Observable o, Object obj){
+//			if(o != view){
+//				throw new IllegalArgumentException();
+//			} 
 			if(obj instanceof Action){
 				applyAction((Action) obj);
 			}
