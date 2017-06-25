@@ -11,15 +11,16 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.networking.controller.Controller;
-import it.polimi.ingsw.ps03.networking.model.Model;
 import it.polimi.ingsw.ps03.networking.model.Player;
+import it.polimi.ingsw.ps03.players.PlayerColor;
 
 
 public class Server {
 
 	
-	 private static final int port = 1500;
+	 private static final int PORT = 1500;
 	 private ServerSocket serverSocket;
 	 ExecutorService executor = Executors.newCachedThreadPool();//con newFixedThreadPool(i) posso scegliere quanti thread creare
 		 														//classe executor per gestire più tread senza dover creare
@@ -30,14 +31,14 @@ public class Server {
 	 private Map<Connection, Connection> playingConnection = new HashMap<>();
 	 
 	 public Server() throws IOException {
-		 this.serverSocket = new ServerSocket(port);
+		 this.serverSocket = new ServerSocket(PORT);
 	 }
 		
 	
 	 public void startServer(){/*crea la server socket e si mette in ascolto pronto a ricevere
 								le connessioni, man mano che un client si connette viene messo 
 								nell'arraylist connections*/ 
-		 System.out.println("Server Ready on Port: "+port);
+		 System.out.println("Server Ready on Port: "+PORT);
 		 
 		 while(true){
 			try{
@@ -50,7 +51,7 @@ public class Server {
 			}
 		}
 	}	
-	
+	 
 	 /*aggiunge all'arrayList le connessioni attive*/
 	 private synchronized void addConnection(Connection c){
 			connections.add(c);
@@ -80,14 +81,16 @@ public class Server {
 				Connection c2 = waitingConnection.get(keys.get(1));
 				RemoteView player1 = new RemoteView(new Player(keys.get(0)),/* keys.get(1),*/ c1);
 				RemoteView player2 = new RemoteView(new Player(keys.get(1)),/* keys.get(0),*/ c2);
-				Model model = new Model();
-				Controller controller = new Controller(model);
+				Billboard model = new Billboard();
+				Controller controller = new Controller(model);//da cambiare
 				model.addObserver(player1);
 				model.addObserver(player2);
 				player1.addObserver(controller);
 				player2.addObserver(controller);			
 				playingConnection.put(c1, c2);
 				playingConnection.put(c2, c1);
+//				model.addPlayer(0, PlayerColor.BLUE, 5);
+//				model.addPlayer(1, PlayerColor.RED, 6);
 				try{
 					serverSocket.setSoTimeout(20000);
 					if(waitingConnection.size() == 3){
@@ -97,6 +100,8 @@ public class Server {
 						player3.addObserver(controller);
 						playingConnection.put(c2, c3);
 						playingConnection.put(c3, c1);
+//						model.addPlayer(2, PlayerColor.GREEN, 7);
+						
 						
 							try{
 								serverSocket.setSoTimeout(20000);
@@ -107,6 +112,7 @@ public class Server {
 										player4.addObserver(controller);										
 										playingConnection.put(c3, c4);
 										playingConnection.put(c4, c1);
+//										model.addPlayer(3, PlayerColor.YELLOW, 8);
 									}
 							}catch(IOException e){
 								System.out.println("no other player found");

@@ -29,8 +29,9 @@ public class Connection extends Observable<String> implements Runnable{
 			out = new PrintStream(socket.getOutputStream());
 			String read = in.next();
 			name = read;
-			send("well met " + name + " and welcome in Lorenzo il magnifico\n"+ 
-					"looking for other players... please wait");
+			//manda il messaggio alla networkHandler, problema(viene ricevuto solo dopo input invio)
+			send("well met " + name + " and welcome in Lorenzo il Magnifico "
+					+"looking for other players... please wait");
 			server.match(this, name);
 			while(isActive()){
 				read = in.nextLine();

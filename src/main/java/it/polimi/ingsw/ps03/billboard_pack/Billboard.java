@@ -1,10 +1,13 @@
 package it.polimi.ingsw.ps03.billboard_pack;
 
 import it.polimi.ingsw.ps03.dices.*;
+import it.polimi.ingsw.ps03.networking.model.Outcome;
 import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.room_pack.*;
 import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
 
 
@@ -14,7 +17,7 @@ public class Billboard extends Observable {
 	private List<Player> players;
 	private Table table;
 	private TurnOfPlay turnOfPlay;
-	
+	private Map<Player, Outcome> outcomes = new HashMap<>();
 	
 	public Billboard(){
 		players = new ArrayList<Player>(4);
@@ -51,7 +54,9 @@ public class Billboard extends Observable {
 	public void setPlayers(List<Player> players){
 		this.players = players;
 	}
-	
+	public /*Outcome*/ String getOutcome(String player) {
+		return outcomes.get(player).toString();
+	}
 
 	
 }

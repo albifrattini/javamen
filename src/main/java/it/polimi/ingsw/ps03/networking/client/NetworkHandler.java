@@ -25,8 +25,7 @@ public class NetworkHandler extends Observable implements Observer {
 		PrintStream socketOut = new PrintStream(socket.getOutputStream());//manda il messaggio attraverso il canale
 		Scanner stin = new Scanner(System.in);	
 		System.out.println("Connection Established\n"+
-		                    "What's your name");//da mettere nella view
-		
+		                    "What's your name?");//da mettere nella view
 		try{
 			while(true){
 				String inputLine = stin.nextLine();//se da problemi cambia da nextLine a next()

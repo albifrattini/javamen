@@ -3,7 +3,10 @@ package it.polimi.ingsw.ps03.networking.virtualView;
 import java.util.Observable;
 import java.util.Observer;
 
+import it.polimi.ingsw.ps03.actions.ActionChoices;
+import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.networking.model.Choice;
+import it.polimi.ingsw.ps03.networking.model.Model;
 import it.polimi.ingsw.ps03.networking.model.Player;
 
 public abstract class View extends Observable implements Observer{
@@ -21,20 +24,24 @@ public abstract class View extends Observable implements Observer{
 	}
 	
 	
-	protected void choiceSelected(Choice choice){
+	protected void choiceSelected(ActionChoices choice){
 		setChanged();
 		notifyObservers(choice);
 	}
-//	
-//	
-//	protected abstract void showModel(Model model);
-//	
+	
+	protected void processChoice(ActionChoices choice) {
+		setChanged();
+		notifyObservers(choice);
+	}
+	
+	protected abstract void showModel(Billboard billboard);
+	
 	@Override
 	public synchronized void update(Observable o, Object arg1) {
-//		if(!(o instanceof Model)){
-//			throw new IllegalArgumentException();
-//		}
-//		showModel((Model)o);
+		if(!(o instanceof Model)){
+			throw new IllegalArgumentException();
+		}
+		showModel((Billboard)o);
 	}
 	
 

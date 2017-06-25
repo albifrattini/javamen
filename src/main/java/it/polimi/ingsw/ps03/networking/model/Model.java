@@ -14,4 +14,26 @@ public class Model extends Observable {
 		return choices.get(player);
 	}
 	
+	public void setPlayerChoice(Player player, Choice playerChoice) {
+		if(choices.size() == 2){
+			choices.clear();
+	//		outcomes.clear();
+		}				
+		if(!choices.containsKey(player)){
+			if(choices.size() == 1){
+				Player other = new LinkedList<Player>(choices.keySet()).get(0);
+		//		outcomes.put(player, 
+	//					playerChoice.resultAgainst(choices.get(other)));		
+	//			outcomes.put(other, 
+		//				choices.get(other).resultAgainst(playerChoice));	
+				setChanged();
+			}	
+			choices.put(player, playerChoice);
+		}	
+		notifyObservers();
+	}
+	
+//	public Outcome getOutcome(Player player) {
+//		return outcomes.get(player);
+//	}
 }
