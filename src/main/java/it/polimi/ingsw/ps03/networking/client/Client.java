@@ -1,19 +1,13 @@
-package it.polimi.ingsw.ps03.server;
+package it.polimi.ingsw.ps03.networking.client;
 
-import java.net.*;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.net.Socket;
 import java.util.NoSuchElementException;
 import java.util.Observable;
-import java.util.Observer;
 import java.util.Scanner;
-import java.io.*;
 
-import it.polimi.ingsw.ps03.billboard_pack.Billboard;
-import it.polimi.ingsw.ps03.mvc.BillboardView;
-import it.polimi.ingsw.ps03.mvc.MainMVC;
-
-//MAIN ALLA FINE
-public class Client extends Observable implements Observer{
-
+public class Client {//si connette alla porta e attende gli eventi dalla virtual view e li notifica alla local view->BillboardView?
 	private String ip;
 	private int port;
 	
@@ -23,27 +17,24 @@ public class Client extends Observable implements Observer{
 	}
 
 	
-	public void startClient() throws IOException {
+	public void startClient() throws IOException {//mettere insieme view e netHan
 		
-		Socket socket = new Socket(ip , port);//crea la socket del client 
-		
-		
+		Socket socket = new Socket(ip , port);//crea la socket del client 		
 		Scanner socketIn = new Scanner(socket.getInputStream());//legge gli imput messi dal client
-		PrintWriter socketOut = new PrintWriter(socket.getOutputStream());//manda il messaggio attraverso il canale
-		Scanner stin = new Scanner(System.in);
-		
-
-		
+		PrintStream socketOut = new PrintStream(socket.getOutputStream());//manda il messaggio attraverso il canale
+		Scanner stin = new Scanner(System.in);	
+	//	update(null, "Connection Established");
+		System.out.println("Connection Established\n"+
+		                    "What's your name?");//da mettere nella view
 		
 		try{
 			while(true){
-				MainMVC main = new MainMVC();
 				String inputLine = stin.nextLine();//se da problemi cambia da nextLine a next()
 				socketOut.println(inputLine);
 				socketOut.flush();
 			    String socketLine = socketIn.nextLine();
 				System.out.println(socketLine);
-
+			
 			}
 		}catch(NoSuchElementException e){
 			System.out.println("Connection closed");
@@ -71,11 +62,9 @@ public static void main(String[] args){
 													}
 
 
-@Override
-public void update(Observable arg0, Object arg1) {
+
+public void update(Observable o, Object message) {
 	
 	
 }
 }
-
-

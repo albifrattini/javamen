@@ -17,7 +17,7 @@ public class Billboard extends Observable {
 	private List<Player> players;
 	private Table table;
 	private TurnOfPlay turnOfPlay;
-	private Map<Player, Outcome> outcomes = new HashMap<>();
+	private Map<Player, Outcome> outcomes = new HashMap<>();//aggiunto ma da rivedere
 	
 	public Billboard(){
 		players = new ArrayList<Player>(4);
@@ -54,7 +54,7 @@ public class Billboard extends Observable {
 	public void setPlayers(List<Player> players){
 		this.players = players;
 	}
-	public /*Outcome*/ String getOutcome(String player) {
+	public /*Outcome*/ String getOutcome(String player) {//aggiunto ma da rivedere
 		return outcomes.get(player).toString();
 	}
 

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.ps03.networking.virtualView;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -52,7 +53,10 @@ public class Server {
 		}
 	}	
 	 
-	 /*aggiunge all'arrayList le connessioni attive*/
+	
+
+
+	/*aggiunge all'arrayList le connessioni attive*/
 	 private synchronized void addConnection(Connection c){
 			connections.add(c);
 		}
@@ -79,12 +83,12 @@ public class Server {
 				List<String> keys = new ArrayList<>(waitingConnection.keySet());
 				Connection c1 = waitingConnection.get(keys.get(0));
 				Connection c2 = waitingConnection.get(keys.get(1));
-				RemoteView player1 = new RemoteView(new Player(keys.get(0)),/* keys.get(1),*/ c1);
-				RemoteView player2 = new RemoteView(new Player(keys.get(1)),/* keys.get(0),*/ c2);
+				RemoteView player1 = new RemoteView(new Player(keys.get(0),PlayerColor.BLUE, 5),/* keys.get(1),*/ c1);
+				RemoteView player2 = new RemoteView(new Player(keys.get(1),PlayerColor.RED, 6),/* keys.get(0),*/ c2);
 				Billboard model = new Billboard();
 				Controller controller = new Controller(model);//da cambiare
-				model.addObserver(player1);
-				model.addObserver(player2);
+				model.addObserver(player1);//il player osserva il model, la billboard nella v.v 
+				model.addObserver(player2);//e viene osservato dal controller che riceve i messaggi attraverso la remote view
 				player1.addObserver(controller);
 				player2.addObserver(controller);			
 				playingConnection.put(c1, c2);
@@ -95,7 +99,7 @@ public class Server {
 					serverSocket.setSoTimeout(20000);
 					if(waitingConnection.size() == 3){
 						Connection c3 = waitingConnection.get(keys.get(2));
-						RemoteView player3 = new RemoteView(new Player(keys.get(2))/*, keys.get(1)*/,c3);
+						RemoteView player3 = new RemoteView(new Player(keys.get(2),PlayerColor.GREEN, 7)/*, keys.get(1)*/,c3);
 						model.addObserver(player3);
 						player3.addObserver(controller);
 						playingConnection.put(c2, c3);
@@ -107,7 +111,7 @@ public class Server {
 								serverSocket.setSoTimeout(20000);
 									if(waitingConnection.size() == 4){
 										Connection c4 = waitingConnection.get(keys.get(3));
-										RemoteView player4 = new RemoteView(new Player(keys.get(3)),/* keys.get(0),*/c4);
+										RemoteView player4 = new RemoteView(new Player(keys.get(3), PlayerColor.YELLOW, 8),/* keys.get(0),*/c4);
 										model.addObserver(player4);
 										player4.addObserver(controller);										
 										playingConnection.put(c3, c4);
@@ -146,8 +150,7 @@ public class Server {
 		
 		
 		
-		
-		
-		
-		
 }
+
+//InetAddress infoclient = socket.getInetAddress();  //ritorna l'indirizzo dal quale il client si connette al socket
+//String client = infoclient.getHostAddress();    //ritorna l'indirizzo IP del client   

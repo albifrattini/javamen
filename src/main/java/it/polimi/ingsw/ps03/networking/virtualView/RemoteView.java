@@ -29,7 +29,7 @@ public class RemoteView extends View implements Observer<String> {
 	
 	
 	public void notify(String message) {		
-		System.out.println("Ricevuto " + message);
+		System.out.println("Ricevuto " + message);//riceve man mano e stampa sul server ciò che ha ricevuto
 		try{
 			ActionChoices choice = ActionChoices.parseInput(message);
 			processChoice(choice);

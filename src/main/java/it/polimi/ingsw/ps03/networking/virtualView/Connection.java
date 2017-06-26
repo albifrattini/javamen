@@ -5,6 +5,8 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+import it.polimi.ingsw.ps03.networking.controller.Controller;
+
 public class Connection extends Observable<String> implements Runnable{
 
 	private Socket socket;
@@ -31,11 +33,11 @@ public class Connection extends Observable<String> implements Runnable{
 			name = read;
 			//manda il messaggio alla networkHandler, problema(viene ricevuto solo dopo input invio)
 			send("well met " + name + " and welcome in Lorenzo il Magnifico "
-					+"looking for other players... please wait");
+					+"looking for other players... please wait");//dovrebbe farlo il server
 			server.match(this, name);
 			while(isActive()){
 				read = in.nextLine();
-				notify(read);
+				notifyObservers(read);
 			}
 		}catch(IOException e){
 			System.err.println("Error!");

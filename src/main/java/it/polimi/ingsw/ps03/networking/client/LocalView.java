@@ -6,7 +6,7 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
-import java.util.Observer;
+//import java.util.Observer;
 import java.util.Scanner;
 
 import it.polimi.ingsw.ps03.actions.ActionChoices;
@@ -18,6 +18,7 @@ import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.billboard_pack.TurnOfPlay;
 import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
 import it.polimi.ingsw.ps03.mvc.Controller;
+import it.polimi.ingsw.ps03.networking.virtualView.Observer;
 import it.polimi.ingsw.ps03.players.Pawn;
 import it.polimi.ingsw.ps03.players.Player;
 import it.polimi.ingsw.ps03.players.PlayerColor;
@@ -28,12 +29,12 @@ import it.polimi.ingsw.ps03.room_pack.Room;
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 
-public class View extends Observable implements Observer{
+public class LocalView extends Observable implements Observer<String>{//non deve avere al suo interno aspetti legati alla network, deve solo ricevere le update
 
 	private Scanner scanner;
 	private PrintStream output; 
 	
-	public View(InputStream inputStream, OutputStream output){
+	public LocalView(InputStream inputStream, OutputStream output){
 		this.scanner = new Scanner(inputStream);
 		this.output = new PrintStream(output);
 	}
@@ -366,6 +367,13 @@ public class View extends Observable implements Observer{
 		if(obj instanceof FakePlace){
 			fakePlaceAction((FakePlace) obj, ((Controller) o).getBillboard());
 		}
+	}
+
+
+	@Override
+	public void notify(String message) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

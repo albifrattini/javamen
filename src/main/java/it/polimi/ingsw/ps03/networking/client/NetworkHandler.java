@@ -5,65 +5,31 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.NoSuchElementException;
 import java.util.Observable;
-import java.util.Observer;
+//import java.util.Observer;
 import java.util.Scanner;
 
-public class NetworkHandler extends Observable implements Observer {
-	private String ip;
-	private int port;
+import it.polimi.ingsw.ps03.networking.virtualView.Observer;
+
+//con il metodo update invia eventi alla virtual view del server
+public class NetworkHandler extends Client implements Observer<String>/*<VCevent>*/ {
 	
-	public NetworkHandler(String ip,int port){
-		this.ip = ip;
-		this.port = port;
+	public NetworkHandler(String ip, int port) {
+		super(ip, port);
 	}
 
-	
-	public void startClient() throws IOException {
-		
-		Socket socket = new Socket(ip , port);//crea la socket del client 		
-		Scanner socketIn = new Scanner(socket.getInputStream());//legge gli imput messi dal client
-		PrintStream socketOut = new PrintStream(socket.getOutputStream());//manda il messaggio attraverso il canale
-		Scanner stin = new Scanner(System.in);	
-		System.out.println("Connection Established\n"+
-		                    "What's your name?");//da mettere nella view
-		try{
-			while(true){
-				String inputLine = stin.nextLine();//se da problemi cambia da nextLine a next()
-				socketOut.println(inputLine);
-				socketOut.flush();
-			    String socketLine = socketIn.nextLine();
-				System.out.println(socketLine);
-			
-			}
-		}catch(NoSuchElementException e){
-			System.out.println("Connection closed");
 
-		}finally{
-			stin.close();
-			socketIn.close();
-			socketOut.close();
-			socket.close();
-		}
+
+
+
+	
+	public synchronized void update(Observable arg0, Object arg1) {
+		
+		
 	}
 
-	//MAIN
-public static void main(String[] args){
-	NetworkHandler client = new NetworkHandler("127.0.0.1", 1500);
-	
-	
-	
-	try{
-		client.startClient();
+	@Override
+	public void notify(String message) {
 		
-	}catch (IOException e){
-		System.err.println(e.getMessage());
-					}
-													}
-
-
-@Override
-public void update(Observable o, Object message) {
+	}
 	
-	
-}
 }

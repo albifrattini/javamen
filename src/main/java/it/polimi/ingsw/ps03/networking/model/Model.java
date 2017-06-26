@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Observable;
 
-public class Model extends Observable {
+public class Model extends Observable {//per ora tengo questa classe ma va sostituita con la Billboard
 
 	private Map<Player, Choice> choices = new HashMap<>();
 //	private Map<Player, Outcome> outcomes = new HashMap<>();

@@ -5,10 +5,10 @@ import it.polimi.ingsw.ps03.networking.model.Model;
 import it.polimi.ingsw.ps03.networking.virtualView.View;
 
 import java.util.Observable;
-import java.util.Observer;
+
 import java.util.Observer;
 import java.util.Map;
-import java.util.Observable;
+
 
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.development_card.DevelopmentCard;

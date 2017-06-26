@@ -9,7 +9,7 @@ import it.polimi.ingsw.ps03.networking.model.Choice;
 import it.polimi.ingsw.ps03.networking.model.Model;
 import it.polimi.ingsw.ps03.networking.model.Player;
 
-public abstract class View extends Observable implements Observer{
+public abstract class View extends Observable/*<VCEvents>*/ implements Observer/*<MVevents>*/{
 
 	private Player player;
 	
@@ -38,7 +38,7 @@ public abstract class View extends Observable implements Observer{
 	
 	@Override
 	public synchronized void update(Observable o, Object arg1) {
-		if(!(o instanceof Model)){
+		if(!(o instanceof Billboard)){
 			throw new IllegalArgumentException();
 		}
 		showModel((Billboard)o);
