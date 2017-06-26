@@ -1,14 +1,15 @@
 package it.polimi.ingsw.ps03.networking.virtualView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Observable<T> {
 	
-	private List<Observer<T>> observers = new ArrayList<Observer<T>>();
+	private List<Observer<Object>> observers = new ArrayList<Observer<Object>>();
 	
 			/*aggiunge alla lista di osservatori i giocatori*/
-			public void register(Observer<T> observer){
+			public void register(Observer<Object> observer){
 				synchronized (observers) {
 					observers.add(observer);			
 		}		
@@ -20,10 +21,10 @@ public class Observable<T> {
 		}
 	}
 	
-			protected void notifyObservers(T message){
+			protected void notifyObservers(Object read) throws IOException{
 				synchronized (observers) {
-					for(Observer<T> observer : observers){
-						observer.notify(message);
+					for(Observer<Object> observer : observers){
+						observer.notify(read);
 			}
 		}
 	}

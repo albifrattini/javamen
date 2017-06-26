@@ -3,7 +3,7 @@ package it.polimi.ingsw.ps03.actions;
 public enum ActionChoices {
 	PLACE, CHECKPLAYER, CHECKCARDS;
 
-	public static ActionChoices parseInput(String input){
-		return Enum.valueOf(ActionChoices.class, input.toUpperCase());
+	public static ActionChoices parseInput(Object input){
+		return Enum.valueOf(ActionChoices.class, input.toString().toUpperCase());
 	}
 }

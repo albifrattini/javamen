@@ -29,7 +29,7 @@ import it.polimi.ingsw.ps03.room_pack.Room;
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 
-public class LocalView extends Observable implements Observer<String>{//non deve avere al suo interno aspetti legati alla network, deve solo ricevere le update
+public class LocalView extends Observable implements Observer<Object>{//non deve avere al suo interno aspetti legati alla network, deve solo ricevere le update
 
 	private Scanner scanner;
 	private PrintStream output; 
@@ -370,8 +370,10 @@ public class LocalView extends Observable implements Observer<String>{//non deve
 	}
 
 
+
+
 	@Override
-	public void notify(String message) {
+	public void notify(Object read) {
 		// TODO Auto-generated method stub
 		
 	}

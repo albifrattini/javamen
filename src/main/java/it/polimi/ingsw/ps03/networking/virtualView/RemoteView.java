@@ -6,11 +6,12 @@ import it.polimi.ingsw.ps03.networking.model.Model;
 import it.polimi.ingsw.ps03.networking.model.Player;
 import it.polimi.ingsw.ps03.actions.ActionChoices;
 
+import java.io.IOException;
 import java.util.List;
 //import java.util.Observer;
 
 
-public class RemoteView extends View implements Observer<String> {
+public class RemoteView extends View implements Observer<Object> {
 
 	private Connection connection;
 	
@@ -23,24 +24,34 @@ public class RemoteView extends View implements Observer<String> {
 
 	
 	protected void showModel(Billboard billboard){
-		connection.send(billboard.getOutcome(getPlayer().toString() + "\nScegli la tua mossa"));
+		try {
+			connection.send(billboard.getOutcome(getPlayer().toString() + "\nScegli la tua mossa"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
 	
-	public void notify(String message) {		
-		System.out.println("Ricevuto " + message);//riceve man mano e stampa sul server ciò che ha ricevuto
-		try{
+	public void notify(Object message) throws IOException {		
+		System.out.println("Ricevuto " + message.toString() + " dal giocatore " +player.toString());//riceve man mano e stampa sul server ciò che ha ricevuto
+		boolean valid = true;
+		while(valid == true){
+		try{						
 			ActionChoices choice = ActionChoices.parseInput(message);
 			processChoice(choice);
+			valid = false;
 		}catch(IllegalArgumentException e){
-			connection.send("Error!");			
+			connection.send("Error, Action not valid!");
+						
 		}		
+	}
+		}
 	}
 
 
 
 
 		
-	}
+	
 

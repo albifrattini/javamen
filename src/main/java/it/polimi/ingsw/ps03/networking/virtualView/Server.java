@@ -19,7 +19,7 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 
 
 public class Server {
-
+	
 	
 	 private static final int PORT = 1500;
 	 private ServerSocket serverSocket;
@@ -29,7 +29,7 @@ public class Server {
 	 private List<Connection> connections = new ArrayList<Connection>();
 	 private Map<String, Connection> waitingConnection = new HashMap<>();//inserisco i giocatori in coda, che attendono di giocare
 		
-	 private Map<Connection, Connection> playingConnection = new HashMap<>();
+	 private Map<Connection, Connection> playingConnection = new HashMap<>();//poi da rimuovere
 	 
 	 public Server() throws IOException {
 		 this.serverSocket = new ServerSocket(PORT);
@@ -80,6 +80,7 @@ public class Server {
 	 public synchronized void match(Connection c, String name){
 			waitingConnection.put(name, c);
 			if(waitingConnection.size() == 2){
+					
 				List<String> keys = new ArrayList<>(waitingConnection.keySet());
 				Connection c1 = waitingConnection.get(keys.get(0));
 				Connection c2 = waitingConnection.get(keys.get(1));

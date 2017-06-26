@@ -11,7 +11,7 @@ import java.util.Scanner;
 import it.polimi.ingsw.ps03.networking.virtualView.Observer;
 
 //con il metodo update invia eventi alla virtual view del server
-public class NetworkHandler extends Client implements Observer<String>/*<VCevent>*/ {
+public class NetworkHandler extends Client implements Observer<Object>/*<VCevent>*/ {
 	
 	public NetworkHandler(String ip, int port) {
 		super(ip, port);
@@ -27,8 +27,15 @@ public class NetworkHandler extends Client implements Observer<String>/*<VCevent
 		
 	}
 
+
+
+
+
+
+
 	@Override
-	public void notify(String message) {
+	public void notify(Object read) {
+		// TODO Auto-generated method stub
 		
 	}
 	

@@ -11,7 +11,7 @@ import it.polimi.ingsw.ps03.networking.model.Player;
 
 public abstract class View extends Observable/*<VCEvents>*/ implements Observer/*<MVevents>*/{
 
-	private Player player;
+	protected Player player;
 	
 	
 	protected View(Player player){

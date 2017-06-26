@@ -1,6 +1,8 @@
 package it.polimi.ingsw.ps03.networking.client;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.NoSuchElementException;
@@ -10,7 +12,8 @@ import java.util.Scanner;
 public class Client {//si connette alla porta e attende gli eventi dalla virtual view e li notifica alla local view->BillboardView?
 	private String ip;
 	private int port;
-	
+	private ObjectInputStream in;
+	private ObjectOutputStream out;
 	public Client(String ip,int port){
 		this.ip = ip;
 		this.port = port;
@@ -20,29 +23,39 @@ public class Client {//si connette alla porta e attende gli eventi dalla virtual
 	public void startClient() throws IOException {//mettere insieme view e netHan
 		
 		Socket socket = new Socket(ip , port);//crea la socket del client 		
-		Scanner socketIn = new Scanner(socket.getInputStream());//legge gli imput messi dal client
-		PrintStream socketOut = new PrintStream(socket.getOutputStream());//manda il messaggio attraverso il canale
+		System.out.println("Connection Established\n"+
+                "What's your name?");//da mettere nella view
+		in = new ObjectInputStream(socket.getInputStream());
+		out = new ObjectOutputStream(socket.getOutputStream());
+//		Scanner socketIn = new Scanner(socket.getInputStream());//legge gli imput messi dal client
+//		PrintStream socketOut = new PrintStream(socket.getOutputStream());//manda il messaggio attraverso il canale
 		Scanner stin = new Scanner(System.in);	
 	//	update(null, "Connection Established");
-		System.out.println("Connection Established\n"+
-		                    "What's your name?");//da mettere nella view
+
 		
 		try{
 			while(true){
 				String inputLine = stin.nextLine();//se da problemi cambia da nextLine a next()
-				socketOut.println(inputLine);
-				socketOut.flush();
-			    String socketLine = socketIn.nextLine();
-				System.out.println(socketLine);
+
+				out.writeObject(inputLine);
+				out.flush();
+				
+				System.out.println("Inviato il messaggio :" +inputLine);
+				
+				Object socketLine = in.readObject();
+//				socketOut.println(inputLine);
+//				socketOut.flush();
+//			    String socketLine = socketIn.nextLine();
+				System.out.println(socketLine.toString());
 			
 			}
-		}catch(NoSuchElementException e){
+		}catch(NoSuchElementException | ClassNotFoundException e){
 			System.out.println("Connection closed");
 
 		}finally{
 			stin.close();
-			socketIn.close();
-			socketOut.close();
+			in.close();
+			out.close();
 			socket.close();
 		}
 	}
