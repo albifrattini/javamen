@@ -1,42 +1,52 @@
 package it.polimi.ingsw.ps03.networking.client;
 
 import java.io.IOException;
-import java.io.PrintStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.NoSuchElementException;
 import java.util.Observable;
 //import java.util.Observer;
-import java.util.Scanner;
 
-import it.polimi.ingsw.ps03.networking.virtualView.Observer;
 
 //con il metodo update invia eventi alla virtual view del server
-public class NetworkHandler extends Client implements Observer<Object>/*<VCevent>*/ {
+public class NetworkHandler implements java.util.Observer/*<VCevent>*/ {
 	
-	public NetworkHandler(String ip, int port) {
-		super(ip, port);
+	private Socket socket;
+	private ObjectOutputStream out;
+	
+	public NetworkHandler(Socket socket) throws IOException {
+		this.socket = socket;
+		out = new ObjectOutputStream(socket.getOutputStream());		
 	}
 
-
-
-
-
 	
-	public synchronized void update(Observable arg0, Object arg1) {
-		
-		
-	}
-
-
-
-
-
-
-
 	@Override
-	public void notify(Object read) {
-		// TODO Auto-generated method stub
+	public void update(Observable o, Object obj) {		
+		if(!(o instanceof LocalView)){
+			throw new IllegalArgumentException();
+		}
+		if(obj instanceof String){
+			try {
+				out.writeObject((String)obj);
+				out.flush();
+			} catch (IOException e) {
+				System.out.println("Errore nell'invio del messaggio");
+			}
+		}
 		
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 }

@@ -18,7 +18,6 @@ import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.billboard_pack.TurnOfPlay;
 import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
 import it.polimi.ingsw.ps03.mvc.Controller;
-import it.polimi.ingsw.ps03.networking.virtualView.Observer;
 import it.polimi.ingsw.ps03.players.Pawn;
 import it.polimi.ingsw.ps03.players.Player;
 import it.polimi.ingsw.ps03.players.PlayerColor;
@@ -29,7 +28,7 @@ import it.polimi.ingsw.ps03.room_pack.Room;
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 
-public class LocalView extends Observable implements Observer<Object>{//non deve avere al suo interno aspetti legati alla network, deve solo ricevere le update
+public class LocalView extends Observable implements java.util.Observer{//non deve avere al suo interno aspetti legati alla network, deve solo ricevere le update
 
 	private Scanner scanner;
 	private PrintStream output; 
@@ -44,9 +43,12 @@ public class LocalView extends Observable implements Observer<Object>{//non deve
 	 * the turn that calls setChanged() and notifyObservers() from the model for the first time.
 	 */
 	public void initGame(){
-		output.println("Benvenuto in LORENZO IL MAGNIFICO!\n");
+		output.println("Benvenuto in LORENZO IL MAGNIFICO!\n"+
+	                                       "What's your name?");
+		String name = scanner.next();
 		setChanged();
-		notifyObservers(new ChangeTurn());
+		notifyObservers(name);
+		
 	}
 	
 	
@@ -349,7 +351,7 @@ public class LocalView extends Observable implements Observer<Object>{//non deve
 	
 	@Override
 	public void update(Observable o, Object obj){
-		if(!(o instanceof Controller)){
+		if(!(o instanceof Client)){
 			throw new IllegalArgumentException();
 		}
 		if(obj instanceof Billboard){
@@ -372,11 +374,9 @@ public class LocalView extends Observable implements Observer<Object>{//non deve
 
 
 
-	@Override
-	public void notify(Object read) {
-		// TODO Auto-generated method stub
+	
 		
-	}
+	
 	
 	
 	

@@ -1,13 +1,10 @@
 package it.polimi.ingsw.ps03.networking.virtualView;
 
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
-import it.polimi.ingsw.ps03.networking.model.Choice;
-import it.polimi.ingsw.ps03.networking.model.Model;
 import it.polimi.ingsw.ps03.networking.model.Player;
 import it.polimi.ingsw.ps03.actions.ActionChoices;
 
 import java.io.IOException;
-import java.util.List;
 //import java.util.Observer;
 
 
@@ -32,9 +29,9 @@ public class RemoteView extends View implements Observer<Object> {
 	}
 	
 	
-	
+	@Override
 	public void notify(Object message) throws IOException {		
-		System.out.println("Ricevuto " + message.toString() + " dal giocatore " +player.toString());//riceve man mano e stampa sul server ciò che ha ricevuto
+		System.out.println("Ricevuto " + (String)message + " dal giocatore " +player.toString());//riceve man mano e stampa sul server ciò che ha ricevuto
 		boolean valid = true;
 		while(valid == true){
 		try{						
