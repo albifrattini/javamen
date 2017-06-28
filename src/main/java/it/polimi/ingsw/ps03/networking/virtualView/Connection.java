@@ -30,10 +30,16 @@ public class Connection extends Observable<String> implements Runnable{
 	public void run() {//gestisce gli input degli utenti
 		try{
 			
+			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());
+			
 			Object line = in.readObject();
 			String read = (String)line;	
-			out = new ObjectOutputStream(socket.getOutputStream());
+			System.out.println("Ricevuto: "+ read);
+
+			
+			send("well met " + read + " and welcome in Lorenzo il Magnifico "
+					+"looking for other players... please wait");
 	//		//in = new Scanner(socket.getInputStream());//ObjectInputStream
 		//	in = new ObjectInputStream(socket.getInputStream());	//crea una variabile di tipo ObjectInputStream, che legge gli oggetti inviati
 															//attraverso il canale
@@ -41,12 +47,11 @@ public class Connection extends Observable<String> implements Runnable{
 			
 		//	String read = in.next();
 	//		name = read.toString();
-			send("well met " + read + " and welcome in Lorenzo il Magnifico "
-					+"looking for other players... please wait");
+			
 //			out.writeObject("well met " + read + " and welcome in Lorenzo il Magnifico "
 //					+"looking for other players... please wait");
-			out.flush();
 			server.match(this, read);
+			
 			while(isActive()){
 				read = (String)in.readObject();
 				notifyObservers(read);
@@ -67,10 +72,10 @@ public class Connection extends Observable<String> implements Runnable{
 		return active;
 	}
 	/*invia i messaggi*/
-	public void send(Object message) throws IOException {
-		out.writeObject(message);
-		out.flush();
-		System.out.println("messaggio inviato: " +message);
+	public void send(Object message) throws IOException {		
+			out.writeObject(message);
+				out.flush();
+					System.out.println("messaggio inviato: " +message);
 	}
 	
 	public synchronized void closeConnection() throws IOException {		

@@ -360,11 +360,12 @@ public class LocalView extends Observable implements java.util.Observer{//non de
 		}
 		if(obj instanceof Player){
 			printPlayer((Player) obj);
-			startTurn(((Controller) o).getBillboard());
+	//		startTurn(((Controller) o).getBillboard());
 		}
 		if(obj instanceof String){
 			printMessage((String) obj);
-			startTurn(((Controller) o).getBillboard());
+			
+	//		startTurn(((Controller) o).getBillboard());
 		}
 		if(obj instanceof FakePlace){
 			fakePlaceAction((FakePlace) obj, ((Controller) o).getBillboard());
