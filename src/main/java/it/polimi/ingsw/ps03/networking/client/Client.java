@@ -10,8 +10,6 @@ import java.util.NoSuchElementException;
 import java.util.Observable;
 
 
-import it.polimi.ingsw.ps03.billboard_pack.Billboard;
-
 public class Client extends Observable {//si connette alla porta e attende gli eventi dalla virtual view e li notifica alla local view->BillboardView?
 	private static String ip;
 	private static int port;
@@ -32,20 +30,13 @@ public class Client extends Observable {//si connette alla porta e attende gli e
 		
 		in = new ObjectInputStream(socket.getInputStream());
 		Object line = in.readObject();
-		if(line instanceof String){
-			String read = (String)line;	
-				setChanged();
-					notifyObservers(read);
-											}
-		if(line instanceof Billboard){
-			Billboard read = (Billboard)line;
-				setChanged();
-					notifyObservers(read);
-		}
-					}
+		setChanged();
+		notifyObservers(line);
+				}
 		}catch(NoSuchElementException | ClassNotFoundException e){
 			System.out.println("Connection closed");
-			}finally{
+			}
+			  finally{
 				
 				in.close();
 				socket.close();

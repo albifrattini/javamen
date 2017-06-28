@@ -13,9 +13,6 @@ public class Connection extends Observable<String> implements Runnable{
 
 	private Socket socket;
 	private Server server;
-//	private Scanner in;
-//	private PrintStream out;
-//	private String name;
 	private boolean active = true;
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
@@ -35,34 +32,27 @@ public class Connection extends Observable<String> implements Runnable{
 			
 			Object line = in.readObject();
 			String read = (String)line;	
+		//3)da qui in poi solo dopo aver inserito il nome	
 			System.out.println("Ricevuto: "+ read);
-
-			
+		//4)	
 			send("well met " + read + " and welcome in Lorenzo il Magnifico "
 					+"looking for other players... please wait");
-	//		//in = new Scanner(socket.getInputStream());//ObjectInputStream
-		//	in = new ObjectInputStream(socket.getInputStream());	//crea una variabile di tipo ObjectInputStream, che legge gli oggetti inviati
-															//attraverso il canale
-			//out = new ObjectOutputStream(socket.getOutputStream());
-			
-		//	String read = in.next();
-	//		name = read.toString();
-			
-//			out.writeObject("well met " + read + " and welcome in Lorenzo il Magnifico "
-//					+"looking for other players... please wait");
+
 			server.match(this, read);
 			
 			while(isActive()){
-				read = (String)in.readObject();
-				notifyObservers(read);
+				line = in.readObject();
+				notifyObservers(line);
 			}
-		}catch(IOException | ClassNotFoundException e){
-			System.err.println("Errore nella ricezione!");
+		}catch(IOException  e){
+			System.out.println("Errore nella ricezione!");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Errore nella ricezione dell'oggetto");
 		}finally{
 			try {
 				close();
 			} catch (IOException e) {
-				System.out.println("Errore nella chiusura");;
+				System.out.println("Errore nella chiusura");
 			}
 		}
 		

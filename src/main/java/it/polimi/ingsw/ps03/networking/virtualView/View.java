@@ -5,11 +5,11 @@ import java.util.Observer;
 
 import it.polimi.ingsw.ps03.actions.ActionChoices;
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
-import it.polimi.ingsw.ps03.networking.model.Choice;
-import it.polimi.ingsw.ps03.networking.model.Model;
+//import it.polimi.ingsw.ps03.networking.model.Choice;
+//import it.polimi.ingsw.ps03.networking.model.Model;
 import it.polimi.ingsw.ps03.networking.model.Player;
 
-public abstract class View extends Observable/*<VCEvents>*/ implements Observer/*<MVevents>*/{
+public abstract class View extends Observable implements Observer{
 
 	protected Player player;
 	

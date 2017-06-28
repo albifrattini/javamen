@@ -42,18 +42,23 @@ public class Player {
 	public Pawn getPawn(String pawn){
 		return pawns.get(pawn);
 	}
+	
 	public Map<String, Pawn> getPawns(){
 		return pawns;
 	}
+	
 	public PlayerColor getColor(){
 		return this.color;
 	}
+	
 	public Resources getResources(){
 		return this.resources;
 	}
+	
 	public List<DevelopmentCard> getCards(){
 		return this.ownedCards;
 	}
+	
 	public int getLeftPawns(){
 		int counter = 0;
 		for(Map.Entry<String, Pawn> p : pawns.entrySet()){
@@ -61,19 +66,24 @@ public class Player {
 			System.out.println("Dice Color:  " + p.getValue().getDiceColor() + 
 					"\nValue:  " + p.getValue().getValue() + "\n");
 		}
+		
 		return counter;
 	}
+	
 	public Pawn getPawnToPlace(String pawn){
 		Pawn temp = getPawn(pawn);
 		removePawn(pawn);
 		return temp;
 	}
+	
 	public void removePawn(String pawn){
 		pawns.remove(pawn);
 	}
+	
 	public void removePawn(Pawn pawn){
 		pawns.remove(pawn);
 	}
+	
 	
 	@Override
 	public String toString(){

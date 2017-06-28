@@ -10,11 +10,9 @@ import java.util.Observable;
 //con il metodo update invia eventi alla virtual view del server
 public class NetworkHandler implements java.util.Observer/*<VCevent>*/ {
 	
-	private Socket socket;
 	private ObjectOutputStream out;
 	
 	public NetworkHandler(Socket socket) throws IOException {
-		this.socket = socket;
 		out = new ObjectOutputStream(socket.getOutputStream());		
 	}
 
@@ -24,9 +22,8 @@ public class NetworkHandler implements java.util.Observer/*<VCevent>*/ {
 		if(!(o instanceof LocalView)){
 			throw new IllegalArgumentException();
 		}
-		if(obj instanceof String){
 			try {
-				out.writeObject((String)obj);
+				out.writeObject(obj);
 				out.flush();
 			} catch (IOException e) {
 				System.out.println("Errore nell'invio del messaggio");
@@ -40,13 +37,3 @@ public class NetworkHandler implements java.util.Observer/*<VCevent>*/ {
 
 
 
-
-
-
-
-
-
-
-
-	
-}

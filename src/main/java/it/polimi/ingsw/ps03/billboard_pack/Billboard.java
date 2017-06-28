@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Observable;
 
 
-public class Billboard extends Observable {
+public class Billboard extends Observable implements Cloneable{
 
 	private Dices dices;
 	private List<Player> players;

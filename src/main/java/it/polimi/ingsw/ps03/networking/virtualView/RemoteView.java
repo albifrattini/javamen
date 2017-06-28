@@ -31,18 +31,17 @@ public class RemoteView extends View implements Observer<Object> {
 	
 	@Override
 	public void notify(Object message) throws IOException {		
-		System.out.println("Ricevuto " + (String)message + " dal giocatore " +player.toString());//riceve man mano e stampa sul server ciò che ha ricevuto
-		boolean valid = true;
-		while(valid == true){
+		System.out.println("Ricevuto " + message.toString() + " dal giocatore " +player.toString());//riceve man mano e stampa sul server ciò che ha ricevuto
+		
 		try{						
 			ActionChoices choice = ActionChoices.parseInput(message);
 			processChoice(choice);
-			valid = false;
+			
 		}catch(IllegalArgumentException e){
-			connection.send("Error, Action not valid!");
+			connection.send("Error, Action not valid!Please try again");
 						
 		}		
-	}
+	
 		}
 	}
 
