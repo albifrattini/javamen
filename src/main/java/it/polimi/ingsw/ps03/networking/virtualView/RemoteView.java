@@ -22,7 +22,12 @@ public class RemoteView extends View implements Observer<Object> {
 	@Override
 	protected void showModel(Billboard billboard){
 		try {
-			connection.send(billboard.clone());
+			System.out.println("Invia copia del model");
+			
+			Billboard model = (Billboard) billboard.clone();
+			
+			connection.send(model);
+		
 		} catch (IOException | CloneNotSupportedException e) {
 			 System.out.println("Non son riuscito a inviare il model");
 		}

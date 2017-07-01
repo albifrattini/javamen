@@ -8,6 +8,10 @@ import it.polimi.ingsw.ps03.room_pack.TowerColor;
 
 public class HarvestingOrProductionImmediateEffect extends GiveResourcesImmediateEffect {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int diceValue;
     private TowerColor  color;
 	

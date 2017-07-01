@@ -1,6 +1,8 @@
 package it.polimi.ingsw.ps03.actions;
 
-public enum ActionChoices {
+import java.io.Serializable;
+
+public enum ActionChoices implements Serializable{
 	PLACE, CHECKPLAYER, CHECKCARDS;
 
 	public static ActionChoices parseInput(Object input){

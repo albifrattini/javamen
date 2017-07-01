@@ -1,9 +1,15 @@
 package it.polimi.ingsw.ps03.actions;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 
-public abstract class Action{
+public abstract class Action implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static String actionName;
 	private Billboard billboard;
 	

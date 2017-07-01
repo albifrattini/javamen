@@ -4,6 +4,10 @@ import it.polimi.ingsw.ps03.resources.*;
 
 public class MarketRoom extends Room{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Resources resources;
 	
 	public MarketRoom (Resources resources) {

@@ -21,10 +21,10 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 
 
 public class Server {
-	
+	 private Server server;
 	 private int number = 1;
 	 private static final int PORT = 1500;
-
+     private Socket newSocket;
 	 private ServerSocket serverSocket;
 	 private Connection connection;
 	 ExecutorService executor = Executors.newCachedThreadPool();//con newFixedThreadPool(i) posso scegliere quanti thread creare
@@ -46,12 +46,13 @@ public class Server {
 														le connessioni. Man mano che un client si connette viene messo 
 														nell'arraylist connections*/ 
 		 
-		 System.out.println("Server Ready on Port: "+PORT);
+
+System.out.println("Server Ready on Port: "+PORT);
 		 
 		 while(true){ 		 
 			
 				 try{
-					 Socket newSocket = serverSocket.accept(); //crea una connessione tra server e client
+					 newSocket = serverSocket.accept(); //crea una connessione tra server e client
 				
 					 InetAddress infoclient = newSocket.getInetAddress();  //ritorna l'indirizzo dal quale il client si connette al socket
 					 String client = infoclient.getHostAddress();    //ritorna l'indirizzo IP del client 
@@ -127,7 +128,9 @@ public class Server {
 	 
 	 public synchronized void setGame() throws IOException{
 		 
-		Connection c = null;
+		List<RemoteView> players = new ArrayList<RemoteView>(2);
+		 
+		Connection c = new Connection(newSocket, server);
 		
 		DevelopmentCards developmentCards;
 		
@@ -147,16 +150,17 @@ public class Server {
 		 		 c = waitingConnection.get(keys.get(i));
 		 		
 		 		RemoteView player = new RemoteView(new Player(keys.get(i) ,colors[i] , 5+i ) , c);
+		 		
+		 		players.add(player);
 //7)		 		
 		 		System.out.println("giocatore: " + playersName.get(i).toString() + " Colore: " + colors[i].toString());
-		 		
-		 		model.addObserver(player);
-//8)	 		
-		 		System.out.println("la remote view inizia ad osservare il model");
+		 				 		
+		 		model.addObserver(controller);
 		 		
 		 		player.addObserver(controller);
-//9)	 		
-		 		System.out.println("il controller inizia ad osservare il giocatore");
+		 		
+		 		controller.addObserver(player);
+		 
 		 		
 		 	}
 //10)	 	
@@ -168,6 +172,7 @@ public class Server {
 		 		
 		 	System.out.println(playersName.get(j).toString() + " ");
 		 	
+		 	
 		 	}
 		 	
 		 	developmentCards = new DevelopmentCards();
@@ -176,9 +181,17 @@ public class Server {
 			
 		 	model.getTable().buildTable(2);
 		 	
+		 	for(int y = 0; y < players.size(); y++){
+		 		
+		 		players.get(y).showModel(model);
+		 		
+		 	}
+		 		
 		 	waitingConnection.clear();
 			
 			System.out.println("Lista di attesa pulita");
+			
+			
 		 
 	 }
 	 

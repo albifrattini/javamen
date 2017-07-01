@@ -9,6 +9,10 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 
 public class FakePlace extends Place{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private TowerColor color;
 
 	public FakePlace(Billboard billboard, Player player, TowerColor color, int actionValue){

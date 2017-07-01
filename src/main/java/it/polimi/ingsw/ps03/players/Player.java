@@ -3,14 +3,19 @@ package it.polimi.ingsw.ps03.players;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.ps03.development_card.*;
 import it.polimi.ingsw.ps03.resources.*;
 
 
-public class Player {
+public class Player implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private PlayerColor color;
 	private Map<String, Pawn> pawns;
 	private Resources resources;

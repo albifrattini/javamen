@@ -1,5 +1,7 @@
 package it.polimi.ingsw.ps03.dices;
 
-public enum DiceColor {
+import java.io.Serializable;
+
+public enum DiceColor implements Serializable{
 	ORANGE, WHITE, BLACK;
 }

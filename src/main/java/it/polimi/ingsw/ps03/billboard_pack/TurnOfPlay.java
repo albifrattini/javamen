@@ -1,8 +1,13 @@
 package it.polimi.ingsw.ps03.billboard_pack;
 
+import java.io.Serializable;
 
-public class TurnOfPlay {
+public class TurnOfPlay implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int miniTurn;
 	private int turn;
 	private int period;

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.ps03.players;
 
-public enum PlayerColor {
+import java.io.Serializable;
+
+public enum PlayerColor implements Serializable{
 	YELLOW, GREEN, BLUE, RED;
 }

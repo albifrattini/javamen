@@ -1,6 +1,6 @@
 package it.polimi.ingsw.ps03.networking.controller;
 
-import it.polimi.ingsw.ps03.networking.model.Choice;
+
 //import it.polimi.ingsw.ps03.networking.model.Billboard;
 import it.polimi.ingsw.ps03.networking.virtualView.View;
 

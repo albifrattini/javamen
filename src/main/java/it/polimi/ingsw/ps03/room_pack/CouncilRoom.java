@@ -5,6 +5,11 @@ import it.polimi.ingsw.ps03.resources.*;
 public class CouncilRoom extends MarketRoom{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public CouncilRoom(){
 		super(new Resources());
 		createCouncilResources();

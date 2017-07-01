@@ -4,6 +4,11 @@ import it.polimi.ingsw.ps03.resources.Resources;
 
 public class HarvestingRoom extends ProductionRoom{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public HarvestingRoom(Resources resources){
 		super(TowerColor.GREEN, resources);
 	}

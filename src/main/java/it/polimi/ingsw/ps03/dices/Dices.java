@@ -1,10 +1,15 @@
 package it.polimi.ingsw.ps03.dices;
 
 import java.util.Map;
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Dices {
+public class Dices implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Map<String, Dice> dices;
 	
 	public Dices(){

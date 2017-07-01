@@ -5,10 +5,15 @@ import it.polimi.ingsw.ps03.effects.*;
 import it.polimi.ingsw.ps03.resources.Resources;
 
 import java.util.List;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DevelopmentCard {
+public class DevelopmentCard implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int cardId;
 	private int cardPeriod;
 	private int diceValue;

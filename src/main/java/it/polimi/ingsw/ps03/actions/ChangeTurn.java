@@ -16,6 +16,13 @@ import it.polimi.ingsw.ps03.players.PawnDiceColor;
 
 public class ChangeTurn extends Action {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+
 	public ChangeTurn(){
 		super("CHANGETURN");
 	}

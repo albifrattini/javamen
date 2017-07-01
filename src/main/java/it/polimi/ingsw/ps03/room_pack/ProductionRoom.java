@@ -8,6 +8,10 @@ import java.util.List;
 
 public class ProductionRoom extends MarketRoom{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private TowerColor colorEffect;
 	
 	public ProductionRoom(TowerColor colorEffect, Resources resources){

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.ps03.room_pack;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,12 @@ import org.w3c.dom.NodeList;
 import it.polimi.ingsw.ps03.resources.*;
 
 
-public class Table {
+public class Table implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final int PH_SPACES = 4;
 	public static final int TOWER_ROOM_SPACES = 16;
 	private static List<TowerRoom> towerRooms;

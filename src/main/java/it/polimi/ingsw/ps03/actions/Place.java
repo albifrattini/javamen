@@ -9,6 +9,10 @@ import it.polimi.ingsw.ps03.resources.Resources;
 
 public class Place extends Action{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Player player;
 	private Pawn pawn;
 	private Room room;

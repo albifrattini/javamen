@@ -5,6 +5,10 @@ import it.polimi.ingsw.ps03.resources.Resources;
 
 public class TowerRoom extends MarketRoom{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final TowerColor color;
 	private DevelopmentCard placedCard;
 	

@@ -4,6 +4,10 @@ import it.polimi.ingsw.ps03.players.Player;
 
 public class CheckPlayer extends Action{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int turnOfPlayer;
 	
 	

@@ -3,13 +3,10 @@ package it.polimi.ingsw.ps03.networking.virtualView;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-//import java.io.PrintStream;
 import java.net.Socket;
-//import java.util.Scanner;
 
-//import it.polimi.ingsw.ps03.networking.controller.Controller;
 
-public class Connection extends Observable<String> implements Runnable{
+public class Connection extends Observable<Object> implements Runnable{
 
 	private Socket socket;
 	private Server server;
@@ -44,9 +41,14 @@ public class Connection extends Observable<String> implements Runnable{
 					    
 			while(isActive()){
 				
+				
+				
 				System.out.println("Sono in continuo ascolto dei messaggi");
+				
 				line = in.readObject();
+				
 				notifyObservers(line);
+		//passa alla classe Observable
 				
 			}
 		}catch(IOException  e){

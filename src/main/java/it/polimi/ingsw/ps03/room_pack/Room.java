@@ -1,10 +1,16 @@
 package it.polimi.ingsw.ps03.room_pack;
 
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.ps03.players.*;
 
-public abstract class Room {
+public abstract class Room implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final int requirement;
 	private Pawn pawn;
 	

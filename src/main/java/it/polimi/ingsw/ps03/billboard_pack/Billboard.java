@@ -1,7 +1,6 @@
 package it.polimi.ingsw.ps03.billboard_pack;
 
 import it.polimi.ingsw.ps03.dices.*;
-import it.polimi.ingsw.ps03.networking.model.Outcome;
 import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.resources.Resource;
 import it.polimi.ingsw.ps03.resources.Resources;
@@ -9,8 +8,8 @@ import it.polimi.ingsw.ps03.room_pack.*;
 import java.util.List;
 import java.util.Map;
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Observable;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -21,8 +20,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 
-public class Billboard extends Observable implements Cloneable{
+public class Billboard extends Observable implements Cloneable,Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Dices dices;
 	private List<Player> players;
 	private Table table;

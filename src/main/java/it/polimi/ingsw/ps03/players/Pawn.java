@@ -1,8 +1,13 @@
 package it.polimi.ingsw.ps03.players;
 
+import java.io.Serializable;
 
-public class Pawn {
+public class Pawn implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private PlayerColor pColor;
 	private PawnDiceColor dColor;
 	private int value;

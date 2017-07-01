@@ -1,5 +1,6 @@
 package it.polimi.ingsw.ps03.networking.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,8 +13,12 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 import it.polimi.ingsw.ps03.development_card.*;
 import it.polimi.ingsw.ps03.resources.*;
 
-public class Player {
+public class Player implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final String name;
 	private PlayerColor color;
 	private Map<String, Pawn> pawns;

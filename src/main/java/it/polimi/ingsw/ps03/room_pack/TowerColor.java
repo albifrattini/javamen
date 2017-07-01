@@ -1,6 +1,8 @@
 package it.polimi.ingsw.ps03.room_pack;
 
-public enum TowerColor {
+import java.io.Serializable;
+
+public enum TowerColor implements Serializable{
 	GREEN, BLUE, YELLOW, VIOLET;
 	
 }

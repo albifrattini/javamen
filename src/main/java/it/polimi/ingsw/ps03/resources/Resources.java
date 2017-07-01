@@ -1,10 +1,15 @@
 package it.polimi.ingsw.ps03.resources;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Resources {
+public class Resources implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Map<String,Resource> resources; 
 	
 	

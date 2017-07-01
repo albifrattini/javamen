@@ -6,6 +6,10 @@ import it.polimi.ingsw.ps03.resources.*;
 public class PlaceImmediateEffect extends GiveResourcesImmediateEffect{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int diceValue;
 	private TowerColor  cardColor;
 	

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Observable<T> {
+public class Observable<Object> {
 	
 	private List<Observer<Object>> observers = new ArrayList<Observer<Object>>();
 	
@@ -15,7 +15,7 @@ public class Observable<T> {
 		}		
 	}
 	
-			public void deregister(Observer<T> observer){
+			public void deregister(Observer<Object> observer){
 				synchronized (observers) {
 					observers.remove(observer);
 		}
@@ -25,6 +25,7 @@ public class Observable<T> {
 				synchronized (observers) {
 					for(Observer<Object> observer : observers){
 						observer.notify(read);
+						//notifica a tutti gli observer e la notify è sovrascritta dalla remoteview
 			}
 		}
 	}

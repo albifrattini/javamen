@@ -18,8 +18,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
 import java.io.File;
+import java.io.Serializable;
 
-public class DevelopmentCards {
+public class DevelopmentCards implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int STANDARD_SIZE = 96;
 	private static List<DevelopmentCard> developmentCards;
 	
