@@ -28,7 +28,6 @@ public class Billboard extends Observable implements Cloneable{
 	private Table table;
 	private TurnOfPlay turnOfPlay;
 	private List<Resources> councilPrivilegesChange;
-	private Map<Player, Outcome> outcomes = new HashMap<>();//aggiunto ma da rivedere
 	
 	public Billboard(){
 		players = new ArrayList<Player>(4);
@@ -69,10 +68,6 @@ public class Billboard extends Observable implements Cloneable{
 	}
 	public void setPlayers(List<Player> players){
 		this.players = players;
-	}
-	
-	public /*Outcome*/ String getOutcome(String player) {//aggiunto ma da rivedere
-		return outcomes.get(player).toString();
 	}
 	
 	public List<Resources> createList(){

@@ -12,7 +12,7 @@ public class TurnOfPlay {
 	public TurnOfPlay(){
 		this.miniTurn = 0;
 		this.turn = 0;
-		this.period = 2;
+		this.period = 1;
 		this.playerToPlay = 0;
 		this.numberOfPlayers = 2;
 	}
