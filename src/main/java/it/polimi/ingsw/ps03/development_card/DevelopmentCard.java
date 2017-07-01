@@ -59,6 +59,7 @@ public class DevelopmentCard implements Serializable{
 	}
 	
 	//METODI GET
+	
 	public DevelopmentCard getCard(){
 		return this;
 	}

@@ -1,3 +1,4 @@
+
 package it.polimi.ingsw.ps03.resources;
 
 public class Servants extends Resource {
