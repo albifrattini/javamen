@@ -5,45 +5,52 @@ import it.polimi.ingsw.ps03.networking.model.Player;
 import it.polimi.ingsw.ps03.actions.ActionChoices;
 
 import java.io.IOException;
-//import java.util.Observer;
 
 
 public class RemoteView extends View implements Observer<Object> {
 
 	private Connection connection;
 	
-	public RemoteView(Player player/*, List<String> enemyes*/, Connection c){
+	
+	public RemoteView(Player player, Connection c){
 		super(player);
 		this.connection = c;
 		c.register(this);
-		//c.asyncSend("I tuoi avversari sono: " +  + "\nScegli la tua mossa:");
+	    System.out.println("aggiunto aglla lista di observer");	
 	}
 
-	
+	@Override
 	protected void showModel(Billboard billboard){
 		try {
-			connection.send(billboard.getOutcome(getPlayer().toString() + "\nScegli la tua mossa"));
-		} catch (IOException e) {
-			e.printStackTrace();
+			connection.send(billboard.clone());
+		} catch (IOException | CloneNotSupportedException e) {
+			 System.out.println("Non son riuscito a inviare il model");
 		}
 	}
 	
 	
-	@Override
+	@Override//sovrascrive la notify di Observer quando viene invocata
 	public void notify(Object message) throws IOException {		
+		
 		System.out.println("Ricevuto " + message.toString() + " dal giocatore " +player.toString());//riceve man mano e stampa sul server ciò che ha ricevuto
 		
-		try{						
+		try{	
+			System.out.println("entrato nella notify dellla remoteView");
+			
 			ActionChoices choice = ActionChoices.parseInput(message);
 			processChoice(choice);
+			
 			
 		}catch(IllegalArgumentException e){
 			connection.send("Error, Action not valid!Please try again");
 						
 		}		
-	
-		}
 	}
+}
+		
+
+
+
 
 
 

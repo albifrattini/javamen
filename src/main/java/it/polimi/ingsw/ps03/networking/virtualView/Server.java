@@ -7,12 +7,10 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.HashMap;
-//import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.development_card.DevelopmentCards;
 import it.polimi.ingsw.ps03.networking.controller.Controller;
@@ -21,11 +19,14 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 
 
 
+
 public class Server {
 	
-	private int number = 1;
+	 private int number = 1;
 	 private static final int PORT = 1500;
+
 	 private ServerSocket serverSocket;
+	 private Connection connection;
 	 ExecutorService executor = Executors.newCachedThreadPool();//con newFixedThreadPool(i) posso scegliere quanti thread creare
 		 														//classe executor per gestire più tread senza dover creare
 	 															//continuamente ogni singolo thread
@@ -35,35 +36,38 @@ public class Server {
 	 
 	 private Map<String, Connection> waitingConnection = new HashMap<>(4);//inserisco fino a 4 giocatori in coda, che attendono di giocare
 		
-	// private Map<Connection, Connection> playingConnection = new HashMap<>();//poi da rimuovere
 	 
 	 public Server() throws IOException {
 		 this.serverSocket = new ServerSocket(PORT);
 	 }
 		
-	
-	 public void startServer(){/*crea la server socket e si mette in ascolto pronto a ricevere
-								le connessioni, man mano che un client si connette viene messo 
-								nell'arraylist connections*/ 
+
+	 public void startServer() throws SocketException{/*crea la server socket e si mette in ascolto pronto a ricevere
+														le connessioni. Man mano che un client si connette viene messo 
+														nell'arraylist connections*/ 
+		 
 		 System.out.println("Server Ready on Port: "+PORT);
 		 
-		 while(true){
-			try{
-				Socket newSocket = serverSocket.accept(); //crea una connessione tra server e client
-				
-				InetAddress infoclient = newSocket.getInetAddress();  //ritorna l'indirizzo dal quale il client si connette al socket
-				String client = infoclient.getHostAddress();    //ritorna l'indirizzo IP del client 
-		//1)
-				System.out.println("Connessione ricevuta dal client: "+ client);
+		 while(true){ 		 
 			
-				Connection connection = new Connection(newSocket, this);
-				addConnection(connection);
-				executor.submit(connection);//fa partire Connection
+				 try{
+					 Socket newSocket = serverSocket.accept(); //crea una connessione tra server e client
+				
+					 InetAddress infoclient = newSocket.getInetAddress();  //ritorna l'indirizzo dal quale il client si connette al socket
+					 String client = infoclient.getHostAddress();    //ritorna l'indirizzo IP del client 
+		//1)
+					 System.out.println("Connessione ricevuta dal client: "+ client);
+			
+					 connection = new Connection(newSocket, this);
+					 addConnection(connection);
+					 executor.submit(connection);//fa partire Connection
 			}catch (IOException e){
 				System.out.println("Errore nella connessione");
 			}
+			 }
+			 	
 		}
-	}	
+		
 	 
 	
 
@@ -97,54 +101,54 @@ public class Server {
 	 }
 	 
 	 
-	 public synchronized void match(Connection c, String name) throws SocketException{
-			number = 1;
+	 public synchronized void match(Connection c, String name) throws IOException{
+			
+		 	number = 1;
 		 	
 		 	waitingConnection.put(name, c);
 		//5)	
 			System.out.println("aggiunto il giocatore alla coda di attesa");
 			
-			addPlayersName(name);
+			addPlayersName(name);			
 			
-			
-			if(waitingConnection.size() >= 2){
+			if(waitingConnection.size() ==  2){
 				
-				System.out.println("Almeno due client connessi, inizia il timer di 20 s");
-				
-				serverSocket.setSoTimeout(20000);
-				
-				System.out.println("Tempo Scaduto");
+				System.out.println("2 giocatori raggiunti, il gioco sta per iniziare");
 				
 				setGame();
 				
+							}
+				
 				number++;
 				
-				waitingConnection.clear();
-				
-				System.out.println("Lista di attesa pulita");
 				}
-	 } 
+	  
 	 
 	 
-	 public void setGame(){
+	 public synchronized void setGame() throws IOException{
 		 
+		Connection c = null;
+		
 		DevelopmentCards developmentCards;
+		
+		List<String> keys = null;
 		 
 	 	Billboard model = new Billboard();
 	 	
 		Controller controller = new Controller(model);
 		 
 		 	for(int i = 0; i < waitingConnection.size(); i++){//aggiunge i giocatori alla partita
+		 		
 		 		PlayerColor [] colors = PlayerColor.values();		 		
 		 		
-		 		List<String> keys = new ArrayList<>(waitingConnection.keySet());
+		 		keys = new ArrayList<>(waitingConnection.keySet());
 		 		//Returns a Set view of the keys contained in this map.
 		 		
-		 		Connection c = waitingConnection.get(keys.get(i));
+		 		 c = waitingConnection.get(keys.get(i));
 		 		
-		 		RemoteView player = new RemoteView(new Player(keys.get(i).toString(),colors[i], 5+i),c);
+		 		RemoteView player = new RemoteView(new Player(keys.get(i) ,colors[i] , 5+i ) , c);
 //7)		 		
-		 		System.out.println("giocatore: " + playersName.get(i).toString() + "Colore: " + colors[i].toString());
+		 		System.out.println("giocatore: " + playersName.get(i).toString() + " Colore: " + colors[i].toString());
 		 		
 		 		model.addObserver(player);
 //8)	 		
@@ -159,9 +163,10 @@ public class Server {
 		 	System.out.println("Partita numero " + number + " creata");
 		 	
 		 	System.out.println("I giocatori sono: ");
+		 	
 		 	for(int j = 0; j < waitingConnection.size(); j++){
 		 		
-		 	System.out.println(playersName.get(j).toString() + " , ");
+		 	System.out.println(playersName.get(j).toString() + " ");
 		 	
 		 	}
 		 	
@@ -169,7 +174,11 @@ public class Server {
 			
 		 	developmentCards.build();
 			
-		 	model.getTable().buildTable(4);
+		 	model.getTable().buildTable(2);
+		 	
+		 	waitingConnection.clear();
+			
+			System.out.println("Lista di attesa pulita");
 		 
 	 }
 	 

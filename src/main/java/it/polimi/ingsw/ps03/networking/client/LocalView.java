@@ -9,6 +9,7 @@ import java.util.Observable;
 //import java.util.Observer;
 import java.util.Scanner;
 
+
 import it.polimi.ingsw.ps03.actions.ActionChoices;
 import it.polimi.ingsw.ps03.actions.ChangeTurn;
 import it.polimi.ingsw.ps03.actions.CheckPlayer;
@@ -58,6 +59,7 @@ public class LocalView extends Observable implements java.util.Observer{//non de
 	 * player can do. After choosing one, a specified method will be called to ask and process all
 	 * the details necessary to build the object 'Action'.
 	 */
+
 	public void startTurn(Billboard billboard){
 		int turnOfPlayer = billboard.getTurnOfPlay().getPlayerToPlay();
 		ActionChoices choice = null;
