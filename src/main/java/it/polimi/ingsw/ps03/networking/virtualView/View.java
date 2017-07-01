@@ -30,9 +30,13 @@ public abstract class View extends Observable implements Observer{
 	}
 	
 	protected void processChoice(ActionChoices choice) {
+		System.out.println("Funzione process choice avviata");
 		setChanged();
 		notifyObservers(choice);
 	}
+	
+
+
 	
 	protected abstract void showModel(Billboard billboard);
 	

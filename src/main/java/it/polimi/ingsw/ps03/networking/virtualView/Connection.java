@@ -38,35 +38,49 @@ public class Connection extends Observable<String> implements Runnable{
 			send("well met " + read + " and welcome in Lorenzo il Magnifico "
 					+"looking for other players... please wait");
 
-			server.match(this, read);
 			
+						server.match(this, read);
+			
+					    
 			while(isActive()){
+				
+				System.out.println("Sono in continuo ascolto dei messaggi");
 				line = in.readObject();
 				notifyObservers(line);
+				
 			}
 		}catch(IOException  e){
 			System.out.println("Errore nella ricezione!");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Errore nella ricezione dell'oggetto");
 		}finally{
+			
 			try {
+			
 				close();
+			
 			} catch (IOException e) {
 				System.out.println("Errore nella chiusura");
 			}
 		}
 		
 	}
+	
+	
 	/*controlla che il client sia connesso*/
 	private synchronized boolean isActive(){
 		return active;
 	}
+	
+	
 	/*invia i messaggi*/
 	public void send(Object message) throws IOException {		
 			out.writeObject(message);
 				out.flush();
 					System.out.println("messaggio inviato: " +message);
 	}
+	
+	
 	
 	public synchronized void closeConnection() throws IOException {		
 		send("Connection terminated!");
@@ -78,6 +92,8 @@ public class Connection extends Observable<String> implements Runnable{
 		}
 		active = false;
 	}
+	
+	
 	/*chiude la connessione invocando la closeConnection e rimuove 
 	 * dall'arrayList di utenti connessi il giocatore disconnesso*/
 	private void close() throws IOException{

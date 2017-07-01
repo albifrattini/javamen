@@ -17,7 +17,7 @@ public class Billboard extends Observable implements Cloneable{
 	private List<Player> players;
 	private Table table;
 	private TurnOfPlay turnOfPlay;
-	private Map<Player, Outcome> outcomes = new HashMap<>();//aggiunto ma da rivedere
+
 	
 	public Billboard(){
 		players = new ArrayList<Player>(4);
@@ -25,6 +25,7 @@ public class Billboard extends Observable implements Cloneable{
 		table = new Table();
 		turnOfPlay = new TurnOfPlay();
 	}
+	
 	
 	public void addPlayer(int order, PlayerColor color, int initialCoins){
 		Player player = new Player(color, initialCoins);
@@ -54,9 +55,9 @@ public class Billboard extends Observable implements Cloneable{
 	public void setPlayers(List<Player> players){
 		this.players = players;
 	}
-	public /*Outcome*/ String getOutcome(String player) {//aggiunto ma da rivedere
-		return outcomes.get(player).toString();
-	}
 
+	public Object clone() throws CloneNotSupportedException{
+		return super.clone();
+	}
 	
 }
