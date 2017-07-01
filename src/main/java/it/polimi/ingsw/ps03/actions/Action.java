@@ -2,7 +2,7 @@ package it.polimi.ingsw.ps03.actions;
 
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 
-public abstract class Action {
+public abstract class Action{
 	
 	private static String actionName;
 	private Billboard billboard;
@@ -26,5 +26,6 @@ public abstract class Action {
 	public void setBillboard(Billboard billboard){
 		this.billboard = billboard;
 	}
+
 	
 }

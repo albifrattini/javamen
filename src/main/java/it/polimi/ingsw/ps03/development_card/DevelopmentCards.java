@@ -57,7 +57,7 @@ public class DevelopmentCards {
 	
 	public static DevelopmentCard getRandomCard(List<DevelopmentCard> developmentCards){
 		Random random = new Random();
-		int choice = random.nextInt(developmentCards.size()-1);
+		int choice = random.nextInt(developmentCards.size());
 		return developmentCards.get(choice);
 	}
 	

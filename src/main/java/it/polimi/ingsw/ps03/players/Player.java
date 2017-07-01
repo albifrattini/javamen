@@ -70,7 +70,9 @@ public class Player {
 	public void removePawn(Pawn pawn){
 		pawns.remove(pawn);
 	}
-	
+	public boolean hasCouncilPrivileges(){
+		return resources.getResource("COUNCILPRIVILEGES").getValue() > 0;
+	}
 	
 	
 	

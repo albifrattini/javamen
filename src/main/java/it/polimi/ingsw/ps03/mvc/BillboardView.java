@@ -11,6 +11,7 @@ import it.polimi.ingsw.ps03.actions.*;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.io.OutputStream;
@@ -331,7 +332,41 @@ public class BillboardView extends Observable implements Observer {
 	private void printMessage(String message){
 		output.println(message);
 	}
+	private void printCouncilChoices(List<Resources> list){
+		output.println("\n");
+		for(int i = 0; i < list.size(); i++){
+			output.print(i + " - ");
+			output.println(list.get(i).toString());
+		}
+	}
 	
+	private void changeCouncilPrivileges(Billboard billboard, Resources resources){
+		int i = 0;
+		int quantity = resources.getResource("COUNCILPRIVILEGES").getValue();
+		List<Resources> tempList = new ArrayList<Resources>(billboard.getCouncilChoices());
+		Resources resourcesToAdd = new Resources();
+		
+		output.println("\nPuoi scegliere " + quantity
+				+ " conversione/i al posto del privilegio del consiglio!");
+		
+		while(i < quantity){
+			printCouncilChoices(tempList);
+			output.print("\nScegli quale conversione effettuare: ");
+			try{
+				int value = Integer.parseInt(scanner.next());
+				resourcesToAdd.add(tempList.get(value));
+				tempList.remove(value);
+				i++;	
+			}catch(NumberFormatException e){
+				output.println("\nWARNING! Non hai inserito un numero!\n");
+			}catch(IndexOutOfBoundsException e){
+				output.println("\nWARNING! Scelta non disponibile!");
+			}
+		}
+		
+		setChanged();
+		notifyObservers(resourcesToAdd);
+	}
 	
 	
 	
@@ -354,6 +389,9 @@ public class BillboardView extends Observable implements Observer {
 		}
 		if(obj instanceof FakePlace){
 			fakePlaceAction((FakePlace) obj, ((Controller) o).getBillboard());
+		}
+		if(obj instanceof Resources){
+			changeCouncilPrivileges(((Controller) o).getBillboard(), (Resources) obj);
 		}
 	}
 	

@@ -13,7 +13,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import it.polimi.ingsw.ps03.resources.*;
-import it.polimi.ingsw.ps03.players.Pawn;
 
 
 public class Table {
@@ -203,14 +202,14 @@ public class Table {
 		addCouncilRoom();
 	}
 	
-	public void placeCouncilRoom(Pawn pawnToPlace){
-		councilPalace.add(new CouncilRoom());
-		for(CouncilRoom c : councilPalace){
-			if(c.getPawn() == null){
-				c.placePawn(pawnToPlace);
-			}
-		}
-	}
+//	public void placeCouncilRoom(Pawn pawnToPlace){
+//		councilPalace.add(new CouncilRoom());
+//		for(CouncilRoom c : councilPalace){
+//			if(c.getPawn() == null){
+//				c.placePawn(pawnToPlace);
+//			}
+//		}
+//	}
 
 
 

@@ -57,8 +57,9 @@ public class ChangeTurn extends Action {
 		List<DevelopmentCard> deck = DevelopmentCards.getCardsOfPeriod(period, DevelopmentCards.getCardsList());
 		for(TowerRoom t : billboard.getTable().getTowerRoomList()){
 			DevelopmentCard card = DevelopmentCards.getRandomCard(DevelopmentCards.
-					getCardsOfColor(t.getTowerRoomColor(), deck));
+									getCardsOfColor(t.getTowerRoomColor(), deck));
 			t.setDevelopmentCard(card);
+			deck.remove(card);
 			DevelopmentCards.getCardsList().remove(card);
 		}	
 	}

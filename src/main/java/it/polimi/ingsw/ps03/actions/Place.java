@@ -34,24 +34,21 @@ public class Place extends Action{
 	}
 	
 	public DevelopmentCard applyAction(){
-		if(room instanceof MarketRoom){
-			if(room instanceof TowerRoom){
-				player.getCards().add(((TowerRoom) room).getPlacedCard());
-			}
-			player.getResources().add(((MarketRoom) room).getResources());
-		}
 		if(room instanceof CouncilRoom){
-			player.getResources().add(((CouncilRoom) room).getResources());
 			getBillboard().getTable().addCouncilRoom();
 		}
 		room.setPawn(pawn);
 		player.removePawn(pawn.getDiceColor().toString());
+		player.getResources().add(((MarketRoom) room).getResources());
 		player.getResources().sub(requiredResources);
 		if(room instanceof TowerRoom){
+			player.getCards().add(((TowerRoom) room).getPlacedCard());
 			return ((TowerRoom) room).getPlacedCard();
 		}
 		return null;
 	}
+	
+	
 	
 	
 	public void setPlayer(Player player){

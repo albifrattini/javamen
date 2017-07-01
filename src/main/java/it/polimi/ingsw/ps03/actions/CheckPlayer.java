@@ -18,5 +18,6 @@ public class CheckPlayer extends Action{
 		Player player = getBillboard().getPlayers().get(turnOfPlayer);
 		return player;
 	}
+	
 
 }

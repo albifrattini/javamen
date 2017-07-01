@@ -14,6 +14,7 @@ import it.polimi.ingsw.ps03.effects.PlaceImmediateEffect;
 import it.polimi.ingsw.ps03.actions.*;
 import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.resources.Resource;
+import it.polimi.ingsw.ps03.resources.Resources;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 
 public class Controller extends Observable implements Observer {
@@ -38,42 +39,16 @@ public class Controller extends Observable implements Observer {
 			notifyToView();
 		}
 		if(action instanceof Place){
-			if(action instanceof FakePlace){
-				FakePlace fakePlace = (FakePlace) action;
-				if(checkPlaceAction(fakePlace)){
-					DevelopmentCard drawnCard = fakePlace.applyAction();
-					if(drawnCard != null){
-						if(drawnCard.getImmediateEffect() != null){
-							activateEffect(drawnCard);
-						}
-						checkTurn();
-					}
-					else{
-						checkTurn();
-					}
-				}
-				else{
-					notifyToView(fakePlace);
+			if(checkPlaceAction((Place) action)){
+				DevelopmentCard drawnCard = ((Place) action).applyAction();
+				if(hasEffect(drawnCard)){
+					activateEffect(drawnCard);
 				}
 			}
 			else{
-				Place place = (Place) action;
-				if(checkPlaceAction(place)){
-					DevelopmentCard drawnCard = place.applyAction();
-					if(drawnCard != null){
-						if(drawnCard.getImmediateEffect() != null){
-							activateEffect(drawnCard);
-						}
-						checkTurn();
-					}
-					else{
-						checkTurn();
-					}
-				}	
-				else{
-					notifyToView(getError(action));
-				}
+				notifyToView(action);
 			}
+			checkTurn(((Place) action).getPlayer());
 		}
 		if(action instanceof CheckPlayer){
 			Player player = ((CheckPlayer) action).applyAction();
@@ -81,6 +56,13 @@ public class Controller extends Observable implements Observer {
 		}
 	}
 	
+	
+	
+	
+	
+	private boolean hasEffect(DevelopmentCard drawnCard){
+		return drawnCard != null && drawnCard.getImmediateEffect() != null;
+	}
 	
 	private void activateEffect(DevelopmentCard drawnCard){
 		Effect effect = drawnCard.getImmediateEffect();
@@ -96,23 +78,23 @@ public class Controller extends Observable implements Observer {
 			}
 			else{
 				((GiveResourcesImmediateEffect) effect).applyEffect(player);
-				checkTurn();
+				checkTurn(player);
 			}
 		}
-		if(effect instanceof PlaceImmediateEffect){
-			PlaceImmediateEffect plEffect = (PlaceImmediateEffect) effect;
-			FakePlace fakePlace = new FakePlace(model, player,
-										plEffect.getPlaceTowerColor(),
-										plEffect.getPlaceDiceValue());
-			notifyToView(fakePlace);
-		}
+//		if(effect instanceof PlaceImmediateEffect){
+//			PlaceImmediateEffect plEffect = (PlaceImmediateEffect) effect;
+//			FakePlace fakePlace = new FakePlace(model, player,
+//										plEffect.getPlaceTowerColor(),
+//										plEffect.getPlaceDiceValue());
+//			notifyToView(fakePlace);
+//		}
 		if(effect instanceof EarnImmediateEffect){
 			((EarnImmediateEffect) effect).applyEffect(player);
-			checkTurn();
+			checkTurn(player);
 		}
 		if(effect instanceof HarvestingOrProductionImmediateEffect){
 			((HarvestingOrProductionImmediateEffect) effect).applyEffect(player);
-			checkTurn();
+			checkTurn(player);
 		}
 	}
 	
@@ -173,28 +155,28 @@ public class Controller extends Observable implements Observer {
 		return result;
 	}
 	
-	public void checkTurn(){
-		model.getTurnOfPlay().nextPlayer();
-		if(!(model.getTurnOfPlay().hasNextMiniTurn())){
-			ChangeTurn changeTurn = new ChangeTurn();
-			applyAction(changeTurn);
+	public void checkTurn(Player player){
+		if(!(player.hasCouncilPrivileges())){
+			model.getTurnOfPlay().nextPlayer();
+			if(!(model.getTurnOfPlay().hasNextMiniTurn())){
+				ChangeTurn changeTurn = new ChangeTurn();
+				applyAction(changeTurn);
+			}
+			else{
+				notifyToView();
+			}
 		}
 		else{
-			notifyToView();
+			notifyToView(player.getResources());
 		}
 	}
 	
-	private String getError(Action action){
-		if(action instanceof Place){
-			return "\n\nERRORE! Impossibile piazzare a causa di risorse insufficienti o requisiti non soddisfatti!";
-		}
-		if(action instanceof CheckPlayer){
-			return "\n\nERRORE! Giocatore inesistente!";
-		}
-		return "Errore imprevisto...";
+	public void addResourcesFromPrivileges(Resources resources){
+		Player player = model.getPlayers().get(model.getTurnOfPlay().getPlayerToPlay());
+		player.getResources().getResource("COUNCILPRIVILEGES").setValue(0);
+		player.getResources().add(resources);
+		checkTurn(player);
 	}
-	
-	
 	
 	
 	
@@ -210,22 +192,12 @@ public class Controller extends Observable implements Observer {
 	
 
 	private void notifyToView(Object obj){
-		if(obj instanceof String){
+		if(obj instanceof Place){
 			setChanged();
-			notifyObservers((String) obj);
+			notifyObservers("\n\nERRORE! Impossibile posizionare, requisiti non soddisfatti!");
 		}
-		if(obj instanceof Player){
-			setChanged();
-			notifyObservers((Player) obj);
-		}
-		if(obj instanceof Billboard){
-			setChanged();
-			notifyObservers((Billboard) obj);
-		}
-		if(obj instanceof FakePlace){
-			setChanged();
-			notifyObservers((FakePlace) obj);
-		}
+		setChanged();
+		notifyObservers(obj);
 	}
 	private void notifyToView(){
 		notifyToView(model);
@@ -239,8 +211,11 @@ public class Controller extends Observable implements Observer {
 		if(obj instanceof Action){
 			applyAction((Action) obj);
 		}
-		else{
-			checkTurn();
+		if(obj instanceof Resources){
+			addResourcesFromPrivileges((Resources) obj);
 		}
+//		else{
+//			checkTurn();
+//		}
 	}
 }
