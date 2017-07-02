@@ -23,12 +23,10 @@ public class RemoteView extends View implements Observer<Object> {
 	protected void showModel(Billboard billboard){
 		try {
 			System.out.println("Invia copia del model");
-			
-			Billboard model = (Billboard) billboard.clone();
-			
-			connection.send(model);
+						
+			connection.send(billboard);
 		
-		} catch (IOException | CloneNotSupportedException e) {
+		} catch (IOException e) {
 			 System.out.println("Non son riuscito a inviare il model");
 		}
 	}
@@ -50,6 +48,10 @@ public class RemoteView extends View implements Observer<Object> {
 			connection.send("Error, Action not valid!Please try again");
 						
 		}		
+	}
+
+	
+	public void update(Observable o, Object obj) {		
 	}
 }
 		

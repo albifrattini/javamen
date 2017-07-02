@@ -1,15 +1,8 @@
 package it.polimi.ingsw.ps03.networking.controller;
 
-
-//import it.polimi.ingsw.ps03.networking.model.Billboard;
-import it.polimi.ingsw.ps03.networking.virtualView.View;
-
 import java.util.Observable;
-
 import java.util.Observer;
 import java.util.Map;
-
-
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
 import it.polimi.ingsw.ps03.effects.EarnImmediateEffect;
@@ -17,28 +10,11 @@ import it.polimi.ingsw.ps03.effects.Effect;
 import it.polimi.ingsw.ps03.effects.GiveResourcesImmediateEffect;
 import it.polimi.ingsw.ps03.effects.HarvestingOrProductionImmediateEffect;
 import it.polimi.ingsw.ps03.effects.PlaceImmediateEffect;
-import it.polimi.ingsw.ps03.mvc.BillboardView;
 import it.polimi.ingsw.ps03.actions.*;
 import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.resources.Resource;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 
-//public class Controller  implements Observer {
-//	private Model model;
-//
-//	public Controller(Model model) {
-//		super();
-//		this.model = model;
-//	}
-//
-//	@Override
-//	public synchronized void update(Observable o, Object arg) {
-//		if(!(o instanceof View)|| !(arg instanceof Choice)){
-//			throw new IllegalArgumentException();
-//		}
-//		model.setPlayerChoice(((View)o).getPlayer(), (Choice)arg);		
-//	}	
-	
 
 	public class Controller extends Observable implements Observer {
 

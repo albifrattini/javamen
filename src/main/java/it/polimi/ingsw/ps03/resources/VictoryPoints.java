@@ -2,6 +2,8 @@ package it.polimi.ingsw.ps03.resources;
 
 public class VictoryPoints extends Resource {
 
+
+
 	/**
 	 * 
 	 */

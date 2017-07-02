@@ -1,8 +1,10 @@
 package it.polimi.ingsw.ps03.resources;
 
-import java.io.Serializable;
 
-public class FaithPoints extends Resource implements Serializable{
+
+public class FaithPoints extends Resource {
+
+
 
 	/**
 	 * 

@@ -26,12 +26,13 @@ public class Client extends Observable {//si connette alla porta e attende gli e
 
 	public void receiveMessage(Socket socket) throws ClassNotFoundException, IOException{
 		try{
-		while (true){
+			
 		
-		in = new ObjectInputStream(socket.getInputStream());
-		Object line = in.readObject();
-		setChanged();
-		notifyObservers(line);
+				while (true){
+		
+					Object line = (Object) in.readObject();
+					setChanged();
+					notifyObservers(line);
 				}
 		}catch(NoSuchElementException | ClassNotFoundException e){
 			System.out.println("Connection closed");
@@ -51,7 +52,7 @@ public static void main(String[] args) throws UnknownHostException, IOException{
 	Socket socket = new Socket(ip , port);//crea la socket del client 
 	NetworkHandler networkHandler = new NetworkHandler(socket);
 	LocalView ui = new LocalView(System.in, System.out);
-
+	in = new ObjectInputStream(socket.getInputStream());
 	
 	client.addObserver(ui);
 	ui.addObserver(networkHandler);

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.ps03.networking.virtualView;
 
 import java.io.IOException;
-import java.util.Observable;
 
 public interface Observer<Object> {
 

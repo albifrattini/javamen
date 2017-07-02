@@ -6,12 +6,12 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
-//import java.util.Observer;
+import java.util.Observer;
 import java.util.Scanner;
 
 
 import it.polimi.ingsw.ps03.actions.ActionChoices;
-import it.polimi.ingsw.ps03.actions.ChangeTurn;
+//import it.polimi.ingsw.ps03.actions.ChangeTurn;
 import it.polimi.ingsw.ps03.actions.CheckPlayer;
 import it.polimi.ingsw.ps03.actions.FakePlace;
 import it.polimi.ingsw.ps03.actions.Place;
@@ -29,7 +29,7 @@ import it.polimi.ingsw.ps03.room_pack.Room;
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 
-public class LocalView extends Observable implements java.util.Observer{//non deve avere al suo interno aspetti legati alla network, deve solo ricevere le update
+public class LocalView extends Observable implements Observer{//non deve avere al suo interno aspetti legati alla network, deve solo ricevere le update
 
 	private Scanner scanner;
 	private PrintStream output; 
@@ -362,12 +362,9 @@ public class LocalView extends Observable implements java.util.Observer{//non de
 		}
 		if(obj instanceof Player){
 			printPlayer((Player) obj);
-	//		startTurn(((Controller) o).getBillboard());
 		}
 		if(obj instanceof String){
 			printMessage((String) obj);
-			
-	//		startTurn(((Controller) o).getBillboard());
 		}
 		if(obj instanceof FakePlace){
 			fakePlaceAction((FakePlace) obj, ((Controller) o).getBillboard());

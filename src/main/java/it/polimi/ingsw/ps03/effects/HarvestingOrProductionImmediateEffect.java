@@ -8,6 +8,7 @@ import it.polimi.ingsw.ps03.room_pack.TowerColor;
 
 public class HarvestingOrProductionImmediateEffect extends GiveResourcesImmediateEffect {
 	
+
 	/**
 	 * 
 	 */

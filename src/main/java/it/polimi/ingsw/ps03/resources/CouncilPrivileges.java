@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class CouncilPrivileges extends Resource implements Serializable{
 	
+
+
 	/**
 	 * 
 	 */

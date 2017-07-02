@@ -1,5 +1,6 @@
 package it.polimi.ingsw.ps03.effects;
 
+
 import java.io.Serializable;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import it.polimi.ingsw.ps03.resources.Resources;
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
 
 public class EarnImmediateEffect extends Effect implements Serializable{
+
 
 	/**
 	 * 

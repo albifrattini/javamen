@@ -3,7 +3,8 @@ package it.polimi.ingsw.ps03.resources;
 import java.io.Serializable;
 
 public class Coins extends Resource implements Serializable{
-	
+
+
 	/**
 	 * 
 	 */

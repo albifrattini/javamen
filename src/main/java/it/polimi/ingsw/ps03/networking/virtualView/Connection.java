@@ -24,8 +24,8 @@ public class Connection extends Observable<Object> implements Runnable{
 	public void run() {//gestisce gli input degli utenti
 		try{
 			
-			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());
+			out = new ObjectOutputStream(socket.getOutputStream());
 			
 			Object line = in.readObject();
 			String read = (String)line;	
@@ -79,6 +79,7 @@ public class Connection extends Observable<Object> implements Runnable{
 	public void send(Object message) throws IOException {		
 			out.writeObject(message);
 				out.flush();
+					out.reset();
 					System.out.println("messaggio inviato: " +message);
 	}
 	

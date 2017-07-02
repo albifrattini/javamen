@@ -8,6 +8,8 @@ import java.util.List;
 
 public class HarvestingOrProduction implements Serializable{
 
+
+
 	/**
 	 * 
 	 */
