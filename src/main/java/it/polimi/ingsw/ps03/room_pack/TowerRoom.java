@@ -1,9 +1,11 @@
 package it.polimi.ingsw.ps03.room_pack;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.ps03.development_card.*;
 import it.polimi.ingsw.ps03.resources.Resources;
 
-public class TowerRoom extends MarketRoom{
+public class TowerRoom extends MarketRoom implements Serializable{
 	
 	/**
 	 * 

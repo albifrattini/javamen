@@ -1,6 +1,7 @@
 package it.polimi.ingsw.ps03.billboard_pack;
 
 import it.polimi.ingsw.ps03.dices.*;
+import it.polimi.ingsw.ps03.networking.virtualView.RemoteView;
 import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.resources.Resource;
 import it.polimi.ingsw.ps03.resources.Resources;
@@ -41,11 +42,15 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 	}
 	
 	
+	public void addPlayerRemote(int order,String name, PlayerColor color, int initialCoins){
+		Player player = new Player(name, color, initialCoins);
+		players.add(order, player);
+	}
+
 	public void addPlayer(int order, PlayerColor color, int initialCoins){
 		Player player = new Player(color, initialCoins);
 		players.add(order, player);
 	}
-	
 	public Dices getDices(){
 		return dices;
 	}

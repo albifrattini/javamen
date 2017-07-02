@@ -3,6 +3,7 @@ package it.polimi.ingsw.ps03.networking.client;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -40,9 +41,8 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 	}
 	
 	
-	/* Override of the method of the Interface Runnable. It simply initializes the game, changing 
-	 * the turn that calls setChanged() and notifyObservers() from the model for the first time.
-	 */
+	/* Override of the method of the Interface Runnable. It simply initializes the game
+	*/
 	public void initGame(){
 		output.println("Benvenuto in LORENZO IL MAGNIFICO!\n"+
 	                                       "What's your name?");
@@ -288,20 +288,22 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 	
 
 	
-	
+	public static final int TOWER_ROOM_SPACES = 16;
 	/* Method always called by the update method. It will show the current situation of the billboard, with 
 	 * particular regard to rooms. So it will not show player's resources and the personal board in general.
 	 * Will be given an action able to show player's personal board.
 	 */
-	public void showModel(Billboard billboard){
+	public void showModel(Billboard billboard){		
 		showChangeOfTurn(billboard.getTurnOfPlay());
 		printRooms(billboard.getTable().getRooms());
 		printCouncil(billboard.getTable().getCouncilPalaceList());
 	}
+	
 	private void showChangeOfTurn(TurnOfPlay turnOfPlay){
 		output.println("\n\nTurno " + turnOfPlay.getTurn() + 
 				" del periodo numero " + turnOfPlay.getPeriod() + ":\n");
 	}
+	
 	private void printRooms(List<Room> rooms){
 		int spaces = 0;
 		for(int i = 0; i < rooms.size(); i++){
@@ -312,7 +314,9 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 			spaces++;
 		}
 	}
+	
 	private void printTowerRooms(List<TowerRoom> towerRooms){
+
 		int spaces = 0;
 		for(int i = 0; i < towerRooms.size(); i++){
 			if(towerRooms.get(i).getPawn() == null){
@@ -326,24 +330,28 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 	private void printCouncil(List<CouncilRoom> councils){
 		System.out.println(councils.size()-1 + " pedoni già piazzati nel Palazzo del Consiglio!");
 	}
+	
 	private void printPlayer(Player player){
 		output.println("Giocatore " + player.getColor().toString().substring(0, 1) + 
 				player.getColor().toString().substring(1, player.getColor().toString().length()).toLowerCase());
 		printPlayerResources(player);
 		printPlayerCards(player);
 	}
+	
 	private void printPlayerResources(Player player){
 		output.println("\nRisorse possedute:");
 		for(Map.Entry<String, Resource> entry : player.getResources().getResourcesMap().entrySet()){
 			output.println(entry.getValue().toString());
 		}
 	}
+	
 	private void printPlayerCards(Player player){
 		output.println("\nCarte sviluppo possedute:");
 		for(DevelopmentCard d : player.getCards()){
 			output.println("Nome: " + d.getCardName() + "\tColore: " + d.getCardColor());
 		}
 	}
+	
 	private void printMessage(String message){
 		output.println(message);
 	}
@@ -357,8 +365,9 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 			throw new IllegalArgumentException();
 		}
 		if(obj instanceof Billboard){
-			showModel((Billboard) obj);
-			startTurn((Billboard) obj);
+			Billboard model = (Billboard) obj;
+//			showModel(model);
+			startTurn(model);
 		}
 		if(obj instanceof Player){
 			printPlayer((Player) obj);

@@ -4,9 +4,10 @@ import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
 import it.polimi.ingsw.ps03.effects.HarvestingOrProduction;
 import it.polimi.ingsw.ps03.resources.Resources;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ProductionRoom extends MarketRoom{
+public class ProductionRoom extends MarketRoom implements Serializable{
 	
 	/**
 	 * 

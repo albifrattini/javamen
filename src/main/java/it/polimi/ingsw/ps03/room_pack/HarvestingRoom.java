@@ -1,8 +1,10 @@
 package it.polimi.ingsw.ps03.room_pack;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.ps03.resources.Resources;
 
-public class HarvestingRoom extends ProductionRoom{
+public class HarvestingRoom extends ProductionRoom implements Serializable{
 	
 	/**
 	 * 

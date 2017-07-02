@@ -30,7 +30,7 @@ public class Client extends Observable {//si connette alla porta e attende gli e
 		
 				while (true){
 		
-					Object line = (Object) in.readObject();
+					Object line = in.readObject();
 					setChanged();
 					notifyObservers(line);
 				}

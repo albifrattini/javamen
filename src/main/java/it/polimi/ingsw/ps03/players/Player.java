@@ -17,11 +17,24 @@ public class Player implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String name;
 	private PlayerColor color;
 	private Map<String, Pawn> pawns;
 	private Resources resources;
 	private List<DevelopmentCard> ownedCards;
 
+	
+	public Player (String name, PlayerColor pColor, int initialCoins) {
+		this.name = name;
+		color = pColor;
+		pawns = new HashMap<String, Pawn>(4);
+		pawns.put("WHITE", new Pawn(color, PawnDiceColor.WHITE, 0));
+		pawns.put("BLACK", new Pawn(color, PawnDiceColor.BLACK, 0));
+		pawns.put("ORANGE", new Pawn(color, PawnDiceColor.ORANGE, 0));
+		pawns.put("NEUTRAL", new Pawn(color, PawnDiceColor.NEUTRAL, 0));
+		resources = new Resources(initialCoins);
+		ownedCards = new ArrayList<DevelopmentCard>(0);
+	}
 	
 	public Player (PlayerColor pColor, int initialCoins) {
 		color = pColor;
@@ -82,7 +95,10 @@ public class Player implements Serializable{
 	
 	
 	
-	
+	@Override
+	public String toString(){
+		return name;
+	}
 	
 	
 }

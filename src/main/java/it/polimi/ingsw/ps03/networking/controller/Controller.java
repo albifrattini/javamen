@@ -10,6 +10,7 @@ import it.polimi.ingsw.ps03.effects.Effect;
 import it.polimi.ingsw.ps03.effects.GiveResourcesImmediateEffect;
 import it.polimi.ingsw.ps03.effects.HarvestingOrProductionImmediateEffect;
 import it.polimi.ingsw.ps03.effects.PlaceImmediateEffect;
+import it.polimi.ingsw.ps03.networking.virtualView.RemoteView;
 import it.polimi.ingsw.ps03.actions.*;
 import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.resources.Resource;
@@ -19,11 +20,11 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 	public class Controller extends Observable implements Observer {
 
 		private Billboard model;
-	//	private BillboardView view;
+		private RemoteView view;
 		
-		public Controller(Billboard billboard/*, BillboardView view*/){
+		public Controller(Billboard billboard, RemoteView view){
 			this.model = billboard;
-	//		this.view = view;
+			this.view = view;
 		}
 
 		
@@ -233,9 +234,9 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 		
 		@Override
 		public void update(Observable o, Object obj){
-//			if(o != view){
-//				throw new IllegalArgumentException();
-//			} 
+			if(o != view){
+				throw new IllegalArgumentException();
+			} 
 			if(obj instanceof Action){
 				applyAction((Action) obj);
 			}
