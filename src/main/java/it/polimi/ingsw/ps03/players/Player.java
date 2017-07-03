@@ -16,6 +16,8 @@ public class Player implements Serializable{
 	/**
 	 * 
 	 */
+	//aggiungi in javadoc che l'ogg plater e serializzato secondo la versione default 1L
+	
 	private static final long serialVersionUID = 1L;
 	private String name;
 	private PlayerColor color;
@@ -69,6 +71,7 @@ public class Player implements Serializable{
 	public List<DevelopmentCard> getCards(){
 		return this.ownedCards;
 	}
+	// i pawn che ti restano
 	public int getLeftPawns(){
 		int counter = 0;
 		for(Map.Entry<String, Pawn> p : pawns.entrySet()){

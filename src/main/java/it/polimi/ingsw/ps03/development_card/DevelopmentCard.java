@@ -37,6 +37,7 @@ public class DevelopmentCard implements Serializable{
 		
 	}
 	
+	// ToString serve per ''stampare in maniera ordinata"
 	@Override
 	public String toString(){
 		String prices = "\n";

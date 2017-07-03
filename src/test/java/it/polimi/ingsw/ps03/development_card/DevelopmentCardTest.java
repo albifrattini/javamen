@@ -1,12 +1,10 @@
 package it.polimi.ingsw.ps03.development_card;
-import  it.polimi.ingsw.ps03.development_card.DevelopmentCard;
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import it.polimi.ingsw.ps03.effects.Effect;

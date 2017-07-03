@@ -41,7 +41,9 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 		councilPrivilegesChange = createList();
 	}
 	
-	
+// crea un nuovo Giocatare passando il nick name, colore, ordine di gioco e coins iniziali 
+// coins: il primo ne ha 5, il secondo 6, terzo 7 ecc
+// remote con network l'altro in locale
 	public void addPlayerRemote(int order,String name, PlayerColor color, int initialCoins){
 		Player player = new Player(name, color, initialCoins);
 		players.add(order, player);
@@ -74,6 +76,8 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 	public List<Resources> getCouncilChoices(){
 		return councilPrivilegesChange;
 	}
+	
+	// setta le risorse council di un giocatore
 	public void setPlayers(List<Player> players){
 		this.players = players;
 	}
@@ -107,6 +111,7 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 		return list;
 	}
 	
+	// metodi per leggere int, string, resources da file
 	private int readIntFromFile(Element element, String intName){
 		String read = readStringFromFile(element, intName);
 		int readInt = Integer.parseInt(read);
@@ -129,7 +134,7 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 	
 	
 	
-	
+	// crea una copia della classe billboard
 	public Object clone() throws CloneNotSupportedException{
 		return super.clone();
 	}
