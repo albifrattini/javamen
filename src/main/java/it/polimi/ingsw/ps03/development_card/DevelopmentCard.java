@@ -24,7 +24,7 @@ public class DevelopmentCard implements Serializable{
 	private Effect immediateEffect;
 		
 	//COSTRUTTORE
-	public DevelopmentCard(int mId,int mCardPeriod, int diceValue, String mCardName, 
+	public DevelopmentCard(int mId,int mCardPeriod, int mDiceValue, String mCardName, 
 			TowerColor mCardColor){ 
 		
 		cardId = mId;
@@ -34,7 +34,7 @@ public class DevelopmentCard implements Serializable{
 		costs = new ArrayList<Resources>(2);
 		requirements = new ArrayList<Resources>(2);
 		immediateEffect = null; 
-		
+		diceValue = mDiceValue;
 	}
 	
 	// ToString serve per ''stampare in maniera ordinata"

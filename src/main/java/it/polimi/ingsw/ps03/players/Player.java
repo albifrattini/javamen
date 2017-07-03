@@ -62,6 +62,9 @@ public class Player implements Serializable{
 	public Map<String, Pawn> getPawns(){
 		return pawns;
 	}
+	public String getName(){
+		return this.name;
+	}
 	public PlayerColor getColor(){
 		return this.color;
 	}

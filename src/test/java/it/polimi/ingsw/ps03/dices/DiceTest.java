@@ -2,21 +2,37 @@ package it.polimi.ingsw.ps03.dices;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import it.polimi.ingsw.ps03.billboard_pack.TurnOfPlay;
+
 public class DiceTest {
-	private int value = -1;
+	Dice mDice;
+	
+	@Before
+	public void setUp() throws Exception {
+		 mDice = new Dice(DiceColor.ORANGE, 3);
+	}
 
 	
-	public void setValue(int value){
-		this.value = value;
+
+	@Test
+	public void testGetColor() {
+		assertEquals(DiceColor.ORANGE,mDice.getColor());
+	}
+	
+	@Test
+	public void testGetValue() {
+		assertEquals(3,mDice.getValue());
 	}
 
 	@Test
-	public void testSetValue() {
-		setValue(4);
-		assertEquals(4,value);
+	public void testSetValue(){
+		mDice.setValue(4);
+		assertEquals(4,mDice.getValue());
 	}
+
 
 }
 

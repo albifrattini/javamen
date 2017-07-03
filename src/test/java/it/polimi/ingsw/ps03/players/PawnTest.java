@@ -2,31 +2,46 @@ package it.polimi.ingsw.ps03.players;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import it.polimi.ingsw.ps03.dices.DiceColor;
 
 public class PawnTest {
 	
-	private PlayerColor pColor;
-	private PawnDiceColor dColor;
-	private int value=4;
-
-	public void setValue(int value){
-		this.value = value; }
-		
-    public void addServants(int servants){
-			value = value + servants;
-		
+	Pawn mPawn;
+	
+	@Before
+	public void setUp() throws Exception {
+		 mPawn = new Pawn(PlayerColor.BLUE, PawnDiceColor.BLACK, 3);
 	}
+		
+	
 	@Test
 	public void testSetValue() {
-		setValue(4);
-		assertEquals(4,value);
+		mPawn.setValue(4);
+		assertEquals(4,mPawn.getValue());
 	}
 
 	@Test
 	public void testAddServants() {
-	     addServants(6);
-		assertEquals(10,value);
+	     mPawn.addServants(6);
+		assertEquals(9,mPawn.getValue());
+	}
+	
+	@Test
+	public void testGetPlayerColor() {
+		assertEquals(PlayerColor.BLUE,mPawn.getPlayerColor());
+	}
+	
+	@Test
+	public void testGetDiceColor() {
+		assertEquals(PawnDiceColor.BLACK,mPawn.getDiceColor());
+	}
+	
+	@Test
+	public void testGetValue() {
+		assertEquals(3,mPawn.getValue());
 	}
 
 }
