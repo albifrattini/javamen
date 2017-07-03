@@ -2,6 +2,9 @@ package it.polimi.ingsw.ps03.networking.controller;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
@@ -20,17 +23,29 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 	public class Controller extends Observable implements Observer {
 
 		private Billboard model;
-		private RemoteView view;
+		private List<String> toPlay;
+		private List<RemoteView> players = new ArrayList<RemoteView>(2);
 		
-		public Controller(Billboard billboard, RemoteView view){
+		public Controller(Billboard billboard){
 			this.model = billboard;
-			this.view = view;
 		}
-
 		
+		public void addRemote(RemoteView player){
+			players.add(player);
+			}
 		
+		public void addToPlay(String name){
+			toPlay.add(name);
+		}
 		
-		
+		public void initGame(){
+			applyAction(new ChangeTurn());
+//			for(int y = 0; y < players.size(); y++){//invia a tutti il model				
+//				players.get(y);
+				notifyObservers();
+								
+//								}
+		}
 		
 		private void applyAction(Action action){
 			action.setBillboard(model);
@@ -234,9 +249,9 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 		
 		@Override
 		public void update(Observable o, Object obj){
-			if(o != view){
-				throw new IllegalArgumentException();
-			} 
+//			if(!(o instanceof RemoteView)){
+//				throw new IllegalArgumentException();
+//			} 
 			if(obj instanceof Action){
 				applyAction((Action) obj);
 			}
