@@ -4,7 +4,6 @@ import java.util.Observable;
 import java.util.Observer;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
@@ -18,13 +17,13 @@ import it.polimi.ingsw.ps03.networking.virtualView.RemoteView;
 import it.polimi.ingsw.ps03.actions.*;
 import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.resources.Resource;
+import it.polimi.ingsw.ps03.room_pack.Room;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 
 
 	public class Controller extends Observable implements Observer {
 
 		private Billboard model;
-		private List<String> toPlay;
 		private List<RemoteView> players = new ArrayList<RemoteView>(4);
 		
 		public Controller(Billboard billboard){
@@ -33,39 +32,21 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 		
 		public void addRemote(RemoteView player){
 			players.add(player);
-			}
-		
-		public void addToPlay(String name){
-			toPlay.add(name);
 		}
-		
+
 		public void initGame(ChangeTurn action) throws IOException{
 			action.setBillboard(model);
 			action.applyAction();
-			System.out.println(model.getTurnOfPlay().getTurn() == 1);
-			System.out.println(model.getPlayers().size());
-			System.out.println(model.getTable().getRooms().size());
-//
-//			try {
-//				Thread.sleep(100000000);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			for(int y = 0; y < players.size(); y++){//invia a tutti il model				
-//				players.get(y).startTurn(model);
-//				//players.get(y).getConnection().receiveMessage();
-//								
-//			}
-			
-			
 			sendBillboard();
+			sendToPlayingClient("\n\n####E' il tuo turno####");
 		}
 		
 		private void sendBillboard(){
 			setChanged();
 			notifyObservers(model);
 		}
+		
+
 		
 		private void applyAction(Action action){
 			action.setBillboard(model);
@@ -74,49 +55,48 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 				notifyToView();
 			}
 			if(action instanceof Place){
-				if(action instanceof FakePlace){
-					FakePlace fakePlace = (FakePlace) action;
-					if(checkPlaceAction(fakePlace)){
-						DevelopmentCard drawnCard = fakePlace.applyAction();
-						if(drawnCard != null){
-							if(drawnCard.getImmediateEffect() != null){
-								activateEffect(drawnCard);
-							}
-							checkTurn();
-						}
-						else{
-							checkTurn();
-						}
-					}
-					else{
-						notifyToView(fakePlace);
+				printPlace((Place) action);
+				if(checkPlaceAction((Place) action)){
+					DevelopmentCard drawnCard = ((Place) action).applyAction();
+					printPlace((Place)action);
+					if(hasEffect(drawnCard)){
+						activateEffect(drawnCard);
 					}
 				}
 				else{
-					Place place = (Place) action;
-					if(checkPlaceAction(place)){
-						DevelopmentCard drawnCard = place.applyAction();
-						if(drawnCard != null){
-							if(drawnCard.getImmediateEffect() != null){
-								activateEffect(drawnCard);
-							}
-							checkTurn();
-						}
-						else{
-							checkTurn();
-						}
-					}	
-					else{
-						notifyToView(getError(action));
-					}
+					notifyToView(action);
 				}
+			checkTurn(((Place) action).getPlayer());
 			}
 			if(action instanceof CheckPlayer){
 				Player player = ((CheckPlayer) action).applyAction();
-				notifyToView(player);
+				sendToPlayingClient(player);
 			}
 		}
 		
+		
+		
+		private void printPlace(Place action){
+			System.out.println(action.getPlayer().getPawns().size());
+			System.out.println(action.getRoom().toString());
+//			System.out.println(action.getRoom().getPawn().toString()==null);
+			System.out.println(action.getRequiredResources().toString());
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		private boolean hasEffect(DevelopmentCard drawnCard){
+			return drawnCard != null && drawnCard.getImmediateEffect() != null;
+		}
 		
 		private void activateEffect(DevelopmentCard drawnCard){
 			Effect effect = drawnCard.getImmediateEffect();
@@ -132,7 +112,7 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 				}
 				else{
 					((GiveResourcesImmediateEffect) effect).applyEffect(player);
-					checkTurn();
+					checkTurn(player);
 				}
 			}
 			if(effect instanceof PlaceImmediateEffect){
@@ -144,11 +124,11 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 			}
 			if(effect instanceof EarnImmediateEffect){
 				((EarnImmediateEffect) effect).applyEffect(player);
-				checkTurn();
+				checkTurn(player);
 			}
 			if(effect instanceof HarvestingOrProductionImmediateEffect){
 				((HarvestingOrProductionImmediateEffect) effect).applyEffect(player);
-				checkTurn();
+				checkTurn(player);
 			}
 		}
 		
@@ -209,26 +189,36 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 			return result;
 		}
 		
-		public void checkTurn(){
-			model.getTurnOfPlay().nextPlayer();
-			if(!(model.getTurnOfPlay().hasNextMiniTurn())){
-				ChangeTurn changeTurn = new ChangeTurn();
-				applyAction(changeTurn);
+//		public void checkTurn(){
+//			model.getTurnOfPlay().nextPlayer();
+//			if(!(model.getTurnOfPlay().hasNextMiniTurn())){
+//				ChangeTurn changeTurn = new ChangeTurn();
+//				applyAction(changeTurn);
+//			}
+//			else{
+//				notifyToView();
+//				sendToPlayingClient("\n\n####E' il tuo turno####");
+//			}
+//		}
+		
+		public void checkTurn(Player player){
+			printRooms(model.getTable().getRooms());
+			if(!(player.hasCouncilPrivileges())){
+				model.getTurnOfPlay().nextPlayer();
+				if(!(model.getTurnOfPlay().hasNextMiniTurn())){
+					ChangeTurn changeTurn = new ChangeTurn();
+					applyAction(changeTurn);
+				}
+				else{
+					notifyToView();
+					sendToPlayingClient("\n\n####E' il tuo turno####");
+				}
 			}
 			else{
-				notifyToView();
+				notifyToView(player.getResources());
 			}
 		}
-		
-		private String getError(Action action){
-			if(action instanceof Place){
-				return "\n\nERRORE! Impossibile piazzare a causa di risorse insufficienti o requisiti non soddisfatti!";
-			}
-			if(action instanceof CheckPlayer){
-				return "\n\nERRORE! Giocatore inesistente!";
-			}
-			return "Errore imprevisto...";
-		}
+
 		
 		
 		
@@ -240,44 +230,65 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 			return model;
 		}
 		
-		
-		
-		
-		
+		private void sendToPlayingClient(Object obj){
+			RemoteView player = players.get(model.getTurnOfPlay().getPlayerToPlay());
+			try {
+				player.getConnection().send(obj);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 
 		private void notifyToView(Object obj){
-			if(obj instanceof String){
+//			if(obj instanceof String){
+//				setChanged();
+//				notifyObservers((String) obj);
+//			}
+//			if(obj instanceof Player){
+//				setChanged();
+//				notifyObservers((Player) obj);
+//			}
+//			if(obj instanceof Billboard){
+//				setChanged();
+//				notifyObservers((Billboard) obj);
+//			}
+//			if(obj instanceof FakePlace){
+//				setChanged();
+//				notifyObservers((FakePlace) obj);
+//			}
+			if(obj instanceof Place){
 				setChanged();
-				notifyObservers((String) obj);
+				notifyObservers("\n\nERRORE! Impossibile posizionare, requisiti non soddisfatti!");
 			}
-			if(obj instanceof Player){
-				setChanged();
-				notifyObservers((Player) obj);
-			}
-			if(obj instanceof Billboard){
-				setChanged();
-				notifyObservers((Billboard) obj);
-			}
-			if(obj instanceof FakePlace){
-				setChanged();
-				notifyObservers((FakePlace) obj);
-			}
+			setChanged();
+			notifyObservers(obj);
 		}
 		private void notifyToView(){
 			notifyToView(model);
 		}
 		
+		
+		
+		private void printRooms(List<Room> rooms){
+			int spaces = 0;
+			for(int i = 0; i < rooms.size(); i++){
+				if((Pawn) rooms.get(i).getPawn() == null){
+					System.out.print(spaces + " - ");
+					System.out.println(((Room) rooms.get(i)).toString());
+				}
+				spaces++;
+			}
+		}
+		
 		@Override
 		public void update(Observable o, Object obj){
-//			if(!(o instanceof RemoteView)){
-//				throw new IllegalArgumentException();
-//			} 
-			if(obj instanceof Action){
-				applyAction((Action) obj);
+			if(!(o instanceof RemoteView)){
+				throw new IllegalArgumentException();
 			}
-			else{
-				checkTurn();
-			}
+			applyAction((Action) obj);
+//			else{
+//				checkTurn();
+//			}
 		}
 	}
 

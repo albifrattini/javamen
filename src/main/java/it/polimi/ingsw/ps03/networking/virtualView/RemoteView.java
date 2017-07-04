@@ -36,14 +36,14 @@ public class RemoteView extends View implements Observer<Object> {
 	protected void showModel(Billboard billboard){
 		try {
 			System.out.println("Invia copia del model");
-//				
+				
 //			Billboard model = (Billboard) billboard.clone();			
 //			showChangeOfTurn(billboard.getTurnOfPlay());
 //			printRooms(billboard.getTable().getRooms());
 //			printCouncil(billboard.getTable().getCouncilPalaceList());			
 			connection.send(billboard);
 		
-		} catch (IOException/* | CloneNotSupportedException */e) {
+		} catch (IOException/* | CloneNotSupportedException*/ e) {
 			 System.out.println("Non son riuscito a inviare il model");
 		}
 	}
@@ -90,8 +90,9 @@ public class RemoteView extends View implements Observer<Object> {
 		try{	
 			System.out.println("entrato nella notify dellla remoteView");
 			
-			ActionChoices choice = ActionChoices.parseInput(message);
-			processChoice(choice);
+//			ActionChoices choice = ActionChoices.parseInput(message);
+			
+			processChoice(message);
 			
 			
 		}catch(IllegalArgumentException e){

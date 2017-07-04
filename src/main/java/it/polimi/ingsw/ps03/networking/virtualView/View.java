@@ -3,6 +3,7 @@ package it.polimi.ingsw.ps03.networking.virtualView;
 import java.util.Observable;
 import java.util.Observer;
 
+import it.polimi.ingsw.ps03.actions.Action;
 import it.polimi.ingsw.ps03.actions.ActionChoices;
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.networking.controller.Controller;
@@ -23,15 +24,15 @@ public abstract class View extends Observable implements Observer{
 	}
 	
 	
-	protected void choiceSelected(ActionChoices choice){
+	protected void choiceSelected(Object obj){
 		setChanged();
-		notifyObservers(choice);
+		notifyObservers(obj);
 	}
 	
-	protected void processChoice(ActionChoices choice) {
+	protected void processChoice(Object obj) {
 		System.out.println("Funzione process choice avviata");
 		setChanged();
-		notifyObservers(choice);
+		notifyObservers(obj);
 	}
 	
 

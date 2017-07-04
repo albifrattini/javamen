@@ -33,7 +33,8 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 public class LocalView extends Observable implements Observer{//non deve avere al suo interno aspetti legati alla network, deve solo ricevere le update
 
 	private Scanner scanner;
-	private PrintStream output; 
+	private PrintStream output;
+	private Billboard serverModel;
 	
 	public LocalView(InputStream inputStream, OutputStream output){
 		this.scanner = new Scanner(inputStream);
@@ -357,7 +358,9 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 	}
 	
 	
-	
+	private void updateModel(Billboard billboard){
+		this.serverModel = billboard;
+	}
 	
 	@Override
 	public void update(Observable o, Object obj){
@@ -366,14 +369,20 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 		}
 		if(obj instanceof Billboard){
 			Billboard model = (Billboard) obj;
+			updateModel(model);
 			showModel(model);
 //			startTurn(model);
 		}
 		if(obj instanceof Player){
 			printPlayer((Player) obj);
+			startTurn(serverModel);
 		}
 		if(obj instanceof String){
 			printMessage((String) obj);
+			if(serverModel != null){
+				startTurn(serverModel);
+			}
+			
 		}
 		if(obj instanceof FakePlace){
 			fakePlaceAction((FakePlace) obj, ((Controller) o).getBillboard());
