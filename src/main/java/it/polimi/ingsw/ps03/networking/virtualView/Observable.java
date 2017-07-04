@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Observable<Object> {
 	
 	private List<Observer<Object>> observers = new ArrayList<Observer<Object>>();

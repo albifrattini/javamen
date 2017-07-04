@@ -24,11 +24,11 @@ public class Table implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final int PH_SPACES = 4;
 	public static final int TOWER_ROOM_SPACES = 16;
-	private static List<TowerRoom> towerRooms;
-	private static List<MarketRoom> marketRooms;
-	private static List<HarvestingRoom> harvestingRooms;
-	private static List<ProductionRoom> productionRooms;
-	private static List<CouncilRoom> councilPalace;
+	private List<TowerRoom> towerRooms;
+	private List<MarketRoom> marketRooms;
+	private List<HarvestingRoom> harvestingRooms;
+	private List<ProductionRoom> productionRooms;
+	private List<CouncilRoom> councilPalace;
 	
 	
 	

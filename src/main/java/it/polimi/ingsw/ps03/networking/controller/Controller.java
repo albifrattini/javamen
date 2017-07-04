@@ -2,6 +2,7 @@ package it.polimi.ingsw.ps03.networking.controller;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +25,7 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 
 		private Billboard model;
 		private List<String> toPlay;
-		private List<RemoteView> players = new ArrayList<RemoteView>(2);
+		private List<RemoteView> players = new ArrayList<RemoteView>(4);
 		
 		public Controller(Billboard billboard){
 			this.model = billboard;
@@ -38,13 +39,32 @@ import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 			toPlay.add(name);
 		}
 		
-		public void initGame(){
-			applyAction(new ChangeTurn());
+		public void initGame(ChangeTurn action) throws IOException{
+			action.setBillboard(model);
+			action.applyAction();
+			System.out.println(model.getTurnOfPlay().getTurn() == 1);
+			System.out.println(model.getPlayers().size());
+			System.out.println(model.getTable().getRooms().size());
+//
+//			try {
+//				Thread.sleep(100000000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 //			for(int y = 0; y < players.size(); y++){//invia a tutti il model				
-//				players.get(y);
-				notifyObservers();
-								
-//								}
+//				players.get(y).startTurn(model);
+//				//players.get(y).getConnection().receiveMessage();
+//								
+//			}
+			
+			
+			sendBillboard();
+		}
+		
+		private void sendBillboard(){
+			setChanged();
+			notifyObservers(model);
 		}
 		
 		private void applyAction(Action action){

@@ -45,7 +45,9 @@ public abstract class View extends Observable implements Observer{
 		if(!(o instanceof Controller)){
 			throw new IllegalArgumentException();
 		}
-		showModel((Billboard)o);
+		if(arg1 instanceof Billboard){
+			showModel((Billboard) arg1);
+		}
 	}
 	
 

@@ -367,7 +367,7 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 		if(obj instanceof Billboard){
 			Billboard model = (Billboard) obj;
 			showModel(model);
-			startTurn(model);
+//			startTurn(model);
 		}
 		if(obj instanceof Player){
 			printPlayer((Player) obj);

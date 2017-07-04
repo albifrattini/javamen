@@ -37,38 +37,46 @@ public class Connection extends Observable<Object> implements Runnable{
 
 			
 						server.match(this, read);
-			
+						socket.setSoTimeout(10000);
 					    
-			while(isActive()){
-				
-				
-				
-				System.out.println("Sono in continuo ascolto dei messaggi");
-				
-				line = in.readObject();
-				
-				notifyObservers(line);
-		//passa alla classe Observable
-				
-			}
 		}catch(IOException  e){
 			System.out.println("Errore nella ricezione!");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Errore nella ricezione dell'oggetto");
-		}finally{
-			
-			try {
-			
-				close();
-			
-			} catch (IOException e) {
-				System.out.println("Errore nella chiusura");
-			}
+		}
 		}
 		
+	
+	
+	public void receiveMessage(){
+		while(isActive()){
+			
+			
+			
+			System.out.println("Sono in continuo ascolto dei messaggi");
+			
+			Object line;
+			try {
+				line = in.readObject();
+				notifyObservers(line);
+			} catch (ClassNotFoundException | IOException e) {
+			System.out.println("Non son riuscito a ricevere");
+			}finally{
+				
+				try {
+				
+					close();
+				
+				} catch (IOException e) {
+					System.out.println("Errore nella chiusura");
+				}
+				}
+			
+			
+	//passa alla classe Observable
+			
+		}
 	}
-	
-	
 	/*controlla che il client sia connesso*/
 	private synchronized boolean isActive(){
 		return active;

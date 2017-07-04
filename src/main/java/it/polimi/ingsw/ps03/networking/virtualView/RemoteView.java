@@ -24,15 +24,23 @@ public class RemoteView extends View implements Observer<Object> {
 	    System.out.println("aggiunto alla lista di observer");	
 	}
 
+	public Connection getConnection(){
+		return connection;
+	}
+
+	public void startTurn(Billboard billboard) throws IOException{
+		connection.send("E' il tuo turno");
+		showModel(billboard);
+	}
 	@Override
 	protected void showModel(Billboard billboard){
 		try {
 			System.out.println("Invia copia del model");
-				
+//				
 //			Billboard model = (Billboard) billboard.clone();			
-			showChangeOfTurn(billboard.getTurnOfPlay());
-			printRooms(billboard.getTable().getRooms());
-			printCouncil(billboard.getTable().getCouncilPalaceList());			
+//			showChangeOfTurn(billboard.getTurnOfPlay());
+//			printRooms(billboard.getTable().getRooms());
+//			printCouncil(billboard.getTable().getCouncilPalaceList());			
 			connection.send(billboard);
 		
 		} catch (IOException/* | CloneNotSupportedException */e) {
