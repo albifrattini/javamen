@@ -32,13 +32,9 @@ public class Game implements Runnable{
 			controller = new Controller(model);
 			developmentCards = new DevelopmentCards();
 			developmentCards.build();			 	
-			model.getTable().buildTable(playersConnected.size());
-			
-			System.out.println("Sono entrato");
- 
-			
-			for(int i = 0; i < playersConnected.size(); i++ ){//aggiunge i giocatori alla partita
-						
+			model.getTable().buildTable(playersConnected.size());			
+			System.out.println("Sono entrato");			
+			for(int i = 0; i < playersConnected.size(); i++ ){//aggiunge i giocatori alla partita						
 							PlayerColor [] colors = PlayerColor.values();		 		
 					 		List<String> keys = new ArrayList<>(playersConnected.keySet());	//Returns a Set view of the keys contained in this map.
 					 		Connection c = playersConnected.get(keys.get(i));
@@ -53,24 +49,12 @@ public class Game implements Runnable{
 					 		player.addObserver(controller);
 					 		controller.addObserver(player);
 			 			 	}
-			
 			model.getTurnOfPlay().setNumberOfPlayers(model.getPlayers().size());
-			try {
+			try{
 				controller.initGame(new ChangeTurn());
-			} catch (IOException e) {
+			}catch (IOException e){
 				System.out.println("Non sono riuscito a far partire il turno");
-			}
-
-//	
-//			for(int y = 0; y < players.size(); y++){//invia a tutti il model
-//			
-//							players.get(y).showModel(model);
-//							
-//							}
-//		 					 
-//			
-//			
-		 
+			}		 
 	 }
 }
 

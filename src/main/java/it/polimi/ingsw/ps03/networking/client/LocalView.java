@@ -3,7 +3,6 @@ package it.polimi.ingsw.ps03.networking.client;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -12,7 +11,6 @@ import java.util.Scanner;
 
 
 import it.polimi.ingsw.ps03.actions.ActionChoices;
-//import it.polimi.ingsw.ps03.actions.ChangeTurn;
 import it.polimi.ingsw.ps03.actions.CheckPlayer;
 import it.polimi.ingsw.ps03.actions.FakePlace;
 import it.polimi.ingsw.ps03.actions.Place;
@@ -30,8 +28,7 @@ import it.polimi.ingsw.ps03.room_pack.Room;
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 
-public class LocalView extends Observable implements Observer{//non deve avere al suo interno aspetti legati alla network, deve solo ricevere le update
-
+public class LocalView extends Observable implements Observer{
 	private Scanner scanner;
 	private PrintStream output;
 	private Billboard serverModel;
@@ -39,18 +36,14 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 	public LocalView(InputStream inputStream, OutputStream output){
 		this.scanner = new Scanner(inputStream);
 		this.output = new PrintStream(output);
-	}
-	
-	
+	}		
 	/* Override of the method of the Interface Runnable. It simply initializes the game
 	*/
 	public void initGame(){
-		output.println("Benvenuto in LORENZO IL MAGNIFICO!\n"+
-	                                       "What's your name?");
+		output.println("Benvenuto in LORENZO IL MAGNIFICO!\n"+"What's your name?");
 		String name = scanner.next();
 		setChanged();
-		notifyObservers(name);
-		
+		notifyObservers(name);		
 	}
 	
 	
@@ -68,24 +61,24 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 		output.println("\nE' il turno del giocatore " + 
 				color.toString().substring(0, 1).toUpperCase() + 
 				color.toString().substring(1, color.toString().length()).toLowerCase());
-		do{
-			choice = selectAction();
-		} while(choice == null);
-		switch(choice){
-			case PLACE:
-				placeAction(billboard, turnOfPlayer);
-				break;
-			case CHECKPLAYER:
-				checkPlayerAction(turnOfPlayer);
-				break;
-			case CHECKCARDS:
-				printCards(billboard.getTable().getTowerRoomList());
-				startTurn(billboard);
-				break;
-			default:
-				output.println("Errore nella scelta azione!");
-				break;
-		}
+			do{
+				choice = selectAction();
+			}while(choice == null);
+				switch(choice){
+				case PLACE:
+					placeAction(billboard, turnOfPlayer);
+					break;
+				case CHECKPLAYER:
+					checkPlayerAction(turnOfPlayer);
+					break;
+				case CHECKCARDS:
+					printCards(billboard.getTable().getTowerRoomList());
+					startTurn(billboard);
+					break;
+				default:
+					output.println("Errore nella scelta azione!");
+					break;
+				}
 	}
 	
 	
@@ -110,27 +103,23 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 	 * object just built. This will be processed by the Controller.
 	 */
 	public void placeAction(Billboard billboard, int turnOfPlayer){
-		Place action = new Place(billboard.getPlayers().get(turnOfPlayer));
-		
+		Place action = new Place(billboard.getPlayers().get(turnOfPlayer));		
 		if(action.getPawn() == null){
 			Player player = action.getPlayer();
 			action.setPawn(player.getPawn(pawnChoice(player)));
-		}
-		
+		}		
 		try{
 			List<Room> rooms = billboard.getTable().getRooms();
 			action.setRoom(rooms.get(roomChoice(rooms)));
 			if(action.getRoom() instanceof TowerRoom){
 				action.setChosenCost(((TowerRoom) action.getRoom()).
-						getPlacedCard().getCosts().get(costChoice(action.getRoom())));
+				getPlacedCard().getCosts().get(costChoice(action.getRoom())));
 			}
 		}catch(IndexOutOfBoundsException e){
 			output.println("\nWARNING: Impossibile posizionare!\n");
 			placeAction(billboard, turnOfPlayer);
-		}
-		
-		action.setRequiredResources(resourcesChoice());
-		
+		}		
+		action.setRequiredResources(resourcesChoice());		
 		setChanged();
 		notifyObservers(action);
 	}
@@ -194,10 +183,7 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 		String input = scanner.next();
 		int choice = Integer.parseInt(input);
 		return choice;
-	}
-	
-	
-	
+	}			
 	/* Method that asks the user for an input. In particular it questions the user if he wants to use some 
 	 * resources during 'place' action. After instantiating a Resources' object, the method fills it with
 	 * user inputs and returns the object to the caller. 
@@ -210,7 +196,6 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 		do{
 			output.print("Inserisci il nome della risorsa: ['q' per terminare]  ");
 			sResource = scanner.next().toUpperCase();
-			
 			if(sResource != "Q" && resources.getResourcesMap().containsKey(sResource)){
 				output.printf("Inserisci la quantità di %s che desideri spendere:  ", sResource.toLowerCase());
 				try{
@@ -222,10 +207,8 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 			}
 			else if(!(sResource.contains("Q"))){
 				output.println("Risorsa inesistente!");
-			}
-			
+			}			
 		}while(!(sResource.contains("Q")));
-
 		return resources;
 	}
 	
@@ -265,15 +248,13 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 		if(choice.contains("yes")){
 			try{
 				fakePlace.setRoom(towerRooms.get(towerRoomChoice(towerRooms)));
-					fakePlace.setChosenCost(((TowerRoom) fakePlace.getRoom()).
-							getPlacedCard().getCosts().get(costChoice(fakePlace.getRoom())));
+				fakePlace.setChosenCost(((TowerRoom) fakePlace.getRoom()).
+				getPlacedCard().getCosts().get(costChoice(fakePlace.getRoom())));
 			}catch(IndexOutOfBoundsException e){
 				output.println("\nWARNING: Impossibile posizionare!\n");
 				fakePlaceAction(fakePlace, billboard);
-			}
-		
-			fakePlace.setRequiredResources(resourcesChoice());
-		
+			}		
+			fakePlace.setRequiredResources(resourcesChoice());		
 			setChanged();
 			notifyObservers(fakePlace);
 		}
@@ -286,10 +267,7 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 			fakePlaceAction(fakePlace, billboard);
 		}
 	}
-	
-
-	
-	public static final int TOWER_ROOM_SPACES = 16;
+		
 	/* Method always called by the update method. It will show the current situation of the billboard, with 
 	 * particular regard to rooms. So it will not show player's resources and the personal board in general.
 	 * Will be given an action able to show player's personal board.
@@ -302,7 +280,7 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 	
 	private void showChangeOfTurn(TurnOfPlay turnOfPlay){
 		output.println("\n\nTurno " + turnOfPlay.getTurn() + 
-				" del periodo numero " + turnOfPlay.getPeriod() + ":\n");
+		" del periodo numero " + turnOfPlay.getPeriod() + ":\n");
 	}
 	
 	private void printRooms(List<Room> rooms){
@@ -317,7 +295,6 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 	}
 	
 	private void printTowerRooms(List<TowerRoom> towerRooms){
-
 		int spaces = 0;
 		for(int i = 0; i < towerRooms.size(); i++){
 			if(towerRooms.get(i).getPawn() == null){
@@ -334,7 +311,7 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 	
 	private void printPlayer(Player player){
 		output.println("Giocatore " + player.getColor().toString().substring(0, 1) + 
-				player.getColor().toString().substring(1, player.getColor().toString().length()).toLowerCase());
+		player.getColor().toString().substring(1, player.getColor().toString().length()).toLowerCase());
 		printPlayerResources(player);
 		printPlayerCards(player);
 	}
@@ -371,7 +348,6 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 			Billboard model = (Billboard) obj;
 			updateModel(model);
 			showModel(model);
-//			startTurn(model);
 		}
 		if(obj instanceof Player){
 			printPlayer((Player) obj);
@@ -381,24 +357,11 @@ public class LocalView extends Observable implements Observer{//non deve avere a
 			printMessage((String) obj);
 			if(serverModel != null){
 				startTurn(serverModel);
-			}
-			
+			}			
 		}
 		if(obj instanceof FakePlace){
 			fakePlaceAction((FakePlace) obj, ((Controller) o).getBillboard());
 		}
 	}
-
-
-
-
-	
-		
-	
-	
-	
-	
-	
-
 
 }

@@ -27,12 +27,12 @@ public class NetworkHandler implements Observer {
 				out.flush();
 				out.reset();
 				System.out.println("messaggino inviatino");
-			} catch (IOException e) {
+			}catch (IOException e) {
 				System.out.println("Errore nell'invio del messaggio");
-			}
-		}
-		
+			 }
 	}
+		
+}
 
 
 

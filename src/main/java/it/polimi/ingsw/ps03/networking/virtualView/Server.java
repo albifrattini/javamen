@@ -20,11 +20,12 @@ public class Server {
      private Socket newSocket;
 	 private ServerSocket serverSocket;
 	 private Connection connection;
-	 ExecutorService executor = Executors.newCachedThreadPool();//con newFixedThreadPool(i) posso scegliere quanti thread creare
-		 														//classe executor per gestire più tread senza dover creare
-	 															//continuamente ogni singolo thread
+	 ExecutorService executor = Executors.newCachedThreadPool();
+	//con newFixedThreadPool(i) posso scegliere quanti thread creare
+	//classe executor per gestire più tread senza dover creare
+	//continuamente ogni singolo thread
 	 private List<Connection> connections = new ArrayList<Connection>();
-	 private Map<String, Connection> waitingConnection = new HashMap<>(4);//inserisco fino a 4 giocatori in coda, che attendono di giocare
+	 private Map<String, Connection> waitingConnection = new HashMap<>(4);
 	 private int number = 1;
 	 
 	 public Server() throws IOException {
@@ -34,48 +35,35 @@ public class Server {
 
 	 public void startServer() throws SocketException{/*crea la server socket e si mette in ascolto pronto a ricevere
 														le connessioni. Man mano che un client si connette viene messo 
-														nell'arraylist connections*/ 
-		 
-
-		 	System.out.println("Server Ready on Port: "+PORT);
-		 
-		 while(true){ 		 
-			
-				 try{
-					 newSocket = serverSocket.accept(); //crea una connessione tra server e client
-				
-					 InetAddress infoclient = newSocket.getInetAddress();  //ritorna l'indirizzo dal quale il client si connette al socket
-					 String client = infoclient.getHostAddress();    //ritorna l'indirizzo IP del client 
-		
-					 System.out.println("Connessione ricevuta dal client: "+ client);
-			
-					 connection = new Connection(newSocket, this);
-					 addConnection(connection);
-					 executor.submit(connection);//fa partire Connection
-			}catch (IOException e){
-				System.out.println("Errore nella connessione");
-			}
-			 }
-			 	
-		}
-		
+														nell'arraylist connections*/ 		 
+		 System.out.println("Server Ready on Port: "+PORT);		 
+		 while(true){ 		 			
+					try{
+					newSocket = serverSocket.accept(); //crea una connessione tra server e client				
+					InetAddress infoclient = newSocket.getInetAddress();  //ritorna l'indirizzo dal quale il client si connette al socket
+					String client = infoclient.getHostAddress();    //ritorna l'indirizzo IP del client 		
+					System.out.println("Connessione ricevuta dal client: "+ client);		
+					connection = new Connection(newSocket, this);
+					addConnection(connection);
+					executor.submit(connection);//fa partire Connection
+					}catch (IOException e){
+						System.out.println("Errore nella connessione");
+					}
+		}			 	
+	}
 	 
-	
-
-
 	/*aggiunge all'arrayList le connessioni attive*/
 	 private synchronized void addConnection(Connection c){
-			connections.add(c);
-				System.out.println("aggiunto il client alle connessioni");//solo come prova
-		}
+		connections.add(c);
+		System.out.println("aggiunto il client alle connessioni");//solo come prova
+	}
 	 
 	 public synchronized void removeConnection(Connection c){
 		 connections.remove(c);			
 	 }
 	 
 	 //permette di gestire più partite contemporaneamente
-	 public synchronized void match(Connection c, String name) throws IOException{
-					 	
+	 public synchronized void match(Connection c, String name) throws IOException{					 	
 		 	waitingConnection.put(name, c);	
 			System.out.println("aggiunto il giocatore alla coda di attesa");									
 			if(waitingConnection.size() ==  2){				
@@ -85,10 +73,8 @@ public class Server {
 				waitingConnection.clear();
 				System.out.println("Creata la partita numero: " + number);
 				number++;
-				}		
-				
+			}						
 	 }
-
 	 
 	 //MAIN
 	 public static void main(String[] args){
@@ -98,13 +84,9 @@ public class Server {
 				server.startServer();
 			}catch (IOException e){
 				System.err.println("Server not ready, "+e.getMessage() + "!");
-			}
-			
-			
+			}						
 		}
-		
-		
-		
+						
 }
 
 

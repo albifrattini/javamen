@@ -12,18 +12,15 @@ import it.polimi.ingsw.ps03.players.*;
 public abstract class View extends Observable implements Observer{
 
 	protected Player player;
-	
-	
+		
 	protected View(Player player){
 		this.player = player;
 	}
-	
-	
+		
 	public Player getPlayer(){
 		return player;
 	}
-	
-	
+		
 	protected void choiceSelected(Object obj){
 		setChanged();
 		notifyObservers(obj);
@@ -34,10 +31,7 @@ public abstract class View extends Observable implements Observer{
 		setChanged();
 		notifyObservers(obj);
 	}
-	
-
-
-	
+		
 	protected abstract void showModel(Billboard billboard);
 	
 	

@@ -10,41 +10,31 @@ import java.util.NoSuchElementException;
 import java.util.Observable;
 
 
-public class Client extends Observable {//si connette alla porta e attende gli eventi dalla virtual view e li notifica alla local view->BillboardView?
+public class Client extends Observable {
 	private static String ip;
 	private static int port;
 	private static ObjectInputStream in;
-
-	
-	
+		
 	public Client(String ip,int port){
 		Client.ip = ip;
 		Client.port = port;		
 	}
 
-
-
 	public void receiveMessage(Socket socket) throws ClassNotFoundException, IOException{
-		try{
-			
-		
-				while (true){
-		
-					Object line = in.readObject();
-					setChanged();
-					notifyObservers(line);
+		try{					
+			while (true){		
+				Object line = in.readObject();
+				setChanged();
+				notifyObservers(line);
 				}
-		}catch(NoSuchElementException | ClassNotFoundException e){
-			System.out.println("Connection closed");
+			}catch(NoSuchElementException | ClassNotFoundException e){
+				System.out.println("Connection closed");
 			}
-			  finally{
-				
+			 finally{				
 				in.close();
 				socket.close();
-			}
-		
-	
-		}
+			}			
+	}
 		
 	//MAIN
 public static void main(String[] args) throws UnknownHostException, IOException{
@@ -52,26 +42,18 @@ public static void main(String[] args) throws UnknownHostException, IOException{
 	Socket socket = new Socket(ip , port);//crea la socket del client 
 	NetworkHandler networkHandler = new NetworkHandler(socket);
 	LocalView ui = new LocalView(System.in, System.out);
-	in = new ObjectInputStream(socket.getInputStream());
-	
+	in = new ObjectInputStream(socket.getInputStream());	
 	client.addObserver(ui);
 	ui.addObserver(networkHandler);
-	ui.initGame();
-	
-	try{
-		client.receiveMessage(socket);
-		
-	}catch (IOException | ClassNotFoundException e){
-		System.err.println(e.getMessage());
-					}
-													}
+	ui.initGame();	
+		try{
+			client.receiveMessage(socket);		
+		}catch (IOException | ClassNotFoundException e){
+			System.err.println(e.getMessage());
+		}
+	}
 
-
-
-
-
-public void update(Observable o, Object message) {
-	
-	
+public void update(Observable o, Object message) {		
 }
+
 }

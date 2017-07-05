@@ -10,24 +10,23 @@ public class Observable<Object> {
 	private List<Observer<Object>> observers = new ArrayList<Observer<Object>>();
 	
 			/*aggiunge alla lista di osservatori i giocatori*/
-			public void register(Observer<Object> observer){
-				synchronized (observers) {
-					observers.add(observer);			
+	public void register(Observer<Object> observer){
+		synchronized (observers){
+		observers.add(observer);			
 		}		
 	}
 	
-			public void deregister(Observer<Object> observer){
-				synchronized (observers) {
-					observers.remove(observer);
+	public void deregister(Observer<Object> observer){
+		synchronized (observers) {
+		observers.remove(observer);
 		}
 	}
 	
-			protected void notifyObservers(Object read) throws IOException{
-				synchronized (observers) {
-					for(Observer<Object> observer : observers){
-						observer.notify(read);
-						//notifica a tutti gli observer e la notify è sovrascritta dalla remoteview
-			}
+	protected void notifyObservers(Object read) throws IOException{
+		synchronized (observers) {
+		for(Observer<Object> observer : observers){
+			observer.notify(read);
+		}
 		}
 	}
 }
