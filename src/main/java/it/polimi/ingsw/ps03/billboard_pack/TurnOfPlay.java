@@ -75,4 +75,6 @@ public class TurnOfPlay implements Serializable {
 		return true;
 	}
 	
+	
+	
 }

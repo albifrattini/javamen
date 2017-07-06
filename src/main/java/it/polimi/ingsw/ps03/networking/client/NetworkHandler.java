@@ -22,14 +22,13 @@ public class NetworkHandler implements Observer {
 		if(!(o instanceof LocalView)){
 			throw new IllegalArgumentException();
 		}
-			try {
-				out.writeObject(obj);
-				out.flush();
-				out.reset();
-				System.out.println("messaggino inviatino");
-			}catch (IOException e) {
-				System.out.println("Errore nell'invio del messaggio");
-			 }
+		try {
+			out.writeObject(obj);
+			out.flush();
+			out.reset();
+		}catch (IOException e) {
+			System.out.println("[NETWORKHANDLER]  Errore nell'invio del messaggio");
+		}
 	}
 		
 }

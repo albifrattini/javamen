@@ -3,6 +3,7 @@ package it.polimi.ingsw.ps03.networking.client;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -12,8 +13,8 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.ps03.actions.ActionChoices;
 import it.polimi.ingsw.ps03.actions.CheckPlayer;
+import it.polimi.ingsw.ps03.actions.ClientPlace;
 import it.polimi.ingsw.ps03.actions.FakePlace;
-import it.polimi.ingsw.ps03.actions.Place;
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.billboard_pack.TurnOfPlay;
 import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
@@ -40,7 +41,7 @@ public class LocalView extends Observable implements Observer{
 	/* Override of the method of the Interface Runnable. It simply initializes the game
 	*/
 	public void initGame(){
-		output.println("Benvenuto in LORENZO IL MAGNIFICO!\n"+"What's your name?");
+		output.println("####  LORENZO IL MAGNIFICO! ####\n"+"Come ti chiami? ");
 		String name = scanner.next();
 		setChanged();
 		notifyObservers(name);		
@@ -57,10 +58,7 @@ public class LocalView extends Observable implements Observer{
 	public void startTurn(Billboard billboard){
 		int turnOfPlayer = billboard.getTurnOfPlay().getPlayerToPlay();
 		ActionChoices choice = null;
-		PlayerColor color = billboard.getPlayers().get(turnOfPlayer).getColor();
-		output.println("\nE' il turno del giocatore " + 
-				color.toString().substring(0, 1).toUpperCase() + 
-				color.toString().substring(1, color.toString().length()).toLowerCase());
+		output.println("Giocatore numero " + billboard.getTurnOfPlay().getPlayerToPlay());
 			do{
 				choice = selectAction();
 			}while(choice == null);
@@ -103,23 +101,17 @@ public class LocalView extends Observable implements Observer{
 	 * object just built. This will be processed by the Controller.
 	 */
 	public void placeAction(Billboard billboard, int turnOfPlayer){
-		Place action = new Place(billboard.getPlayers().get(turnOfPlayer));		
-		if(action.getPawn() == null){
-			Player player = action.getPlayer();
-			action.setPawn(player.getPawn(pawnChoice(player)));
-		}		
-		try{
-			List<Room> rooms = billboard.getTable().getRooms();
-			action.setRoom(rooms.get(roomChoice(rooms)));
-			if(action.getRoom() instanceof TowerRoom){
-				action.setChosenCost(((TowerRoom) action.getRoom()).
-				getPlacedCard().getCosts().get(costChoice(action.getRoom())));
-			}
-		}catch(IndexOutOfBoundsException e){
-			output.println("\nWARNING: Impossibile posizionare!\n");
-			placeAction(billboard, turnOfPlayer);
-		}		
-		action.setRequiredResources(resourcesChoice());		
+		Player player = billboard.getPlayers().get(turnOfPlayer);
+		ClientPlace action = new ClientPlace(ActionChoices.PLACE, player.getColor());	
+		action.setPawnColor(player.getPawn(pawnChoice(player)).getDiceColor());
+		List<Room> rooms = billboard.getTable().getRooms();
+		action.setRoom(roomChoice(rooms));
+		Room room = rooms.get(action.getRoom());
+		if(room instanceof TowerRoom){
+			action.setChosenCost(((TowerRoom) room).
+			getPlacedCard().getCosts().get(costChoice(room)));
+		}
+		action.setSpentResources(resourcesChoice());
 		setChanged();
 		notifyObservers(action);
 	}
@@ -167,11 +159,20 @@ public class LocalView extends Observable implements Observer{
 	 * integer representing the chosen room.
 	 */
 	public int roomChoice(List<Room> rooms){
+		int choice = -1;
 		output.println("\nQuale spazio azione desideri occupare?");
 		output.println("Scelte disponibili:\n");
 		printRooms(rooms);
-		String input = scanner.next();
-		int choice = Integer.parseInt(input);
+		try{
+			String input = scanner.next();
+			choice = Integer.parseInt(input);
+		}catch(IndexOutOfBoundsException e){
+			output.println("\n[WARNING]  Spazio azione non individuato!");
+			roomChoice(rooms);
+		}catch(NumberFormatException e){
+			output.println("\n[WARNING]  Non hai inserito un numero!");
+			roomChoice(rooms);
+		}
 		return choice;
 	}
 	
@@ -339,6 +340,42 @@ public class LocalView extends Observable implements Observer{
 		this.serverModel = billboard;
 	}
 	
+	private void printCouncilChoices(List<Resources> list){
+		output.println("\n");
+		for(int i = 0; i < list.size(); i++){
+			output.print(i + " - ");
+			output.println(list.get(i).toString());
+		}
+	}
+	
+	private void changeCouncilPrivileges(Billboard billboard, Resources resources){
+		int i = 0;
+		int quantity = resources.getResource("COUNCILPRIVILEGES").getValue();
+		List<Resources> tempList = new ArrayList<Resources>(billboard.getCouncilChoices());
+		Resources resourcesToAdd = new Resources();
+		
+		output.println("\nPuoi scegliere " + quantity
+				+ " conversione/i al posto del privilegio del consiglio!");
+		
+		while(i < quantity){
+			printCouncilChoices(tempList);
+			output.print("\nScegli quale conversione effettuare: ");
+			try{
+				int value = Integer.parseInt(scanner.next());
+				resourcesToAdd.add(tempList.get(value));
+				tempList.remove(value);
+				i++;	
+			}catch(NumberFormatException e){
+				output.println("\nWARNING! Non hai inserito un numero!\n");
+			}catch(IndexOutOfBoundsException e){
+				output.println("\nWARNING! Scelta non disponibile!");
+			}
+		}
+		
+		setChanged();
+		notifyObservers(resourcesToAdd);
+	}
+	
 	@Override
 	public void update(Observable o, Object obj){
 		if(!(o instanceof Client)){
@@ -361,6 +398,9 @@ public class LocalView extends Observable implements Observer{
 		}
 		if(obj instanceof FakePlace){
 			fakePlaceAction((FakePlace) obj, ((Controller) o).getBillboard());
+		}
+		if(obj instanceof Resources){
+			changeCouncilPrivileges(((Controller) o).getBillboard(), (Resources) obj);
 		}
 	}
 

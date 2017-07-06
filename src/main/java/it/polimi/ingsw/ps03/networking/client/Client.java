@@ -29,8 +29,7 @@ public class Client extends Observable {
 				}
 			}catch(NoSuchElementException | ClassNotFoundException e){
 				System.out.println("Connection closed");
-			}
-			 finally{				
+			}finally{				
 				in.close();
 				socket.close();
 			}			

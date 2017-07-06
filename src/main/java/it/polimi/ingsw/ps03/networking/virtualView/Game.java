@@ -27,29 +27,28 @@ public class Game implements Runnable{
 
 	@Override
 	public void run() {			
-			List<RemoteView> players = new ArrayList<RemoteView>(2);		 						
+			List<RemoteView> players = new ArrayList<RemoteView>(playersConnected.size());		 						
 			model = new Billboard();	
 			controller = new Controller(model);
 			developmentCards = new DevelopmentCards();
 			developmentCards.build();			 	
-			model.getTable().buildTable(playersConnected.size());			
-			System.out.println("Sono entrato");			
+			model.getTable().buildTable(playersConnected.size());		
+			System.out.println("[GAME]  Sto creando la partita");			
 			for(int i = 0; i < playersConnected.size(); i++ ){//aggiunge i giocatori alla partita						
 							PlayerColor [] colors = PlayerColor.values();		 		
 					 		List<String> keys = new ArrayList<>(playersConnected.keySet());	//Returns a Set view of the keys contained in this map.
 					 		Connection c = playersConnected.get(keys.get(i));
-					 		RemoteView player = new RemoteView(new Player(keys.get(i) ,colors[i] , 5+i ) , c);
+					 		RemoteView player = new RemoteView(new Player(keys.get(i), colors[i] , 5+i), c);
 					 		players.add(player);
 					 		controller.addRemote(player);//creo lista di remoteView
 					 		playersName.add(keys.get(i));//creo lista di nomiUtente
 					 		model.addPlayerRemote(i, keys.get(i), colors[i], 5+i);
-					 		System.out.println("giocatore: " + playersName.get(i).toString() + " Colore: " + colors[i].toString());		 				 		
-//					 		controller.addToPlay(keys.get(i));
+					 		System.out.println("[GAME]  Giocatore " + playersName.get(i).toString() + " di colore " + colors[i].toString());
 					 		model.addObserver(controller);
 					 		player.addObserver(controller);
 					 		controller.addObserver(player);
-			 			 	}
-			model.getTurnOfPlay().setNumberOfPlayers(model.getPlayers().size());
+			}
+			model.getTurnOfPlay().setNumberOfPlayers(model.getPlayers().size());	
 			try{
 				controller.initGame(new ChangeTurn());
 			}catch (IOException e){

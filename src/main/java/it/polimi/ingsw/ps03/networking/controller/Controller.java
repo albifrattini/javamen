@@ -17,7 +17,6 @@ import it.polimi.ingsw.ps03.networking.virtualView.RemoteView;
 import it.polimi.ingsw.ps03.actions.*;
 import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.resources.Resource;
-import it.polimi.ingsw.ps03.room_pack.Room;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 
 
@@ -38,50 +37,71 @@ public class Controller extends Observable implements Observer {
 		action.setBillboard(model);
 		action.applyAction();
 		sendBillboard();
-		sendToPlayingClient("\n\n####E' il tuo turno####");
+		sendToPlayingClient("\n\n ==> E' il tuo turno:  ");
 	}
 		
 	private void sendBillboard(){
-		setChanged();
-		notifyObservers(model);
+		sendObservers(model);
 	}
 		
 
-		
+	private void sendObservers(Object obj){
+		for(RemoteView player : players){
+			try {
+				player.getConnection().send(obj);
+			}catch (IOException e) {
+				System.out.println("[CONTROLLER]  Oggetto non inviato agli osservatori");
+			}
+		}
+	}
+	
+	private void sendToPlayingClient(Object obj){
+		RemoteView player = players.get(model.getTurnOfPlay().getPlayerToPlay());
+		try {
+			if(obj instanceof Place){
+				player.getConnection().send("\n\nWARNING! Requisiti non soddisfatti!");
+			}
+			else{
+				player.getConnection().send(obj);
+			}
+		}catch (IOException e) {
+			System.out.println("[CONTROLLER]  Oggetto non inviato al giocatore che deve giocare");
+		}
+	}
+	
+	
+	
+	//PARTI RIGUARDANTI LA GESTIONE AZIONI
+	
+	
 	private void applyAction(Action action){
 		action.setBillboard(model);
 		if(action instanceof ChangeTurn){
 			((ChangeTurn) action).applyAction();
-			notifyToView();
+			sendBillboard();
 		}
 		if(action instanceof Place){
-			printPlace((Place) action);
 			if(checkPlaceAction((Place) action)){
 				DevelopmentCard drawnCard = ((Place) action).applyAction();
-				printPlace((Place)action);
 				if(hasEffect(drawnCard)){
+					System.out.println("[AZIONE IN CORSO]");
 					activateEffect(drawnCard);
+					checkTurn(((Place) action).getPlayer());
+					System.out.println("[EFFETTO ATTIVATO E PASSATO CHECKTURN]");
+				}
+				else{
+					checkTurn(((Place) action).getPlayer());
 				}
 			}
 			else{
-				notifyToView(action);
+				sendToPlayingClient(action);
 			}
-			checkTurn(((Place) action).getPlayer());
 		}
 		if(action instanceof CheckPlayer){
 			Player player = ((CheckPlayer) action).applyAction();
 			sendToPlayingClient(player);
 		}
 	}
-		
-		
-		
-	private void printPlace(Place action){
-		System.out.println(action.getPlayer().getPawns().size());
-		System.out.println(action.getRoom().toString());
-		System.out.println(action.getRequiredResources().toString());
-	}
-	
 		
 	private boolean hasEffect(DevelopmentCard drawnCard){
 		return drawnCard != null && drawnCard.getImmediateEffect() != null;
@@ -97,27 +117,17 @@ public class Controller extends Observable implements Observer {
 				FakePlace fakePlace = new FakePlace(model, player,
 												plEffect.getPlaceTowerColor(),
 												plEffect.getPlaceDiceValue());
-				notifyToView(fakePlace);
+				sendToPlayingClient(fakePlace);
 			}
 			else{
 				((GiveResourcesImmediateEffect) effect).applyEffect(player);
-				checkTurn(player);
 			}
-		}
-		if(effect instanceof PlaceImmediateEffect){
-			PlaceImmediateEffect plEffect = (PlaceImmediateEffect) effect;
-			FakePlace fakePlace = new FakePlace(model, player,
-											plEffect.getPlaceTowerColor(),
-											plEffect.getPlaceDiceValue());
-			notifyToView(fakePlace);
 		}
 		if(effect instanceof EarnImmediateEffect){
 			((EarnImmediateEffect) effect).applyEffect(player);
-			checkTurn(player);
 		}
 		if(effect instanceof HarvestingOrProductionImmediateEffect){
 			((HarvestingOrProductionImmediateEffect) effect).applyEffect(player);
-			checkTurn(player);
 		}
 	}
 		
@@ -178,20 +188,23 @@ public class Controller extends Observable implements Observer {
 	}
 		
 	public void checkTurn(Player player){
-		printRooms(model.getTable().getRooms());
 		if(!(player.hasCouncilPrivileges())){
 			model.getTurnOfPlay().nextPlayer();
 			if(!(model.getTurnOfPlay().hasNextMiniTurn())){
+				System.out.println("[POSTO SBAGLIATO MINITURN]");
 				ChangeTurn changeTurn = new ChangeTurn();
 				applyAction(changeTurn);
 			}
 			else{
-				notifyToView();
-				sendToPlayingClient("\n\n####E' il tuo turno####");
+				System.out.println("[NUMERO DI GIOCATORI] "  + model.getTurnOfPlay().getNumberOfPlayers());
+				System.out.println("[PRIMA DI INVIARE LA BILLBOARD IN CHECKTURN]");
+				sendBillboard();
+				sendToPlayingClient("\n\n ==> E' il tuo turno:  ");
 			}
 		}
 		else{
-			notifyToView(player.getResources());
+			System.out.println("[ELSE NESSUN PRIVILEGIO]");
+			sendToPlayingClient(player.getResources());
 		}
 	}		
 				
@@ -199,43 +212,44 @@ public class Controller extends Observable implements Observer {
 		return model;
 	}
 		
-	private void sendToPlayingClient(Object obj){
-		RemoteView player = players.get(model.getTurnOfPlay().getPlayerToPlay());
-		try {
-			player.getConnection().send(obj);
-		}catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+
 		
-	private void notifyToView(Object obj){
-		if(obj instanceof Place){
-			setChanged();
-			notifyObservers("\n\nERRORE! Impossibile posizionare, requisiti non soddisfatti!");
-		}
-		setChanged();
-		notifyObservers(obj);
-		}
+//	private void notifyToView(Object obj){
+//		if(obj instanceof Place){
+//			setChanged();
+//			notifyObservers("\n\nERRORE! Impossibile posizionare, requisiti non soddisfatti!");
+//		}
+//		setChanged();
+//		notifyObservers(obj);
+//		}
 		
-	private void notifyToView(){
-		notifyToView(model);
+//	private void notifyToView(){
+//		notifyToView(model);
+//	}
+
+	private void printMessage(String message){
+		System.out.println(message);
+		sendToPlayingClient("\n\nE' il tuo turno:  ");
 	}
-				
-	private void printRooms(List<Room> rooms){
-		int spaces = 0;
-		for(int i = 0; i < rooms.size(); i++){
-			if((Pawn) rooms.get(i).getPawn() == null){
-				System.out.print(spaces + " - ");
-				System.out.println(((Room) rooms.get(i)).toString());
-			}
-			spaces++;
-		}
+	private Place convertToPlace(ClientPlace action){
+		Place place = new Place(model.getPlayerOfColor(action.getPlayerColor()));
+		place.setRoom(model.getTable().getRooms().get(action.getRoom()));
+		place.setPawn(place.getPlayer().getPawn(action.getPawnColor().toString()));
+		place.setRequiredResources(action.getSpentResources());
+		place.setChosenCost(action.getChosenCost());
+		return place;
 	}
 		
 	@Override
 	public void update(Observable o, Object obj){
 		if(!(o instanceof RemoteView)){
 			throw new IllegalArgumentException();
+		}
+		if(obj instanceof ClientPlace){
+			obj = convertToPlace((ClientPlace) obj);
+		}
+		if(obj instanceof String){
+			printMessage((String) obj);
 		}
 		applyAction((Action) obj);
 	}

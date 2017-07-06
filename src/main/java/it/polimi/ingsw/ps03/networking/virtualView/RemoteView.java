@@ -21,7 +21,6 @@ public class RemoteView extends View implements Observer<Object> {
 		super(player);
 		this.connection = c;
 		c.register(this);
-	    System.out.println("aggiunto alla lista di observer");	
 	}
 
 	public Connection getConnection(){
@@ -30,33 +29,47 @@ public class RemoteView extends View implements Observer<Object> {
 
 	public void startTurn(Billboard billboard) throws IOException{
 		connection.send("E' il tuo turno");
-		showModel(billboard);
+		sendModel(billboard);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
-	protected void showModel(Billboard billboard){
+	protected void sendModel(Billboard billboard){
 		try {
-			System.out.println("Invia copia del model");
-				
-//			Billboard model = (Billboard) billboard.clone();				
+			System.out.println("[SERVER->CLIENT]  Invio elemento al client");
+			System.out.println("INVIO MODEL A GIOCATORE " + player.getName());
 			connection.send(billboard);
-		
-		} catch (IOException/* | CloneNotSupportedException*/ e) {
-			 System.out.println("Non son riuscito a inviare il model");
+		} catch (IOException e) {
+			System.out.println("[SERVER->CLIENT; WARNING]  Errore nell'invio del messaggio al client");
 		}
+		setChanged();
+		notifyObservers("[SERVER->CLIENT]  Elemento inviato con successo al client");
 	}	
+	
+	
+	
+	
+	
 	
 	@Override//sovrascrive la notify di Observer quando viene invocata
 	public void notify(Object message) throws IOException {				
-		System.out.println("Ricevuto " + message.toString() + " dal giocatore " +player.toString());//riceve man mano e stampa sul server ciò che ha ricevuto
+		System.out.println("[REMOTEVIEW]  Ricevuto " + message.toString() + " dal giocatore " + player.toString());//riceve man mano e stampa sul server ciò che ha ricevuto
 			try{	
-				System.out.println("entrato nella notify dellla remoteView");						
+				System.out.println("[REMOTEVIEW]  Inoltro messaggio del client al controller");						
 				processChoice(message);		
 			}catch(IllegalArgumentException e){
-			connection.send("Error, Action not valid!Please try again");						
+				connection.send("[REMOTEVIEW; WARNING]  Messaggio del client non inoltrato al controller");						
 			}		
 	}
 
-		public void update(Observable o, Object obj) {
+	public void update(Observable o, Object obj) {
 		
 	}
 

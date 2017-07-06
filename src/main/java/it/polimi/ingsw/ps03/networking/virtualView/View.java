@@ -3,8 +3,6 @@ package it.polimi.ingsw.ps03.networking.virtualView;
 import java.util.Observable;
 import java.util.Observer;
 
-import it.polimi.ingsw.ps03.actions.Action;
-import it.polimi.ingsw.ps03.actions.ActionChoices;
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.networking.controller.Controller;
 import it.polimi.ingsw.ps03.players.*;
@@ -27,12 +25,12 @@ public abstract class View extends Observable implements Observer{
 	}
 	
 	protected void processChoice(Object obj) {
-		System.out.println("Funzione process choice avviata");
+		System.out.println("[VIEW<-REMOTEVIEW]  Funzione process choice avviata");
 		setChanged();
 		notifyObservers(obj);
 	}
 		
-	protected abstract void showModel(Billboard billboard);
+	protected abstract void sendModel(Billboard billboard);
 	
 	
 	@Override
@@ -41,7 +39,7 @@ public abstract class View extends Observable implements Observer{
 			throw new IllegalArgumentException();
 		}
 		if(arg1 instanceof Billboard){
-			showModel((Billboard) arg1);
+			sendModel((Billboard) arg1);
 		}
 	}
 	

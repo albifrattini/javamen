@@ -36,13 +36,13 @@ public class Server {
 	 public void startServer() throws SocketException{/*crea la server socket e si mette in ascolto pronto a ricevere
 														le connessioni. Man mano che un client si connette viene messo 
 														nell'arraylist connections*/ 		 
-		 System.out.println("Server Ready on Port: "+PORT);		 
+		 System.out.println("[SERVER]  Ready on Port: "+PORT);		 
 		 while(true){ 		 			
 					try{
 					newSocket = serverSocket.accept(); //crea una connessione tra server e client				
 					InetAddress infoclient = newSocket.getInetAddress();  //ritorna l'indirizzo dal quale il client si connette al socket
 					String client = infoclient.getHostAddress();    //ritorna l'indirizzo IP del client 		
-					System.out.println("Connessione ricevuta dal client: "+ client);		
+					System.out.println("[SERVER]  Connessione ricevuta dal client: " + client);		
 					connection = new Connection(newSocket, this);
 					addConnection(connection);
 					executor.submit(connection);//fa partire Connection
@@ -55,7 +55,7 @@ public class Server {
 	/*aggiunge all'arrayList le connessioni attive*/
 	 private synchronized void addConnection(Connection c){
 		connections.add(c);
-		System.out.println("aggiunto il client alle connessioni");//solo come prova
+		System.out.println("[SERVER]  Aggiunto il client alle connessioni");//solo come prova
 	}
 	 
 	 public synchronized void removeConnection(Connection c){
@@ -65,13 +65,13 @@ public class Server {
 	 //permette di gestire più partite contemporaneamente
 	 public synchronized void match(Connection c, String name) throws IOException{					 	
 		 	waitingConnection.put(name, c);	
-			System.out.println("aggiunto il giocatore alla coda di attesa");									
+			System.out.println("[SERVER]  Aggiunto il giocatore alla coda di attesa");									
 			if(waitingConnection.size() ==  2){				
-				System.out.println("2 giocatori raggiunti, il gioco sta per iniziare");				
+				System.out.println("[SERVER]  2 giocatori raggiunti, il gioco ha inizio");				
 				Game game = new Game(waitingConnection);
 				executor.submit(game);
 				waitingConnection.clear();
-				System.out.println("Creata la partita numero: " + number);
+				System.out.println("[SERVER]  Creata la partita numero: " + number);
 				number++;
 			}						
 	 }

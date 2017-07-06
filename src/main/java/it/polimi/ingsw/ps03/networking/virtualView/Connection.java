@@ -26,9 +26,8 @@ public class Connection extends Observable<Object> implements Runnable{
 			out = new ObjectOutputStream(socket.getOutputStream());
 			Object line = in.readObject();
 			String read = (String)line;	
-			System.out.println("Ricevuto: "+ read);
-			send("well met " + read + " and welcome in Lorenzo il Magnifico "
-					+"looking for other players... please wait");
+			System.out.println("[CONNECTION]  Ricevuto: "+ read);
+			send("\nBenvenuto in Lorenzo Il Magnifico " + read + "!\nSono in attesa di altri giocatori... Attendi");
 			server.match(this, read);
 			receiveMessage();					    
 		}catch(IOException  e){
@@ -40,20 +39,20 @@ public class Connection extends Observable<Object> implements Runnable{
 				
 	public void receiveMessage(){
 		while(isActive()){
-			System.out.println("Sono in continuo ascolto dei messaggi");
+			System.out.println("[CONNECTION]  Sono in continuo ascolto dei messaggi");
 			Object line;			
 			try{
 				line = in.readObject();
-				notifyObservers(line);
+				notifyObservers(line); //metodo che attiva la notify di tutte le remoteview che hanno come attributo 'Connection'
 			}catch (ClassNotFoundException | IOException e){
 			System.out.println("Non son riuscito a ricevere");
-			 }
+			}
 		}					
 		try{
 			close();
 		}catch (IOException e) {
 			System.out.println("Errore nella chiusura");
-		 }
+		}
 	}
 	
 	/*controlla che il client sia connesso*/
@@ -62,11 +61,11 @@ public class Connection extends Observable<Object> implements Runnable{
 	}	
 	
 	/*invia i messaggi*/
-	public void send(Object message) throws IOException {		
-			out.writeObject(message);
-				out.flush();
-					out.reset();
-					System.out.println("messaggio inviato: " +message);
+	public void send(Object message) throws IOException{	
+		out.writeObject(message);
+		out.flush();
+		out.reset();
+		System.out.println("[CONNECTION]  Messaggio inviato: " + message);
 	}		
 	
 	public synchronized void closeConnection() throws IOException {		
