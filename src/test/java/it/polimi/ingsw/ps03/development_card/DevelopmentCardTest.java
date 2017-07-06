@@ -1,4 +1,5 @@
 package it.polimi.ingsw.ps03.development_card;
+import it.polimi.ingsw.ps03.effects.*;
 
 import static org.junit.Assert.*;
 
@@ -16,13 +17,21 @@ import it.polimi.ingsw.ps03.room_pack.TowerColor;
 public class DevelopmentCardTest {
 	
  DevelopmentCard devCard;
+ Effect mEffect;
+ Resources mRes;
 	
  @Before
 	public void setUp() throws Exception {
+	 	 mRes = new Resources();
 		 devCard = new DevelopmentCard(3,2,3,"il Boscaiolo", TowerColor.GREEN);
+		 mEffect = new GiveResourcesImmediateEffect(mRes, "GIVE");
 	}
 
 	
+ 	@Test
+ 	public void testGetDevelopmentCard(){
+ 		assertEquals(devCard, devCard.getCard());
+ 	}
 
 	@Test
 	public void testGetId() {
@@ -50,8 +59,17 @@ public class DevelopmentCardTest {
 		assertEquals(3, devCard.getDiceValue());
 		
 	}
+	
+	@Test
+	public void testGetImmediateEffect(){
+		assertEquals(null, devCard.getImmediateEffect());
+	}
 
-// non ho testato set e get immediate effect
+	@Test
+	public void setImmediateEffect() {
+		devCard.setImmediateEffect(mEffect);
+		assertEquals(mEffect, devCard.getImmediateEffect()); 
+		}
 	
 	@Test
 	public void testSetPeriod() {
