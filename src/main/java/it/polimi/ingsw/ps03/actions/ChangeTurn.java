@@ -13,10 +13,15 @@ import it.polimi.ingsw.ps03.room_pack.Room;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 import it.polimi.ingsw.ps03.players.Pawn;
 import it.polimi.ingsw.ps03.players.PawnDiceColor;
-
+/**
+ * This class changes the turn and prepares the billboard for the new turn
+ * @author Alberto Frattini, Francesco Ehrenheim, Gabriele Ghiringhelli
+ *
+ */
 public class ChangeTurn extends Action {
 	
-	/**
+	/**This class changes the turn and prepares the billboard for the new turn
+	 * 
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -30,7 +35,9 @@ public class ChangeTurn extends Action {
 	public ChangeTurn(Billboard billboard){
 		super("CHANGETURN", billboard);
 	}
-	
+	/**
+	 * chiedi cosa fa di preciso ad Albi
+	 */
 	public void applyAction(){
 		getBillboard().getTurnOfPlay().nextTurnOfPlay();
 		getBillboard().getDices().rollDices();
@@ -38,6 +45,10 @@ public class ChangeTurn extends Action {
 		refreshTable();
 		displaceCards(getBillboard());
 	}
+	
+	/**
+	 * this metod refreshes the table, removes the pawns and gets free the CardSpace
+	 */
 	public void refreshTable(){
 		for(Room r : getBillboard().getTable().getRooms()){
 			if(r instanceof TowerRoom){
@@ -46,6 +57,10 @@ public class ChangeTurn extends Action {
 			r.removePawn();
 		}
 	}
+	
+	/**
+	 * this method instances new Pawns
+	 */
 	public void newPawns(){
 		for(Player pl : getBillboard().getPlayers()){
 			pl.refreshPawns();
@@ -59,6 +74,11 @@ public class ChangeTurn extends Action {
 	public int getDiceColorValue(PawnDiceColor color){
 		return getBillboard().getDices().getDice(color.toString()).getValue();
 	}
+	
+	/**
+	 * this Metod puts Develpoment Cards in the Tower Room's Card
+	 * @param billboard a type Billboadr that rapresents the bibblboard to fill
+	 */
 	public void displaceCards(Billboard billboard){
 		int period = billboard.getTurnOfPlay().getPeriod();
 		List<DevelopmentCard> deck = DevelopmentCards.getCardsOfPeriod(period, DevelopmentCards.getCardsList());
@@ -72,7 +92,9 @@ public class ChangeTurn extends Action {
 	}
 	
 
-	
+	/**
+	 * this method changes the player who has to move
+	 */
 	public void changeTurnOfPlay(){
 		List<Player> players = new ArrayList<Player>(getBillboard().getPlayers().size());
 		for(CouncilRoom cr : getBillboard().getTable().getCouncilPalaceList()){

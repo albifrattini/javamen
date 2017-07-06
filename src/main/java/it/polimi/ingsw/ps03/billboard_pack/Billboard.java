@@ -20,7 +20,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-
+/**
+ * this class permits to create a the billboard that will be used during the game
+ * @author Amministratore
+ *
+ */
 public class Billboard extends Observable implements Cloneable,Serializable{
 
 	/**
@@ -41,13 +45,24 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 		councilPrivilegesChange = createList();
 	}
 	
-// crea un nuovo Giocatare passando il nick name, colore, ordine di gioco e coins iniziali 
-// coins: il primo ne ha 5, il secondo 6, terzo 7 ecc
-// remote con network l'altro in locale
+/**
+ * this method creates a new player 
+ * @param order int that specifies the order of the player
+ * @param name  string that specifies the nickName of the player
+ * @param color PlayerColoro that specify the color of the player
+ * @param initialCoins  int that specifies the initial coins of the player
+ */
+
 	public void addPlayerRemote(int order,String name, PlayerColor color, int initialCoins){
 		Player player = new Player(name, color, initialCoins);
 		players.add(order, player);
 	}
+	/**
+	 * this method creates a new player ( not using the Network, so the NickName)
+	 * @param order int that specifies the order of the player
+	 * @param color PlayerColoro that specify the color of the player
+	 * @param initialCoins  int that specifies the initial coins of the player
+	 */
 
 	public void addPlayer(int order, PlayerColor color, int initialCoins){
 		Player player = new Player(color, initialCoins);
@@ -81,7 +96,10 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 	public void setPlayers(List<Player> players){
 		this.players = players;
 	}
-	
+	/**
+	 * create the list of resources owned by the player
+	 * @return the list of resources
+	 */
 	public List<Resources> createList(){
 		List<Resources> list = new ArrayList<Resources>();
 		try{
@@ -111,15 +129,33 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 		return list;
 	}
 	
-	// metodi per leggere int, string, resources da file
+/**
+ * this method is used to read a Int from a file
+ * @param element Element 
+ * @param intName string of the int that we want to read
+ * @return int read from the file
+ */
 	private int readIntFromFile(Element element, String intName){
 		String read = readStringFromFile(element, intName);
 		int readInt = Integer.parseInt(read);
 		return readInt;
 	}
+	
+	/**
+ * this method is used to read a String from a file
+	 * @param element
+	 * @param stringName String that shows the String we want to read frome the file
+	 * @return String read form the file
+	 */
 	private String readStringFromFile(Element element, String stringName){
 		return (String) element.getElementsByTagName(stringName).item(0).getTextContent();
 	}
+	
+	/**
+	 * this method is used to read a Resources from a file
+	 * @param element
+	 * @param resources Resources that rapresents the Resources we want to read
+	 */
 	private void readResources(Element element, Resources resources){
 		for(Map.Entry<String, Resource> entry : resources.getResourcesMap().entrySet()){;
 			int value = readIntFromFile(element, entry.getKey().toLowerCase());

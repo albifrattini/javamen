@@ -15,10 +15,12 @@ public class BillboardTest {
 
 	Billboard mBillboard;
 	List<Player> players;
+	TurnOfPlay mTurn;
 	
 	@Before
 	public void setUp() throws Exception {
 		mBillboard= new Billboard();
+		mTurn = new TurnOfPlay();
 		
 	}
 
@@ -43,6 +45,7 @@ public class BillboardTest {
 		assertEquals(mBillboard.getPlayers().get(0),mBillboard.getPlayerOfColor(PlayerColor.GREEN));
 
 	}
+    
 
 
 
