@@ -29,29 +29,4 @@ public class ChangeTurnTest {
 	}
 	
 
-	@Test
-	public void testRefreshTable() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testNewPawns() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetDiceColorValue() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testDisplaceCards() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testChangeTurnOfPlay() {
-		fail("Not yet implemented");
-	}
-
 }
