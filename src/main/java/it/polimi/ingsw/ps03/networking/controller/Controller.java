@@ -17,6 +17,7 @@ import it.polimi.ingsw.ps03.networking.virtualView.RemoteView;
 import it.polimi.ingsw.ps03.actions.*;
 import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.resources.Resource;
+import it.polimi.ingsw.ps03.resources.Resources;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 
 
@@ -239,6 +240,12 @@ public class Controller extends Observable implements Observer {
 		place.setChosenCost(action.getChosenCost());
 		return place;
 	}
+	public void addResourcesFromPrivileges(Resources resources){
+		Player player = model.getPlayers().get(model.getTurnOfPlay().getPlayerToPlay());
+		player.getResources().getResource("COUNCILPRIVILEGES").setValue(0);
+		player.getResources().add(resources);
+		checkTurn(player);
+	}
 		
 	@Override
 	public void update(Observable o, Object obj){
@@ -250,6 +257,9 @@ public class Controller extends Observable implements Observer {
 		}
 		if(obj instanceof String){
 			printMessage((String) obj);
+		}
+		if(obj instanceof Resources){
+			addResourcesFromPrivileges((Resources) obj);
 		}
 		applyAction((Action) obj);
 	}

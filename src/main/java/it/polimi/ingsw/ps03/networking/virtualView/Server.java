@@ -27,6 +27,7 @@ public class Server {
 	 private List<Connection> connections = new ArrayList<Connection>();
 	 private Map<String, Connection> waitingConnection = new HashMap<>(4);
 	 private int number = 1;
+	 private boolean active = true;
 	 
 	 public Server() throws IOException {
 		 this.serverSocket = new ServerSocket(PORT);
@@ -37,7 +38,7 @@ public class Server {
 														le connessioni. Man mano che un client si connette viene messo 
 														nell'arraylist connections*/ 		 
 		 System.out.println("[SERVER]  Ready on Port: "+PORT);		 
-		 while(true){ 		 			
+		 while(isActive()){ 		 			
 					try{
 					newSocket = serverSocket.accept(); //crea una connessione tra server e client				
 					InetAddress infoclient = newSocket.getInetAddress();  //ritorna l'indirizzo dal quale il client si connette al socket
@@ -49,7 +50,8 @@ public class Server {
 					}catch (IOException e){
 						System.out.println("Errore nella connessione");
 					}
-		}			 	
+		}	
+			close();
 	}
 	 
 	/*aggiunge all'arrayList le connessioni attive*/
@@ -60,6 +62,14 @@ public class Server {
 	 
 	 public synchronized void removeConnection(Connection c){
 		 connections.remove(c);			
+	 }
+	 
+	 public boolean isActive(){
+		 return active;
+	 }
+	 
+	 public void close(){
+		 active = false;
 	 }
 	 
 	 //permette di gestire più partite contemporaneamente

@@ -14,15 +14,16 @@ public class Client extends Observable {
 	private static String ip;
 	private static int port;
 	private static ObjectInputStream in;
+	private boolean active = true;
 		
-	public Client(String ip,int port){
+	public Client(String ip, int port){
 		Client.ip = ip;
 		Client.port = port;		
 	}
 
 	public void receiveMessage(Socket socket) throws ClassNotFoundException, IOException{
 		try{					
-			while (true){		
+			while (isActive()){		
 				Object line = in.readObject();
 				setChanged();
 				notifyObservers(line);
@@ -32,12 +33,14 @@ public class Client extends Observable {
 			}finally{				
 				in.close();
 				socket.close();
+				active = false;
 			}			
 	}
 		
 	//MAIN
 public static void main(String[] args) throws UnknownHostException, IOException{
-	Client client = new Client("127.0.0.1", 1500);
+	String ipToUse = "127.0.0.1";
+	Client client = new Client(ipToUse, 1500);
 	Socket socket = new Socket(ip , port);//crea la socket del client 
 	NetworkHandler networkHandler = new NetworkHandler(socket);
 	LocalView ui = new LocalView(System.in, System.out);
@@ -51,6 +54,11 @@ public static void main(String[] args) throws UnknownHostException, IOException{
 			System.err.println(e.getMessage());
 		}
 	}
+
+public boolean isActive(){
+	return active;
+}
+
 
 public void update(Observable o, Object message) {		
 }

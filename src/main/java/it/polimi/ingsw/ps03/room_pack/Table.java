@@ -127,7 +127,7 @@ public class Table implements Serializable {
 				}
 			}
 		}catch(Exception e){
-			e.printStackTrace();
+			System.out.println("[WARNING]  Problema con caricamento torri");
 		}
 	}
 	
@@ -168,7 +168,7 @@ public class Table implements Serializable {
 				}
 			}
 		}catch(Exception e){
-			e.printStackTrace();
+			System.out.println("[WARNING]  Problema con caricamento mercato");
 		}
 	}
 

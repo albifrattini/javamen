@@ -348,10 +348,10 @@ public class LocalView extends Observable implements Observer{
 		}
 	}
 	
-	private void changeCouncilPrivileges(Billboard billboard, Resources resources){
+	private void changeCouncilPrivileges(Resources resources){
 		int i = 0;
 		int quantity = resources.getResource("COUNCILPRIVILEGES").getValue();
-		List<Resources> tempList = new ArrayList<Resources>(billboard.getCouncilChoices());
+		List<Resources> tempList = new ArrayList<Resources>(serverModel.getCouncilChoices());
 		Resources resourcesToAdd = new Resources();
 		
 		output.println("\nPuoi scegliere " + quantity
@@ -400,7 +400,7 @@ public class LocalView extends Observable implements Observer{
 			fakePlaceAction((FakePlace) obj, ((Controller) o).getBillboard());
 		}
 		if(obj instanceof Resources){
-			changeCouncilPrivileges(((Controller) o).getBillboard(), (Resources) obj);
+			changeCouncilPrivileges((Resources) obj);
 		}
 	}
 

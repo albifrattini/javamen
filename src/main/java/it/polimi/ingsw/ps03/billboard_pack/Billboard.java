@@ -126,7 +126,7 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 				}
 			}
 		}catch(Exception e){
-			e.printStackTrace();
+			System.out.println("[WARNING]  Problema con caricamento cambi del consiglio");
 		}
 		return list;
 	}

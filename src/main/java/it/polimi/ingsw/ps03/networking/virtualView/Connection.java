@@ -14,6 +14,8 @@ public class Connection extends Observable<Object> implements Runnable{
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
 	
+	private Object line;
+	
 	public Connection(Socket socket, Server server) throws IOException{
 		this.socket = socket;
 		this.server = server;
@@ -22,12 +24,12 @@ public class Connection extends Observable<Object> implements Runnable{
 		@Override
 	public void run() {
 		try{			
-			in = new ObjectInputStream(socket.getInputStream());
 			out = new ObjectOutputStream(socket.getOutputStream());
-			Object line = in.readObject();
+			in = new ObjectInputStream(socket.getInputStream());
+			line = in.readObject();
 			String read = (String)line;	
 			System.out.println("[CONNECTION]  Ricevuto: "+ read);
-			send("\nBenvenuto in Lorenzo Il Magnifico " + read + "!\nSono in attesa di altri giocatori... Attendi");
+			send("Benvenuto in Lorenzo Il Magnifico " + read + "!\nSono in attesa di altri giocatori... Attendi");
 			server.match(this, read);
 			receiveMessage();					    
 		}catch(IOException  e){
@@ -39,10 +41,12 @@ public class Connection extends Observable<Object> implements Runnable{
 				
 	public void receiveMessage(){
 		while(isActive()){
-			System.out.println("[CONNECTION]  Sono in continuo ascolto dei messaggi");
-			Object line;			
+			System.out.println("[CONNECTION]  Sono in continuo ascolto dei messaggi");			
 			try{
+				System.out.println("[CONNECTION] ARRIVATO IL MESSAGGIO");
 				line = in.readObject();
+				System.out.println("[CONNECTION] INOLTRATO ALLA REMOTE VIEW");
+				System.out.println(line.toString());
 				notifyObservers(line); //metodo che attiva la notify di tutte le remoteview che hanno come attributo 'Connection'
 			}catch (ClassNotFoundException | IOException e){
 			System.out.println("Non son riuscito a ricevere");
