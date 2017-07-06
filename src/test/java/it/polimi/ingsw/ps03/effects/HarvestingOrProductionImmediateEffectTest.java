@@ -12,11 +12,13 @@ public class HarvestingOrProductionImmediateEffectTest {
 
 	HarvestingOrProductionImmediateEffect mEffect;
 	Resources mRes;
+	Resources mHRes;
 	
 
 	@Before
 	public void setUp() throws Exception {
 		mRes = new Resources();
+		mHRes = new Resources();
 		mEffect = new HarvestingOrProductionImmediateEffect(3,TowerColor.YELLOW ,mRes, "mName");
 	}
 

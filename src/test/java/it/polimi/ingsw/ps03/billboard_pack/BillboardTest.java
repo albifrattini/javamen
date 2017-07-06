@@ -10,18 +10,20 @@ import org.junit.Test;
 
 import it.polimi.ingsw.ps03.players.Player;
 import it.polimi.ingsw.ps03.players.PlayerColor;
+import it.polimi.ingsw.ps03.resources.Resources;
 
 public class BillboardTest {
 
 	Billboard mBillboard;
 	List<Player> players;
 	TurnOfPlay mTurn;
-	
+	List<Resources> mRes;
+	List<Player> mPlay = null;
 	@Before
 	public void setUp() throws Exception {
 		mBillboard= new Billboard();
 		mTurn = new TurnOfPlay();
-		
+		mRes = mBillboard.createList();
 	}
 
 	@Test
@@ -46,7 +48,16 @@ public class BillboardTest {
 
 	}
     
+    @Test
+    public void testGetCouncilChoices(){
+    	assertEquals(5,mBillboard.getCouncilChoices().size());
+    }
 
+    @Test
+    public void testSetPlayer(){
+		mBillboard.addPlayer(0,PlayerColor.GREEN, 5);
+    	assertEquals(1, mBillboard.getPlayers().size());
+    }
 
 
 

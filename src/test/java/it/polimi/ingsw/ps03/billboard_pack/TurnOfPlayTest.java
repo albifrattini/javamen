@@ -54,6 +54,16 @@ public class TurnOfPlayTest {
 		assertEquals(1,mturn.getMiniTurn());
 		assertEquals(1,mturn.getTurn());
 	}
+	
+	@Test
+	public void testNextTurnOfPlayElse() {
+		mturn.nextTurn();
+		mturn.nextTurn();
+		mturn.nextTurnOfPlay();
+		assertEquals(2,mturn.getPeriod());
+		assertEquals(1,mturn.getMiniTurn());
+		assertEquals(1,mturn.getTurn());
+	}
 
 	@Test
 	public void testNextTurn() {
@@ -76,6 +86,15 @@ public class TurnOfPlayTest {
 	 assertEquals(1,mturn.getPlayerToPlay());
 	 assertEquals(1, mturn.getMiniTurn());
 	}
+	
+	@Test
+	public void testNextPlayerIf() {
+	 mturn.nextPlayer();
+	 mturn.nextPlayer();
+	 assertEquals(0,mturn.getPlayerToPlay());
+	 assertEquals(2, mturn.getMiniTurn());
+	}
+
 
 	@Test
 	public void testHasNextMiniTurn() {

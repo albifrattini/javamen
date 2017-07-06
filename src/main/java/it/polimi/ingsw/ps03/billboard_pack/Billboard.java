@@ -88,6 +88,8 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 		}
 		throw new NullPointerException("Errore nella conversione giocatori per turno successivo!");
 	}
+	
+	//perchè 5? cosa fa?
 	public List<Resources> getCouncilChoices(){
 		return councilPrivilegesChange;
 	}
