@@ -24,8 +24,9 @@ public class Connection extends Observable<Object> implements Runnable{
 		@Override
 	public void run() {
 		try{			
-			out = new ObjectOutputStream(socket.getOutputStream());
+		
 			in = new ObjectInputStream(socket.getInputStream());
+			out = new ObjectOutputStream(socket.getOutputStream());
 			line = in.readObject();
 			String read = (String)line;	
 			System.out.println("[CONNECTION]  Ricevuto: "+ read);
