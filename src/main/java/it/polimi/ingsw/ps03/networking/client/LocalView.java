@@ -102,6 +102,7 @@ public class LocalView extends Observable implements Observer{
 	 */
 	public void placeAction(Billboard billboard, int turnOfPlayer){
 		Player player = billboard.getPlayers().get(turnOfPlayer);
+		Resources spentResources = new Resources();
 		ClientPlace action = new ClientPlace(ActionChoices.PLACE, player.getColor());	
 		action.setPawnColor(player.getPawn(pawnChoice(player)).getDiceColor());
 		List<Room> rooms = billboard.getTable().getRooms();
@@ -110,12 +111,35 @@ public class LocalView extends Observable implements Observer{
 		if(room instanceof TowerRoom){
 			action.setChosenCost(((TowerRoom) room).
 			getPlacedCard().getCosts().get(costChoice(room)));
+			if(towerHasPawns((TowerRoom) room)){
+				subPlacementCoins(spentResources);
+			}
 		}
-		action.setSpentResources(resourcesChoice());
+		action.setSpentResources(resourcesChoice(spentResources));
 		setChanged();
 		notifyObservers(action);
 	}
 	
+	private boolean towerHasPawns(TowerRoom towerRoom){
+		for(TowerRoom t: serverModel.getTable().getTowerRoomList()){
+			if(t.getTowerRoomColor() == towerRoom.getTowerRoomColor() && 
+					t.getPawn() != null){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void subPlacementCoins(Resources resources){
+		output.println("Desideri posizionare sulla torre pagando 3 monete? [yes/no]");
+		String choice = scanner.next();
+		if(choice.contains("y")){
+			resources.getResource("COINS").add(3);
+		}
+		else{
+			startTurn(serverModel);
+		}
+	}
 	
 	private void checkPlayerAction(int turnOfPlayer){
 		CheckPlayer checkPlayer = new CheckPlayer(turnOfPlayer);
@@ -189,8 +213,7 @@ public class LocalView extends Observable implements Observer{
 	 * resources during 'place' action. After instantiating a Resources' object, the method fills it with
 	 * user inputs and returns the object to the caller. 
 	 */
-	private Resources resourcesChoice(){
-		Resources resources = new Resources();
+	private Resources resourcesChoice(Resources resources){
 		String sResource = null;
 		output.println("Desideri spendere qualche risorsa?" + 
 				"\nCoins\tWoods\tStones\tServants\tMilitaryPoints");
@@ -237,6 +260,7 @@ public class LocalView extends Observable implements Observer{
 	
 	private void fakePlaceAction(FakePlace fakePlace, Billboard billboard){
 		List<TowerRoom> towerRooms = billboard.getTable().getTowerRoomList();
+		Resources spentResources = new Resources();
 		towerRooms = billboard.getTable().getTowersRoomsOfColor(towerRooms, fakePlace.getColor());
 		if(fakePlace.getRoom() != null){
 			output.println("\n\nWARNING: Soluzione non valida!");
@@ -255,7 +279,7 @@ public class LocalView extends Observable implements Observer{
 				output.println("\nWARNING: Impossibile posizionare!\n");
 				fakePlaceAction(fakePlace, billboard);
 			}		
-			fakePlace.setRequiredResources(resourcesChoice());		
+			fakePlace.setRequiredResources(resourcesChoice(spentResources));		
 			setChanged();
 			notifyObservers(fakePlace);
 		}

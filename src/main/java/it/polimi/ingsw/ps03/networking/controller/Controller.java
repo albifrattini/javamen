@@ -195,6 +195,8 @@ public class Controller extends Observable implements Observer {
 				System.out.println("[POSTO SBAGLIATO MINITURN]");
 				ChangeTurn changeTurn = new ChangeTurn();
 				applyAction(changeTurn);
+				sendBillboard();
+				sendToPlayingClient("\n\n ==> E' il tuo turno:  ");
 			}
 			else{
 				System.out.println("[NUMERO DI GIOCATORI] "  + model.getTurnOfPlay().getNumberOfPlayers());

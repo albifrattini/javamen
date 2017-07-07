@@ -39,8 +39,7 @@ public class Client extends Observable {
 		
 	//MAIN
 public static void main(String[] args) throws UnknownHostException, IOException{
-	String ipToUse = "127.0.0.1";
-	Client client = new Client(ipToUse, 1500);
+	Client client = new Client("127.0.0.1", 1500);
 	Socket socket = new Socket(ip , port);//crea la socket del client 
 	NetworkHandler networkHandler = new NetworkHandler(socket);
 	LocalView ui = new LocalView(System.in, System.out);
