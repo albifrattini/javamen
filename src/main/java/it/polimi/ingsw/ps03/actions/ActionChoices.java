@@ -7,6 +7,6 @@ import java.io.Serializable;
  *
  */
 public enum ActionChoices implements Serializable{
-	PLACE, CHECKPLAYER, CHECKCARDS;
+	PLACE, CHECKPLAYER, CHECKCARDS, PASS;
 
 }

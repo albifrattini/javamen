@@ -32,7 +32,7 @@ public class FakePlace extends Place{
 	}
 
 	
-	public TowerColor getColor(){
+	public TowerColor getTowerColor(){
 		return color;
 	}
 }

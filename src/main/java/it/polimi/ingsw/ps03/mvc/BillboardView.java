@@ -237,12 +237,12 @@ public class BillboardView extends Observable implements Observer {
 	
 	private void fakePlaceAction(FakePlace fakePlace, Billboard billboard){
 		List<TowerRoom> towerRooms = billboard.getTable().getTowerRoomList();
-		towerRooms = billboard.getTable().getTowersRoomsOfColor(towerRooms, fakePlace.getColor());
+		towerRooms = billboard.getTable().getTowersRoomsOfColor(towerRooms, fakePlace.getTowerColor());
 		if(fakePlace.getRoom() != null){
 			output.println("\n\nWARNING: Soluzione non valida!");
 		}
 		output.println("\nHai a disposizione un'azione su una torre " + 
-						fakePlace.getColor().toString().toLowerCase() + 
+						fakePlace.getTowerColor().toString().toLowerCase() + 
 						" di valore " + fakePlace.getPawn().getValue());
 		output.println("Desideri attivare l'effetto? [yes/no]");
 		String choice = scanner.next().toLowerCase();

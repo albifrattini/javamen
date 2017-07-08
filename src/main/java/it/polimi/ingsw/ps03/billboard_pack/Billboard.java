@@ -1,7 +1,7 @@
 package it.polimi.ingsw.ps03.billboard_pack;
 
 import it.polimi.ingsw.ps03.dices.*;
-import it.polimi.ingsw.ps03.networking.virtualView.RemoteView;
+import it.polimi.ingsw.ps03.finalcount.FinalCount;
 import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.resources.Resource;
 import it.polimi.ingsw.ps03.resources.Resources;
@@ -36,6 +36,7 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 	private Table table;
 	private TurnOfPlay turnOfPlay;
 	private List<Resources> councilPrivilegesChange;
+	private List<FinalCount> finalPoints;
 	
 	public Billboard(){
 		players = new ArrayList<Player>(4);
@@ -43,6 +44,7 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 		table = new Table();
 		turnOfPlay = new TurnOfPlay();
 		councilPrivilegesChange = createList();
+		finalPoints = finalPoints();
 	}
 	
 /**
@@ -93,6 +95,9 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 	public List<Resources> getCouncilChoices(){
 		return councilPrivilegesChange;
 	}
+	public List<FinalCount> getFinalPoints(){
+		return finalPoints;
+	}
 	
 	// setta le risorse council di un giocatore
 	public void setPlayers(List<Player> players){
@@ -129,6 +134,43 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 			System.out.println("[WARNING]  Problema con caricamento cambi del consiglio");
 		}
 		return list;
+	}
+	
+	public List<FinalCount> finalPoints(){
+		List<FinalCount> finals = new ArrayList<FinalCount>();
+		finals.add(createFinalList(TowerColor.GREEN, "green"));
+		finals.add(createFinalList(TowerColor.BLUE, "blue"));
+		return finals;
+	}
+	
+	public FinalCount createFinalList(TowerColor color, String type){
+		List<Resources> list = new ArrayList<Resources>();
+		try{
+			File finalXml = new File("./src/final_points_" + type + ".xml");
+			Document docFinal = DocumentBuilderFactory.newInstance().
+										newDocumentBuilder().parse(finalXml);
+		
+			docFinal.getDocumentElement().normalize();
+			docFinal.getDocumentElement().getNodeName();
+
+			NodeList finalList = docFinal.getElementsByTagName("Resources");
+		
+			for(int i = 0; i < finalList.getLength(); i++){
+				Node finalResources = finalList.item(i);
+				
+				if(finalResources.getNodeType() == Node.ELEMENT_NODE){
+					Element element = (Element) finalResources;
+					
+					Resources resources = new Resources();
+					readResources(element, resources);
+					list.add(resources);
+				}
+			}
+		}catch(Exception e){
+			System.out.println("[WARNING]  Problema con caricamento cambi del consiglio");
+		}
+		FinalCount finalCount = new FinalCount(color, list);
+		return finalCount;
 	}
 	
 /**

@@ -87,7 +87,9 @@ public class Controller extends Observable implements Observer {
 				if(hasEffect(drawnCard)){
 					System.out.println("[AZIONE IN CORSO]");
 					activateEffect(drawnCard);
-					checkTurn(((Place) action).getPlayer());
+					if(!(drawnCard.getImmediateEffect() instanceof PlaceImmediateEffect)){
+						checkTurn(((Place) action).getPlayer());
+					}
 					System.out.println("[EFFETTO ATTIVATO E PASSATO CHECKTURN]");
 				}
 				else{
@@ -115,10 +117,10 @@ public class Controller extends Observable implements Observer {
 			if(effect instanceof PlaceImmediateEffect){
 				PlaceImmediateEffect plEffect = (PlaceImmediateEffect) effect;
 				plEffect.applyEffect(player);
-				FakePlace fakePlace = new FakePlace(model, player,
-												plEffect.getPlaceTowerColor(),
-												plEffect.getPlaceDiceValue());
-				sendToPlayingClient(fakePlace);
+				ClientFakePlace clFakePlace = new ClientFakePlace(model, player.getColor(), 
+													plEffect.getPlaceTowerColor(),
+													plEffect.getPlaceDiceValue());
+				sendToPlayingClient(clFakePlace);
 			}
 			else{
 				((GiveResourcesImmediateEffect) effect).applyEffect(player);
@@ -214,21 +216,7 @@ public class Controller extends Observable implements Observer {
 	public Billboard getBillboard(){
 		return model;
 	}
-		
 
-		
-//	private void notifyToView(Object obj){
-//		if(obj instanceof Place){
-//			setChanged();
-//			notifyObservers("\n\nERRORE! Impossibile posizionare, requisiti non soddisfatti!");
-//		}
-//		setChanged();
-//		notifyObservers(obj);
-//		}
-		
-//	private void notifyToView(){
-//		notifyToView(model);
-//	}
 
 	private void printMessage(String message){
 		System.out.println(message);
@@ -242,6 +230,15 @@ public class Controller extends Observable implements Observer {
 		place.setChosenCost(action.getChosenCost());
 		return place;
 	}
+	private FakePlace convertToFakePlace(ClientFakePlace action){
+		FakePlace fakePlace = new FakePlace(model, model.getPlayerOfColor(action.getPlayerColor()),
+								action.getTowerColor(), action.getPawn().getValue());
+		fakePlace.setRoom(model.getTable().getTowersRoomsOfColor(
+				model.getTable().getTowerRoomList(), action.getTowerColor()).get(action.getRoom()));
+		fakePlace.setRequiredResources(action.getSpentResources());
+		fakePlace.setChosenCost(action.getChosenCost());
+		return fakePlace;
+	}
 	public void addResourcesFromPrivileges(Resources resources){
 		Player player = model.getPlayers().get(model.getTurnOfPlay().getPlayerToPlay());
 		player.getResources().getResource("COUNCILPRIVILEGES").setValue(0);
@@ -251,11 +248,24 @@ public class Controller extends Observable implements Observer {
 		
 	@Override
 	public void update(Observable o, Object obj){
+		System.out.println("controllerinooooooooooo");
 		if(!(o instanceof RemoteView)){
 			throw new IllegalArgumentException();
 		}
-		if(obj instanceof ClientPlace){
-			obj = convertToPlace((ClientPlace) obj);
+		if(obj instanceof Action){
+			if(obj instanceof Pass){
+				checkTurn(model.getPlayers().get(model.getTurnOfPlay().getPlayerToPlay()));
+			}
+			applyAction((Action) obj);
+		}
+		if(obj instanceof ClientPlace){			
+			if(obj instanceof ClientFakePlace){
+				obj = convertToFakePlace((ClientFakePlace) obj);
+			}
+			else{
+				obj = convertToPlace((ClientPlace) obj);
+			}
+			applyAction((Action) obj);
 		}
 		if(obj instanceof String){
 			printMessage((String) obj);
@@ -263,7 +273,6 @@ public class Controller extends Observable implements Observer {
 		if(obj instanceof Resources){
 			addResourcesFromPrivileges((Resources) obj);
 		}
-		applyAction((Action) obj);
 	}
 
 }

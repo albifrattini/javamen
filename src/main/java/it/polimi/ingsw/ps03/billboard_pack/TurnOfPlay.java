@@ -17,7 +17,7 @@ public class TurnOfPlay implements Serializable {
 	public TurnOfPlay(){
 		this.miniTurn = 0;
 		this.turn = 0;
-		this.period = 1;
+		this.period = 2;
 		this.playerToPlay = 0;
 		this.numberOfPlayers = 2;
 	}

@@ -13,15 +13,14 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.ps03.actions.ActionChoices;
 import it.polimi.ingsw.ps03.actions.CheckPlayer;
+import it.polimi.ingsw.ps03.actions.ClientFakePlace;
 import it.polimi.ingsw.ps03.actions.ClientPlace;
-import it.polimi.ingsw.ps03.actions.FakePlace;
+import it.polimi.ingsw.ps03.actions.Pass;
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.billboard_pack.TurnOfPlay;
 import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
-import it.polimi.ingsw.ps03.mvc.Controller;
 import it.polimi.ingsw.ps03.players.Pawn;
 import it.polimi.ingsw.ps03.players.Player;
-import it.polimi.ingsw.ps03.players.PlayerColor;
 import it.polimi.ingsw.ps03.resources.Resource;
 import it.polimi.ingsw.ps03.resources.Resources;
 import it.polimi.ingsw.ps03.room_pack.CouncilRoom;
@@ -73,6 +72,10 @@ public class LocalView extends Observable implements Observer{
 					printCards(billboard.getTable().getTowerRoomList());
 					startTurn(billboard);
 					break;
+				case PASS:
+					setChanged();
+					notifyObservers(new Pass());
+					break;
 				default:
 					output.println("Errore nella scelta azione!");
 					break;
@@ -87,7 +90,7 @@ public class LocalView extends Observable implements Observer{
 		ActionChoices choice = null;
 		try{
 			output.println("\nCosa desideri fare?");
-			output.println("Azioni possibili:\n --> Place\n --> CheckPlayer\n --> CheckCards\n");
+			output.println("Azioni possibili:\n --> Place\n --> CheckPlayer\n --> CheckCards\n --> Pass\n");
 			choice = ActionChoices.valueOf(scanner.next().toUpperCase());
 		}catch(IllegalArgumentException e){
 			output.println("\nWARNING: Soluzione non valida!\n");
@@ -109,10 +112,15 @@ public class LocalView extends Observable implements Observer{
 		action.setRoom(roomChoice(rooms));
 		Room room = rooms.get(action.getRoom());
 		if(room instanceof TowerRoom){
-			action.setChosenCost(((TowerRoom) room).
-			getPlacedCard().getCosts().get(costChoice(room)));
+			try{
+				action.setChosenCost(((TowerRoom) room).
+						getPlacedCard().getCosts().get(costChoice(room)));
+			}catch(IndexOutOfBoundsException e){
+				output.println("[WARNING]  Inserimento non corretto!");
+				placeAction(billboard, turnOfPlayer);
+			}
 			if(towerHasPawns((TowerRoom) room)){
-				subPlacementCoins(spentResources);
+				subPlacementCoins(spentResources, action);
 			}
 		}
 		action.setSpentResources(resourcesChoice(spentResources));
@@ -130,13 +138,16 @@ public class LocalView extends Observable implements Observer{
 		return false;
 	}
 	
-	public void subPlacementCoins(Resources resources){
+	public void subPlacementCoins(Resources resources, ClientPlace action){
 		output.println("Desideri posizionare sulla torre pagando 3 monete? [yes/no]");
 		String choice = scanner.next();
 		if(choice.contains("y")){
 			resources.getResource("COINS").add(3);
 		}
 		else{
+			if(action instanceof ClientFakePlace){
+				fakePlaceAction((ClientFakePlace) action);
+			}
 			startTurn(serverModel);
 		}
 	}
@@ -258,28 +269,33 @@ public class LocalView extends Observable implements Observer{
 	}
 	
 	
-	private void fakePlaceAction(FakePlace fakePlace, Billboard billboard){
-		List<TowerRoom> towerRooms = billboard.getTable().getTowerRoomList();
+	private void fakePlaceAction(ClientFakePlace fakePlace){
+		Billboard actualModel = fakePlace.getModel();
+		List<TowerRoom> towerRooms = actualModel.getTable().getTowerRoomList();
 		Resources spentResources = new Resources();
-		towerRooms = billboard.getTable().getTowersRoomsOfColor(towerRooms, fakePlace.getColor());
-		if(fakePlace.getRoom() != null){
+		towerRooms = actualModel.getTable().getTowersRoomsOfColor(towerRooms, fakePlace.getTowerColor());
+		if(fakePlace.getRoom() != -1){
 			output.println("\n\nWARNING: Soluzione non valida!");
 		}
 		output.println("\nHai a disposizione un'azione su una torre " + 
-						fakePlace.getColor().toString().toLowerCase() + 
+						fakePlace.getTowerColor().toString().toLowerCase() + 
 						" di valore " + fakePlace.getPawn().getValue());
 		output.println("Desideri attivare l'effetto? [yes/no]");
 		String choice = scanner.next().toLowerCase();
 		if(choice.contains("yes")){
 			try{
-				fakePlace.setRoom(towerRooms.get(towerRoomChoice(towerRooms)));
-				fakePlace.setChosenCost(((TowerRoom) fakePlace.getRoom()).
-				getPlacedCard().getCosts().get(costChoice(fakePlace.getRoom())));
+				fakePlace.setRoom(towerRoomChoice(towerRooms));
+				TowerRoom room = towerRooms.get(fakePlace.getRoom());
+				if(towerHasPawns((TowerRoom) room)){
+					subPlacementCoins(spentResources, fakePlace);
+				}
+				fakePlace.setChosenCost(((TowerRoom) room).
+				getPlacedCard().getCosts().get(costChoice(room)));
 			}catch(IndexOutOfBoundsException e){
 				output.println("\nWARNING: Impossibile posizionare!\n");
-				fakePlaceAction(fakePlace, billboard);
+				fakePlaceAction(fakePlace);
 			}		
-			fakePlace.setRequiredResources(resourcesChoice(spentResources));		
+			fakePlace.setSpentResources(resourcesChoice(spentResources));		
 			setChanged();
 			notifyObservers(fakePlace);
 		}
@@ -289,7 +305,7 @@ public class LocalView extends Observable implements Observer{
 		}
 		else{
 			output.println("Soluzione non contemplata!");
-			fakePlaceAction(fakePlace, billboard);
+			fakePlaceAction(fakePlace);
 		}
 	}
 		
@@ -420,8 +436,8 @@ public class LocalView extends Observable implements Observer{
 				startTurn(serverModel);
 			}			
 		}
-		if(obj instanceof FakePlace){
-			fakePlaceAction((FakePlace) obj, ((Controller) o).getBillboard());
+		if(obj instanceof ClientFakePlace){
+			fakePlaceAction((ClientFakePlace) obj);
 		}
 		if(obj instanceof Resources){
 			changeCouncilPrivileges((Resources) obj);
