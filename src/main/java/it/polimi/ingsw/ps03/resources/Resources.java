@@ -3,7 +3,11 @@ package it.polimi.ingsw.ps03.resources;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * this class represents all the resources owned by a Player
+ * @author Amministratore
+ *
+ */
 public class Resources implements Serializable{
 
 
@@ -52,7 +56,10 @@ public class Resources implements Serializable{
 	public Resource getResource(String rName){
 		return resources.get(rName);
 	}
-	
+	/**
+	 * this method adds a object resources to the resources of a player
+	 * @param rsToAdd Resources resources to add
+	 */
 	public void add(Resources rsToAdd){
 		for(Map.Entry<String, Resource> entry : rsToAdd.getResourcesMap().entrySet()){
 			resources.get(entry.getKey()).add(entry.getValue().getValue()); 
@@ -60,6 +67,10 @@ public class Resources implements Serializable{
 			//mentre il secondo ritorna il valore int della risorsa
 		}
 	}
+	/**
+	 * this method subs a object resources to the resources of a player
+	 * @param rsToSub Resources resources to sub
+	 */
 	public void sub(Resources rsToSub){
 		try{
 			for(Map.Entry<String, Resource> entry : rsToSub.getResourcesMap().entrySet()){

@@ -6,8 +6,10 @@ import java.net.Socket;
 import java.util.Observable;
 import java.util.Observer;
 
-
-//con il metodo update invia eventi alla virtual view del server
+/**
+ * this class sends events to the virtual view of server
+ * @author Amministratore
+ */
 public class NetworkHandler implements Observer {
 	
 	private ObjectOutputStream out;

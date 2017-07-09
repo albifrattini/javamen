@@ -4,7 +4,11 @@ package it.polimi.ingsw.ps03.room_pack;
 import java.io.Serializable;
 
 import it.polimi.ingsw.ps03.players.*;
-
+/**
+ * this is the abstract class extended by all the other room class
+ * @author Amministratore
+ *
+ */
 public abstract class Room implements Serializable{
 	
 	/**

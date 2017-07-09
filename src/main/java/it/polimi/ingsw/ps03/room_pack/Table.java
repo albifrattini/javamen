@@ -15,7 +15,11 @@ import org.w3c.dom.NodeList;
 
 import it.polimi.ingsw.ps03.resources.*;
 
-
+/**
+ * this class represents the table of the game
+ * @author Amministratore
+ *
+ */
 public class Table implements Serializable {
 	
 	/**
@@ -86,7 +90,9 @@ public class Table implements Serializable {
 	}
 	
 	
-	
+	/**
+	 * this method builds all the rooms of towers. It takes from a xml file the color, the requirement and the resources given by a room.
+	 */
 	
 	public void buildTowerRooms(){
 		try{
@@ -130,7 +136,10 @@ public class Table implements Serializable {
 			System.out.println("[WARNING]  Problema con caricamento torri");
 		}
 	}
-	
+	/**
+	 * this method builds the market room. it takes from a xml file the resources given by the market room
+	 * @param numberOfPlayers
+	 */
 	public void buildMarketRooms(int numberOfPlayers){
 		try{
 			File marketRoomsXml = new File("./src/marketRoom_arraylist.xml");
@@ -172,6 +181,10 @@ public class Table implements Serializable {
 		}
 	}
 
+	/**
+	 * this method builds the production room. it takes from a xml file the resources given by the production room
+	 * @param numberOfPlayers
+	 */
 	public void buildProductionRooms(int numberOfPlayers){
 		Resources resources = new Resources();
 		resources.getResource("COINS").add(1);
@@ -184,7 +197,10 @@ public class Table implements Serializable {
 			productionRooms.add(i, new ProductionRoom(resources));
 		}
 	}
-	
+	/**
+	 * this method builds the harvesting room. it takes from a xml file the resources given by the harvesting room
+	 * @param numberOfPlayers
+	 */
 	public void buildHarvestingRooms(int numberOfPlayers){
 		Resources resources = new Resources();
 		resources.getResource("SERVANTS").add(1);
@@ -198,6 +214,10 @@ public class Table implements Serializable {
 			harvestingRooms.add(i, new HarvestingRoom(resources));
 		}
 	}
+	/**
+	 * this method builds the table of the game
+	 * @param numberOfPlayers Int that show how many player are in the game
+	 */
 
 	public void buildTable(int numberOfPlayers){
 		buildTowerRooms();

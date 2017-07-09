@@ -9,7 +9,11 @@ import java.net.UnknownHostException;
 import java.util.NoSuchElementException;
 import java.util.Observable;
 
-
+/**
+ * this class represents Client, that receives objects and connects to the server port
+ * @author Amministratore
+ *
+ */
 public class Client extends Observable {
 	private static String ip;
 	private static int port;

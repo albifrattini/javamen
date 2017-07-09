@@ -11,7 +11,6 @@ import it.polimi.ingsw.ps03.development_card.*;
 import it.polimi.ingsw.ps03.resources.*;
 /**
  * this class represents the Player, setting a name, 4 pawns of different color, the initial resources and the cards owned by the player 
- * The object plater is serialized relying the default version 1L
  * @author Amministratore
  *
  */
@@ -19,9 +18,8 @@ import it.polimi.ingsw.ps03.resources.*;
 public class Player implements Serializable{
 
 	/**
-	 * 
+	 *  The object plater is serialized relying the default version 1L
 	 */
-	//aggiungi in javadoc che l'ogg plater e serializzato secondo la versione default 1L
 	
 	private static final long serialVersionUID = 1L;
 	private String name;
@@ -53,7 +51,9 @@ public class Player implements Serializable{
 		resources = new Resources(initialCoins);
 		ownedCards = new ArrayList<DevelopmentCard>(0);
 	}
-	
+	/**
+	 * this method creates 4 new dices
+	 */
 	public void refreshPawns(){
 		pawns.put("WHITE", new Pawn(color, PawnDiceColor.WHITE, 0));
 		pawns.put("BLACK", new Pawn(color, PawnDiceColor.BLACK, 0));
@@ -79,7 +79,6 @@ public class Player implements Serializable{
 	public List<DevelopmentCard> getCards(){
 		return this.ownedCards;
 	}
-	// i pawn che ti restano
 	public int getLeftPawns(){
 		int counter = 0;
 		for(Map.Entry<String, Pawn> p : pawns.entrySet()){
@@ -100,6 +99,10 @@ public class Player implements Serializable{
 	public void removePawn(Pawn pawn){
 		pawns.remove(pawn);
 	}
+	/**
+	 * this method shows if there are some council privileges
+	 * @return Bollean
+	 */
 	public boolean hasCouncilPrivileges(){
 		return resources.getResource("COUNCILPRIVILEGES").getValue() > 0;
 	}

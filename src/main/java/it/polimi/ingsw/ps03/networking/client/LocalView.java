@@ -27,7 +27,11 @@ import it.polimi.ingsw.ps03.room_pack.CouncilRoom;
 import it.polimi.ingsw.ps03.room_pack.Room;
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
-
+/**
+ * this class shows to the client all the possible actions and instantiates objects that represents them.
+ * @author Amministratore
+ *
+ */
 public class LocalView extends Observable implements Observer{
 	private Scanner scanner;
 	private PrintStream output;
@@ -47,12 +51,15 @@ public class LocalView extends Observable implements Observer{
 	}
 	
 	
-	/* Is the principal function of the class 'BillboardView'. It receives the already edited model
-	 * (billboard in our case) and an integer that represents the player that is called at playing.
-	 * In this method we give an output on the screen representing all the possible actions that a 
-	 * player can do. After choosing one, a specified method will be called to ask and process all
-	 * the details necessary to build the object 'Action'.
-	 */
+/**
+ * 	  Is the principal function of the class 'BillboardView'. It receives the already edited model
+ *	  (billboard in our case) and an integer that represents the player that is called at playing.
+ *	  In this method we give an output on the screen representing all the possible actions that a 
+ *	  player can do. After choosing one, a specified method will be called to ask and process all
+ *	  the details necessary to build the object 'Action'.
+ * @param billboard Billboard
+ */
+	 
 
 	public void startTurn(Billboard billboard){
 		int turnOfPlayer = billboard.getTurnOfPlay().getPlayerToPlay();
@@ -83,7 +90,7 @@ public class LocalView extends Observable implements Observer{
 	}
 	
 	
-	/* In this method we simply show the possible actions and after taking one, we return it to the
+	/** In this method we simply show the possible actions and after taking one, we return it to the
 	 * method that called this.
 	 */
 	public ActionChoices selectAction(){
@@ -99,10 +106,14 @@ public class LocalView extends Observable implements Observer{
 	}	
 	
 	
-	/* After showing available rooms (action spaces) and pawns, this method builds the object 'Action' asking
-	 * the user what to do. After this a setChanged() and a notifyObservers(action) with argument the action
-	 * object just built. This will be processed by the Controller.
-	 */
+/**
+ * 	After showing available rooms (action spaces) and pawns, this method builds the object 'Action' asking
+ *	the user what to do. After this a setChanged() and a notifyObservers(action) with argument the action
+ *	object just built. This will be processed by the Controller.
+ * @param billboard Billboard
+ * @param turnOfPlayer Int that represents who has to move
+ */
+	 
 	public void placeAction(Billboard billboard, int turnOfPlayer){
 		Player player = billboard.getPlayers().get(turnOfPlayer);
 		Resources spentResources = new Resources();
@@ -168,9 +179,11 @@ public class LocalView extends Observable implements Observer{
 	}
 	
 	
-	/* Method that helps showing all the possible pawns to place and gets the input from the user. It will
-	 * return an object String representing the chosen pawn.
-	 */
+/**
+ * 	 Method that helps showing all the possible pawns to place and gets the input from the user. 	 
+ * @param player Player
+ * @return String representing the chosen pawn
+ */
 	public String pawnChoice(Player player){
 		String pawn = null;
 		do{
@@ -190,9 +203,13 @@ public class LocalView extends Observable implements Observer{
 	}
 	
 	
-	/* Method that helps showing all the possible rooms and gets the input from the user. It will return an 
-	 * integer representing the chosen room.
-	 */
+/**
+ * 	 Method that helps showing all the possible rooms and gets the input from the user. It will return an 
+ *	 integer representing the chosen room.
+ *	
+ * @param rooms List<Room>
+ * @return int
+ */
 	public int roomChoice(List<Room> rooms){
 		int choice = -1;
 		output.println("\nQuale spazio azione desideri occupare?");
@@ -220,10 +237,14 @@ public class LocalView extends Observable implements Observer{
 		int choice = Integer.parseInt(input);
 		return choice;
 	}			
-	/* Method that asks the user for an input. In particular it questions the user if he wants to use some 
-	 * resources during 'place' action. After instantiating a Resources' object, the method fills it with
-	 * user inputs and returns the object to the caller. 
-	 */
+/**
+ * 	 Method that asks the user for an input. In particular it questions the user if he wants to use some 
+ *	 resources during 'place' action. After instantiating a Resources' object, the method fills it with
+ *	 user inputs and returns the object to the caller. 
+ * @param resources Resources 
+ * @return Resources
+ */
+	 
 	private Resources resourcesChoice(Resources resources){
 		String sResource = null;
 		output.println("Desideri spendere qualche risorsa?" + 
@@ -309,10 +330,13 @@ public class LocalView extends Observable implements Observer{
 		}
 	}
 		
-	/* Method always called by the update method. It will show the current situation of the billboard, with 
-	 * particular regard to rooms. So it will not show player's resources and the personal board in general.
-	 * Will be given an action able to show player's personal board.
-	 */
+/**
+ * 	 Method always called by the update method. It will show the current situation of the billboard, with 
+ *	 particular regard to rooms. So it will not show player's resources and the personal board in general.
+ *	 Will be given an action able to show player's personal board.
+ * @param billboard Billboard
+ */
+	 
 	public void showModel(Billboard billboard){		
 		showChangeOfTurn(billboard.getTurnOfPlay());
 		printRooms(billboard.getTable().getRooms());
