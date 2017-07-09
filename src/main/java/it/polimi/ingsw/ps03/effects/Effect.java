@@ -5,7 +5,11 @@ package it.polimi.ingsw.ps03.effects;
 import java.io.Serializable;
 
 import it.polimi.ingsw.ps03.players.Player;
-
+/**
+ * This class is the abstract class extended by all the other Effect class
+ * @author Amministratore
+ *
+ */
 public abstract class Effect implements Serializable{
 
 

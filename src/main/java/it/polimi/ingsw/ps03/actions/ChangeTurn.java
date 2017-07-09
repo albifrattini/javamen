@@ -20,7 +20,7 @@ import it.polimi.ingsw.ps03.players.PawnDiceColor;
  */
 public class ChangeTurn extends Action {
 	
-	/**This class changes the turn and prepares the billboard for the new turn
+	/**
 	 * 
 	 * 
 	 */
@@ -36,7 +36,7 @@ public class ChangeTurn extends Action {
 		super("CHANGETURN", billboard);
 	}
 	/**
-	 * chiedi cosa fa di preciso ad Albi
+	 * this method prepares the billboard for the next turn 
 	 */
 	public void applyAction(){
 		getBillboard().getTurnOfPlay().nextTurnOfPlay();
@@ -47,7 +47,7 @@ public class ChangeTurn extends Action {
 	}
 	
 	/**
-	 * this metod refreshes the table, removes the pawns and gets free the CardSpace
+	 * this method removes the pawns and gets free the CardSpace
 	 */
 	public void refreshTable(){
 		for(Room r : getBillboard().getTable().getRooms()){
@@ -76,8 +76,8 @@ public class ChangeTurn extends Action {
 	}
 	
 	/**
-	 * this Metod puts Develpoment Cards in the Tower Room's Card
-	 * @param billboard a type Billboadr that rapresents the bibblboard to fill
+	 * this method puts Development Cards in the Tower Room's Card
+	 * @param billboard a type Billboard that represents the billboard to fill
 	 */
 	public void displaceCards(Billboard billboard){
 		int period = billboard.getTurnOfPlay().getPeriod();

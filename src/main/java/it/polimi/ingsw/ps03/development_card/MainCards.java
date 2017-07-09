@@ -1,6 +1,10 @@
 package it.polimi.ingsw.ps03.development_card;
 
-
+/**
+ * this class prints the deck of development cards
+ * @author Amministratore
+ *
+ */
 public class MainCards {
 	
 	public static void main(String[] args){

@@ -1,7 +1,11 @@
 package it.polimi.ingsw.ps03.dices;
 
 import java.io.Serializable;
-
+/**
+ * this class represents a Dice and sets its color and value
+ * @author Amministratore
+ *
+ */
 public class Dice implements Serializable{
 
 	/**

@@ -20,7 +20,11 @@ import org.w3c.dom.Element;
 import java.io.File;
 import java.io.Serializable;
 
-
+/**
+ * this class makes the deck of development cards
+ * @author Francesco Ehrenheim, Alberto Frattini, Gabriele Ghiringhelli
+ * 
+ */
 public class DevelopmentCards implements Serializable{
 
 	/**
@@ -40,6 +44,13 @@ public class DevelopmentCards implements Serializable{
 	public static List<DevelopmentCard> getCardsList(){
 		return developmentCards;
 	}
+	
+	/**
+	 * this method gets all the cards in the deck with a specific color
+	 * @param color TowerColor that specifics the color of the cards chosen by the user
+	 * @param developmentCards List<DevelopmentCard> that represents the list of all the development cards
+	 * @return deck  List<DevelopmentCard> a List of development cards with a specific color
+	 */
 	
 	public static List<DevelopmentCard> getCardsOfColor(TowerColor color, List<DevelopmentCard> developmentCards){
 		List<DevelopmentCard> deck = new ArrayList<DevelopmentCard>();
@@ -62,6 +73,11 @@ public class DevelopmentCards implements Serializable{
 		return deck;
 	}
 	
+	/**
+	 * This method takes a random card from the deck
+	 * @param developmentCards List<DevelopmentCard> that represents the list of all the development cards
+	 * @return random   DevelopmentCard that's the card chosen
+	 */
 	public static DevelopmentCard getRandomCard(List<DevelopmentCard> developmentCards){
 		Random random = new Random();
 		int choice = random.nextInt(developmentCards.size());
@@ -71,6 +87,10 @@ public class DevelopmentCards implements Serializable{
 
 	
 	//BUILDER
+	/**
+	 * this method build a deck from a file xml of development cards.
+	 * reads  id, period, diceValue, cardName, cardColor of a Card, than reads the price and at the end the effect.
+	 */
 	public void build(){
 		try{
 			File devCardsXml = new File("./src/development_cards.xml");
@@ -158,13 +178,26 @@ public class DevelopmentCards implements Serializable{
 		}
 				
 	}
-					
+	
+	/**
+	 * this method is used to read a Int from a file
+	 * @param element Element 
+	 * @param intName string of the int that we want to read
+	 * @return int read from the file
+	 */				
 	
 	private int readIntFromFile(Element element, String intName){
 		String read = readStringFromFile(element, intName);
 		int readInt = Integer.parseInt(read);
 		return readInt;
 	}
+	
+	/**
+     * this method is used to read a color from a file
+	 * @param element
+	 * @param colorName TowerColor that shows the color we want to read
+	 * @return String read form the file
+	 */
 	private TowerColor readColorFromFile(Element element, String colorName){
 		String read = readStringFromFile(element, colorName);
 		TowerColor readColor = null;
@@ -175,15 +208,34 @@ public class DevelopmentCards implements Serializable{
 		}
 		return readColor;
 	}
+	
+	/**
+     * this method is used to read a String from a file
+	 * @param element
+	 * @param stringName String that shows the String we want to read frome the file
+	 * @return String read form the file
+	 */
 	private String readStringFromFile(Element element, String stringName){
 		return (String) element.getElementsByTagName(stringName).item(0).getTextContent();
 	}
+	
+	/**
+	 * this method is used to read a Resources from a file
+	 * @param element
+	 * @param resources Resources that represents the Resources we want to read
+	 */
 	private void readResources(Element element, Resources resources, String post){
 		for(Map.Entry<String, Resource> entry : resources.getResourcesMap().entrySet()){;
 			int value = readIntFromFile(element, entry.getKey().toLowerCase() + post);
 			resources.getResource(entry.getKey()).add(value);
 		}
 	}
+	
+	/**
+	 * this method shows if the card has a cost or a requirement and is used in build
+	 * @param resources
+	 * @return
+	 */
 	private boolean isFreeCard(Resources resources){
 		for(Map.Entry<String, Resource> entry : resources.getResourcesMap().entrySet()){
 			if(resources.getResource(entry.getKey()).getValue() > 0){

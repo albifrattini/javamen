@@ -2,6 +2,8 @@ package it.polimi.ingsw.ps03.effects;
 
 
 import java.io.Serializable;
+
+
 import java.util.Map;
 
 import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
@@ -9,6 +11,12 @@ import it.polimi.ingsw.ps03.players.Player;
 import it.polimi.ingsw.ps03.resources.Resource;
 import it.polimi.ingsw.ps03.resources.Resources;
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
+
+/**
+ * this class represents the immediate effect  Earn, that gives resources relying on the number of card of a specific color or the number of military points
+ * @author Amministratore
+ *
+ */
 
 public class EarnImmediateEffect extends Effect implements Serializable{
 
@@ -31,7 +39,10 @@ public class EarnImmediateEffect extends Effect implements Serializable{
 	public TowerColor getEarnTowerColor() {
 		return earnCardColor;
 	}
-	
+	/**
+	 * this method prints the description of the effect Earn
+	 * @return
+	 */
 	public String effectType(){
 		if(earnCardColor != null){
 			return "In base al numero di carte " + earnCardColor.toString().toLowerCase() + " possedute"; 
@@ -40,7 +51,9 @@ public class EarnImmediateEffect extends Effect implements Serializable{
 			return "Ogni due punti militari posseduti";
 		}
 	}
-	
+	/**
+	 * this method applies the effect Earn to the Player, takes the resource and gives them to the Player.
+	 */
 	@Override
 	public void applyEffect(Player player){
 		int counter = 0;

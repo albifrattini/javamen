@@ -1,7 +1,11 @@
 package it.polimi.ingsw.ps03.billboard_pack;
 
 import java.io.Serializable;
-
+/**
+ * This class defines the instant of the game and  who has to move  
+ * @author Amministratore
+ *
+ */
 public class TurnOfPlay implements Serializable {
 
 	/**
@@ -40,7 +44,9 @@ public class TurnOfPlay implements Serializable {
 	public void setNumberOfPlayers(int numberOfPlayers){
 		this.numberOfPlayers = numberOfPlayers;
 	}
-	
+	/**
+	 * this method changes the turn of the game with the next one, if it's the last turn changes the period
+	 */
 	public void nextTurnOfPlay(){
 		if(turn != 2){
 			nextTurn();
@@ -49,15 +55,25 @@ public class TurnOfPlay implements Serializable {
 			nextPeriod();
 		}
 	}
+	/**
+	 * this method changes the turn with the next one
+	 */
 	public void nextTurn(){
 		miniTurn = 1;
 		turn++;
 	}
+	
+/**
+ * this method changes the period with the next one
+ */
 	public void nextPeriod(){
 		miniTurn = 1;
 		turn = 1;
 		period++;
 	}
+	/**
+	 * this method changes the player who has to move with the next one
+	 */
 	public void nextPlayer(){
 		if(playerToPlay >= numberOfPlayers-1){
 			playerToPlay = 0;
@@ -68,6 +84,10 @@ public class TurnOfPlay implements Serializable {
 			playerToPlay++;
 		}
 	}
+	/**
+	 * this class defines if there are a following mini-turn
+	 * @return  Boolean 
+	 */
 	public boolean hasNextMiniTurn(){
 		if(miniTurn > numberOfPlayers*4){
 			return false;

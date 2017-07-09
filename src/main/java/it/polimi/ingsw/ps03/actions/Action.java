@@ -5,7 +5,7 @@ import java.io.Serializable;
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 /** 
  * This class specifics what's the action chosen by the user
- * @author Alberto Frattini, Francesco Ehreneim, Gabriele Ghirnghelli
+ * @author Alberto Frattini, Francesco Ehrenheim, Gabriele Ghirnghelli
  *
  */
 public abstract class Action implements Serializable{
@@ -19,12 +19,13 @@ public abstract class Action implements Serializable{
 	
 /**
  * This method sets the action chosen by the user
- * @param name a string that rapresents the action chosen
+ * @param name string that represents the action chosen
  */
 	public Action(String name){
 		actionName = name;
 		this.billboard = null;
 	}
+	
 	
 	public Action(String name, Billboard billboard){
 		actionName = name;

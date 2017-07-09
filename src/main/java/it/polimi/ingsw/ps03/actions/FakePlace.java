@@ -6,7 +6,11 @@ import it.polimi.ingsw.ps03.players.Pawn;
 import it.polimi.ingsw.ps03.players.Player;
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
-
+/**
+ * This class represents the action Place activated by the immediate effect PlaceImmediateEffect
+ * @author Amministratore
+ *
+ */
 public class FakePlace extends Place{
 
 	/**
@@ -20,7 +24,7 @@ public class FakePlace extends Place{
 		this.color = color;
 		setPawn(new Pawn(actionValue));
 	}
-	
+
 	@Override
 	public DevelopmentCard applyAction(){
 		getPlayer().getCards().add(((TowerRoom) getRoom()).getPlacedCard());

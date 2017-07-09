@@ -9,7 +9,12 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.ps03.development_card.*;
 import it.polimi.ingsw.ps03.resources.*;
-
+/**
+ * this class represents the Player, setting a name, 4 pawns of different color, the initial resources and the cards owned by the player 
+ * The object plater is serialized relying the default version 1L
+ * @author Amministratore
+ *
+ */
 
 public class Player implements Serializable{
 

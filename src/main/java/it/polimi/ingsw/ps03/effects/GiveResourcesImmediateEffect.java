@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 import it.polimi.ingsw.ps03.players.Player;
 import it.polimi.ingsw.ps03.resources.Resources;
-
+/**
+ * this class represents the immediate Effect that gives some resources to the player
+ * @author Amministratore
+ *
+ */
 public class GiveResourcesImmediateEffect extends Effect implements Serializable{
 
 	/**
@@ -21,7 +25,9 @@ public class GiveResourcesImmediateEffect extends Effect implements Serializable
 	public Resources getGivenResources(){
 		return givenResources;
 	}
-	
+	/**
+	 * this method adds the resources to the player
+	 */
 	@Override
 	public void applyEffect(Player player){
 		player.getResources().add(givenResources);

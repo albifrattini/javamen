@@ -6,7 +6,11 @@ import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.room_pack.*;
 import it.polimi.ingsw.ps03.resources.Resources;
 
-
+/**
+ * This class represents the action Place, that allows to position the pawn on the Table
+ * @author Amministratore
+ *
+ */
 public class Place extends Action{
 	
 	/**

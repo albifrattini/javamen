@@ -7,7 +7,11 @@ import it.polimi.ingsw.ps03.resources.Resources;
 import java.util.List;
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/**
+ * This class describes the attributes of a Development Card
+ * @author Alberto Frattini, Francesco Ehrenheim, Gabriele Ghiringhelli
+ *
+ */
 public class DevelopmentCard implements Serializable{
 	
 	/**
@@ -37,7 +41,9 @@ public class DevelopmentCard implements Serializable{
 		diceValue = mDiceValue;
 	}
 	
-	// ToString serve per ''stampare in maniera ordinata"
+	/**
+	 * this method prints price, name, color and immediate effect of the Card
+	 */
 	@Override
 	public String toString(){
 		String prices = "\n";

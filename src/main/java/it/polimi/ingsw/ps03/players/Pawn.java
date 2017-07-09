@@ -1,7 +1,11 @@
 package it.polimi.ingsw.ps03.players;
 
 import java.io.Serializable;
-
+/**
+ * this Class represents the pawns 
+ * @author Amministratore
+ *
+ */
 public class Pawn implements Serializable{
 	
 	/**

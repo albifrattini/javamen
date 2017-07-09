@@ -21,7 +21,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * this class permits to create a the billboard that will be used during the game
+ * this class permits to create  the billboard that will be used during the game
  * @author Amministratore
  *
  */
@@ -91,7 +91,10 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 		throw new NullPointerException("Errore nella conversione giocatori per turno successivo!");
 	}
 	
-	//perchè 5? cosa fa?
+	/**
+	 * this method return the list of possible change for a council privilege
+	 * @return List<Resurces>
+	 */
 	public List<Resources> getCouncilChoices(){
 		return councilPrivilegesChange;
 	}
@@ -99,12 +102,12 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 		return finalPoints;
 	}
 	
-	// setta le risorse council di un giocatore
+
 	public void setPlayers(List<Player> players){
 		this.players = players;
 	}
 	/**
-	 * create the list of resources owned by the player
+	 * create the list of possible changes for the council privileges
 	 * @return the list of resources
 	 */
 	public List<Resources> createList(){
@@ -186,7 +189,7 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 	}
 	
 	/**
- * this method is used to read a String from a file
+     * this method is used to read a String from a file
 	 * @param element
 	 * @param stringName String that shows the String we want to read frome the file
 	 * @return String read form the file
@@ -198,7 +201,7 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 	/**
 	 * this method is used to read a Resources from a file
 	 * @param element
-	 * @param resources Resources that rapresents the Resources we want to read
+	 * @param resources Resources that represents the Resources we want to read
 	 */
 	private void readResources(Element element, Resources resources){
 		for(Map.Entry<String, Resource> entry : resources.getResourcesMap().entrySet()){;
