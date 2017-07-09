@@ -20,7 +20,11 @@ import it.polimi.ingsw.ps03.resources.Resource;
 import it.polimi.ingsw.ps03.resources.Resources;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 
-
+/**
+ * This class represents the controller that takes the object from the remote view, process them, applies the action and sends them to the client 
+ * @author Amministratore
+ *
+ */
 public class Controller extends Observable implements Observer {
 
 	private Billboard model;
