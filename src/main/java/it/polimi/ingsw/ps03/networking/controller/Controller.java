@@ -13,6 +13,7 @@ import it.polimi.ingsw.ps03.effects.Effect;
 import it.polimi.ingsw.ps03.effects.GiveResourcesImmediateEffect;
 import it.polimi.ingsw.ps03.effects.HarvestingOrProductionImmediateEffect;
 import it.polimi.ingsw.ps03.effects.PlaceImmediateEffect;
+import it.polimi.ingsw.ps03.finalcount.FinalCount;
 import it.polimi.ingsw.ps03.networking.virtualView.RemoteView;
 import it.polimi.ingsw.ps03.actions.*;
 import it.polimi.ingsw.ps03.players.*;
@@ -197,6 +198,9 @@ public class Controller extends Observable implements Observer {
 	public void checkTurn(Player player){
 		if(!(player.hasCouncilPrivileges())){
 			model.getTurnOfPlay().nextPlayer();
+			System.out.println("[CHECKTURN] " + model.getTurnOfPlay().hasNextMiniTurn() + 
+					model.getTurnOfPlay().getMiniTurn() + model.getTurnOfPlay().getTurn()
+					+ model.getTurnOfPlay().getPeriod());
 			if(!(model.getTurnOfPlay().hasNextMiniTurn())){
 				System.out.println("[POSTO SBAGLIATO MINITURN]");
 				ChangeTurn changeTurn = new ChangeTurn();
@@ -205,10 +209,16 @@ public class Controller extends Observable implements Observer {
 				sendToPlayingClient("\n\n ==> E' il tuo turno:  ");
 			}
 			else{
+				if(model.getTurnOfPlay().getPeriod() > 3){
+					System.out.println("[FINALCOUNT]");
+					finalCount();
+				}
+				else{
 				System.out.println("[NUMERO DI GIOCATORI] "  + model.getTurnOfPlay().getNumberOfPlayers());
 				System.out.println("[PRIMA DI INVIARE LA BILLBOARD IN CHECKTURN]");
 				sendBillboard();
 				sendToPlayingClient("\n\n ==> E' il tuo turno:  ");
+				}
 			}
 		}
 		else{
@@ -216,6 +226,64 @@ public class Controller extends Observable implements Observer {
 			sendToPlayingClient(player.getResources());
 		}
 	}		
+	
+	private void finalCount(){
+		for(Player p: model.getPlayers()){
+			for(FinalCount f: model.getFinalPoints()){
+				p.getResources().add(f.giveVictoryPoints(p.getCards()));
+			}
+		}
+		int result = getFromMilitaryPoints(5);
+		if(result <= 1){
+			getFromMilitaryPoints(2);
+		}
+		convertResources();
+		sendFinalMessage();
+	}
+	
+	private void sendFinalMessage(){
+		int max_value = 0;
+		Player player = model.getPlayers().get(0);
+		for(Player p: model.getPlayers()){
+			if(p.getResources().getResource("VICTORYPOINTS").getValue() > max_value){
+				player = p;
+			}
+		}
+		try{
+			sendObservers("###  Ha vinto il giocatore " + player.getColor() + "!  ###");
+		}catch(NullPointerException e){
+			System.out.println("Errore! Giocatore null");
+		}
+	}
+	
+	private void convertResources(){
+		for(Player p: model.getPlayers()){
+			int valueToAdd = 0;
+			valueToAdd += p.getResources().getResource("STONES").getValue();
+			valueToAdd += p.getResources().getResource("WOODS").getValue();
+			valueToAdd += p.getResources().getResource("COINS").getValue();
+			valueToAdd += p.getResources().getResource("SERVANTS").getValue();
+			valueToAdd = valueToAdd/5;
+			p.getResources().getResource("VICTORYPOINTS").add(valueToAdd);
+		}
+	}
+	
+	private int getFromMilitaryPoints(int value){
+		int max_value = 0, counter = 0;
+		for(Player p: model.getPlayers()){
+			max_value = Math.max(max_value, p.getResources().getResource("MILITARYPOINTS").getValue());
+		}
+		for(Player p: model.getPlayers()){
+			if(p.getResources().getResource("MILITARYPOINTS").getValue() == max_value){
+				p.getResources().getResource("MILITARYPOINTS").setValue(0);
+				p.getResources().getResource("VICTORYPOINTS").add(value);
+				counter++;
+			}
+		}
+		return counter;
+	}
+	
+
 				
 	public Billboard getBillboard(){
 		return model;
@@ -252,7 +320,6 @@ public class Controller extends Observable implements Observer {
 		
 	@Override
 	public void update(Observable o, Object obj){
-		System.out.println("controllerinooooooooooo");
 		if(!(o instanceof RemoteView)){
 			throw new IllegalArgumentException();
 		}

@@ -456,9 +456,9 @@ public class LocalView extends Observable implements Observer{
 		}
 		if(obj instanceof String){
 			printMessage((String) obj);
-			if(serverModel != null){
+			if(serverModel != null && !(((String) obj).contains("vinto"))){
 				startTurn(serverModel);
-			}			
+			}	
 		}
 		if(obj instanceof ClientFakePlace){
 			fakePlaceAction((ClientFakePlace) obj);

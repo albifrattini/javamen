@@ -52,6 +52,7 @@ public abstract class Resource implements Serializable{
 		value = value - subber;
 	}
 	
+	
 	@Override
 	public String toString(){
 		return rName + ": " + value;
