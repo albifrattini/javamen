@@ -1,5 +1,7 @@
 package it.polimi.ingsw.ps03.networking.virtualView;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -24,6 +26,7 @@ public class Server {
 	 private Map<String, Connection> waitingConnection = new HashMap<>(4);
 	 private int number = 1;
 	 private boolean active = true;
+	 private BufferedReader reader;
 	 
 	 public Server() throws IOException {
 		 this.serverSocket = new ServerSocket(PORT);
@@ -65,9 +68,15 @@ public class Server {
 		 active = false;
 	 }
 	 
-
-	 public void waitTimer(){
-		 Timer timer = new Timer(20);
+     public int readTimer() throws IOException{
+    	 reader = new BufferedReader(new FileReader("./src/timer.txt"));
+    	 String line = reader.readLine();
+    	 int timeToWait = Integer.parseInt(line);
+    	 return timeToWait;
+     }
+     
+	 public void waitTimer() throws IOException{
+		 Timer timer = new Timer(readTimer());
 		 timer.startTimer();
 		 while(timer.stillRunning()){
 			 try {
