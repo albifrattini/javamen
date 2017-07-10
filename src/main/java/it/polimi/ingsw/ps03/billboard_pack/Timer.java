@@ -40,10 +40,7 @@ public class Timer extends Thread{
 			}		
 			if(i == 0){
 				System.out.println("Timer Scaduto!");	
-			}
-			else{
-				//System.out.println("Timer in esecuzione: - " +i);
-			}
+			}			
 		}
 		isRunning = false;
 		isFinished = true;

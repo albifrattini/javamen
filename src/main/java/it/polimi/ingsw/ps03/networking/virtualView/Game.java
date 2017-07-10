@@ -34,14 +34,14 @@ public class Game implements Runnable{
 			developmentCards.build();			 	
 			model.getTable().buildTable(playersConnected.size());		
 			System.out.println("[GAME]  Sto creando la partita");			
-			for(int i = 0; i < playersConnected.size(); i++ ){//aggiunge i giocatori alla partita						
+			for(int i = 0; i < playersConnected.size(); i++ ){					
 							PlayerColor [] colors = PlayerColor.values();		 		
-					 		List<String> keys = new ArrayList<>(playersConnected.keySet());	//Returns a Set view of the keys contained in this map.
+					 		List<String> keys = new ArrayList<>(playersConnected.keySet());
 					 		Connection c = playersConnected.get(keys.get(i));
 					 		RemoteView player = new RemoteView(new Player(keys.get(i), colors[i] , 5+i), c);
 					 		players.add(player);
-					 		controller.addRemote(player);//creo lista di remoteView
-					 		playersName.add(keys.get(i));//creo lista di nomiUtente
+					 		controller.addRemote(player);
+					 		playersName.add(keys.get(i));
 					 		model.addPlayerRemote(i, keys.get(i), colors[i], 5+i);
 					 		System.out.println("[GAME]  Giocatore " + playersName.get(i).toString() + " di colore " + colors[i].toString());
 					 		model.addObserver(controller);

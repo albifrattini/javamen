@@ -1,5 +1,4 @@
 package it.polimi.ingsw.ps03.networking.virtualView;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -23,8 +22,7 @@ public class Connection extends Observable<Object> implements Runnable{
 	
 		@Override
 	public void run() {
-		try{			
-		
+		try{					
 			in = new ObjectInputStream(socket.getInputStream());
 			out = new ObjectOutputStream(socket.getOutputStream());
 			line = in.readObject();
@@ -44,11 +42,9 @@ public class Connection extends Observable<Object> implements Runnable{
 		while(isActive()){
 			System.out.println("[CONNECTION]  Sono in continuo ascolto dei messaggi");			
 			try{
-				System.out.println("[CONNECTION] ARRIVATO IL MESSAGGIO");
 				line = in.readObject();
-				System.out.println("[CONNECTION] INOLTRATO ALLA REMOTE VIEW");
 				System.out.println(line.toString());
-				notifyObservers(line); //metodo che attiva la notify di tutte le remoteview che hanno come attributo 'Connection'
+				notifyObservers(line);
 			}catch (ClassNotFoundException | IOException e){
 			System.out.println("Non son riuscito a ricevere");
 			}
@@ -60,12 +56,10 @@ public class Connection extends Observable<Object> implements Runnable{
 		}
 	}
 	
-	/*controlla che il client sia connesso*/
 	private synchronized boolean isActive(){
 		return active;
 	}	
 	
-	/*invia i messaggi*/
 	public void send(Object message) throws IOException{	
 		out.writeObject(message);
 		out.flush();
@@ -84,8 +78,6 @@ public class Connection extends Observable<Object> implements Runnable{
 		active = false;
 	}
 		
-	/*chiude la connessione invocando la closeConnection e rimuove 
-	 * dall'arrayList di utenti connessi il giocatore disconnesso*/
 	private void close() throws IOException{
 		closeConnection();
 		System.out.println("Client Disconnected");

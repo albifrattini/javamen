@@ -25,11 +25,9 @@ public class NetworkHandler implements Observer {
 			throw new IllegalArgumentException();
 		}
 		try {
-			System.out.println("[NETWORKHANDLER]  Sto per inviare il messaggio dalla view");
 			out.writeObject(obj);
 			out.flush();
 			out.reset();
-			System.out.println("[NETWORKHANDLER]  Messaggio inviato");
 		}catch (IOException e) {
 			System.out.println("[NETWORKHANDLER]  Errore nell'invio del messaggio");
 		}

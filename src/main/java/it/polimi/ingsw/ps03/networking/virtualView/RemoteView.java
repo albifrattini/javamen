@@ -9,8 +9,7 @@ import java.io.IOException;
 public class RemoteView extends View implements Observer<Object> {
 
 	private Connection connection;
-	
-	
+		
 	public RemoteView(Player player, Connection c){
 		super(player);
 		this.connection = c;
@@ -31,7 +30,6 @@ public class RemoteView extends View implements Observer<Object> {
 	@Override
 	protected void sendModel(Billboard billboard){
 		try {
-			System.out.println("[SERVER->CLIENT]  Invio elemento al client");
 			System.out.println("INVIO MODEL A GIOCATORE " + player.getName());
 			connection.send(billboard);
 		} catch (IOException e) {
@@ -41,11 +39,7 @@ public class RemoteView extends View implements Observer<Object> {
 		notifyObservers("[SERVER->CLIENT]  Elemento inviato con successo al client");
 	}	
 	
-	
-	
-	
-	
-	
+		
 	@Override//sovrascrive la notify di Observer quando viene invocata
 	public void notify(Object message) throws IOException {				
 		System.out.println("[REMOTEVIEW]  Ricevuto " + message.toString() + " dal giocatore " + player.toString());//riceve man mano e stampa sul server ciò che ha ricevuto
@@ -57,7 +51,7 @@ public class RemoteView extends View implements Observer<Object> {
 			}		
 	}
 
-	public void update(Observable o, Object obj) {
+	public void update(Observable<Object> o, Object obj) {
 		
 	}
 

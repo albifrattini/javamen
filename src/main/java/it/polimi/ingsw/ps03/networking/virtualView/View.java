@@ -2,7 +2,6 @@ package it.polimi.ingsw.ps03.networking.virtualView;
 
 import java.util.Observable;
 import java.util.Observer;
-
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 import it.polimi.ingsw.ps03.networking.controller.Controller;
 import it.polimi.ingsw.ps03.players.*;

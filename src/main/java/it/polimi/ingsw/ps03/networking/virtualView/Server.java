@@ -14,8 +14,6 @@ import java.util.concurrent.Executors;
 import it.polimi.ingsw.ps03.billboard_pack.Timer;
 
 
-
-
 public class Server {
 	 private static final int PORT = 1500;
      private Socket newSocket;
@@ -32,19 +30,17 @@ public class Server {
 	 }
 		
 
-	 public void startServer() throws SocketException{/*crea la server socket e si mette in ascolto pronto a ricevere
-														le connessioni. Man mano che un client si connette viene messo 
-														nell'arraylist connections*/ 		 
+	 public void startServer() throws SocketException{	 
 		 System.out.println("[SERVER]  Ready on Port: "+PORT);		 
 		 	while(isActive()){ 		 			
 					try{
-						newSocket = serverSocket.accept(); //crea una connessione tra server e client				
-						InetAddress infoclient = newSocket.getInetAddress();  //ritorna l'indirizzo dal quale il client si connette al socket
-						String client = infoclient.getHostAddress();    //ritorna l'indirizzo IP del client 		
+						newSocket = serverSocket.accept(); 		
+						InetAddress infoclient = newSocket.getInetAddress();  
+						String client = infoclient.getHostAddress(); 		
 						System.out.println("[SERVER]  Connessione ricevuta dal client: " + client);		
 						connection = new Connection(newSocket, this);
 						addConnection(connection);
-						executor.submit(connection);//fa partire Connection									
+						executor.submit(connection);							
 					}catch (IOException e){
 						System.out.println("[SERVER] Errore nella connessione");
 					}
@@ -52,10 +48,9 @@ public class Server {
 					close();
 	}
 	 
-	/*aggiunge all'arrayList le connessioni attive*/
+
 	 private synchronized void addConnection(Connection c){
 		connections.add(c);
-		System.out.println("[SERVER]  Aggiunto il client alle connessioni");//solo come prova
 	}
 	 
 	 public synchronized void removeConnection(Connection c){
@@ -72,7 +67,7 @@ public class Server {
 	 
 
 	 public void waitTimer(){
-		 Timer timer = new Timer(1);
+		 Timer timer = new Timer(20);
 		 timer.startTimer();
 		 while(timer.stillRunning()){
 			 try {
@@ -104,7 +99,6 @@ public class Server {
 			number++;
 	 }
 	 
-	 //MAIN
 	 public static void main(String[] args){
 			Server server;
 			try{

@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Observable<Object> {
+public class Observable<T> {
 	
 	private List<Observer<Object>> observers = new ArrayList<Observer<Object>>();
 	
-			/*aggiunge alla lista di osservatori i giocatori*/
+
 	public void register(Observer<Object> observer){
 		synchronized (observers){
 		observers.add(observer);			
