@@ -31,7 +31,7 @@ public class Connection extends Observable<Object> implements Runnable{
 			String read = (String)line;	
 			System.out.println("[CONNECTION]  Ricevuto: "+ read);
 			send("Benvenuto in Lorenzo Il Magnifico " + read + "!\nSono in attesa di altri giocatori... Attendi");
-			server.match(this, read);
+			server.waitingRoom(this, read);
 			receiveMessage();					    
 		}catch(IOException  e){
 			System.out.println("Errore nella ricezione!");

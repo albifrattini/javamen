@@ -23,7 +23,7 @@ public class TurnOfPlay implements Serializable {
 		this.turn = 0;
 		this.period = 1;
 		this.playerToPlay = 0;
-		this.numberOfPlayers = 2;
+		this.numberOfPlayers = 4;
 	}
 	
 	public int getMiniTurn(){

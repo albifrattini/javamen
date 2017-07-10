@@ -1,15 +1,9 @@
 package it.polimi.ingsw.ps03.networking.virtualView;
 
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
-import it.polimi.ingsw.ps03.billboard_pack.TurnOfPlay;
 import it.polimi.ingsw.ps03.players.*;
-import it.polimi.ingsw.ps03.room_pack.CouncilRoom;
-import it.polimi.ingsw.ps03.room_pack.Room;
-import it.polimi.ingsw.ps03.actions.ActionChoices;
-import it.polimi.ingsw.ps03.actions.FakePlace;
-
 import java.io.IOException;
-import java.util.List;
+
 
 
 public class RemoteView extends View implements Observer<Object> {
@@ -31,12 +25,6 @@ public class RemoteView extends View implements Observer<Object> {
 		connection.send("E' il tuo turno");
 		sendModel(billboard);
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	
