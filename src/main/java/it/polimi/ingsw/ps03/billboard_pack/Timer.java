@@ -6,12 +6,21 @@ public class Timer extends Thread{
 	private int timer;
 	private boolean isRunning;
 	private boolean stopped;
+	private boolean forView;
 	
 	public Timer(int timer){
 		this.timer = timer;
 	}
 	
 	public void startTimer(){
+		isRunning = true;
+		isFinished = false;
+		stopped = false;
+		forView = true;
+		this.start();
+	}
+	
+	public void turnTimer(){
 		isRunning = true;
 		isFinished = false;
 		stopped = false;
@@ -24,15 +33,16 @@ public class Timer extends Thread{
 				if(isStopped()) break;
 				Thread.sleep(1000);
 			}catch(InterruptedException e){
+				Thread.currentThread().interrupt();
 				i = 0;
 				isRunning = false;
 				isFinished = true;
 			}		
 			if(i == 0){
-				System.out.println("Timer Scaduto!");
+				System.out.println("Timer Scaduto!");	
 			}
 			else{
-				System.out.println("Timer in esecuzione: - " +i);
+				//System.out.println("Timer in esecuzione: - " +i);
 			}
 		}
 		isRunning = false;
@@ -42,6 +52,13 @@ public class Timer extends Thread{
 
 	public boolean itsOver(){
 		return isFinished;
+	}
+	
+	public void changeView(){
+		this.forView = false;
+	}
+	public boolean getView(){
+		return forView;
 	}
 	
 	public void stopTimer(){

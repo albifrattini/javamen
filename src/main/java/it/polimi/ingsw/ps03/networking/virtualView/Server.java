@@ -72,7 +72,7 @@ public class Server {
 	 
 
 	 public void waitTimer(){
-		 Timer timer = new Timer(15);
+		 Timer timer = new Timer(1);
 		 timer.startTimer();
 		 while(timer.stillRunning()){
 			 try {
@@ -81,7 +81,8 @@ public class Server {
 					timer.stopTimer();
 				}
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				System.out.println("[WARNING]  Errore in waitTimer!");
+				Thread.currentThread().interrupt();
 			}
 		 }
 		 match(waitingConnection);		 

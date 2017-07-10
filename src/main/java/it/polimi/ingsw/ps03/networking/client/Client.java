@@ -2,8 +2,7 @@ package it.polimi.ingsw.ps03.networking.client;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-
-
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.NoSuchElementException;
@@ -43,7 +42,9 @@ public class Client extends Observable {
 		
 	//MAIN
 public static void main(String[] args) throws UnknownHostException, IOException{
-	Client client = new Client("127.0.0.1", 1500);
+	String localhost = String.valueOf(InetAddress.getLoopbackAddress());
+	localhost = localhost.substring(10, localhost.length());
+	Client client = new Client(localhost, 1500);
 	Socket socket = new Socket(ip , port);//crea la socket del client 
 	NetworkHandler networkHandler = new NetworkHandler(socket);
 	LocalView ui = new LocalView(System.in, System.out);

@@ -68,7 +68,7 @@ public class EarnImmediateEffect extends Effect implements Serializable{
 			counter = (player.getResources().getResource("MILITARYPOINTS").getValue())/2;
 		}
 		for(Map.Entry<String, Resource> entry: player.getResources().getResourcesMap().entrySet()){
-			entry.getValue().setValue(entry.getValue().getValue()*counter);
+			entry.getValue().add(earnResources.getResource(entry.getKey()).getValue()*counter);
 		}
 	}
 	

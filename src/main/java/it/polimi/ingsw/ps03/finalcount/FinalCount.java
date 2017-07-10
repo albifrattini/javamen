@@ -33,4 +33,8 @@ public class FinalCount implements Serializable{
 		}
 		return givenResources.get(counter);
 	}
+	
+	public List<Resources> getResources(){
+		return givenResources;
+	}
 }

@@ -95,6 +95,17 @@ public class TurnOfPlay implements Serializable {
 		return true;
 	}
 	
-	
+	public boolean gameIsEnded(){
+		if(miniTurn > numberOfPlayers*4){
+			if(turn == 2){
+				if(period == 3){
+					return true;
+				}
+			return false;
+			}
+		return false;
+		}
+		return false;
+	}
 	
 }

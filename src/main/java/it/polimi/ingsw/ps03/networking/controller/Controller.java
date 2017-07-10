@@ -207,22 +207,24 @@ public class Controller extends Observable implements Observer {
 					+ model.getTurnOfPlay().getPeriod());
 			if(!(model.getTurnOfPlay().hasNextMiniTurn())){
 				System.out.println("[POSTO SBAGLIATO MINITURN]");
-				ChangeTurn changeTurn = new ChangeTurn();
-				applyAction(changeTurn);
-				sendBillboard();
-				sendToPlayingClient("\n\n ==> E' il tuo turno:  ");
-			}
-			else{
-				if(model.getTurnOfPlay().getPeriod() > 3){
-					System.out.println("[FINALCOUNT]");
+				if(!(model.getTurnOfPlay().gameIsEnded())){
+					ChangeTurn changeTurn = new ChangeTurn();
+					applyAction(changeTurn);
+				}
+				else if(model.getTurnOfPlay().gameIsEnded()){
 					finalCount();
 				}
 				else{
+				sendBillboard();
+				sendToPlayingClient("\n\n ==> E' il tuo turno:  ");
+				}
+			}
+			else{
 				System.out.println("[NUMERO DI GIOCATORI] "  + model.getTurnOfPlay().getNumberOfPlayers());
 				System.out.println("[PRIMA DI INVIARE LA BILLBOARD IN CHECKTURN]");
 				sendBillboard();
 				sendToPlayingClient("\n\n ==> E' il tuo turno:  ");
-				}
+				
 			}
 		}
 		else{
@@ -241,6 +243,7 @@ public class Controller extends Observable implements Observer {
 		if(result <= 1){
 			getFromMilitaryPoints(2);
 		}
+		System.out.println("quiiiiiiiii");
 		convertResources();
 		sendFinalMessage();
 	}

@@ -56,6 +56,8 @@ public class ChangeTurn extends Action {
 			}
 			r.removePawn();
 		}
+		getBillboard().getTable().getCouncilPalaceList().clear();
+		getBillboard().getTable().addCouncilRoom();
 	}
 	
 	/**

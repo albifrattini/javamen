@@ -17,6 +17,7 @@ import it.polimi.ingsw.ps03.actions.ClientFakePlace;
 import it.polimi.ingsw.ps03.actions.ClientPlace;
 import it.polimi.ingsw.ps03.actions.Pass;
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
+import it.polimi.ingsw.ps03.billboard_pack.Timer;
 import it.polimi.ingsw.ps03.billboard_pack.TurnOfPlay;
 import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
 import it.polimi.ingsw.ps03.players.Pawn;
@@ -36,6 +37,7 @@ public class LocalView extends Observable implements Observer{
 	private Scanner scanner;
 	private PrintStream output;
 	private Billboard serverModel;
+	private Timer timer;
 	
 	public LocalView(InputStream inputStream, OutputStream output){
 		this.scanner = new Scanner(inputStream);
@@ -61,6 +63,21 @@ public class LocalView extends Observable implements Observer{
  */
 	 
 
+	public void turnTimer(){
+		timer = new Timer(10);
+		timer.startTimer();
+		while(timer.stillRunning()){
+			System.out.println("dentro");
+			if(timer.getView()){
+				timer.changeView();
+				startTurn(serverModel);
+			}
+		}
+		setChanged();
+		notifyObservers(new Pass());
+	}
+	
+	
 	public void startTurn(Billboard billboard){
 		int turnOfPlayer = billboard.getTurnOfPlay().getPlayerToPlay();
 		ActionChoices choice = null;
@@ -320,7 +337,7 @@ public class LocalView extends Observable implements Observer{
 			setChanged();
 			notifyObservers(fakePlace);
 		}
-		if(choice.contains("no")){
+		else if(choice.contains("no")){
 			setChanged();
 			notifyObservers();
 		}
