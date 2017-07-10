@@ -38,7 +38,11 @@ public class Controller extends Observable implements Observer {
 	public void addRemote(RemoteView player){
 			players.add(player);
 	}
-
+/**
+ * this method starts the game
+ * @param action ChangeTurn
+ * @throws IOException
+ */
 	public void initGame(ChangeTurn action) throws IOException{
 		action.setBillboard(model);
 		action.applyAction();
@@ -311,6 +315,8 @@ public class Controller extends Observable implements Observer {
 		fakePlace.setChosenCost(action.getChosenCost());
 		return fakePlace;
 	}
+	
+
 	public void addResourcesFromPrivileges(Resources resources){
 		Player player = model.getPlayers().get(model.getTurnOfPlay().getPlayerToPlay());
 		player.getResources().getResource("COUNCILPRIVILEGES").setValue(0);
