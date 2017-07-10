@@ -243,7 +243,6 @@ public class Controller extends Observable implements Observer {
 		if(result <= 1){
 			getFromMilitaryPoints(2);
 		}
-		System.out.println("quiiiiiiiii");
 		convertResources();
 		sendFinalMessage();
 	}

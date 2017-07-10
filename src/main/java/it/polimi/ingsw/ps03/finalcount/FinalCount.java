@@ -29,7 +29,7 @@ public class FinalCount implements Serializable{
 			}
 		}
 		if(counter == -1){
-			return null;
+			return new Resources();
 		}
 		return givenResources.get(counter);
 	}
