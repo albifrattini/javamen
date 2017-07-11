@@ -36,6 +36,7 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 	private TurnOfPlay turnOfPlay;
 	private List<Resources> councilPrivilegesChange;
 	private List<FinalCount> finalPoints;
+	private FaithFinalCount faithCount;
 	
 	public Billboard(){
 		players = new ArrayList<Player>(4);
@@ -44,6 +45,7 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 		turnOfPlay = new TurnOfPlay();
 		councilPrivilegesChange = createList();
 		finalPoints = finalPoints();
+		faithCount = faithPoints();
 	}
 	
 /**
@@ -173,6 +175,40 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 		}
 		FinalCount finalCount = new FinalCount(color, list);
 		return finalCount;
+	}
+	
+	public FaithFinalCount faithPoints(){
+		FaithFinalCount ffC = new FaithFinalCount();
+		try{
+			File finalXml = new File("./src/faith_final_points.xml");
+			Document docFinal = DocumentBuilderFactory.newInstance().
+										newDocumentBuilder().parse(finalXml);
+		
+			docFinal.getDocumentElement().normalize();
+			docFinal.getDocumentElement().getNodeName();
+
+			NodeList finalList = docFinal.getElementsByTagName("MapEntry");
+		
+			for(int i = 0; i < finalList.getLength(); i++){
+				Node finalResources = finalList.item(i);
+				
+				if(finalResources.getNodeType() == Node.ELEMENT_NODE){
+					Element element = (Element) finalResources;
+					
+					int minimumValue = readIntFromFile(element, "minimumValue");
+					Resources resources = new Resources();
+					readResources(element, resources);
+					ffC.addResources(minimumValue, resources);
+				}
+			}
+		}catch(Exception e){
+			System.out.println("[WARNING]  Problema con caricamento cambi del consiglio");
+		}
+		return ffC;
+	}
+	
+	public FaithFinalCount getFaithCount(){
+		return faithCount;
 	}
 	
 /**

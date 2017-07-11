@@ -49,7 +49,7 @@ public class Controller extends Observable implements Observer {
 		sendBillboard();
 		sendToPlayingClient("\n\n ==> E' il tuo turno:  ");
 	}
-		
+	
 	private void sendBillboard(){
 		sendObservers(model);
 	}
@@ -281,6 +281,9 @@ public class Controller extends Observable implements Observer {
 			valueToAdd += p.getResources().getResource("SERVANTS").getValue();
 			valueToAdd = valueToAdd/5;
 			p.getResources().getResource("VICTORYPOINTS").add(valueToAdd);
+			p.getResources().add(
+					model.getFaithCount().getResources(
+					p.getResources().getResource("FAITHPOINTS").getValue()));
 		}
 	}
 	/**
