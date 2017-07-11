@@ -54,7 +54,6 @@ public class Controller extends Observable implements Observer {
 		sendObservers(model);
 	}
 		
-
 	private void sendObservers(Object obj){
 		for(RemoteView player : players){
 			try {
@@ -64,7 +63,10 @@ public class Controller extends Observable implements Observer {
 			}
 		}
 	}
-	
+	/**
+	 * this method, if the type of the object is not PLACE , sends the object to the player
+	 * @param obj Object
+	 */
 	private void sendToPlayingClient(Object obj){
 		RemoteView player = players.get(model.getTurnOfPlay().getPlayerToPlay());
 		try {
@@ -83,7 +85,10 @@ public class Controller extends Observable implements Observer {
 	
 	//PARTI RIGUARDANTI LA GESTIONE AZIONI
 	
-	
+/**
+ * this method applies the action chosen by a player	
+ * @param action Action
+ */
 	private void applyAction(Action action){
 		action.setBillboard(model);
 		if(action instanceof ChangeTurn){
@@ -118,7 +123,10 @@ public class Controller extends Observable implements Observer {
 	private boolean hasEffect(DevelopmentCard drawnCard){
 		return drawnCard != null && drawnCard.getImmediateEffect() != null;
 	}
-		
+	/**
+	 * this method activates the effect of development cards	
+	 * @param drawnCard DevelopmentCard
+	 */
 	private void activateEffect(DevelopmentCard drawnCard){
 		Effect effect = drawnCard.getImmediateEffect();
 		Player player = model.getPlayers().get(model.getTurnOfPlay().getPlayerToPlay());
@@ -232,7 +240,9 @@ public class Controller extends Observable implements Observer {
 			sendToPlayingClient(player.getResources());
 		}
 	}		
-	
+	/**
+	 * this methods ends the game and shows the winner
+	 */
 	private void finalCount(){
 		for(Player p: model.getPlayers()){
 			for(FinalCount f: model.getFinalPoints()){
@@ -273,7 +283,11 @@ public class Controller extends Observable implements Observer {
 			p.getResources().getResource("VICTORYPOINTS").add(valueToAdd);
 		}
 	}
-	
+	/**
+	 * this method turns the military points owned by a player into victory   points
+	 * @param value
+	 * @return
+	 */
 	private int getFromMilitaryPoints(int value){
 		int max_value = 0, counter = 0;
 		for(Player p: model.getPlayers()){

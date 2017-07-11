@@ -10,8 +10,6 @@ import java.util.Observable;
 
 /**
  * this class represents Client, that receives objects and connects to the server port
- * @author Amministratore
- *
  */
 public class Client extends Observable {
 	private static String ip;
@@ -23,7 +21,10 @@ public class Client extends Observable {
 		Client.ip = ip;
 		Client.port = port;		
 	}
-
+/**
+ * this class receives the object and notifies the observers about the change
+ * @param socket Socket
+ */
 	public void receiveMessage(Socket socket) throws ClassNotFoundException, IOException{
 		try{					
 			while (isActive()){		
@@ -39,7 +40,12 @@ public class Client extends Observable {
 				active = false;
 			}			
 	}
-		
+/**
+ * this methos starts the client, establishes the socket's connection between client and server, generates a network handler and a local view
+ * @param args
+ * @throws UnknownHostException
+ * @throws IOException
+ */
 	//MAIN
 public static void main(String[] args) throws UnknownHostException, IOException{
 	String localhost = String.valueOf(InetAddress.getLoopbackAddress());

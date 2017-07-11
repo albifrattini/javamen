@@ -5,7 +5,10 @@ import it.polimi.ingsw.ps03.players.*;
 import java.io.IOException;
 
 
-
+/**
+ * this class links controller with client
+ *
+ */
 public class RemoteView extends View implements Observer<Object> {
 
 	private Connection connection;

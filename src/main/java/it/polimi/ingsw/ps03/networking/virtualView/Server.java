@@ -82,7 +82,9 @@ public class Server {
 		 }
 		 match(waitingConnection);		 
 	 }
-	 
+	 /**
+	  * this methods represents the waiting room
+	  */
 	 public void waitingRoom(Connection c, String name) throws IOException{
 		 		waitingConnection.put(name, c);	
 		 		System.out.println("[SERVER]  Aggiunto il giocatore alla coda di attesa");		

@@ -11,7 +11,10 @@ import it.polimi.ingsw.ps03.development_card.DevelopmentCards;
 import it.polimi.ingsw.ps03.networking.controller.Controller;
 import it.polimi.ingsw.ps03.players.Player;
 import it.polimi.ingsw.ps03.players.PlayerColor;
-
+/**
+ * this class instantiates e creates a new game ( crates the table, puts the cards in the right place..)
+ *
+ */
 public class Game implements Runnable{
 	
 	private Map<String, Connection> playersConnected;
@@ -24,7 +27,9 @@ public class Game implements Runnable{
 		playersConnected = new HashMap<String, Connection> (waitingConnection);
 	}
 
-
+/**
+ * this methods creates the new game, adds player and starts the game
+ */
 	@Override
 	public void run() {			
 			List<RemoteView> players = new ArrayList<RemoteView>(playersConnected.size());		 						

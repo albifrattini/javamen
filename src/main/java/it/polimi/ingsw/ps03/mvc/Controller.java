@@ -16,7 +16,10 @@ import it.polimi.ingsw.ps03.players.*;
 import it.polimi.ingsw.ps03.resources.Resource;
 import it.polimi.ingsw.ps03.resources.Resources;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
-
+/**
+ * this class is similar to the class Controller in the package networking controller, but easier
+ *
+ */
 public class Controller extends Observable implements Observer {
 
 	private Billboard model;

@@ -4,7 +4,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-
+/**
+ * this class links controller with the client
+ *
+ */
 public class Connection extends Observable<Object> implements Runnable{
 
 	private Socket socket;
@@ -19,7 +22,9 @@ public class Connection extends Observable<Object> implements Runnable{
 		this.socket = socket;
 		this.server = server;
 	} 
-	
+	/**
+	 * this method welcomes players ready to play and puts them in the waiting room
+	 */
 		@Override
 	public void run() {
 		try{					

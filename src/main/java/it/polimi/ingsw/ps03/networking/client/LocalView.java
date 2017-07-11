@@ -27,7 +27,6 @@ import it.polimi.ingsw.ps03.room_pack.TowerColor;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 /**
  * this class shows to the client all the possible actions and instantiates objects that represents them.
- * @author Amministratore
  *
  */
 public class LocalView extends Observable implements Observer{
