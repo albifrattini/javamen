@@ -87,7 +87,7 @@ public class DevelopmentCards implements Serializable{
 	
 	//BUILDER
 	/**
-	 * this method build a deck from a file xml of development cards.
+	 * this method builds a deck from a file xml of development cards.
 	 * reads  id, period, diceValue, cardName, cardColor of a Card, than reads the price and at the end the effect.
 	 */
 	public void build(){

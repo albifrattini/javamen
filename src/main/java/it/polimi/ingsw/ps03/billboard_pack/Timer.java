@@ -1,6 +1,6 @@
 package it.polimi.ingsw.ps03.billboard_pack;
 /**
- * this class represent the times, if the timer arrives to 0 the game starts
+ * this class represent the timer, if the timer arrives to 0 the game starts
  *
  */
 public class Timer extends Thread{

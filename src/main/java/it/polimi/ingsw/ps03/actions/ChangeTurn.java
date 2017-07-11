@@ -77,7 +77,7 @@ public class ChangeTurn extends Action {
 	}
 	
 	/**
-	 * this method puts Development Cards in the Tower Room's Card
+	 * this method puts Development Cards in the Tower Room and removes it from the deck
 	 * @param billboard a type Billboard that represents the billboard to fill
 	 */
 	public void displaceCards(Billboard billboard){

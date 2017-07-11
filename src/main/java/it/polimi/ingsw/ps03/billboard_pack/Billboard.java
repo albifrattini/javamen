@@ -91,7 +91,7 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 	}
 	
 	/**
-	 * this method return the list of possible change for a council privilege
+	 * this method returns the list of possible change for a council privilege
 	 * @return List<Resurces>
 	 */
 	public List<Resources> getCouncilChoices(){
@@ -106,7 +106,7 @@ public class Billboard extends Observable implements Cloneable,Serializable{
 		this.players = players;
 	}
 	/**
-	 * create the list of possible changes for the council privileges
+	 * creates the list of possible changes for the council privileges
 	 * @return the list of resources
 	 */
 	public List<Resources> createList(){
