@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 /**
  * this class represents all the resources owned by a Player
- * @author Amministratore
  *
  */
 public class Resources implements Serializable{

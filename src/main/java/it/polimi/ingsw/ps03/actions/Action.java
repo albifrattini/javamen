@@ -5,7 +5,6 @@ import java.io.Serializable;
 import it.polimi.ingsw.ps03.billboard_pack.Billboard;
 /** 
  * This class specifics what's the action chosen by the user
- * @author Alberto Frattini, Francesco Ehrenheim, Gabriele Ghiringhelli
  *
  */
 public abstract class Action implements Serializable{

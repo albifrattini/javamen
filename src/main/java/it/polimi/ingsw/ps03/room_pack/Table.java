@@ -17,7 +17,6 @@ import it.polimi.ingsw.ps03.resources.*;
 
 /**
  * this class represents the table of the game
- * @author Amministratore
  *
  */
 public class Table implements Serializable {

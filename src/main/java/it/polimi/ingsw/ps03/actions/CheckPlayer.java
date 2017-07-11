@@ -3,7 +3,6 @@ package it.polimi.ingsw.ps03.actions;
 import it.polimi.ingsw.ps03.players.Player;
 /**
  * This class shows to the player his resources and cards owned
- * @author Amministratore
  *
  */
 public class CheckPlayer extends Action{

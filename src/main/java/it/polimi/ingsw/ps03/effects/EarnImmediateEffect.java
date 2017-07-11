@@ -14,7 +14,6 @@ import it.polimi.ingsw.ps03.room_pack.TowerColor;
 
 /**
  * this class represents the immediate effect  Earn, that gives resources relying on the number of card of a specific color or the number of military points
- * @author Amministratore
  *
  */
 

@@ -7,7 +7,6 @@ import it.polimi.ingsw.ps03.players.PlayerColor;
 import it.polimi.ingsw.ps03.resources.Resources;
 /**
  * this class represents the action Place as seen from the client
- * @author Amministratore
  *
  */
 public class ClientPlace implements Serializable{

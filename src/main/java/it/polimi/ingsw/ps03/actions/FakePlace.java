@@ -8,7 +8,6 @@ import it.polimi.ingsw.ps03.room_pack.TowerColor;
 import it.polimi.ingsw.ps03.room_pack.TowerRoom;
 /**
  * This class represents the action Place activated by the immediate effect PlaceImmediateEffect
- * @author Amministratore
  *
  */
 public class FakePlace extends Place{

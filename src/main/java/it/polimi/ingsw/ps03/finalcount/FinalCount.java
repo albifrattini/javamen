@@ -6,7 +6,10 @@ import java.util.List;
 import it.polimi.ingsw.ps03.development_card.DevelopmentCard;
 import it.polimi.ingsw.ps03.resources.Resources;
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
-
+/**
+ * this class counts the final victory points for each player
+ *
+ */
 public class FinalCount implements Serializable{
 
 	/**
@@ -20,7 +23,10 @@ public class FinalCount implements Serializable{
 		cardColor = color;
 		givenResources = resources;
 	}
-	
+	/**
+	 * @param cards
+	 * @return
+	 */
 	public Resources giveVictoryPoints(List<DevelopmentCard> cards){
 		int counter = -1;
 		for(DevelopmentCard d: cards){

@@ -3,8 +3,6 @@ package it.polimi.ingsw.ps03.billboard_pack;
 import java.io.Serializable;
 /**
  * This class defines the instant of the game and  who has to move  
- * @author Amministratore
- *
  */
 public class TurnOfPlay implements Serializable {
 

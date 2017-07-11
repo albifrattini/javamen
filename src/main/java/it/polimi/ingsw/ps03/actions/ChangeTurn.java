@@ -15,7 +15,6 @@ import it.polimi.ingsw.ps03.players.Pawn;
 import it.polimi.ingsw.ps03.players.PawnDiceColor;
 /**
  * This class changes the turn and prepares the billboard for the new turn
- * @author Alberto Frattini, Francesco Ehrenheim, Gabriele Ghiringhelli
  *
  */
 public class ChangeTurn extends Action {

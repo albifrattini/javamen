@@ -22,7 +22,6 @@ import java.io.Serializable;
 
 /**
  * this class makes the deck of development cards
- * @author Francesco Ehrenheim, Alberto Frattini, Gabriele Ghiringhelli
  * 
  */
 public class DevelopmentCards implements Serializable{

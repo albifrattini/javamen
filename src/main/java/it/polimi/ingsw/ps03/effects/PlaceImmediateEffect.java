@@ -4,7 +4,6 @@ import it.polimi.ingsw.ps03.room_pack.*;
 import it.polimi.ingsw.ps03.resources.*;
 /**
  * this class describes the effect Place, that allies the player to take a second card to a tower room with a possible discount
- * @author Amministratore
  *
  */
 public class PlaceImmediateEffect extends GiveResourcesImmediateEffect{

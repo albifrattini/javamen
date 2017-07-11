@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 /**
  * this class creates dices and allows to roll its
- * @author Amministratore
  *
  */
 public class Dices implements Serializable {

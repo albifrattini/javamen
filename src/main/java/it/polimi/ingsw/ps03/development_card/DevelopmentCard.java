@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 /**
  * This class describes the attributes of a Development Card
- * @author Alberto Frattini, Francesco Ehrenheim, Gabriele Ghiringhelli
  *
  */
 public class DevelopmentCard implements Serializable{

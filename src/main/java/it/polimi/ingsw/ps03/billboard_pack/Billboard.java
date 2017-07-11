@@ -22,7 +22,6 @@ import org.w3c.dom.NodeList;
 
 /**
  * this class permits to create  the billboard that will be used during the game
- * @author Amministratore
  *
  */
 public class Billboard extends Observable implements Cloneable,Serializable{

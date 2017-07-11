@@ -7,7 +7,6 @@ import it.polimi.ingsw.ps03.room_pack.ProductionRoom;
 import it.polimi.ingsw.ps03.room_pack.TowerColor;
 /**
  * this class describes the immediate effect that activates the harvesting or the market room in the billboard of a player
- * @author Amministratore
  *
  */
 public class HarvestingOrProductionImmediateEffect extends GiveResourcesImmediateEffect {

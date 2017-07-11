@@ -3,7 +3,6 @@ package it.polimi.ingsw.ps03.resources;
 import java.io.Serializable;
 /**
  * this class represents a Resource and in this class there are the methods to add and sub some resosources
- * @author Amministratore
  *
  */
 public abstract class Resource implements Serializable{

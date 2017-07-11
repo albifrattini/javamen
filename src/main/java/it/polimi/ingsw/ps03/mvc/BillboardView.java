@@ -29,7 +29,7 @@ public class BillboardView extends Observable implements Observer {
 	}
 	
 	
-	/* Override of the method of the Interface Runnable. It simply initializes the game, changing 
+	/** Override of the method of the Interface Runnable. It simply initializes the game, changing 
 	 * the turn that calls setChanged() and notifyObservers() from the model for the first time.
 	 */
 	public void initGame(){
@@ -39,7 +39,7 @@ public class BillboardView extends Observable implements Observer {
 	}
 	
 	
-	/* Is the principal function of the class 'BillboardView'. It receives the already edited model
+	/** Is the principal function of the class 'BillboardView'. It receives the already edited model
 	 * (billboard in our case) and an integer that represents the player that is called at playing.
 	 * In this method we give an output on the screen representing all the possible actions that a 
 	 * player can do. After choosing one, a specified method will be called to ask and process all
@@ -73,7 +73,7 @@ public class BillboardView extends Observable implements Observer {
 	}
 	
 	
-	/* In this method we simply show the possible actions and after taking one, we return it to the
+	/** In this method we simply show the possible actions and after taking one, we return it to the
 	 * method that called this.
 	 */
 	public ActionChoices selectAction(){
@@ -89,7 +89,7 @@ public class BillboardView extends Observable implements Observer {
 	}	
 	
 	
-	/* After showing available rooms (action spaces) and pawns, this method builds the object 'Action' asking
+	/** After showing available rooms (action spaces) and pawns, this method builds the object 'Action' asking
 	 * the user what to do. After this a setChanged() and a notifyObservers(action) with argument the action
 	 * object just built. This will be processed by the Controller.
 	 */
@@ -136,7 +136,7 @@ public class BillboardView extends Observable implements Observer {
 	}
 	
 	
-	/* Method that helps showing all the possible pawns to place and gets the input from the user. It will
+	/** Method that helps showing all the possible pawns to place and gets the input from the user. It will
 	 * return an object String representing the chosen pawn.
 	 */
 	public String pawnChoice(Player player){
@@ -158,7 +158,7 @@ public class BillboardView extends Observable implements Observer {
 	}
 	
 	
-	/* Method that helps showing all the possible rooms and gets the input from the user. It will return an 
+	/** Method that helps showing all the possible rooms and gets the input from the user. It will return an 
 	 * integer representing the chosen room.
 	 */
 	public int roomChoice(List<Room> rooms){
@@ -182,7 +182,7 @@ public class BillboardView extends Observable implements Observer {
 	
 	
 	
-	/* Method that asks the user for an input. In particular it questions the user if he wants to use some 
+	/** Method that asks the user for an input. In particular it questions the user if he wants to use some 
 	 * resources during 'place' action. After instantiating a Resources' object, the method fills it with
 	 * user inputs and returns the object to the caller. 
 	 */
@@ -274,7 +274,7 @@ public class BillboardView extends Observable implements Observer {
 
 	
 	
-	/* Method always called by the update method. It will show the current situation of the billboard, with 
+	/** Method always called by the update method. It will show the current situation of the billboard, with 
 	 * particular regard to rooms. So it will not show player's resources and the personal board in general.
 	 * Will be given an action able to show player's personal board.
 	 */

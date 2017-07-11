@@ -11,7 +11,6 @@ import it.polimi.ingsw.ps03.development_card.*;
 import it.polimi.ingsw.ps03.resources.*;
 /**
  * this class represents the Player, setting a name, 4 pawns of different color, the initial resources and the cards owned by the player 
- * @author Amministratore
  *
  */
 
