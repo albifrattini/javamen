@@ -24,6 +24,7 @@ public class FinalCount implements Serializable{
 		givenResources = resources;
 	}
 	/**
+	 * this method turns the development cards owned by a player into victory points
 	 * @param cards
 	 * @return
 	 */
